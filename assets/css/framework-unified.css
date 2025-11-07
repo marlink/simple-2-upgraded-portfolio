@@ -573,7 +573,7 @@ p {
     align-items: center;
 }
 .nav__logo-img {
-    height: 2rem;
+    height: 4rem;
     width: auto;
     display: block;
     transition: opacity 0.2s ease;
@@ -662,35 +662,49 @@ body[data-theme="dark"] .nav__logo-img {
 }
 .theme-toggle__label {
     cursor: pointer;
-    font-size: 1.25rem;
     padding: var(--space-2);
-    border-radius: var(--border-radius-sm);
-    background: var(--color-surface);
-    border: var(--border-width) solid var(--color-border);
     min-height: var(--touch-target-min);
     min-width: var(--touch-target-min);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    transition: opacity 0.2s ease, transform 0.1s ease;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    color: var(--color-text);
 }
+
+/* Light theme navbar: dark icons */
+body[data-theme="light"] .theme-toggle__label {
+    color: var(--color-text);
+}
+
+/* Dark theme navbar: white/almost white icons */
+body[data-theme="dark"] .theme-toggle__label {
+    color: var(--color-primary);
+}
+
+.theme-toggle__label svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
 .theme-toggle__label:hover {
-    background: var(--color-border);
-    transform: scale(1.05);
+    opacity: 0.7;
 }
+
 .theme-toggle__label:active {
     transform: scale(0.95);
 }
+
 .theme-toggle input:focus-visible + .theme-toggle__label {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);
 }
+
 .theme-toggle input:checked + .theme-toggle__label {
-    background: var(--color-primary);
-    color: var(--color-primary-contrast);
-    border-color: var(--color-primary);
+    opacity: 1;
 }
 
 /* HERO: vh units scale with viewport height */
@@ -733,6 +747,11 @@ body[data-theme="light"] .hero::before {
     background-image: url('../images/heros/white-rider-lg.jpg');
 }
 
+/* Dark theme: custom background color */
+body[data-theme="dark"] .hero {
+    background-color: #020204;
+}
+
 /* Light theme: custom background color to match image edges */
 body[data-theme="light"] .hero {
     background-color: #A3B5C1;
@@ -760,13 +779,14 @@ body[data-theme="light"] .hero {
 
 /* Dark theme: radial gradient with opacity 0 in center, fading to dark at edges */
 body[data-theme="dark"] .hero__overlay {
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.55));
+    background: #020204;
+    background: radial-gradient(circle, rgba(2, 2, 4, 0) 0%, rgba(2, 2, 4, 0.2) 30%, rgba(2, 2, 4, 0.9) 58%, rgba(2, 2, 4, 0.9) 76%, rgba(2, 2, 4, 1) 100%);
 }
 
 /* Light theme: radial gradient with opacity 0 in center, fading to almost-white at edges */
 body[data-theme="light"] .hero__overlay {
     background: #A3B5C1;
-    background: radial-gradient(circle, rgba(163, 181, 193, 1) 0%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.09) 54%, rgba(255, 255, 255, 0.3) 73%, rgba(163, 181, 193, 1) 100%);
+    background: radial-gradient(circle, rgba(163, 181, 193, 0) 0%, rgba(163, 181, 193, 0.2) 30%, rgba(163, 181, 193, 1) 58%, rgba(163, 181, 193, 1) 76%, rgba(163, 181, 193, 1) 100%);
 }
 
 .hero__content {
