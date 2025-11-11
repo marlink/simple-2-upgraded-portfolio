@@ -413,22 +413,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const subscribeBtn = document.querySelector('.footer__subscribe-btn');
     
     /**
-     * Validate email format
-     * @param {string} email - Email address to validate
-     * @returns {boolean} - True if valid email format
-     */
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-    
-    /**
      * Update subscribe button state based on email validity
+     * Uses validateEmail from utils.js (must be loaded before main.js)
      */
     const updateSubscribeButton = () => {
         if (emailInput && subscribeBtn) {
             const email = emailInput.value.trim();
-            const isValid = validateEmail(email);
+            // Use validateEmail from utils.js (global function)
+            const isValid = window.validateEmail ? window.validateEmail(email) : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
             subscribeBtn.disabled = !isValid;
         }
     };

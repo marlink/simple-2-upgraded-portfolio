@@ -10,11 +10,10 @@
     // ============================================
     // UTILITY FUNCTIONS
     // ============================================
-
-    /**
-     * Throttle function - limits function execution frequency
-     */
-    function throttle(func, limit) {
+    // Note: Uses utility functions from utils.js (loaded before this script)
+    // Fallback to local implementations if utils.js is not available
+    
+    const throttle = window.throttle || function(func, limit) {
         let inThrottle;
         return function () {
             const args = arguments;
@@ -25,12 +24,9 @@
                 setTimeout(() => (inThrottle = false), limit);
             }
         };
-    }
+    };
 
-    /**
-     * Debounce function - delays function execution until after wait time
-     */
-    function debounce(func, wait) {
+    const debounce = window.debounce || function(func, wait) {
         let timeout;
         return function () {
             const context = this;
@@ -38,31 +34,25 @@
             clearTimeout(timeout);
             timeout = setTimeout(() => func.apply(context, args), wait);
         };
-    }
+    };
 
-    /**
-     * Safe querySelector with error handling
-     */
-    function safeQuery(selector, context = document) {
+    const safeQuery = window.safeQuery || function(selector, context = document) {
         try {
             return context.querySelector(selector);
         } catch (e) {
             console.warn("Invalid selector:", selector, e);
             return null;
         }
-    }
+    };
 
-    /**
-     * Safe querySelectorAll with error handling
-     */
-    function safeQueryAll(selector, context = document) {
+    const safeQueryAll = window.safeQueryAll || function(selector, context = document) {
         try {
             return Array.from(context.querySelectorAll(selector));
         } catch (e) {
             console.warn("Invalid selector:", selector, e);
             return [];
         }
-    }
+    };
 
     // ============================================
     // VIEWPORT INFO (Optimized)
