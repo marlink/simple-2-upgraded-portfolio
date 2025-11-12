@@ -1,0 +1,24 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "color-hex-case": "lower",
+    "color-hex-length": "long",
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-block-no-shorthand-property-overrides": true,
+    "selector-class-pattern": "^[a-z]([a-z0-9-]+)?(__([a-z0-9]+-?)+)?(--([a-z0-9]+-?)+){0,2}$",
+    "custom-property-pattern": "^[a-z][a-z0-9-]*$",
+    "value-no-vendor-prefix": true,
+    "property-no-vendor-prefix": {
+      "ignoreProperties": ["appearance", "backdrop-filter"]
+    },
+    "at-rule-no-vendor-prefix": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": true,
+    "value-keyword-case": "lower"
+  },
+  "ignoreFiles": [
+    "**/archive/**",
+    "**/node_modules/**"
+  ]
+}
+

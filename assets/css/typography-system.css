@@ -103,6 +103,13 @@ body[data-theme="dark"] .display-1 {
     -webkit-text-fill-color: transparent;
 }
 
+/* Second line in display-1: 50% of parent font size - scales automatically */
+.display-1__subline {
+    font-size: 0.5em; /* 50% of parent (.display-1) font size */
+    line-height: inherit; /* Inherit line-height from parent */
+    display: inline-block; /* Ensure proper scaling */
+}
+
 .display-2 {
     font-family: var(--font-family-heading);
     font-size: var(--font-size-display-2);

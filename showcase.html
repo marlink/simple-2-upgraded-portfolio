@@ -39,80 +39,6 @@
     <link rel="stylesheet" href="assets/css/framework-unified.css">
     <!-- Typography System -->
     <link rel="stylesheet" href="assets/css/typography-system.css">
-</head>
-<body data-theme="dark">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header">
-        <nav class="nav">
-            <a class="nav__logo" href="index.html" aria-label="YourSchool">
-                <img src="assets/logo/mc-logo.svg" alt="YourSchool" class="nav__logo-img">
-            </a>
-
-            <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
-                <span class="nav__burger-line"></span>
-                <span class="nav__burger-line"></span>
-                <span class="nav__burger-line"></span>
-            </button>
-
-            <div class="nav__menu">
-                <ul class="nav__links">
-                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
-                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
-                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                    <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
-                </ul>
-
-                <!-- THEME TOGGLE -->
-                <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
-                </button>
-
-                <a href="contact.html" class="btn btn--outline">Free website</a>
-            </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div class="nav__overlay"></div>
-            <div class="nav__mobile-menu">
-                <ul class="nav__links nav__links--mobile">
-                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
-                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
-                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                    <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
-                </ul>
-
-                <button class="theme-toggle theme-toggle--mobile" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
-                </button>
-
-                <a href="contact.html" class="btn btn--outline btn--mobile">Free website</a>
-            </div>
-
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero__overlay"></div>
-        <div class="hero__content">
-            <h1 class="hero__title">Framework Showcase</h1>
-            <p class="hero__subtitle">
-                Complete design system with fluid typography, interactive components, carousels, and responsive layouts.
-            </p>
-        </div>
-    </section>
 
     <style>
         .demo-section {
@@ -209,10 +135,7 @@
     </style>
 </head>
 <body data-theme="dark">
-    <div class="viewport-info" id="viewport-info">
-        w: <span id="viewport-width">0px</span> | <span id="breakpoint">XS</span>
-    </div>
-
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header class="site-header">
         <nav class="nav">
             <a class="nav__logo" href="index.html" aria-label="YourSchool">
@@ -275,6 +198,10 @@
         </nav>
     </header>
 
+    <div class="viewport-info" id="viewport-info">
+        w: <span id="viewport-width">0px</span> | <span id="breakpoint">XS</span>
+    </div>
+
     <!-- HERO -->
     <section class="hero">
         <div class="hero__overlay"></div>
@@ -286,8 +213,8 @@
         </div>
     </section>
 
-    <main id="main-content" class="container" style="padding: var(--space-7) 0;">
-        
+    <main id="main-content">
+        <div class="container py-8">
         <!-- MAIN TABS NAVIGATION -->
         <div class="tabs showcase-tabs" style="margin-bottom: var(--space-6);">
             <div class="tablist" role="tablist" aria-label="Showcase navigation">
@@ -459,10 +386,50 @@
                         <button class="btn btn--text">Text</button>
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xxxl-3">
-                        <button class="btn btn--primary btn--sm">Small</button>
-                        <button class="btn btn--primary">Medium</button>
-                        <button class="btn btn--primary btn--lg">Large</button>
+                        <div class="demo-item">
+                            <p class="demo-label">Button Sizes</p>
+                            <div style="display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center;">
+                                <button class="btn btn--primary btn--sm">Small</button>
+                                <button class="btn btn--primary">Normal</button>
+                                <button class="btn btn--primary btn--big">Big</button>
+                                <button class="btn btn--primary btn--lg">Large</button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <h4 class="h4 mt-6">Button Sizes</h4>
+                <p class="text-sm text-muted mb-3">Four size variants available: Small, Normal (default), Big, and Large.</p>
+                <div class="grid">
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <p class="demo-label">Primary Buttons</p>
+                            <div style="display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; margin-bottom: var(--space-4);">
+                                <button class="btn btn--primary btn--sm">Small</button>
+                                <button class="btn btn--primary">Normal</button>
+                                <button class="btn btn--primary btn--big">Big</button>
+                                <button class="btn btn--primary btn--lg">Large</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <p class="demo-label">Outline Buttons</p>
+                            <div style="display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; margin-bottom: var(--space-4);">
+                                <button class="btn btn--outline btn--sm">Small</button>
+                                <button class="btn btn--outline">Normal</button>
+                                <button class="btn btn--outline btn--big">Big</button>
+                                <button class="btn btn--outline btn--lg">Large</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-example mt-4">
+                    <strong>Button Sizes:</strong><br>
+                    Small: &lt;button class="btn btn--primary btn--sm"&gt;Button&lt;/button&gt;<br>
+                    Normal: &lt;button class="btn btn--primary"&gt;Button&lt;/button&gt; (default, no size class needed)<br>
+                    Big: &lt;button class="btn btn--primary btn--big"&gt;Button&lt;/button&gt;<br>
+                    Large: &lt;button class="btn btn--primary btn--lg"&gt;Button&lt;/button&gt;
                 </div>
 
                 <h4 class="h4 mt-6">Button States</h4>
@@ -824,6 +791,331 @@
                 <p>Links support hover, focus, active, and visited states. Hover over the links to see the effects.</p>
                 <p>You can also use links in buttons: <a href="javascript:void(0)" class="btn btn--primary" aria-disabled="true">Link Button</a></p>
             </div>
+
+            <!-- BEST PRACTICES & COMMON MISTAKES -->
+            <h2 id="best-practices" class="h2 mt-8">Best Practices & Common Mistakes</h2>
+            <p>Learn from common mistakes and follow best practices to ensure your code is consistent, accessible, and maintainable.</p>
+
+            <h3 id="dos-donts" class="h3 mt-6">Do's and Don'ts</h3>
+            
+            <div class="grid mt-4">
+                <div class="col-12 col-lg-6">
+                    <div class="card card--solid" style="border-left: 4px solid var(--color-success);">
+                        <div class="card__body">
+                            <h4 class="h4 mb-3" style="color: var(--color-success);">✅ Do's</h4>
+                            <ul class="text-sm" style="list-style: disc; padding-left: var(--space-4);">
+                                <li class="mb-2">Use utility classes for spacing: <code>.mt-4</code>, <code>.py-6</code></li>
+                                <li class="mb-2">Use CSS custom properties: <code>var(--color-primary)</code></li>
+                                <li class="mb-2">Include ARIA labels on interactive elements</li>
+                                <li class="mb-2">Test components in both light and dark themes</li>
+                                <li class="mb-2">Use semantic HTML5 elements</li>
+                                <li class="mb-2">Follow BEM naming convention</li>
+                                <li class="mb-2">Use <code>safeQuery</code> / <code>safeQueryAll</code> from utils.js</li>
+                                <li class="mb-2">Add descriptive alt text to images</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card card--solid" style="border-left: 4px solid var(--color-danger);">
+                        <div class="card__body">
+                            <h4 class="h4 mb-3" style="color: var(--color-danger);">❌ Don'ts</h4>
+                            <ul class="text-sm" style="list-style: disc; padding-left: var(--space-4);">
+                                <li class="mb-2">Don't use inline styles: <code>style="padding: 20px"</code></li>
+                                <li class="mb-2">Don't hardcode colors: <code>color: #000000</code></li>
+                                <li class="mb-2">Don't skip ARIA labels on icon-only buttons</li>
+                                <li class="mb-2">Don't use duplicate IDs across pages</li>
+                                <li class="mb-2">Don't use <code>document.querySelector</code> directly</li>
+                                <li class="mb-2">Don't forget to test in both themes</li>
+                                <li class="mb-2">Don't use non-semantic elements for structure</li>
+                                <li class="mb-2">Don't forget alt text on images</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="copy-paste-snippets" class="h3 mt-6">Copy-Paste Ready Code Snippets</h3>
+            <p>Use these code snippets as starting points for your components. All snippets are tested and work in both light and dark themes.</p>
+
+            <div class="grid mt-4">
+                <div class="col-12 col-lg-6">
+                    <h4 class="h4 mb-3">Button with Icon</h4>
+                    <pre class="code-block"><code>&lt;button class="btn btn--primary btn--icon-left"&gt;
+    &lt;svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;
+        &lt;path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"&gt;&lt;/path&gt;
+        &lt;polyline points="7 10 12 15 17 10"&gt;&lt;/polyline&gt;
+        &lt;line x1="12" y1="15" x2="12" y2="3"&gt;&lt;/line&gt;
+    &lt;/svg&gt;
+    Download
+&lt;/button&gt;</code></pre>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h4 class="h4 mb-3">Card Component</h4>
+                    <pre class="code-block"><code>&lt;article class="card"&gt;
+    &lt;div class="card__body"&gt;
+        &lt;h3&gt;Card Title&lt;/h3&gt;
+        &lt;p&gt;Card content goes here.&lt;/p&gt;
+        &lt;a href="#" class="btn btn--primary btn--sm"&gt;Action&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h4 class="h4 mb-3">Tabs Component</h4>
+                    <pre class="code-block"><code>&lt;div class="tabs"&gt;
+    &lt;div class="tablist" role="tablist" aria-label="Tab navigation"&gt;
+        &lt;button class="tab is-active" role="tab" 
+                aria-selected="true" 
+                aria-controls="tab-panel-1" 
+                id="tab-btn-1"&gt;Tab 1&lt;/button&gt;
+        &lt;button class="tab" role="tab" 
+                aria-selected="false" 
+                aria-controls="tab-panel-2" 
+                id="tab-btn-2"&gt;Tab 2&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id="tab-panel-1" class="tab__panel is-active" 
+         role="tabpanel" 
+         aria-labelledby="tab-btn-1"&gt;
+        Content 1
+    &lt;/div&gt;
+    &lt;div id="tab-panel-2" class="tab__panel" 
+         role="tabpanel" 
+         aria-labelledby="tab-btn-2"&gt;
+        Content 2
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h4 class="h4 mb-3">Modal Component</h4>
+                    <pre class="code-block"><code>&lt;!-- Trigger --&gt;
+&lt;button data-modal-target="#my-modal"&gt;Open Modal&lt;/button&gt;
+
+&lt;!-- Modal --&gt;
+&lt;div class="modal" id="my-modal" hidden&gt;
+    &lt;div class="modal__overlay" data-modal-close&gt;&lt;/div&gt;
+    &lt;div class="modal__dialog"&gt;
+        &lt;button data-modal-close aria-label="Close modal"&gt;×&lt;/button&gt;
+        &lt;h2&gt;Modal Title&lt;/h2&gt;
+        &lt;p&gt;Modal content&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h4 class="h4 mb-3">Accordion Component</h4>
+                    <pre class="code-block"><code>&lt;div class="accordion"&gt;
+    &lt;div class="accordion__item"&gt;
+        &lt;button class="accordion__button" 
+                aria-expanded="false"&gt;
+            Question
+        &lt;/button&gt;
+        &lt;div class="accordion__panel" hidden&gt;
+            Answer content
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h4 class="h4 mb-3">Grid System</h4>
+                    <pre class="code-block"><code>&lt;div class="container"&gt;
+    &lt;div class="grid"&gt;
+        &lt;div class="col-12 col-md-6 col-lg-4"&gt;
+            Column 1
+        &lt;/div&gt;
+        &lt;div class="col-12 col-md-6 col-lg-4"&gt;
+            Column 2
+        &lt;/div&gt;
+        &lt;div class="col-12 col-md-6 col-lg-4"&gt;
+            Column 3
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+
+            <h3 id="common-mistakes" class="h3 mt-6">Common Mistakes to Avoid</h3>
+            
+            <div class="grid mt-4">
+                <div class="col-12">
+                    <div class="card card--solid" style="border-left: 4px solid var(--color-warning);">
+                        <div class="card__body">
+                            <h4 class="h4 mb-3">1. Inline Styles Instead of Utility Classes</h4>
+                            <div class="grid">
+                                <div class="col-12 col-md-6">
+                                    <p class="text-sm mb-2"><strong>❌ Wrong:</strong></p>
+                                    <pre class="code-block"><code>&lt;div style="padding: 20px; margin-top: 16px;"&gt;
+    Content
+&lt;/div&gt;</code></pre>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <p class="text-sm mb-2"><strong>✅ Correct:</strong></p>
+                                    <pre class="code-block"><code>&lt;div class="py-4 mt-2"&gt;
+    Content
+&lt;/div&gt;</code></pre>
+                                </div>
+                            </div>
+                            <p class="text-sm mt-3"><strong>Why:</strong> Utility classes are theme-aware, maintainable, and consistent with the design system.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <div class="card card--solid" style="border-left: 4px solid var(--color-warning);">
+                        <div class="card__body">
+                            <h4 class="h4 mb-3">2. Hardcoded Colors</h4>
+                            <div class="grid">
+                                <div class="col-12 col-md-6">
+                                    <p class="text-sm mb-2"><strong>❌ Wrong:</strong></p>
+                                    <pre class="code-block"><code>.my-element {
+    color: #000000;
+    background: #ffffff;
+}</code></pre>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <p class="text-sm mb-2"><strong>✅ Correct:</strong></p>
+                                    <pre class="code-block"><code>.my-element {
+    color: var(--color-text);
+    background: var(--color-bg);
+}</code></pre>
+                                </div>
+                            </div>
+                            <p class="text-sm mt-3"><strong>Why:</strong> CSS custom properties automatically adapt to light/dark themes and can be changed globally.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <div class="card card--solid" style="border-left: 4px solid var(--color-warning);">
+                        <div class="card__body">
+                            <h4 class="h4 mb-3">3. Missing ARIA Labels</h4>
+                            <div class="grid">
+                                <div class="col-12 col-md-6">
+                                    <p class="text-sm mb-2"><strong>❌ Wrong:</strong></p>
+                                    <pre class="code-block"><code>&lt;button class="theme-toggle"&gt;
+    &lt;img src="sun.svg" alt="Sun"&gt;
+&lt;/button&gt;</code></pre>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <p class="text-sm mb-2"><strong>✅ Correct:</strong></p>
+                                    <pre class="code-block"><code>&lt;button class="theme-toggle" 
+        type="button" 
+        aria-label="Toggle color theme"&gt;
+    &lt;img src="sun.svg" alt="Light theme"&gt;
+&lt;/button&gt;</code></pre>
+                                </div>
+                            </div>
+                            <p class="text-sm mt-3"><strong>Why:</strong> ARIA labels make components accessible to screen readers and assistive technologies.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <div class="card card--solid" style="border-left: 4px solid var(--color-warning);">
+                        <div class="card__body">
+                            <h4 class="h4 mb-3">4. Direct DOM Manipulation</h4>
+                            <div class="grid">
+                                <div class="col-12 col-md-6">
+                                    <p class="text-sm mb-2"><strong>❌ Wrong:</strong></p>
+                                    <pre class="code-block"><code>const element = document.querySelector('.my-class');
+element.classList.add('active');</code></pre>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <p class="text-sm mb-2"><strong>✅ Correct:</strong></p>
+                                    <pre class="code-block"><code>const element = safeQuery('.my-class');
+if (element) {
+    element.classList.add('active');
+}</code></pre>
+                                </div>
+                            </div>
+                            <p class="text-sm mt-3"><strong>Why:</strong> <code>safeQuery</code> handles null checks and prevents runtime errors.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <div class="card card--solid" style="border-left: 4px solid var(--color-warning);">
+                        <div class="card__body">
+                            <h4 class="h4 mb-3">5. Not Testing in Both Themes</h4>
+                            <p class="text-sm mb-3"><strong>Common Issues:</strong></p>
+                            <ul class="text-sm" style="list-style: disc; padding-left: var(--space-4);">
+                                <li>Text becomes unreadable in dark theme</li>
+                                <li>Borders disappear or become too prominent</li>
+                                <li>Shadows don't work well in both themes</li>
+                                <li>Images with transparency look wrong</li>
+                            </ul>
+                            <p class="text-sm mt-3"><strong>Solution:</strong> Always use theme-aware CSS variables and test with the theme toggle.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 id="documentation-links" class="h3 mt-6">Documentation & Resources</h3>
+            <div class="grid mt-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card">
+                        <div class="card__body">
+                            <h4 class="h4 mb-2">Component Library</h4>
+                            <p class="text-sm mb-3">Complete reference for all JavaScript and CSS components.</p>
+                            <a href="docs/COMPONENT-LIBRARY.md" class="btn btn--primary btn--sm" target="_blank">View Library</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card">
+                        <div class="card__body">
+                            <h4 class="h4 mb-2">Style Guide Checklist</h4>
+                            <p class="text-sm mb-3">Pre-commit checklist for maintaining code quality.</p>
+                            <a href="docs/STYLE-GUIDE-CHECKLIST.md" class="btn btn--primary btn--sm" target="_blank">View Checklist</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card">
+                        <div class="card__body">
+                            <h4 class="h4 mb-2">Framework README</h4>
+                            <p class="text-sm mb-3">Complete framework documentation and usage guide.</p>
+                            <a href="FRAMEWORK-README.md" class="btn btn--primary btn--sm" target="_blank">View README</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card">
+                        <div class="card__body">
+                            <h4 class="h4 mb-2">Typography System</h4>
+                            <p class="text-sm mb-3">Typography utilities and display styles.</p>
+                            <a href="typography-demo.html" class="btn btn--primary btn--sm">View Demo</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card">
+                        <div class="card__body">
+                            <h4 class="h4 mb-2">Pre-Commit Setup</h4>
+                            <p class="text-sm mb-3">Guide for using consistency checker and validation tools.</p>
+                            <a href="docs/PRE-COMMIT-SETUP.md" class="btn btn--primary btn--sm" target="_blank">View Guide</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card">
+                        <div class="card__body">
+                            <h4 class="h4 mb-2">Cursor Rules</h4>
+                            <p class="text-sm mb-3">Project coding standards and patterns for Cursor AI.</p>
+                            <a href=".cursorrules" class="btn btn--primary btn--sm" target="_blank">View Rules</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4" style="background: var(--color-surface); border-radius: var(--border-radius); border: var(--border-width) solid var(--color-border);">
+                <h4 class="h4 mb-3">💡 Pro Tips</h4>
+                <ul class="text-sm" style="list-style: disc; padding-left: var(--space-4);">
+                    <li class="mb-2">Use the theme toggle in the navigation to test components in both themes</li>
+                    <li class="mb-2">Run <code>npm run check:consistency</code> before committing to catch issues early</li>
+                    <li class="mb-2">Use Cursor snippets (type snippet prefix and press Tab) for quick component insertion</li>
+                    <li class="mb-2">Check <code>docs/COMPONENT-LIBRARY.md</code> for the latest component patterns</li>
+                    <li class="mb-2">All components automatically support light/dark themes when using CSS custom properties</li>
+                </ul>
+            </div>
         </section>
 
         <!-- RADIO BUTTONS AS SELECTABLE BUTTONS -->
@@ -1151,8 +1443,8 @@
                 <strong>Form Usage:</strong><br>
                 &lt;form class="form"&gt;<br>
                 &nbsp;&nbsp;&lt;div class="form__row"&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="name"&gt;Name&lt;/label&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;input id="name" type="text"&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="form-name"&gt;Name&lt;/label&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;input id="form-name" type="text"&gt;<br>
                 &nbsp;&nbsp;&lt;/div&gt;<br>
                 &lt;/form&gt;
             </div>
@@ -2390,6 +2682,7 @@ console.log(message);</code></pre>
                 </div>
             </section>
         </div>
+        </div>
 
     </main>
 
@@ -2448,7 +2741,7 @@ console.log(message);</code></pre>
 
             <!-- Copyright Line -->
             <div class="footer__copyright">
-                <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designss.</p>
+                <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designss. | ver. 0.0.3</p>
             </div>
         </div>
     </footer>

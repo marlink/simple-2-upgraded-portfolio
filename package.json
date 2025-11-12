@@ -1,0 +1,27 @@
+{
+  "name": "simple-2",
+  "version": "1.0.0",
+  "description": "Static HTML/CSS/JS website with custom responsive CSS framework",
+  "scripts": {
+    "validate:html": "html-validate *.html blog/*.html",
+    "validate:css": "stylelint 'assets/css/**/*.css'",
+    "validate:all": "npm run validate:html && npm run validate:css",
+    "sync-components": "node scripts/sync-components.js",
+    "check:consistency": "node scripts/check-consistency.js",
+    "version:update": "node scripts/update-version.js",
+    "version:increment": "node scripts/increment-version.js"
+  },
+  "devDependencies": {
+    "html-validate": "^8.7.3",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "keywords": [
+    "static-site",
+    "css-framework",
+    "responsive-design"
+  ],
+  "author": "Marceli Cieplik",
+  "license": "MIT"
+}
+

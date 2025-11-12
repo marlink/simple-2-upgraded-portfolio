@@ -376,6 +376,9 @@
                     tabBtn.classList.add("is-active");
                     tabBtn.setAttribute("aria-selected", "true");
 
+                    // Scroll tab into view if needed
+                    this.scrollTabIntoView(tabBtn);
+
                     // Update photo counter display when photos tab is opened
                     if (tabName === "photos") {
                         // Small delay to ensure DOM is ready
@@ -400,6 +403,46 @@
                 }
             } catch (e) {
                 console.error("Error switching tab:", e);
+            }
+        },
+
+        scrollTabIntoView(tabBtn) {
+            try {
+                const tablist = safeQuery(".showcase-tabs .tablist");
+                if (!tablist || !tabBtn) return;
+
+                // Get bounding rectangles
+                const tablistRect = tablist.getBoundingClientRect();
+                const tabRect = tabBtn.getBoundingClientRect();
+
+                // Check if tab is fully visible
+                const isFullyVisible = 
+                    tabRect.left >= tablistRect.left &&
+                    tabRect.right <= tablistRect.right;
+
+                // Check if tab is at least 50% visible (for mobile scenarios)
+                const visibleWidth = Math.min(tabRect.right, tablistRect.right) - Math.max(tabRect.left, tablistRect.left);
+                const tabWidth = tabRect.width;
+                const isAtLeastHalfVisible = visibleWidth >= tabWidth * 0.5;
+
+                // If tab is not fully visible or less than 50% visible, scroll it into view
+                if (!isFullyVisible || !isAtLeastHalfVisible) {
+                    // Calculate scroll position to center the tab
+                    const tabOffsetLeft = tabBtn.offsetLeft;
+                    const tablistWidth = tablist.clientWidth;
+                    const tabBtnWidth = tabBtn.offsetWidth;
+                    
+                    // Center the tab in the viewport
+                    const scrollPosition = tabOffsetLeft - (tablistWidth / 2) + (tabBtnWidth / 2);
+                    
+                    // Smooth scroll
+                    tablist.scrollTo({
+                        left: scrollPosition,
+                        behavior: "smooth"
+                    });
+                }
+            } catch (e) {
+                console.error("Error scrolling tab into view:", e);
             }
         },
     };
