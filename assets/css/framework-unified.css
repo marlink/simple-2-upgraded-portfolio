@@ -3381,16 +3381,26 @@ body[data-theme="dark"] .card {
 }
 
 .card:hover {
-  transform: translateY(-3px); /* More pronounced lift */
+  transform: translateY(-2px); /* Gentle lift */
   box-shadow: var(--elevation-3);
-  border-color: rgba(183, 240, 77, 0.15);
+  border-color: var(--color-text-muted);
+  border-width: 2px;
 }
 
-/* Subtle scale on card content when hovering card */
-.card:hover .card__body > *:first-child {
-  transform: translateX(2px);
-  transition: transform 0.3s var(--ease-out-smooth);
+body[data-theme="dark"] .card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
 }
+
+body[data-theme="light"] .card:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Prevent buttons inside cards from lifting (avoid double lift) */
+.card:hover .btn {
+  transform: none;
+}
+
+/* Prevent font jump - removed translateX transform */
 
 .card__header,
 .card__footer {
@@ -3513,39 +3523,39 @@ body[data-theme="light"] .card--glass-outline {
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Hover only: Refined green glow effect */
+/* Hover only: Nice border change effect */
 .card--glass-outline:hover {
-  transform: translateY(-4px);
-  border-color: rgba(183, 240, 77, 0.25);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-width: 2px;
   box-shadow:
     0 12px 48px rgba(0, 0, 0, 0.16),
     0 4px 12px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(183, 240, 77, 0.15),
-    var(--shadow-glow-md),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
   background: rgba(0, 0, 0, 0.65);
 }
 
 body[data-theme="dark"] .card--glass-outline:hover {
-  border-color: rgba(183, 240, 77, 0.3);
+  border-color: rgba(255, 255, 255, 0.25);
   box-shadow:
     0 12px 48px rgba(0, 0, 0, 0.25),
     0 4px 12px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(183, 240, 77, 0.2),
-    var(--shadow-glow-md),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
   background: rgba(0, 0, 0, 0.75);
 }
 
 body[data-theme="light"] .card--glass-outline:hover {
-  border-color: rgba(183, 240, 77, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
   box-shadow:
     0 12px 48px rgba(0, 0, 0, 0.16),
     0 4px 12px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(183, 240, 77, 0.2),
-    var(--shadow-glow-md),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.55);
+}
+
+/* Prevent buttons inside glass cards from lifting */
+.card--glass-outline:hover .btn {
+  transform: none;
 }
 
 /* Glass card header/footer adjustments */
@@ -3583,8 +3593,14 @@ body[data-theme="dark"] .card--glass-outline .card__footer {
   box-shadow: none;
 }
 .card--outline:hover {
-  background: rgba(183, 240, 77, 0.05);
+  background: var(--color-surface);
+  border-width: 2px;
   box-shadow: var(--shadow-sm);
+}
+
+/* Prevent buttons inside outline cards from lifting */
+.card--outline:hover .btn {
+  transform: none;
 }
 
 /* =========================================
@@ -3642,35 +3658,30 @@ body[data-theme="light"] .about__stat-card {
     0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Hover only: Green glow effect (not on focus unless focus-visible) */
+/* Hover only: Nice border change effect */
 .about__stat-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(183, 240, 77, 0.4);
+  border-color: rgba(255, 255, 255, 0.25);
+  border-width: 2px;
   box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.25),
-    0 2px 6px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(183, 240, 77, 0.2),
-    0 0 16px rgba(183, 240, 77, 0.12);
+    0 2px 6px rgba(0, 0, 0, 0.15);
   background: rgba(0, 0, 0, 0.65);
 }
 
 body[data-theme="dark"] .about__stat-card:hover {
-  border-color: rgba(183, 240, 77, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.4),
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(183, 240, 77, 0.3),
-    0 0 20px rgba(183, 240, 77, 0.15);
+    0 2px 8px rgba(0, 0, 0, 0.3);
   background: rgba(0, 0, 0, 0.75);
 }
 
 body[data-theme="light"] .about__stat-card:hover {
-  border-color: rgba(183, 240, 77, 0.5);
+  border-color: rgba(255, 255, 255, 0.35);
   box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.2),
-    0 2px 6px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(183, 240, 77, 0.3),
-    0 0 18px rgba(183, 240, 77, 0.15);
+    0 2px 6px rgba(0, 0, 0, 0.15);
   background: rgba(0, 0, 0, 0.55);
 }
 
