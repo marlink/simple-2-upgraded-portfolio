@@ -2076,6 +2076,12 @@ body[data-theme="light"] .hero__overlay {
   margin: 0 0 var(--space-2) 0;
   font-weight: 600;
 }
+
+/* Display-1 in hero context - adjust margin */
+.hero__text .display-1 {
+  margin-bottom: var(--space-2);
+}
+
 .hero__subtitle {
   font-size: var(--font-size-lg);
   margin: 0 0 var(--space-4) 0;
