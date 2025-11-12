@@ -73,15 +73,19 @@
   --color-primary-contrast: #ffffff;
   --color-accent: #10b981; /* emerald-500 - more vibrant accent */
   --color-accent-hover: #b7f04d; /* green accent for hover states */
-  --color-success: #10b981; /* emerald-500 */
-  --color-danger: #ef4444; /* red-500 */
-  --color-warning: #f59e0b; /* amber-500 */
+  --color-success: #34d399; /* emerald-400 */
+  --color-danger: #f87171; /* red-400 */
+  --color-warning: #fbbf24; /* amber-300 */
   --color-info: #3b82f6; /* blue-500 - for informational elements */
 
   /* Hero section colors */
   --hero-bg-dark: #010101; /* Very dark background for dark theme hero */
   --hero-bg-light: #a3b5c1; /* Light background for light theme hero */
   --hero-text: var(--color-primary); /* Hero text color */
+
+  /* Brand colors */
+  --color-youtube: #ff0000; /* YouTube red */
+  --color-substack: #ff6600; /* Substack orange */
 
   /* Spacing scale: all values are multiples of baseline for visual rhythm */
   --space-0-5: calc(var(--baseline) * 0.5); /* 4px - Micro-spacing */
@@ -202,11 +206,15 @@
   --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3); /* Dark theme shadow - subtle depth */
 
   /* Code block colors */
-  --code-bg: #1a1a1a;
-  --code-border: #2a2a2a;
+  --code-bg: #0a0a0a;
+  --code-border: #1a1a1a;
   --code-text: #e2e8f0;
   --code-scrollbar-track: rgba(234, 244, 244, 0.05);
   --code-scrollbar-thumb: rgba(234, 244, 244, 0.2);
+
+  /* Brand colors */
+  --color-youtube: #ff0000; /* YouTube red */
+  --color-substack: #ff6600; /* Substack orange */
 }
 
 /* DARK THEME: override color tokens when data-theme="dark" attribute is present */
@@ -5717,4 +5725,153 @@ body[data-theme="light"] .video-cover__play-icon {
   background: rgba(0, 0, 0, 0.5);
   /* becomes */
   background: rgba(0 0 0 / 50%);
+}
+
+/* Prevent buttons inside outline cards from lifting */
+.card--outline:hover .btn {
+  transform: none;
+}
+
+/* =========================================
+   BRANDED SECTIONS - YouTube and Substack Cards
+   ========================================= */
+.card--youtube {
+  border-color: var(--color-youtube);
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.05) 0%, rgba(255, 0, 0, 0.02) 100%);
+}
+
+.card--youtube:hover {
+  border-color: var(--color-youtube);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.card--youtube .card__header,
+.card--youtube .card__footer {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(255, 0, 0, 0.05) 100%);
+  border-bottom: 2px solid rgba(255, 0, 0, 0.2);
+}
+
+.card--youtube .btn {
+  background: var(--color-youtube);
+  color: white;
+  border-color: var(--color-youtube);
+}
+
+.card--youtube .btn:hover {
+  background: #cc0000;
+  border-color: #cc0000;
+  color: white;
+}
+
+.card--substack {
+  border-color: var(--color-substack);
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.05) 0%, rgba(255, 102, 0, 0.02) 100%);
+}
+
+.card--substack:hover {
+  border-color: var(--color-substack);
+  box-shadow: 0 8px 25px rgba(255, 102, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.card--substack .card__header,
+.card--substack .card__footer {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 102, 0, 0.05) 100%);
+  border-bottom: 2px solid rgba(255, 102, 0, 0.2);
+}
+
+.card--substack .btn {
+  background: var(--color-substack);
+  color: white;
+  border-color: var(--color-substack);
+}
+
+.card--substack .btn:hover {
+  background: #cc5200;
+  border-color: #cc5200;
+  color: white;
+}
+
+/* Dark theme adjustments for branded sections */
+body[data-theme="dark"] .card--youtube {
+  border-color: var(--color-youtube);
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.08) 0%, rgba(255, 0, 0, 0.04) 100%);
+}
+
+body[data-theme="dark"] .card--youtube:hover {
+  border-color: var(--color-youtube);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.25);
+}
+
+body[data-theme="dark"] .card--youtube .card__header,
+body[data-theme="dark"] .card--youtube .card__footer {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.15) 0%, rgba(255, 0, 0, 0.08) 100%);
+  border-bottom: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+body[data-theme="dark"] .card--substack {
+  border-color: var(--color-substack);
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.08) 0%, rgba(255, 102, 0, 0.04) 100%);
+}
+
+body[data-theme="dark"] .card--substack:hover {
+  border-color: var(--color-substack);
+  box-shadow: 0 8px 25px rgba(255, 102, 0, 0.25);
+}
+
+body[data-theme="dark"] .card--substack .card__header,
+body[data-theme="dark"] .card--substack .card__footer {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.15) 0%, rgba(255, 102, 0, 0.08) 100%);
+  border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+}
+
+body[data-theme="dark"] .card--substack .card__header,
+body[data-theme="dark"] .card--substack .card__footer {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.15) 0%, rgba(255, 102, 0, 0.08) 100%);
+  border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+}
+
+/* Contact Branded Sections */
+.contact__branded {
+  margin: var(--space-12) 0 var(--space-8) 0;
+}
+
+.contact__branded .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__branded .card__header h3 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.contact__branded .card__body p {
+  margin-bottom: var(--space-4);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+}
+
+.contact__branded .card__footer {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.contact__branded .card__footer small {
+  opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .contact__branded {
+    margin: var(--space-8) 0 var(--space-6) 0;
+  }
+  
+  .contact__branded .card__header h3 {
+    font-size: var(--font-size-lg);
+  }
 }
