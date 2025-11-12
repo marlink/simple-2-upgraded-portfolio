@@ -405,6 +405,133 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
         console.error('Error initializing code copy button:', error)
     }
+
+    try {
+        /* ========================================================================
+         * VIDEO COVER COMPONENT
+         * ========================================================================
+         * Video elements with static cover images that reveal video on interaction
+         * 
+         * HTML Structure:
+         * <div class="video-cover" data-video-cover>
+         *   <video class="video-cover__video" loop muted playsinline>
+         *     <source src="video.mp4" type="video/mp4">
+         *   </video>
+         *   <img src="cover.jpg" alt="Cover" class="video-cover__cover">
+         *   <div class="video-cover__play-icon" aria-hidden="true">▶</div>
+         *   <!-- Content here -->
+         * </div>
+         * 
+         * Features:
+         * - Desktop: Hover shows play icon, click plays video
+         * - Mobile: Tap shows play icon, second tap plays video
+         * - Smooth cover image fade-out when video starts
+         * - Toggle play/pause on repeated clicks
+         */
+
+        const videoCovers = safeQueryAll('[data-video-cover]')
+        
+        if (videoCovers && videoCovers.length > 0) {
+            // Detect if device has fine pointer (desktop/mouse)
+            const hasFinePointer = window.matchMedia('(pointer: fine)').matches
+
+            videoCovers.forEach(container => {
+                const video = safeQuery('.video-cover__video', container)
+                const cover = safeQuery('.video-cover__cover', container)
+                const playIcon = safeQuery('.video-cover__play-icon', container)
+
+                if (!video) {
+                    console.warn('Video cover component missing video element', container)
+                    return
+                }
+
+                let isPlaying = false
+                let showIconTimeout = null
+
+                /**
+                 * Play video and hide cover
+                 */
+                const playVideo = () => {
+                    if (!isPlaying) {
+                        video.play().then(() => {
+                            isPlaying = true
+                            container.classList.add('video-cover--playing')
+                            container.classList.remove('video-cover--show-icon')
+                        }).catch(err => {
+                            console.error('Error playing video:', err)
+                        })
+                    } else {
+                        // Toggle pause
+                        video.pause()
+                        isPlaying = false
+                        container.classList.remove('video-cover--playing')
+                    }
+                }
+
+                /**
+                 * Show play icon temporarily on mobile
+                 */
+                const showPlayIcon = () => {
+                    container.classList.add('video-cover--show-icon')
+                    
+                    // Auto-hide after 2 seconds if not played
+                    clearTimeout(showIconTimeout)
+                    showIconTimeout = setTimeout(() => {
+                        if (!isPlaying) {
+                            container.classList.remove('video-cover--show-icon')
+                        }
+                    }, 2000)
+                }
+
+                // Desktop: Click to play (hover handled by CSS)
+                if (hasFinePointer) {
+                    container.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        playVideo()
+                    })
+                } else {
+                    // Mobile: First tap shows icon, second tap plays
+                    let tapped = false
+                    
+                    container.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        
+                        if (!tapped && !isPlaying) {
+                            // First tap: show icon
+                            tapped = true
+                            showPlayIcon()
+                            
+                            // Reset tapped state after 3 seconds
+                            setTimeout(() => {
+                                tapped = false
+                            }, 3000)
+                        } else {
+                            // Second tap or toggle: play/pause video
+                            playVideo()
+                            tapped = false
+                        }
+                    })
+                }
+
+                // Reset when video ends (if not looping)
+                video.addEventListener('ended', () => {
+                    isPlaying = false
+                    container.classList.remove('video-cover--playing')
+                    container.classList.remove('video-cover--show-icon')
+                })
+
+                // Handle video pause event
+                video.addEventListener('pause', () => {
+                    if (isPlaying) {
+                        isPlaying = false
+                        container.classList.remove('video-cover--playing')
+                    }
+                })
+            })
+        }
+    } catch (error) {
+        console.error('Error initializing video cover component:', error)
+    }
 })
 
 /* ========================================================================

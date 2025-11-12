@@ -31,6 +31,31 @@
     const safeQuery = window.safeQuery
     const safeQueryAll = window.safeQueryAll
 
+    /* ========================================================================
+     * 0️⃣ PAGE LOAD SPINNER
+     * ========================================================================
+     * Remove spinner when DOM is fully loaded
+     * Spinner must exist in HTML before this script runs
+     */
+    const removeSpinner = () => {
+        const spinner = document.getElementById('page-spinner')
+        if (spinner) {
+            spinner.classList.add('hidden')
+            // Remove from DOM after transition completes
+            setTimeout(() => {
+                spinner.remove()
+            }, 400) // Match CSS transition duration
+        }
+    }
+
+    // Remove spinner on DOMContentLoaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', removeSpinner)
+    } else {
+        // DOM already loaded
+        removeSpinner()
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         try {
         /* ========================================================================
