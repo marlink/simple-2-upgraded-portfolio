@@ -6,6 +6,9 @@
  * Lightweight, framework-free component library using plain DOM API
  * All components use data attributes for configuration (no JavaScript config needed)
  * 
+ * Dependencies:
+ * - utils.js (must be loaded before this file for safeQuery/safeQueryAll)
+ * 
  * Components included:
  * - Tabs: Multi-panel tab interface with ARIA support
  * - Accordion: Expandable/collapsible content sections
@@ -24,32 +27,59 @@
  * ============================================================================
  */
 
+// Import utility functions from utils.js (loaded globally)
+const safeQuery = window.safeQuery || ((selector, context = document) => {
+    try {
+        return context.querySelector(selector);
+    } catch (e) {
+        console.warn('Invalid selector:', selector, e);
+        return null;
+    }
+});
+
+const safeQueryAll = window.safeQueryAll || ((selector, context = document) => {
+    try {
+        return Array.from(context.querySelectorAll(selector));
+    } catch (e) {
+        console.warn('Invalid selector:', selector, e);
+        return [];
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
+    try {
+        /* ========================================================================
+         * TABS COMPONENT
+         * ========================================================================
+         * Multi-panel tab interface
+         * 
+         * HTML Structure:
+         * <div class="tabs">
+         *   <button class="tab" aria-controls="panel-1" aria-selected="true">Tab 1</button>
+         *   <button class="tab" aria-controls="panel-2" aria-selected="false">Tab 2</button>
+         *   <div id="panel-1" class="tab__panel is-active">Content 1</div>
+         *   <div id="panel-2" class="tab__panel">Content 2</div>
+         * </div>
+         * 
+         * Features:
+         * - ARIA attributes for accessibility
+         * - Keyboard navigation support
+         * - Smooth transitions (handled by CSS)
+         */
+        const tabContainers = safeQueryAll('.tabs');
+        if (!tabContainers || tabContainers.length === 0) {
+            // No tabs on this page
+        } else {
+            tabContainers.forEach(container => {
+                if (!container) return;
+                const tabs = safeQueryAll('.tab', container);
+                const panels = safeQueryAll('.tab__panel', container);
+                if (!tabs || tabs.length === 0 || !panels || panels.length === 0) {
+                    console.warn('Tabs component missing required elements', container);
+                    return;
+                }
 
-    /* ========================================================================
-     * TABS COMPONENT
-     * ========================================================================
-     * Multi-panel tab interface
-     * 
-     * HTML Structure:
-     * <div class="tabs">
-     *   <button class="tab" aria-controls="panel-1" aria-selected="true">Tab 1</button>
-     *   <button class="tab" aria-controls="panel-2" aria-selected="false">Tab 2</button>
-     *   <div id="panel-1" class="tab__panel is-active">Content 1</div>
-     *   <div id="panel-2" class="tab__panel">Content 2</div>
-     * </div>
-     * 
-     * Features:
-     * - ARIA attributes for accessibility
-     * - Keyboard navigation support
-     * - Smooth transitions (handled by CSS)
-     */
-    const tabContainers = document.querySelectorAll('.tabs');
-    tabContainers.forEach(container => {
-        const tabs = container.querySelectorAll('.tab');
-        const panels = container.querySelectorAll('.tab__panel');
-
-        tabs.forEach(tab => {
+                tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 // deactivate all
                 tabs.forEach(t => {
@@ -62,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tab.classList.add('is-active');
                 tab.setAttribute('aria-selected', 'true');
                 const panelId = tab.getAttribute('aria-controls');
-                const panel = container.querySelector('#' + panelId);
+                const panel = safeQuery('#' + panelId, container);
                 if (panel) panel.classList.add('is-active');
             });
         });
@@ -86,24 +116,35 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Uses native `hidden` attribute for accessibility
      * - Independent item expansion (multiple can be open)
      */
-    const accordions = document.querySelectorAll('.accordion');
-    accordions.forEach(accordion => {
-        const items = accordion.querySelectorAll('.accordion__item');
-        items.forEach(item => {
-            const button = item.querySelector('.accordion__button');
-            const panel = item.querySelector('.accordion__panel');
+    } catch (error) {
+        console.error('Error initializing tabs component:', error);
+    }
 
-            button.addEventListener('click', () => {
-                const expanded = button.getAttribute('aria-expanded') === 'true';
-                button.setAttribute('aria-expanded', String(!expanded));
-                panel.hidden = expanded;
+    try {
+        const accordions = safeQueryAll('.accordion');
+        accordions.forEach(accordion => {
+            const items = safeQueryAll('.accordion__item', accordion);
+            items.forEach(item => {
+                const button = safeQuery('.accordion__button', item);
+                const panel = safeQuery('.accordion__panel', item);
+
+                if (button && panel) {
+                    button.addEventListener('click', () => {
+                        const expanded = button.getAttribute('aria-expanded') === 'true';
+                        button.setAttribute('aria-expanded', String(!expanded));
+                        panel.hidden = expanded;
+                    });
+                }
             });
         });
-    });
+    } catch (error) {
+        console.error('Error initializing accordion component:', error);
+    }
 
-    /* ========================================================================
-     * MODAL COMPONENT
-     * ========================================================================
+    try {
+        /* ========================================================================
+         * MODAL COMPONENT
+         * ========================================================================
      * Overlay dialog with focus trapping and keyboard navigation
      * 
      * HTML Structure:
@@ -126,28 +167,28 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Restores focus to trigger element on close
      * - Prevents body scroll when open
      */
-    const openTriggers = document.querySelectorAll('[data-modal-target]');
-    const modals = document.querySelectorAll('.modal');
+    const openTriggers = safeQueryAll('[data-modal-target]');
+    const modals = safeQueryAll('.modal');
     
     // Initialize modals
     modals.forEach(modal => {
-        const overlay = modal.querySelector('.modal__overlay');
-        const dialog = modal.querySelector('.modal__dialog');
-        const closeButtons = modal.querySelectorAll('[data-modal-close]');
+        const overlay = safeQuery('.modal__overlay', modal);
+        const dialog = safeQuery('.modal__dialog', modal);
+        const closeButtons = safeQueryAll('[data-modal-close]', modal);
         let lastFocused = null;
 
         const openModal = () => {
             lastFocused = document.activeElement;
             modal.removeAttribute('hidden');
             // focus first focusable element inside dialog
-            const focusable = dialog.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const focusable = safeQuery('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog);
             if (focusable) focusable.focus();
 
             const onKeydown = (e) => {
                 if (e.key === 'Escape') closeModal();
                 if (e.key === 'Tab') {
                     // focus trap
-                    const focusable = dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    const focusable = safeQueryAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog);
                     if (focusable.length === 0) return;
                     const first = focusable[0];
                     const last = focusable[focusable.length - 1];
@@ -185,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const targetSel = btn.getAttribute('data-modal-target');
-            const modal = document.querySelector(targetSel);
+            const modal = safeQuery(targetSel);
             if (modal && modal._openModal) {
                 modal._openModal();
             }
@@ -205,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Created dynamically on page load
      * - Simple CSS-based positioning
      */
-    const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
+    const tooltipTriggers = safeQueryAll('[data-tooltip]');
     tooltipTriggers.forEach(trigger => {
         const tip = document.createElement('span');
         tip.className = 'tooltip';
@@ -295,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // For pre.code-block, get code element text
         if (codeBlock.classList.contains('code-block')) {
-            const codeElement = codeBlock.querySelector('code');
+            const codeElement = safeQuery('code', codeBlock);
             if (codeElement) {
                 return codeElement.textContent || codeElement.innerText;
             }
@@ -348,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const setupCopyButton = (codeBlock) => {
         // Skip if button already exists
-        if (codeBlock.querySelector('.code-copy-btn')) {
+        if (safeQuery('.code-copy-btn', codeBlock)) {
             return;
         }
 
@@ -402,85 +443,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Find all code blocks and add copy buttons
-    const codeBlocks = document.querySelectorAll('.code-example, pre.code-block');
+    const codeBlocks = safeQueryAll('.code-example, pre.code-block');
     codeBlocks.forEach(setupCopyButton);
+    } catch (error) {
+        console.error('Error initializing code copy button:', error);
+    }
 });
 
 /* ========================================================================
  * GLOBAL TAB SWITCHING FUNCTION
  * ========================================================================
- * Programmatically switch to a tab by name
- * Available globally as window.switchTab()
- * 
- * Usage:
- * window.switchTab('photos'); // Switches to tab with data-tab="photos"
- * 
- * Works with:
- * - Standard tabs (aria-controls pattern)
- * - Showcase tabs (tab-{name} panel, tab-btn-{name} button pattern)
- * 
- * @param {string} tabName - The name of the tab to switch to
- * @global
+ * Note: The global window.switchTab() function is defined in showcase.js
+ * for showcase-specific tab switching. For standard tabs, use the click
+ * handlers initialized above in the TABS COMPONENT section.
  */
-window.switchTab = function(tabName) {
-    // Try showcase pattern first (tab-{name} panel, tab-btn-{name} button)
-    const showcasePanel = document.getElementById(`tab-${tabName}`);
-    const showcaseBtn = document.getElementById(`tab-btn-${tabName}`);
-    
-    if (showcasePanel && showcaseBtn) {
-        // Hide all showcase panels
-        document.querySelectorAll('.tab__panel').forEach(panel => {
-            panel.hidden = true;
-            panel.classList.remove('is-active');
-        });
-        
-        // Remove active from all showcase tabs
-        const showcaseTabs = document.querySelector('.showcase-tabs');
-        if (showcaseTabs) {
-            showcaseTabs.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('is-active');
-                tab.setAttribute('aria-selected', 'false');
-            });
-        }
-        
-        // Show selected panel
-        showcasePanel.hidden = false;
-        showcasePanel.classList.add('is-active');
-        showcaseBtn.classList.add('is-active');
-        showcaseBtn.setAttribute('aria-selected', 'true');
-        
-        // Scroll to top of main content
-        const main = document.querySelector('main');
-        if (main) {
-            main.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        return;
-    }
-    
-    // Fallback to standard tab system
-    const tabContainers = document.querySelectorAll('.tabs');
-    tabContainers.forEach(container => {
-        const tabs = container.querySelectorAll('.tab');
-        const panels = container.querySelectorAll('.tab__panel');
-        
-        tabs.forEach(tab => {
-            const panelId = tab.getAttribute('aria-controls');
-            const dataTab = tab.getAttribute('data-tab');
-            
-            if (panelId && panelId.includes(tabName) || dataTab === tabName) {
-                // Deactivate all
-                tabs.forEach(t => {
-                    t.classList.remove('is-active');
-                    t.setAttribute('aria-selected', 'false');
-                });
-                panels.forEach(p => p.classList.remove('is-active'));
-                
-                // Activate matching tab
-                tab.classList.add('is-active');
-                tab.setAttribute('aria-selected', 'true');
-                const panel = container.querySelector('#' + panelId);
-                if (panel) panel.classList.add('is-active');
-            }
-        });
-    });
-};

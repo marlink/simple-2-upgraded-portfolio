@@ -37,12 +37,6 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>/calendar.html</loc>
-        <lastmod>2025-01-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
         <loc>/showcase.html</loc>
         <lastmod>2025-01-27</lastmod>
         <changefreq>monthly</changefreq>

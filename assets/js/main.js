@@ -8,7 +8,9 @@
  * - Navigation behavior (scroll-responsive header, mobile menu)
  * - Form validation (newsletter email validation)
  * - Active navigation link highlighting
- * - Contact page filtering
+ * 
+ * Dependencies:
+ * - utils.js (must be loaded before this file for utility functions)
  * 
  * Performance optimizations:
  * - Uses requestAnimationFrame for scroll handling
@@ -20,15 +22,42 @@
  * ============================================================================
  */
 
+// Import utility functions from utils.js (loaded globally)
+const safeQuery = window.safeQuery || ((selector, context = document) => {
+    try {
+        return context.querySelector(selector);
+    } catch (e) {
+        console.warn('Invalid selector:', selector, e);
+        return null;
+    }
+});
+
+const safeQueryAll = window.safeQueryAll || ((selector, context = document) => {
+    try {
+        return Array.from(context.querySelectorAll(selector));
+    } catch (e) {
+        console.warn('Invalid selector:', selector, e);
+        return [];
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-    /* ========================================================================
-     * 1️⃣ FOOTER YEAR UPDATE
-     * ========================================================================
-     * Automatically updates the current year in the footer
-     * Element must have id="year" to be updated
-     */
-    const yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    try {
+        /* ========================================================================
+         * 1️⃣ FOOTER YEAR UPDATE
+         * ========================================================================
+         * Automatically updates the current year in the footer
+         * Element must have id="year" to be updated
+         */
+        const yearEl = document.getElementById('year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        } else {
+            console.warn('Footer year element not found (id="year")');
+        }
+    } catch (error) {
+        console.error('Error updating footer year:', error);
+    }
 
     /* ========================================================================
      * 2️⃣ THEME MANAGEMENT SYSTEM
@@ -38,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Smooth hero image fade transitions
      * - Preloads opposite theme image for instant switching
      */
-    const themeToggles = document.querySelectorAll('.theme-toggle');
+    const themeToggles = safeQueryAll('.theme-toggle');
     
     /**
      * Apply theme to the document
@@ -52,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * For pages without hero, applies theme immediately
      */
     const applyTheme = (theme) => {
-        const hero = document.querySelector('.hero');
+        const hero = safeQuery('.hero');
         if (hero) {
             // Smooth transition: fade out → change theme → fade in
             hero.style.setProperty('--transition-opacity', '0');
@@ -110,9 +139,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Attach click handlers to all theme toggle buttons
-    themeToggles.forEach(toggle => {
-        toggle.addEventListener('click', toggleTheme);
-    });
+    if (themeToggles && themeToggles.length > 0) {
+        themeToggles.forEach(toggle => {
+            if (toggle) {
+                try {
+                    toggle.addEventListener('click', toggleTheme);
+                } catch (error) {
+                    console.error('Error attaching theme toggle handler:', error);
+                }
+            }
+        });
+    }
 
     /* ========================================================================
      * 2️⃣.7 SCROLL-RESPONSIVE NAVIGATION
@@ -129,8 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Scrolling up: Show after 450ms delay (prevents flicker)
      * - After 275px scroll: Navbar becomes "scrolled" state (styling change)
      */
-    const siteHeader = document.querySelector('.site-header');
-    if (siteHeader) {
+    try {
+        const siteHeader = safeQuery('.site-header');
+        if (!siteHeader) {
+            console.warn('Site header not found');
+        } else {
         // Performance optimization: throttle scroll handler
         let ticking = false;
         
@@ -219,9 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle initial state
         handleScroll();
 
-        // Listen to scroll events (works for both desktop and touch devices)
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('touchmove', onScroll, { passive: true });
+            // Listen to scroll events (works for both desktop and touch devices)
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('touchmove', onScroll, { passive: true });
+        }
+    } catch (error) {
+        console.error('Error initializing scroll-responsive navigation:', error);
     }
 
     /* ========================================================================
@@ -236,11 +279,11 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Auto-closes on window resize to desktop width
      * - Syncs theme toggle state
      */
-    const nav = document.querySelector('.nav');
-    const burgerButton = document.querySelector('.nav__burger');
-    const overlay = document.querySelector('.nav__overlay');
-    const mobileMenu = document.querySelector('.nav__mobile-menu');
-    const mobileMenuLinks = document.querySelectorAll('.nav__mobile-menu .nav__link');
+    const nav = safeQuery('.nav');
+    const burgerButton = safeQuery('.nav__burger');
+    const overlay = safeQuery('.nav__overlay');
+    const mobileMenu = safeQuery('.nav__mobile-menu');
+    const mobileMenuLinks = safeQueryAll('.nav__mobile-menu .nav__link');
     
     /**
      * Sync mobile menu theme toggle with current theme
@@ -276,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
             previousFocus = document.activeElement;
             
             // Focus first focusable element in menu
-            const firstFocusable = mobileMenu.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
+            const firstFocusable = safeQuery('a, button, input, [tabindex]:not([tabindex="-1"])', mobileMenu);
             if (firstFocusable) {
                 setTimeout(() => firstFocusable.focus(), 100);
             }
@@ -347,31 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ========================================================================
-     * 3️⃣ CONTACT PAGE FILTER
-     * ========================================================================
-     * Simple client-side filtering for contact list
-     * Filters list items in real-time as user types
-     * Case-insensitive search
-     */
-    const filterInput = document.getElementById('filter-input');
-    const filterList  = document.getElementById('filter-list');
-    if (filterInput && filterList) {
-        filterInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase().trim();
-            // Show/hide list items based on search term
-            [...filterList.children].forEach(li => {
-                const txt = li.textContent.toLowerCase();
-                if (txt.includes(term)) {
-                    li.classList.remove('hidden');
-                } else {
-                    li.classList.add('hidden');
-                }
-            });
-        });
-    }
-
-    /* ========================================================================
-     * 3️⃣.5 ACTIVE NAVIGATION LINK HIGHLIGHTING
+     * 3️⃣ ACTIVE NAVIGATION LINK HIGHLIGHTING
      * ========================================================================
      * Automatically highlights the current page's navigation link
      * Handles edge cases:
@@ -380,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Different path formats
      */
     const setActiveNavLink = () => {
-        const navLinks = document.querySelectorAll('.nav__link');
+        const navLinks = safeQueryAll('.nav__link');
         const currentPath = window.location.pathname;
         const currentPage = currentPath.split('/').pop() || 'index.html';
         
@@ -409,8 +428,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Enables/disables subscribe button based on validity
      * - Uses standard email regex pattern
      */
-    const emailInput = document.querySelector('.footer__email-input');
-    const subscribeBtn = document.querySelector('.footer__subscribe-btn');
+    const emailInput = safeQuery('.footer__email-input');
+    const subscribeBtn = safeQuery('.footer__subscribe-btn');
     
     /**
      * Update subscribe button state based on email validity
@@ -434,5 +453,247 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Validate on blur (when user leaves the field)
         emailInput.addEventListener('blur', updateSubscribeButton);
+    }
+
+    /* ========================================================================
+     * 5️⃣ CONTACT FORM SUBMISSION
+     * ========================================================================
+     * Handles contact form submission with fetch API
+     * - Prevents default form submission
+     * - Shows loading state during submission
+     * - Displays success/error messages
+     * - Resets form on success
+     * 
+     * Note: Update FORMSPREE_ENDPOINT with your Formspree endpoint URL
+     * or replace with your own backend endpoint
+     */
+    try {
+        const contactForm = document.getElementById('contact-form');
+        const formMessages = document.getElementById('form-messages');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        // Formspree endpoint - replace with your actual endpoint
+        // Get your endpoint from https://formspree.io/
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+        
+        if (!contactForm || !formMessages || !submitBtn) {
+            // Contact form not available on this page
+        } else {
+        const btnText = safeQuery('.btn__text', submitBtn);
+        const btnSpinner = safeQuery('.btn__spinner', submitBtn);
+        
+        /**
+         * Show message to user
+         * @param {string} message - Message text
+         * @param {string} type - 'success' or 'error'
+         */
+        const showMessage = (message, type) => {
+            formMessages.textContent = message;
+            formMessages.className = `form__messages form__messages--${type}`;
+            formMessages.style.display = 'block';
+            
+            // Scroll to message
+            formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Hide message after 5 seconds for errors, keep success visible
+            if (type === 'error') {
+                setTimeout(() => {
+                    formMessages.style.display = 'none';
+                }, 5000);
+            }
+        };
+        
+        /**
+         * Show loading state
+         */
+        const showLoading = () => {
+            submitBtn.disabled = true;
+            if (btnText) btnText.style.display = 'none';
+            if (btnSpinner) btnSpinner.style.display = 'inline';
+        };
+        
+        /**
+         * Hide loading state
+         */
+        const hideLoading = () => {
+            submitBtn.disabled = false;
+            if (btnText) btnText.style.display = 'inline';
+            if (btnSpinner) btnSpinner.style.display = 'none';
+        };
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Hide previous messages
+            formMessages.style.display = 'none';
+            
+            // Validate form
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Show loading state
+            showLoading();
+            
+            try {
+                // Submit to Formspree or your backend
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    // Success
+                    showMessage('Thank you! Your message has been sent successfully.', 'success');
+                    contactForm.reset();
+                } else {
+                    // Error from server
+                    const errorData = await response.json().catch(() => ({}));
+                    const errorMessage = errorData.error || 'There was an error sending your message. Please try again.';
+                    showMessage(errorMessage, 'error');
+                }
+            } catch (error) {
+                // Network or other error
+                console.error('Form submission error:', error);
+                showMessage('Unable to send message. Please check your connection and try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        });
+        }
+    } catch (error) {
+        console.error('Error initializing contact form:', error);
+    }
+
+    /* ========================================================================
+     * 6️⃣ NEWSLETTER SUBSCRIPTION
+     * ========================================================================
+     * Handles newsletter subscription form submission
+     * - Uses same backend approach as contact form (Formspree recommended)
+     * - Shows success/error messages
+     * - Clears input on success
+     * - Updates button state during submission
+     * 
+     * Note: Update NEWSLETTER_ENDPOINT with your Formspree endpoint URL
+     * or replace with your own backend endpoint
+     */
+    try {
+        const newsletterForm = safeQuery('.footer__newsletter');
+        const newsletterInput = safeQuery('.footer__email-input');
+        const newsletterBtn = safeQuery('.footer__subscribe-btn');
+        
+        // Formspree endpoint for newsletter - replace with your actual endpoint
+        const NEWSLETTER_ENDPOINT = 'https://formspree.io/f/YOUR_NEWSLETTER_FORM_ID';
+        
+        if (!newsletterForm || !newsletterInput || !newsletterBtn) {
+            // Newsletter form not available on this page
+        } else {
+        // Create message container if it doesn't exist
+        let newsletterMessage = safeQuery('.newsletter__message', newsletterForm);
+        if (!newsletterMessage) {
+            newsletterMessage = document.createElement('div');
+            newsletterMessage.className = 'newsletter__message';
+            newsletterMessage.setAttribute('role', 'alert');
+            newsletterMessage.setAttribute('aria-live', 'polite');
+            newsletterMessage.style.display = 'none';
+            newsletterForm.insertBefore(newsletterMessage, newsletterInput);
+        }
+        
+        /**
+         * Show newsletter message
+         * @param {string} message - Message text
+         * @param {string} type - 'success' or 'error'
+         */
+        const showNewsletterMessage = (message, type) => {
+            newsletterMessage.textContent = message;
+            newsletterMessage.className = `newsletter__message newsletter__message--${type}`;
+            newsletterMessage.style.display = 'block';
+            
+            // Hide message after 5 seconds for errors, keep success visible longer
+            if (type === 'error') {
+                setTimeout(() => {
+                    newsletterMessage.style.display = 'none';
+                }, 5000);
+            } else {
+                setTimeout(() => {
+                    newsletterMessage.style.display = 'none';
+                }, 10000);
+            }
+        };
+        
+        /**
+         * Handle newsletter form submission
+         */
+        const handleNewsletterSubmit = async (e) => {
+            e.preventDefault();
+            
+            const email = newsletterInput.value.trim();
+            
+            // Validate email
+            const isValidEmail = window.validateEmail ? window.validateEmail(email) : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            if (email && isValidEmail) {
+                // Show loading state
+                newsletterBtn.disabled = true;
+                const originalText = newsletterBtn.textContent;
+                newsletterBtn.textContent = 'Subscribing...';
+                
+                try {
+                    // Submit to Formspree or your backend
+                    const response = await fetch(NEWSLETTER_ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email })
+                    });
+                    
+                    if (response.ok) {
+                        // Success
+                        showNewsletterMessage('Thank you! You have been subscribed successfully.', 'success');
+                        newsletterInput.value = '';
+                        newsletterBtn.disabled = true; // Keep disabled until new email entered
+                    } else {
+                        // Error from server
+                        const errorData = await response.json().catch(() => ({}));
+                        const errorMessage = errorData.error || 'There was an error subscribing. Please try again.';
+                        showNewsletterMessage(errorMessage, 'error');
+                        newsletterBtn.disabled = false;
+                        newsletterBtn.textContent = originalText;
+                    }
+                } catch (error) {
+                    // Network or other error
+                    console.error('Newsletter subscription error:', error);
+                    showNewsletterMessage('Unable to subscribe. Please check your connection and try again.', 'error');
+                    newsletterBtn.disabled = false;
+                    newsletterBtn.textContent = originalText;
+                }
+            } else {
+                showNewsletterMessage('Please enter a valid email address.', 'error');
+            }
+        };
+        
+        // Handle form submission (when Enter is pressed in input)
+        newsletterInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !newsletterBtn.disabled) {
+                e.preventDefault();
+                handleNewsletterSubmit(e);
+            }
+        });
+        
+            // Handle button click
+            newsletterBtn.addEventListener('click', handleNewsletterSubmit);
+        }
+    } catch (error) {
+        console.error('Error initializing newsletter subscription:', error);
     }
 });

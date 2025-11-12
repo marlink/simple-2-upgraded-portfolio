@@ -41,7 +41,6 @@ This document summarizes all improvements made to optimize the codebase, improve
   - Theme management system
   - Scroll-responsive navigation
   - Mobile menu toggle
-  - Contact page filter
   - Active navigation highlighting
   - Footer newsletter validation
 - Added JSDoc comments for all functions
@@ -56,23 +55,6 @@ This document summarizes all improvements made to optimize the codebase, improve
   - Tooltip component
   - Code Copy Button component
 - Documented global `switchTab()` function
-
-**`calendar.js`**
-- Added detailed file header with feature list
-- Documented data structure
-- Added section headers for:
-  - Constants
-  - State management
-  - DOM element references
-  - Initialization
-  - Event listeners
-  - Data persistence functions
-  - Calendar rendering functions
-  - Modal management functions
-  - CRUD operations
-  - Sharing & export functions
-  - Utility functions
-- JSDoc comments for all functions
 
 **`showcase.js`**
 - Already had good documentation
@@ -193,7 +175,6 @@ All existing performance optimizations are now documented:
 
 4. **Rendering**
    - Only render visible content
-   - Efficient calendar rendering
    - Lazy loading where applicable
 
 ---
@@ -213,7 +194,6 @@ All existing performance optimizations are now documented:
 ### Modified Files:
 - `assets/js/main.js` - Added documentation, fixed missing function
 - `assets/js/components.js` - Added comprehensive documentation
-- `assets/js/calendar.js` - Added comprehensive documentation
 
 ---
 

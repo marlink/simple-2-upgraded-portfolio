@@ -13,7 +13,6 @@ simple-2/
 │   ├── js/
 │   │   ├── main.js                 # Core site functionality (theme, nav, forms)
 │   │   ├── components.js           # Reusable UI components (tabs, modals, etc.)
-│   │   ├── calendar.js             # Tech calendar management system
 │   │   └── showcase.js             # Showcase page specific functionality
 │   ├── images/
 │   │   └── heros/                  # Hero images for light/dark themes
@@ -32,7 +31,6 @@ simple-2/
 ├── contact.html                    # Contact page
 ├── blog.html                       # Blog listing page
 ├── blog-details.html               # Blog post detail page
-├── calendar.html                   # Tech calendar page
 ├── showcase.html                   # Framework showcase page
 ├── typography-demo.html            # Typography demonstration
 ├── sitemap.xml                     # XML sitemap
@@ -80,7 +78,6 @@ simple-2/
 - ✅ **Code Copy**: One-click code copying
 
 ### Special Pages
-- ✅ **Tech Calendar**: Full-featured calendar with event management
 - ✅ **Showcase**: Interactive framework demonstration
 - ✅ **Typography Demo**: Typography system showcase
 
@@ -95,7 +92,6 @@ Core site functionality including:
 - Mobile menu toggle
 - Footer newsletter validation
 - Active navigation link highlighting
-- Contact page filtering
 
 **Performance optimizations:**
 - Uses `requestAnimationFrame` for scroll handling
@@ -108,14 +104,6 @@ Reusable UI components library:
 - Framework-free (plain DOM API)
 - Uses data attributes for configuration
 - Fully accessible (ARIA support)
-
-#### `calendar.js`
-Tech calendar management system:
-- Monthly calendar view
-- Create, edit, delete events
-- LocalStorage persistence
-- Export to JSON and ICS formats
-- Share calendar functionality
 
 #### `showcase.js`
 Showcase page specific functionality:
@@ -169,7 +157,6 @@ See `FRAMEWORK-README.md` for complete CSS framework documentation.
 
 3. **Rendering**
    - Only render visible content
-   - Efficient calendar rendering
    - Lazy loading where applicable
 
 ## 🎯 Browser Support
@@ -241,10 +228,6 @@ Follow the pattern in `components.js`:
 ### Theme not persisting
 - Check browser localStorage support
 - Verify `main.js` is loaded
-
-### Calendar events not saving
-- Check browser localStorage quota
-- Verify `calendar.js` is loaded on calendar.html
 
 ### Navigation not working
 - Verify `main.js` is included in HTML

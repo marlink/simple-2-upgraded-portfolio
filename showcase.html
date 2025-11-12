@@ -24,6 +24,12 @@
     <meta name="twitter:description" content="Interactive showcase of the responsive CSS framework featuring grid system, components, and typography.">
     <meta name="twitter:image" content="https://yourschool.org/assets/logo/mc-logo.svg">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +39,81 @@
     <link rel="stylesheet" href="assets/css/framework-unified.css">
     <!-- Typography System -->
     <link rel="stylesheet" href="assets/css/typography-system.css">
+</head>
+<body data-theme="light">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header">
+        <nav class="nav">
+            <a class="nav__logo" href="index.html" aria-label="YourSchool">
+                <img src="assets/logo/mc-logo.svg" alt="YourSchool" class="nav__logo-img">
+            </a>
+
+            <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+                <span class="nav__burger-line"></span>
+                <span class="nav__burger-line"></span>
+                <span class="nav__burger-line"></span>
+            </button>
+
+            <div class="nav__menu">
+                <ul class="nav__links">
+                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
+                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
+                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
+                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
+                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
+                    <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
+                </ul>
+
+                <!-- THEME TOGGLE -->
+                <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                    <span class="theme-toggle__icon theme-toggle__icon--light">
+                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
+                    </span>
+                    <span class="theme-toggle__icon theme-toggle__icon--dark">
+                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
+                    </span>
+                </button>
+
+                <a href="contact.html" class="btn btn--outline">Free website</a>
+            </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="nav__overlay"></div>
+            <div class="nav__mobile-menu">
+                <ul class="nav__links nav__links--mobile">
+                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
+                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
+                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
+                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
+                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
+                    <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
+                </ul>
+
+                <button class="theme-toggle theme-toggle--mobile" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                    <span class="theme-toggle__icon theme-toggle__icon--light">
+                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
+                    </span>
+                    <span class="theme-toggle__icon theme-toggle__icon--dark">
+                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
+                    </span>
+                </button>
+
+                <a href="contact.html" class="btn btn--outline btn--mobile">Free website</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <h1 class="hero__title">Framework Showcase</h1>
+            <p class="hero__subtitle">
+                Complete design system with fluid typography, interactive components, carousels, and responsive layouts.
+            </p>
+        </div>
+    </section>
+
     <style>
         .demo-section {
             padding: var(--space-8) 0;
@@ -152,25 +233,19 @@
                     <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
                     <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
                     <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
-                    <li><a href="calendar.html" class="nav__link nav__link--underline">Tech Calendar</a></li>
                 </ul>
 
                 <!-- THEME TOGGLE -->
                 <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
                     <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" fill="currentColor"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 0H13V4.06189C12.6724 4.02104 12.3387 4 12 4C11.6613 4 11.3276 4.02104 11 4.06189V0ZM7.0943 5.68018L4.22173 2.80761L2.80752 4.22183L5.6801 7.09441C6.09071 6.56618 6.56608 6.0908 7.0943 5.68018ZM4.06189 11H0V13H4.06189C4.02104 12.6724 4 12.3387 4 12C4 11.6613 4.02104 11.3276 4.06189 11ZM5.6801 16.9056L2.80751 19.7782L4.22173 21.1924L7.0943 18.3198C6.56608 17.9092 6.09071 17.4338 5.6801 16.9056ZM11 19.9381V24H13V19.9381C12.6724 19.979 12.3387 20 12 20C11.6613 20 11.3276 19.979 11 19.9381ZM16.9056 18.3199L19.7781 21.1924L21.1923 19.7782L18.3198 16.9057C17.9092 17.4339 17.4338 17.9093 16.9056 18.3199ZM19.9381 13H24V11H19.9381C19.979 11.3276 20 11.6613 20 12C20 12.3387 19.979 12.6724 19.9381 13ZM18.3198 7.0943L21.1923 4.22183L19.7781 2.80762L16.9056 5.6801C17.4338 6.09071 17.9092 6.56608 18.3198 7.0943Z" fill="currentColor"/>
-                        </svg>
+                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
                     </span>
                     <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2256 2.00253C9.59172 1.94346 6.93894 2.9189 4.92893 4.92891C1.02369 8.83415 1.02369 15.1658 4.92893 19.071C8.83418 22.9763 15.1658 22.9763 19.0711 19.071C21.0811 17.061 22.0565 14.4082 21.9975 11.7743C21.9796 10.9772 21.8669 10.1818 21.6595 9.40643C21.0933 9.9488 20.5078 10.4276 19.9163 10.8425C18.5649 11.7906 17.1826 12.4053 15.9301 12.6837C14.0241 13.1072 12.7156 12.7156 12 12C11.2844 11.2844 10.8928 9.97588 11.3163 8.0699C11.5947 6.81738 12.2094 5.43511 13.1575 4.08368C13.5724 3.49221 14.0512 2.90664 14.5935 2.34046C13.8182 2.13305 13.0228 2.02041 12.2256 2.00253ZM17.6569 17.6568C18.9081 16.4056 19.6582 14.8431 19.9072 13.2186C16.3611 15.2643 12.638 15.4664 10.5858 13.4142C8.53361 11.362 8.73568 7.63895 10.7814 4.09281C9.1569 4.34184 7.59434 5.09193 6.34315 6.34313C3.21895 9.46732 3.21895 14.5326 6.34315 17.6568C9.46734 20.781 14.5327 20.781 17.6569 17.6568Z" fill="currentColor"/>
-                        </svg>
+                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
                     </span>
                 </button>
 
-                <a href="#" class="btn btn--outline">Collect free website</a>
+                <a href="contact.html" class="btn btn--outline">Free website</a>
             </div>
 
             <!-- Mobile Menu Overlay -->
@@ -183,31 +258,25 @@
                     <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
                     <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
                     <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
-                    <li><a href="calendar.html" class="nav__link nav__link--underline">Tech Calendar</a></li>
                 </ul>
 
                 <button class="theme-toggle theme-toggle--mobile" type="button" aria-label="Toggle color theme" title="Toggle theme">
                     <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" fill="currentColor"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 0H13V4.06189C12.6724 4.02104 12.3387 4 12 4C11.6613 4 11.3276 4.02104 11 4.06189V0ZM7.0943 5.68018L4.22173 2.80761L2.80752 4.22183L5.6801 7.09441C6.09071 6.56618 6.56608 6.0908 7.0943 5.68018ZM4.06189 11H0V13H4.06189C4.02104 12.6724 4 12.3387 4 12C4 11.6613 4.02104 11.3276 4.06189 11ZM5.6801 16.9056L2.80751 19.7782L4.22173 21.1924L7.0943 18.3198C6.56608 17.9092 6.09071 17.4338 5.6801 16.9056ZM11 19.9381V24H13V19.9381C12.6724 19.979 12.3387 20 12 20C11.6613 20 11.3276 19.979 11 19.9381ZM16.9056 18.3199L19.7781 21.1924L21.1923 19.7782L18.3198 16.9057C17.9092 17.4339 17.4338 17.9093 16.9056 18.3199ZM19.9381 13H24V11H19.9381C19.979 11.3276 20 11.6613 20 12C20 12.3387 19.979 12.6724 19.9381 13ZM18.3198 7.0943L21.1923 4.22183L19.7781 2.80762L16.9056 5.6801C17.4338 6.09071 17.9092 6.56608 18.3198 7.0943Z" fill="currentColor"/>
-                        </svg>
+                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
                     </span>
                     <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2256 2.00253C9.59172 1.94346 6.93894 2.9189 4.92893 4.92891C1.02369 8.83415 1.02369 15.1658 4.92893 19.071C8.83418 22.9763 15.1658 22.9763 19.0711 19.071C21.0811 17.061 22.0565 14.4082 21.9975 11.7743C21.9796 10.9772 21.8669 10.1818 21.6595 9.40643C21.0933 9.9488 20.5078 10.4276 19.9163 10.8425C18.5649 11.7906 17.1826 12.4053 15.9301 12.6837C14.0241 13.1072 12.7156 12.7156 12 12C11.2844 11.2844 10.8928 9.97588 11.3163 8.0699C11.5947 6.81738 12.2094 5.43511 13.1575 4.08368C13.5724 3.49221 14.0512 2.90664 14.5935 2.34046C13.8182 2.13305 13.0228 2.02041 12.2256 2.00253ZM17.6569 17.6568C18.9081 16.4056 19.6582 14.8431 19.9072 13.2186C16.3611 15.2643 12.638 15.4664 10.5858 13.4142C8.53361 11.362 8.73568 7.63895 10.7814 4.09281C9.1569 4.34184 7.59434 5.09193 6.34315 6.34313C3.21895 9.46732 3.21895 14.5326 6.34315 17.6568C9.46734 20.781 14.5327 20.781 17.6569 17.6568Z" fill="currentColor"/>
-                        </svg>
+                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
                     </span>
                 </button>
 
-                <a href="#" class="btn btn--outline btn--mobile">Collect free website</a>
+                <a href="contact.html" class="btn btn--outline btn--mobile">Free website</a>
             </div>
 
         </nav>
     </header>
 
     <!-- HERO -->
-    <section class="hero" style="background-image: url('assets/images/hero.jpg');">
+    <section class="hero">
         <div class="hero__overlay"></div>
         <div class="hero__content">
             <h1 class="hero__title display-1">Framework Showcase</h1>
@@ -217,7 +286,7 @@
         </div>
     </section>
 
-    <main class="container" style="padding: var(--space-7) 0;">
+    <main id="main-content" class="container" style="padding: var(--space-7) 0;">
         
         <!-- MAIN TABS NAVIGATION -->
         <div class="tabs showcase-tabs" style="margin-bottom: var(--space-6);">
@@ -616,7 +685,7 @@
                 <div class="col-12 col-md-6">
                     <p>Tooltips on text elements:</p>
                     <p>
-                        You can add tooltips to <a href="#" data-tooltip="This link goes somewhere interesting">links</a>, 
+                        You can add tooltips to <a href="javascript:void(0)" data-tooltip="This link goes somewhere interesting" aria-disabled="true">links</a>, 
                         <span data-tooltip="Tooltips work on any element" style="text-decoration: underline; cursor: help;">text spans</span>, or 
                         <abbr data-tooltip="HyperText Markup Language" title="HTML">abbreviations</abbr>.
                     </p>
@@ -626,7 +695,7 @@
             <div class="code-example mt-4">
                 <strong>Tooltip Usage:</strong><br>
                 &lt;button data-tooltip="Your tooltip text here"&gt;Button&lt;/button&gt;<br>
-                &lt;a href="#" data-tooltip="Link description"&gt;Link&lt;/a&gt;<br>
+                &lt;a href="javascript:void(0)" data-tooltip="Link description" aria-disabled="true"&gt;Link&lt;/a&gt;<br>
                 &lt;span data-tooltip="Helpful hint"&gt;Text&lt;/span&gt;
             </div>
 
@@ -751,9 +820,9 @@
             <h3 id="links" class="h3 mt-6">Links</h3>
             <div class="demo-item">
                 <div class="demo-label">Link Styles</div>
-                <p>This is a <a href="#">default link</a> with standard styling.</p>
+                <p>This is a <a href="javascript:void(0)" aria-disabled="true">default link</a> with standard styling.</p>
                 <p>Links support hover, focus, active, and visited states. Hover over the links to see the effects.</p>
-                <p>You can also use links in buttons: <a href="#" class="btn btn--primary">Link Button</a></p>
+                <p>You can also use links in buttons: <a href="javascript:void(0)" class="btn btn--primary" aria-disabled="true">Link Button</a></p>
             </div>
         </section>
 
@@ -940,9 +1009,6 @@
                         <div class="timeline__item timeline__item--left">
                             <div class="timeline__column timeline__column--left">
                                 <div class="timeline__content">
-                                    <div class="timeline__logo">
-                                        <img src="" alt="Company 1" class="timeline__logo-img">
-                                    </div>
                                     <h3 class="timeline__role">Senior Designer</h3>
                                     <p class="timeline__company">Company Name | <em>2020 – 2023</em></p>
                                     <ul class="timeline__achievements">
@@ -959,9 +1025,6 @@
                             <div class="timeline__column timeline__column--spacer"></div>
                             <div class="timeline__column timeline__column--right">
                                 <div class="timeline__content">
-                                    <div class="timeline__logo">
-                                        <img src="" alt="Company 2" class="timeline__logo-img">
-                                    </div>
                                     <h3 class="timeline__role">Design Lead</h3>
                                     <p class="timeline__company">Another Company | <em>2018 – 2020</em></p>
                                     <ul class="timeline__achievements">
@@ -1151,7 +1214,7 @@
                                 <p>Basic card with a subtle shadow.</p>
                             </div>
                             <div class="card__footer">
-                                <a href="#" class="btn btn--primary btn--sm">Action</a>
+                                <a href="javascript:void(0)" class="btn btn--primary btn--sm" aria-disabled="true">Action</a>
                             </div>
                         </article>
                     </div>
@@ -1173,7 +1236,7 @@
                                 <p>More room for copy.</p>
                             </div>
                             <div class="card__footer">
-                                <a href="#" class="btn btn--secondary btn--sm">Read more</a>
+                                <a href="javascript:void(0)" class="btn btn--secondary btn--sm" aria-disabled="true">Read more</a>
                             </div>
                         </article>
                     </div>
@@ -1199,7 +1262,7 @@
                                 <p>Solid glass morphism card with 85% opacity background and backdrop blur. Perfect for overlays and modern UI designs.</p>
                             </div>
                             <div class="card__footer">
-                                <a href="#" class="btn btn--primary btn--sm">Action</a>
+                                <a href="javascript:void(0)" class="btn btn--primary btn--sm" aria-disabled="true">Action</a>
                             </div>
                         </article>
                     </div>
@@ -1212,7 +1275,7 @@
                                 <p>Outline glass morphism with transparent background and prominent border. Great for subtle content containers.</p>
                             </div>
                             <div class="card__footer">
-                                <a href="#" class="btn btn--outline btn--sm">Action</a>
+                                <a href="javascript:void(0)" class="btn btn--outline btn--sm" aria-disabled="true">Action</a>
                             </div>
                         </article>
                     </div>
@@ -1263,7 +1326,7 @@
                                 <p>Consistent layout with image at the top and content below.</p>
                             </div>
                             <div class="card__footer">
-                                <a href="#" class="btn btn--primary btn--sm">Learn More</a>
+                                <a href="javascript:void(0)" class="btn btn--primary btn--sm" aria-disabled="true">Learn More</a>
                             </div>
                         </article>
                     </div>
@@ -1294,7 +1357,7 @@
                                 <p class="text-lg">Sub-heading or lead text that provides context.</p>
                                 <p>Detailed description text goes here. This card layout is perfect for blog posts, news articles, or feature highlights.</p>
                                 <div class="mt-4">
-                                    <a href="#" class="btn btn--primary">Read More</a>
+                                    <a href="javascript:void(0)" class="btn btn--primary" aria-disabled="true">Read More</a>
                                 </div>
                             </div>
                         </article>
@@ -1599,7 +1662,7 @@ h1 {
                             <p>Basic card with a subtle shadow.</p>
                         </div>
                         <div class="card__footer">
-                            <a href="#" class="btn btn--primary btn--sm">Action</a>
+                            <a href="javascript:void(0)" class="btn btn--primary btn--sm" role="button" aria-label="Demo action button">Action</a>
                         </div>
                     </article>
                 </div>
@@ -1621,7 +1684,7 @@ h1 {
                             <p>More room for copy.</p>
                         </div>
                         <div class="card__footer">
-                            <a href="#" class="btn btn--secondary btn--sm">Read more</a>
+                            <a href="javascript:void(0)" class="btn btn--secondary btn--sm" role="button" aria-label="Demo read more button">Read more</a>
                         </div>
                     </article>
                 </div>
@@ -1647,7 +1710,7 @@ h1 {
                             <p>Solid glass morphism card with 85% opacity background and backdrop blur. Perfect for overlays and modern UI designs.</p>
                         </div>
                         <div class="card__footer">
-                            <a href="#" class="btn btn--primary btn--sm">Action</a>
+                            <a href="javascript:void(0)" class="btn btn--primary btn--sm" role="button" aria-label="Demo action button">Action</a>
                         </div>
                     </article>
                 </div>
@@ -1660,7 +1723,7 @@ h1 {
                             <p>Outline glass morphism with transparent background and prominent border. Great for subtle content containers.</p>
                         </div>
                         <div class="card__footer">
-                            <a href="#" class="btn btn--outline btn--sm">Action</a>
+                            <a href="javascript:void(0)" class="btn btn--outline btn--sm" role="button" aria-label="Demo action button">Action</a>
                         </div>
                     </article>
                 </div>
@@ -1711,7 +1774,7 @@ h1 {
                             <p>Consistent layout with image at the top and content below.</p>
                         </div>
                         <div class="card__footer">
-                            <a href="#" class="btn btn--primary btn--sm">Learn More</a>
+                            <a href="javascript:void(0)" class="btn btn--primary btn--sm" role="button" aria-label="Demo learn more button">Learn More</a>
                         </div>
                     </article>
                 </div>
@@ -1742,7 +1805,7 @@ h1 {
                             <p class="text-lg">Sub-heading or lead text that provides context.</p>
                             <p>Detailed description text goes here. This card layout is perfect for blog posts, news articles, or feature highlights.</p>
                             <div class="mt-4">
-                                <a href="#" class="btn btn--primary">Read More</a>
+                                <a href="javascript:void(0)" class="btn btn--primary" role="button" aria-label="Demo read more button">Read More</a>
                             </div>
                         </div>
                     </article>
@@ -2227,14 +2290,14 @@ console.log(message);</code></pre>
                 <h3 class="mt-6">Links</h3>
                 <div class="demo-item">
                     <div class="demo-label">Default Link</div>
-                    <p>This is a <a href="#">default link</a> with standard styling.</p>
+                    <p>This is a <a href="javascript:void(0)" aria-disabled="true">default link</a> with standard styling.</p>
                 </div>
                 <div class="demo-item">
                     <div class="demo-label">Link States</div>
                     <p>
-                        <a href="#">Default link</a> | 
-                        <a href="#" style="color: var(--color-text-muted);">Visited link</a> | 
-                        <a href="#" style="text-decoration: underline;">Active link</a>
+                        <a href="javascript:void(0)" aria-disabled="true">Default link</a> | 
+                        <a href="javascript:void(0)" style="color: var(--color-text-muted);" aria-disabled="true">Visited link</a> | 
+                        <a href="javascript:void(0)" style="text-decoration: underline;" aria-disabled="true">Active link</a>
                     </p>
                 </div>
 
@@ -2343,7 +2406,6 @@ console.log(message);</code></pre>
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="showcase.html">Showcase</a></li>
-                        <li><a href="calendar.html">Tech Calendar</a></li>
                     </ul>
                 </div>
 
@@ -2386,7 +2448,7 @@ console.log(message);</code></pre>
 
             <!-- Copyright Line -->
             <div class="footer__copyright">
-                <p>@ 2025 Design System LTD | Designed with love MC designss.</p>
+                <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designss.</p>
             </div>
         </div>
     </footer>
