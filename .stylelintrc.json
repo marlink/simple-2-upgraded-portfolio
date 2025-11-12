@@ -16,7 +16,8 @@
   },
   "ignoreFiles": [
     "**/archive/**",
-    "**/node_modules/**"
+    "**/node_modules/**",
+    "**/*.min.css"
   ]
 }
 

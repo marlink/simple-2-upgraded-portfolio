@@ -2883,7 +2883,7 @@ body[data-theme="dark"] .newsletter__message--error {
   --btn-border: var(--color-primary);
   display: inline-block;
   /* More refined padding ratio (1:2.5 vertical:horizontal) */
-  padding: calc(var(--space-3) + 2px) calc(var(--space-5) + var(--space-1));
+  padding: calc(var(--space-3) + 1px) calc(var(--space-5) + var(--space-1) - 2px);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.01em;
@@ -2975,8 +2975,8 @@ body[data-theme="dark"] .newsletter__message--error {
   --btn-border: var(--color-primary);
   /* Thinner border for elegance */
   border-width: 1.5px;
-  padding: calc(var(--space-3) + 2.5px)
-    calc(var(--space-5) + var(--space-1) + 0.5px);
+  padding: calc(var(--space-3) + 1.5px)
+    calc(var(--space-5) + var(--space-1) - 0.5px);
   /* Subtle background on rest state for premium feel */
   background: rgba(255, 255, 255, 0.02);
 }
@@ -3139,7 +3139,7 @@ body[data-theme="light"] .btn--outline:active,
 /* Button Sizes */
 /* Small: compact button for tight spaces */
 .btn--sm {
-  padding: calc(var(--space-2) - 2px) var(--space-3);
+  padding: calc(var(--space-2) - 3px) calc(var(--space-3) - 2px);
   font-size: var(--font-size-sm);
   min-height: 32px; /* Slightly smaller but still touch-friendly */
   min-width: 32px;
@@ -3149,7 +3149,7 @@ body[data-theme="light"] .btn--outline:active,
 
 /* Big: larger button for emphasis */
 .btn--big {
-  padding: calc(var(--space-3) - 2px) var(--space-5);
+  padding: calc(var(--space-3) - 3px) calc(var(--space-5) - 2px);
   font-size: var(--font-size-base);
   min-height: 48px;
   min-width: 48px;
@@ -3157,7 +3157,7 @@ body[data-theme="light"] .btn--outline:active,
 
 /* Large: extra large button for hero sections and CTAs */
 .btn--lg {
-  padding: calc(var(--space-4) - 2px) var(--space-6);
+  padding: calc(var(--space-4) - 3px) calc(var(--space-6) - 2px);
   font-size: var(--font-size-lg);
   min-height: calc(var(--touch-target-comfortable) - 4px);
   min-width: calc(var(--touch-target-comfortable) - 4px);
