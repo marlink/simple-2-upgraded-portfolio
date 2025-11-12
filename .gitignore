@@ -23,3 +23,8 @@ npm-debug.log*
 node_modules/
 package-lock.json
 
+.vercel
+
+# Test artifacts
+tests/screenshots/
+*.test.log

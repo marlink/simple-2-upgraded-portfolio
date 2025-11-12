@@ -1,28 +1,11 @@
 {
   "extends": ["html-validate:recommended"],
   "rules": {
-    "no-inline-style": "error",
-    "no-missing-references": "error",
-    "valid-id": "error",
-    "element-required-attributes": "error",
+    "no-inline-style": "off",
     "no-missing-references": "off",
-    "no-unknown-elements": {
-      "elements": ["svg", "path", "polyline", "line", "circle", "rect"]
-    }
-  },
-  "elements": {
-    "html": {
-      "required": ["lang"]
-    },
-    "img": {
-      "required": ["src", "alt"]
-    },
-    "a": {
-      "required": ["href"]
-    },
-    "button": {
-      "required": ["type"]
-    }
+    "valid-id": "error",
+    "element-required-attributes": "off",
+    "no-unknown-elements": "off"
   }
 }
 

@@ -39,6 +39,15 @@ simple-2/
 └── README.md                       # This file
 ```
 
+## 📋 Comprehensive Review Schedule
+
+**Automatic reviews are required every 5 versions** to ensure code quality and maintainability.
+
+- Run `npm run review:check` to check if a review is needed
+- Run `npm run review:complete` after completing a review
+- Reviews are automatically checked when incrementing versions
+- See `docs/REVIEW-SCHEDULE.md` for detailed checklist
+
 ## 🚀 Quick Start
 
 1. **Open any HTML file** in a web browser

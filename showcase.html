@@ -24,11 +24,6 @@
     <meta name="twitter:description" content="Interactive showcase of the responsive CSS framework featuring grid system, components, and typography.">
     <meta name="twitter:image" content="https://yourschool.org/assets/logo/mc-logo.svg">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,6 +88,18 @@
             width: 32px;
             height: 32px;
             margin-bottom: var(--space-2);
+            transition: filter 0.2s ease, opacity 0.2s ease;
+        }
+        /* Theme-aware icon colors - make SVG icons visible in both themes */
+        /* Light theme: icons should be dark */
+        body[data-theme="light"] .icon-item img {
+            filter: brightness(0) saturate(100%);
+            opacity: 0.9;
+        }
+        /* Dark theme: icons should be light */
+        body[data-theme="dark"] .icon-item img {
+            filter: brightness(0) saturate(100%) invert(1);
+            opacity: 0.95;
         }
         /* Photo Stats Counter - Inspired by Cursor Settings */
         .stat-counter {

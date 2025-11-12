@@ -1,537 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Typography System Demo – Fluid Typography</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Demonstration of the fluid typography system with responsive scaling, display styles, and comprehensive typography utilities.">
-    <meta name="keywords" content="typography, fluid typography, responsive text, CSS typography, design system">
-    <meta name="author" content="Marceli Cieplik">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourschool.org/typography-demo.html">
-    <meta property="og:title" content="Typography System Demo - Fluid Typography">
-    <meta property="og:description" content="Demonstration of the fluid typography system with responsive scaling and comprehensive utilities.">
-    <meta property="og:image" content="https://yourschool.org/assets/logo/mc-logo.svg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:url" content="https://yourschool.org/typography-demo.html">
-    <meta name="twitter:title" content="Typography System Demo - Fluid Typography">
-    <meta name="twitter:description" content="Demonstration of the fluid typography system with responsive scaling and comprehensive utilities.">
-    <meta name="twitter:image" content="https://yourschool.org/assets/logo/mc-logo.svg">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Typography System Demo – Fluid Typography</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+        <!-- SEO Meta Tags -->
+        <meta
+            name="description"
+            content="Demonstration of the fluid typography system with responsive scaling, display styles, and comprehensive typography utilities."
+        />
+        <meta name="keywords" content="typography, fluid typography, responsive text, CSS typography, design system" />
+        <meta name="author" content="Marceli Cieplik" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourschool.org/typography-demo.html" />
+        <meta property="og:title" content="Typography System Demo - Fluid Typography" />
+        <meta
+            property="og:description"
+            content="Demonstration of the fluid typography system with responsive scaling and comprehensive utilities."
+        />
+        <meta property="og:image" content="https://yourschool.org/assets/logo/mc-logo.svg" />
 
-    <!-- Unified Responsive Framework -->
-    <link rel="stylesheet" href="assets/css/framework-unified.css">
-    <!-- Typography System -->
-    <link rel="stylesheet" href="assets/css/typography-system.css">
-</head>
-<body data-theme="dark">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header">
-        <nav class="nav">
-            <a class="nav__logo" href="index.html" aria-label="YourSchool">
-                <img src="assets/logo/mc-logo.svg" alt="YourSchool" class="nav__logo-img">
-            </a>
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:url" content="https://yourschool.org/typography-demo.html" />
+        <meta name="twitter:title" content="Typography System Demo - Fluid Typography" />
+        <meta
+            name="twitter:description"
+            content="Demonstration of the fluid typography system with responsive scaling and comprehensive utilities."
+        />
+        <meta name="twitter:image" content="https://yourschool.org/assets/logo/mc-logo.svg" />
 
-            <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
-                <span class="nav__burger-line"></span>
-                <span class="nav__burger-line"></span>
-                <span class="nav__burger-line"></span>
-            </button>
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
 
-            <div class="nav__menu">
-                <ul class="nav__links">
-                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
-                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
-                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                    <li><a href="showcase.html" class="nav__link nav__link--underline">Showcase</a></li>
-                </ul>
+        <!-- Unified Responsive Framework -->
+        <link rel="stylesheet" href="assets/css/framework-unified.css" />
+        <!-- Typography System -->
+        <link rel="stylesheet" href="assets/css/typography-system.css" />
 
-                <!-- THEME TOGGLE -->
-                <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
+        <style>
+            /* Demo-specific styles */
+            .demo-section {
+                padding: var(--space-8) 0;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .demo-section:last-child {
+                border-bottom: none;
+            }
+
+            .demo-section h2 {
+                margin-top: 0;
+                margin-bottom: var(--space-6);
+                padding-bottom: var(--space-4);
+                border-bottom: 2px solid var(--color-border);
+            }
+
+            .demo-item {
+                margin-bottom: var(--space-6);
+            }
+
+            .demo-item:last-child {
+                margin-bottom: 0;
+            }
+
+            .demo-label {
+                font-size: var(--font-size-xs);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--color-text-muted);
+                margin-bottom: var(--space-2);
+            }
+        </style>
+    </head>
+    <body data-theme="dark">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <header class="site-header">
+            <nav class="nav">
+                <a class="nav__logo" href="index.html" aria-label="YourSchool">
+                    <img src="assets/logo/mc-logo.svg" alt="YourSchool" class="nav__logo-img" />
+                </a>
+
+                <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="nav__burger-line"></span>
+                    <span class="nav__burger-line"></span>
+                    <span class="nav__burger-line"></span>
                 </button>
 
-                <a href="contact.html" class="btn btn--outline">Free website</a>
-            </div>
+                <div class="nav__menu">
+                    <ul class="nav__links">
+                        <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
+                        <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
+                        <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
+                        <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
+                        <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
+                        <li><a href="showcase.html" class="nav__link nav__link--underline">Showcase</a></li>
+                    </ul>
 
-            <!-- Mobile Menu Overlay -->
-            <div class="nav__overlay"></div>
-            <div class="nav__mobile-menu">
-                <ul class="nav__links nav__links--mobile">
-                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
-                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
-                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                    <li><a href="showcase.html" class="nav__link nav__link--underline">Showcase</a></li>
-                </ul>
+                    <!-- THEME TOGGLE -->
+                    <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                        <span class="theme-toggle__icon theme-toggle__icon--light">
+                            <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24" />
+                        </span>
+                        <span class="theme-toggle__icon theme-toggle__icon--dark">
+                            <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24" />
+                        </span>
+                    </button>
 
-                <button class="theme-toggle theme-toggle--mobile" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
-                </button>
+                    <a href="contact.html" class="btn btn--outline">Free website</a>
+                </div>
 
-                <a href="contact.html" class="btn btn--outline btn--mobile">Free website</a>
-            </div>
+                <!-- Mobile Menu Overlay -->
+                <div class="nav__overlay"></div>
+                <div class="nav__mobile-menu">
+                    <ul class="nav__links nav__links--mobile">
+                        <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
+                        <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
+                        <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
+                        <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
+                        <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
+                        <li><a href="showcase.html" class="nav__link nav__link--underline">Showcase</a></li>
+                    </ul>
 
-        </nav>
-    </header>
-    
-    <style>
-        /* Demo-specific styles */
-        .demo-section {
-            padding: var(--space-8) 0;
-            border-bottom: 1px solid var(--color-border);
-        }
-        
-        .demo-section:last-child {
-            border-bottom: none;
-        }
-        
-        .demo-section h2 {
-            margin-top: 0;
-            margin-bottom: var(--space-6);
-            padding-bottom: var(--space-4);
-            border-bottom: 2px solid var(--color-border);
-        }
-        
-        .demo-item {
-            margin-bottom: var(--space-6);
-        }
-        
-        .demo-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .demo-label {
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-text-muted);
-            margin-bottom: var(--space-2);
-        }
-    </style>
-</head>
-<body data-theme="dark">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header">
-        <nav class="nav">
-            <a class="nav__logo" href="index.html" aria-label="YourSchool">
-                <img src="assets/logo/mc-logo.svg" alt="YourSchool" class="nav__logo-img">
-            </a>
+                    <button
+                        class="theme-toggle theme-toggle--mobile"
+                        type="button"
+                        aria-label="Toggle color theme"
+                        title="Toggle theme"
+                    >
+                        <span class="theme-toggle__icon theme-toggle__icon--light">
+                            <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24" />
+                        </span>
+                        <span class="theme-toggle__icon theme-toggle__icon--dark">
+                            <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24" />
+                        </span>
+                    </button>
 
-            <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
-                <span class="nav__burger-line"></span>
-                <span class="nav__burger-line"></span>
-                <span class="nav__burger-line"></span>
-            </button>
+                    <a href="contact.html" class="btn btn--outline btn--mobile">Free website</a>
+                </div>
+            </nav>
+        </header>
 
-            <div class="nav__menu">
-                <ul class="nav__links">
-                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
-                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
-                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                    <li><a href="typography-demo.html" class="nav__link nav__link--underline is-active">Typography</a></li>
-                </ul>
+        <main id="main-content">
+            <div class="container py-8">
+                <h1 class="display-1">Fluid Typography System</h1>
+                <p class="lead">
+                    A complete, reusable typography system with fluid scaling, vertical rhythm, and comprehensive
+                    utilities that automatically adapt to any screen size.
+                </p>
 
-                <!-- THEME TOGGLE -->
-                <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
-                </button>
+                <!-- Display Styles -->
+                <section class="demo-section">
+                    <h2>Display Styles</h2>
+                    <p class="muted">Larger than h1, perfect for hero sections and banners</p>
 
-                <a href="contact.html" class="btn btn--outline">Free website</a>
-            </div>
+                    <div class="demo-item">
+                        <div class="demo-label">Display 1</div>
+                        <div class="display-1">Display One: The Largest Heading</div>
+                    </div>
 
-            <!-- Mobile Menu Overlay -->
-            <div class="nav__overlay"></div>
-            <div class="nav__mobile-menu">
-                <ul class="nav__links nav__links--mobile">
-                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
-                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
-                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                    <li><a href="typography-demo.html" class="nav__link nav__link--underline is-active">Typography</a></li>
-                </ul>
+                    <div class="demo-item">
+                        <div class="demo-label">Display 2</div>
+                        <div class="display-2">Display Two: Large Hero Text</div>
+                    </div>
 
-                <button class="theme-toggle theme-toggle--mobile" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
-                </button>
+                    <div class="demo-item">
+                        <div class="demo-label">Display 3</div>
+                        <div class="display-3">Display Three: Prominent Heading</div>
+                    </div>
 
-                <a href="contact.html" class="btn btn--outline btn--mobile">Free website</a>
-            </div>
+                    <div class="demo-item">
+                        <div class="demo-label">Display 4</div>
+                        <div class="display-4">Display Four: Section Header</div>
+                    </div>
+                </section>
 
-        </nav>
-    </header>
+                <!-- Headings -->
+                <section class="demo-section">
+                    <h2>Heading Hierarchy</h2>
+                    <p class="muted">Standard headings with fluid scaling</p>
 
-    <main id="main-content">
-        <div class="container py-8">
-            <h1 class="display-1">Fluid Typography System</h1>
-            <p class="lead">A complete, reusable typography system with fluid scaling, vertical rhythm, and comprehensive utilities that automatically adapt to any screen size.</p>
+                    <div class="demo-item">
+                        <h1>Heading 1: Main Page Title</h1>
+                        <p>This is a standard h1 heading using the framework's default styles.</p>
+                    </div>
 
-            <!-- Display Styles -->
-            <section class="demo-section">
-                <h2>Display Styles</h2>
-                <p class="muted">Larger than h1, perfect for hero sections and banners</p>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Display 1</div>
-                    <div class="display-1">Display One: The Largest Heading</div>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Display 2</div>
-                    <div class="display-2">Display Two: Large Hero Text</div>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Display 3</div>
-                    <div class="display-3">Display Three: Prominent Heading</div>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Display 4</div>
-                    <div class="display-4">Display Four: Section Header</div>
-                </div>
-            </section>
+                    <div class="demo-item">
+                        <h2>Heading 2: Section Title</h2>
+                        <p>This is a standard h2 heading for major sections.</p>
+                    </div>
 
-            <!-- Headings -->
-            <section class="demo-section">
-                <h2>Heading Hierarchy</h2>
-                <p class="muted">Standard headings with fluid scaling</p>
-                
-                <div class="demo-item">
-                    <h1>Heading 1: Main Page Title</h1>
-                    <p>This is a standard h1 heading using the framework's default styles.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <h2>Heading 2: Section Title</h2>
-                    <p>This is a standard h2 heading for major sections.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <h3>Heading 3: Subsection</h3>
-                    <p>This is a standard h3 heading for subsections.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <h4>Heading 4: Minor Section</h4>
-                    <p>This is a standard h4 heading for minor sections.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <h5>Heading 5: Small Heading</h5>
-                    <p>This is a standard h5 heading for small sections.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <h6>Heading 6: Smallest Heading</h6>
-                    <p>This is a standard h6 heading, the smallest in the hierarchy.</p>
-                </div>
-            </section>
+                    <div class="demo-item">
+                        <h3>Heading 3: Subsection</h3>
+                        <p>This is a standard h3 heading for subsections.</p>
+                    </div>
 
-            <!-- Enhanced Headings -->
-            <section class="demo-section">
-                <h2>Enhanced Headings</h2>
-                <p class="muted">Headings with enhanced fluid scaling (add .enhanced class)</p>
-                
-                <div class="demo-item">
-                    <h1 class="enhanced">Enhanced Heading 1</h1>
-                </div>
-                
-                <div class="demo-item">
-                    <h2 class="enhanced">Enhanced Heading 2</h2>
-                </div>
-                
-                <div class="demo-item">
-                    <h3 class="enhanced">Enhanced Heading 3</h3>
-                </div>
-            </section>
+                    <div class="demo-item">
+                        <h4>Heading 4: Minor Section</h4>
+                        <p>This is a standard h4 heading for minor sections.</p>
+                    </div>
 
-            <!-- Utility Classes -->
-            <section class="demo-section">
-                <h2>Text Utilities</h2>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Lead Paragraph</div>
-                    <p class="lead">This is a lead paragraph. It's larger and more prominent than regular body text, perfect for introductions and important statements.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Muted Text</div>
-                    <p>This is regular text with <span class="muted">muted text</span> for less emphasis.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Strong Text</div>
-                    <p>This is regular text with <span class="strong">strong text</span> for emphasis.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Text Alignment</div>
-                    <p class="text-left">Left-aligned text (default)</p>
-                    <p class="text-center">Center-aligned text</p>
-                    <p class="text-right">Right-aligned text</p>
-                    <p class="text-justify">Justified text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                </div>
-            </section>
+                    <div class="demo-item">
+                        <h5>Heading 5: Small Heading</h5>
+                        <p>This is a standard h5 heading for small sections.</p>
+                    </div>
 
-            <!-- Blockquote -->
-            <section class="demo-section">
-                <h2>Blockquote</h2>
-                
-                <div class="demo-item">
-                    <blockquote>
-                        <p>The best way to predict the future is to invent it. Design is not just what it looks like and feels like—design is how it works.</p>
-                        <cite>Steve Jobs</cite>
-                    </blockquote>
-                </div>
-                
-                <div class="demo-item">
-                    <blockquote>
-                        <p>Simplicity is the ultimate sophistication. In design, less is more, and clarity is key to effective communication.</p>
-                    </blockquote>
-                </div>
-            </section>
+                    <div class="demo-item">
+                        <h6>Heading 6: Smallest Heading</h6>
+                        <p>This is a standard h6 heading, the smallest in the hierarchy.</p>
+                    </div>
+                </section>
 
-            <!-- Code -->
-            <section class="demo-section">
-                <h2>Code & Pre-formatted Text</h2>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Inline Code</div>
-                    <p>Use <code>const variable = 'value'</code> for inline code snippets. You can also use <code>font-family</code> and <code>font-size</code> in CSS.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Code Block</div>
-                    <pre><code>function greet(name) {
+                <!-- Enhanced Headings -->
+                <section class="demo-section">
+                    <h2>Enhanced Headings</h2>
+                    <p class="muted">Headings with enhanced fluid scaling (add .enhanced class)</p>
+
+                    <div class="demo-item">
+                        <h1 class="enhanced">Enhanced Heading 1</h1>
+                    </div>
+
+                    <div class="demo-item">
+                        <h2 class="enhanced">Enhanced Heading 2</h2>
+                    </div>
+
+                    <div class="demo-item">
+                        <h3 class="enhanced">Enhanced Heading 3</h3>
+                    </div>
+                </section>
+
+                <!-- Utility Classes -->
+                <section class="demo-section">
+                    <h2>Text Utilities</h2>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Lead Paragraph</div>
+                        <p class="lead">
+                            This is a lead paragraph. It's larger and more prominent than regular body text, perfect for
+                            introductions and important statements.
+                        </p>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Muted Text</div>
+                        <p>This is regular text with <span class="muted">muted text</span> for less emphasis.</p>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Strong Text</div>
+                        <p>This is regular text with <span class="strong">strong text</span> for emphasis.</p>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Text Alignment</div>
+                        <p class="text-left">Left-aligned text (default)</p>
+                        <p class="text-center">Center-aligned text</p>
+                        <p class="text-right">Right-aligned text</p>
+                        <p class="text-justify">
+                            Justified text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Blockquote -->
+                <section class="demo-section">
+                    <h2>Blockquote</h2>
+
+                    <div class="demo-item">
+                        <blockquote>
+                            <p>
+                                The best way to predict the future is to invent it. Design is not just what it looks
+                                like and feels like—design is how it works.
+                            </p>
+                            <cite>Steve Jobs</cite>
+                        </blockquote>
+                    </div>
+
+                    <div class="demo-item">
+                        <blockquote>
+                            <p>
+                                Simplicity is the ultimate sophistication. In design, less is more, and clarity is key
+                                to effective communication.
+                            </p>
+                        </blockquote>
+                    </div>
+                </section>
+
+                <!-- Code -->
+                <section class="demo-section">
+                    <h2>Code & Pre-formatted Text</h2>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Inline Code</div>
+                        <p>
+                            Use <code>const variable = 'value'</code> for inline code snippets. You can also use
+                            <code>font-family</code> and <code>font-size</code> in CSS.
+                        </p>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Code Block</div>
+                        <pre><code>function greet(name) {
     return `Hello, ${name}!`;
 }
 
 const message = greet('World');
 console.log(message);</code></pre>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Code Block with Wrapper</div>
-                    <div class="code-block">
-                        <pre><code>// Typography system variables
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Code Block with Wrapper</div>
+                        <div class="code-block">
+                            <pre><code>// Typography system variables
 :root {
     --font-family: 'Inter', system-ui, sans-serif;
     --font-family-heading: 'Space Grotesk', sans-serif;
     --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
     --line-height-base: 1.5;
 }</code></pre>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Lists -->
-            <section class="demo-section">
-                <h2>Lists</h2>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Unordered List</div>
-                    <ul>
-                        <li>First item in the list</li>
-                        <li>Second item with more content that might wrap to multiple lines</li>
-                        <li>Third item
-                            <ul>
-                                <li>Nested item one</li>
-                                <li>Nested item two</li>
-                            </ul>
-                        </li>
-                        <li>Fourth item</li>
-                    </ul>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Ordered List</div>
-                    <ol>
-                        <li>First step in the process</li>
-                        <li>Second step with detailed instructions</li>
-                        <li>Third step
-                            <ol>
-                                <li>Sub-step one</li>
-                                <li>Sub-step two</li>
-                            </ol>
-                        </li>
-                        <li>Fourth step</li>
-                    </ol>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Definition List</div>
-                    <dl>
-                        <dt>Typography</dt>
-                        <dd>The art and technique of arranging type to make written language legible, readable, and appealing.</dd>
-                        <dt>Fluid Typography</dt>
-                        <dd>Typography that scales smoothly between breakpoints using CSS clamp() and viewport units.</dd>
-                        <dt>Vertical Rhythm</dt>
-                        <dd>A consistent spacing system based on a baseline unit that creates visual harmony.</dd>
-                    </dl>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Unstyled List</div>
-                    <ul class="list-unstyled">
-                        <li>Item without bullet</li>
-                        <li>Another unstyled item</li>
-                        <li>Clean list appearance</li>
-                    </ul>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Inline List</div>
-                    <ul class="list-inline">
-                        <li>Home</li>
-                        <li>About</li>
-                        <li>Contact</li>
-                        <li>Blog</li>
-                    </ul>
-                </div>
-            </section>
+                <!-- Lists -->
+                <section class="demo-section">
+                    <h2>Lists</h2>
 
-            <!-- Tooltip -->
-            <section class="demo-section">
-                <h2>Tooltip</h2>
-                
-                <div class="demo-item">
-                    <p>Hover over the <span class="tooltip" data-tooltip="This is a helpful tooltip that appears on hover">dotted text</span> to see a tooltip.</p>
-                    <p>Another example: <span class="tooltip" data-tooltip="Tooltips provide additional context without cluttering the interface">tooltip here</span>.</p>
-                </div>
-            </section>
+                    <div class="demo-item">
+                        <div class="demo-label">Unordered List</div>
+                        <ul>
+                            <li>First item in the list</li>
+                            <li>Second item with more content that might wrap to multiple lines</li>
+                            <li>
+                                Third item
+                                <ul>
+                                    <li>Nested item one</li>
+                                    <li>Nested item two</li>
+                                </ul>
+                            </li>
+                            <li>Fourth item</li>
+                        </ul>
+                    </div>
 
-            <!-- Image Caption -->
-            <section class="demo-section">
-                <h2>Image Caption</h2>
-                
-                <div class="demo-item">
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop" alt="Sample image">
-                        <figcaption>This is an image caption using the figcaption element. It's styled with smaller, muted text.</figcaption>
-                    </figure>
-                </div>
-                
-                <div class="demo-item">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop" alt="Sample image">
-                    <p class="caption">This is a caption using the .caption class. It works the same way as figcaption.</p>
-                </div>
-            </section>
+                    <div class="demo-item">
+                        <div class="demo-label">Ordered List</div>
+                        <ol>
+                            <li>First step in the process</li>
+                            <li>Second step with detailed instructions</li>
+                            <li>
+                                Third step
+                                <ol>
+                                    <li>Sub-step one</li>
+                                    <li>Sub-step two</li>
+                                </ol>
+                            </li>
+                            <li>Fourth step</li>
+                        </ol>
+                    </div>
 
-            <!-- Accessibility -->
-            <section class="demo-section">
-                <h2>Accessibility Features</h2>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Screen Reader Only</div>
-                    <p>This text is visible: "Visible content"</p>
-                    <p class="sr-only">This text is hidden visually but available to screen readers.</p>
-                </div>
-                
-                <div class="demo-item">
-                    <div class="demo-label">Focus Visible</div>
-                    <p>Tab through these links to see enhanced focus indicators:</p>
-                    <p>
-                        <a href="#focus-1">Link 1</a> | 
-                        <a href="#focus-2">Link 2</a> | 
-                        <a href="#focus-3">Link 3</a>
+                    <div class="demo-item">
+                        <div class="demo-label">Definition List</div>
+                        <dl>
+                            <dt>Typography</dt>
+                            <dd>
+                                The art and technique of arranging type to make written language legible, readable, and
+                                appealing.
+                            </dd>
+                            <dt>Fluid Typography</dt>
+                            <dd>
+                                Typography that scales smoothly between breakpoints using CSS clamp() and viewport
+                                units.
+                            </dd>
+                            <dt>Vertical Rhythm</dt>
+                            <dd>A consistent spacing system based on a baseline unit that creates visual harmony.</dd>
+                        </dl>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Unstyled List</div>
+                        <ul class="list-unstyled">
+                            <li>Item without bullet</li>
+                            <li>Another unstyled item</li>
+                            <li>Clean list appearance</li>
+                        </ul>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Inline List</div>
+                        <ul class="list-inline">
+                            <li>Home</li>
+                            <li>About</li>
+                            <li>Contact</li>
+                            <li>Blog</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Tooltip -->
+                <section class="demo-section">
+                    <h2>Tooltip</h2>
+
+                    <div class="demo-item">
+                        <p>
+                            Hover over the
+                            <span class="tooltip" data-tooltip="This is a helpful tooltip that appears on hover"
+                                >dotted text</span
+                            >
+                            to see a tooltip.
+                        </p>
+                        <p>
+                            Another example:
+                            <span
+                                class="tooltip"
+                                data-tooltip="Tooltips provide additional context without cluttering the interface"
+                                >tooltip here</span
+                            >.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Image Caption -->
+                <section class="demo-section">
+                    <h2>Image Caption</h2>
+
+                    <div class="demo-item">
+                        <figure>
+                            <img
+                                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop"
+                                alt="Sample image"
+                            />
+                            <figcaption>
+                                This is an image caption using the figcaption element. It's styled with smaller, muted
+                                text.
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="demo-item">
+                        <img
+                            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop"
+                            alt="Sample image"
+                        />
+                        <p class="caption">
+                            This is a caption using the .caption class. It works the same way as figcaption.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Accessibility -->
+                <section class="demo-section">
+                    <h2>Accessibility Features</h2>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Screen Reader Only</div>
+                        <p>This text is visible: "Visible content"</p>
+                        <p class="sr-only">This text is hidden visually but available to screen readers.</p>
+                    </div>
+
+                    <div class="demo-item">
+                        <div class="demo-label">Focus Visible</div>
+                        <p>Tab through these links to see enhanced focus indicators:</p>
+                        <p>
+                            <a href="#focus-1">Link 1</a> | <a href="#focus-2">Link 2</a> |
+                            <a href="#focus-3">Link 3</a>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Responsive Behavior -->
+                <section class="demo-section">
+                    <h2>Responsive Behavior</h2>
+                    <p class="lead">
+                        All typography scales fluidly across breakpoints. Resize your browser window to see the
+                        typography adapt in real-time.
                     </p>
-                </div>
-            </section>
-
-            <!-- Responsive Behavior -->
-            <section class="demo-section">
-                <h2>Responsive Behavior</h2>
-                <p class="lead">All typography scales fluidly across breakpoints. Resize your browser window to see the typography adapt in real-time.</p>
-                <p>The system uses <code>clamp()</code> functions to ensure smooth scaling between:</p>
-                <ul>
-                    <li><strong>XS:</strong> 300px</li>
-                    <li><strong>SM:</strong> 600px</li>
-                    <li><strong>MD:</strong> 768px</li>
-                    <li><strong>LG:</strong> 1024px</li>
-                    <li><strong>XL:</strong> 1280px</li>
-                    <li><strong>XXL:</strong> 1600px</li>
-                    <li><strong>XXXL:</strong> 2400px</li>
-                </ul>
-            </section>
-        </div>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <div class="grid footer__content">
-                <div class="col-12 col-md-4 footer__column">
-                    <h4>Navigation</h4>
-                    <ul class="footer__nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="typography-demo.html">Typography</a></li>
+                    <p>The system uses <code>clamp()</code> functions to ensure smooth scaling between:</p>
+                    <ul>
+                        <li><strong>XS:</strong> 300px</li>
+                        <li><strong>SM:</strong> 600px</li>
+                        <li><strong>MD:</strong> 768px</li>
+                        <li><strong>LG:</strong> 1024px</li>
+                        <li><strong>XL:</strong> 1280px</li>
+                        <li><strong>XXL:</strong> 1600px</li>
+                        <li><strong>XXXL:</strong> 2400px</li>
                     </ul>
-                </div>
-                <div class="col-12 col-md-4 footer__column">
-                    <h4>Typography System</h4>
-                    <p class="text-sm muted">Fluid, responsive typography that adapts to any screen size.</p>
-                </div>
-                <div class="col-12 col-md-4 footer__column">
-                    <div class="footer__newsletter">
-                        <h4>Documentation</h4>
-                        <p class="text-sm muted">See <code>docs/TYPOGRAPHY-SYSTEM.md</code> for integration guide.</p>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="grid footer__content">
+                    <div class="col-12 col-md-4 footer__column">
+                        <h4>Navigation</h4>
+                        <ul class="footer__nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="typography-demo.html">Typography</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-4 footer__column">
+                        <h4>Typography System</h4>
+                        <p class="text-sm muted">Fluid, responsive typography that adapts to any screen size.</p>
+                    </div>
+                    <div class="col-12 col-md-4 footer__column">
+                        <div class="footer__newsletter">
+                            <h4>Documentation</h4>
+                            <p class="text-sm muted">
+                                See <code>docs/TYPOGRAPHY-SYSTEM.md</code> for integration guide.
+                            </p>
+                        </div>
                     </div>
                 </div>
+                <div class="footer__copyright">
+                    <p>@ <span id="year">2025</span> Design System LTD | Fluid Typography System | ver. 0.0.3</p>
+                </div>
             </div>
-            <div class="footer__copyright">
-                <p>@ <span id="year">2025</span> Design System LTD | Fluid Typography System | ver. 0.0.3</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script src="assets/js/utils.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
+        <script src="assets/js/utils.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>
-
