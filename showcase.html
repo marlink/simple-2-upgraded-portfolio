@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -164,7 +164,7 @@
                     <img src="assets/logo/mc-logo.svg" alt="Marceli Cieplik" class="nav__logo-img" />
                 </a>
 
-                <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+                <button class="nav__burger" type="button" aria-label="Toggle menu" aria-expanded="false">
                     <span class="nav__burger-line"></span>
                     <span class="nav__burger-line"></span>
                     <span class="nav__burger-line"></span>
@@ -177,7 +177,6 @@
                         <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
                         <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
                         <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                        <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
                     </ul>
 
                     <!-- THEME TOGGLE -->
@@ -202,7 +201,6 @@
                         <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
                         <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
                         <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                        <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
                     </ul>
 
                     <button
@@ -247,6 +245,7 @@
                     <div class="tablist" role="tablist" aria-label="Showcase navigation">
                         <button
                             class="tab is-active"
+                            type="button"
                             role="tab"
                             aria-selected="true"
                             aria-controls="tab-overview"
@@ -257,6 +256,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-components"
@@ -267,6 +267,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-cards"
@@ -277,6 +278,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-tokens"
@@ -287,6 +289,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-layout"
@@ -297,6 +300,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-accessibility"
@@ -307,6 +311,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-typography"
@@ -317,6 +322,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-icons"
@@ -327,6 +333,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-utilities"
@@ -337,6 +344,7 @@
                         </button>
                         <button
                             class="tab"
+                            type="button"
                             role="tab"
                             aria-selected="false"
                             aria-controls="tab-photos"
@@ -424,49 +432,6 @@
                         </svg>
                     </button>
                     <div class="carousel__indicators" id="indicators-horizontal"></div>
-                </div>
-
-                <h3 class="h3 mt-6">Vertical Carousel</h3>
-                <div class="carousel carousel--vertical" id="carousel-vertical">
-                    <div class="carousel__track">
-                        <div class="carousel__slide">
-                            <div class="card" style="height: 100%; margin: 0;">
-                                <div class="card__body">
-                                    <h4>Card 1</h4>
-                                    <p>First card in vertical carousel. Scroll through to see more content.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel__slide">
-                            <div class="card" style="height: 100%; margin: 0;">
-                                <div class="card__body">
-                                    <h4>Card 2</h4>
-                                    <p>Second card with different content. Perfect for showcasing multiple items.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel__slide">
-                            <div class="card" style="height: 100%; margin: 0;">
-                                <div class="card__body">
-                                    <h4>Card 3</h4>
-                                    <p>Third card demonstrates vertical scrolling capability.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel__slide">
-                            <div class="card" style="height: 100%; margin: 0;">
-                                <div class="card__body">
-                                    <h4>Card 4</h4>
-                                    <p>Final card in the vertical carousel sequence.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel__controls">
-                        <button class="carousel__button" data-carousel-prev="carousel-vertical">↑ Prev</button>
-                        <button class="carousel__button" data-carousel-next="carousel-vertical">Next ↓</button>
-                    </div>
-                    <div class="carousel__indicators" id="indicators-vertical"></div>
                 </div>
 
                 <div class="code-example mt-4">
@@ -780,102 +745,7 @@
                 &lt;span data-tooltip="Helpful hint"&gt;Text&lt;/span&gt;
             </div>
 
-            <h3 id="accordion" class="h3 mt-6">Accordion (FAQ)</h3>
-            <p>Expandable/collapsible sections perfect for FAQs and content organization.</p>
-            <div class="accordion">
-                <div class="accordion__item">
-                    <button class="accordion__button" aria-expanded="false" aria-controls="accordion-panel-1">
-                        What is this framework?
-                    </button>
-                    <div class="accordion__panel" id="accordion-panel-1" hidden>
-                        <p>This is a unified responsive CSS framework with a 12-column grid system, fluid typography, and comprehensive component library. It supports viewports from 300px to 3600px.</p>
-                    </div>
-                </div>
-                <div class="accordion__item">
-                    <button class="accordion__button" aria-expanded="false" aria-controls="accordion-panel-2">
-                        How do I use the grid system?
-                    </button>
-                    <div class="accordion__panel" id="accordion-panel-2" hidden>
-                        <p>Use the grid classes like <code>.col-12</code>, <code>.col-md-6</code>, <code>.col-lg-4</code> to create responsive layouts. The grid is mobile-first and uses a 12-column system.</p>
-                    </div>
-                </div>
-                <div class="accordion__item">
-                    <button class="accordion__button" aria-expanded="false" aria-controls="accordion-panel-3">
-                        Does it support dark mode?
-                    </button>
-                    <div class="accordion__panel" id="accordion-panel-3" hidden>
-                        <p>Yes! The framework includes full dark mode support. Use the theme toggle in the navigation or set <code>data-theme="dark"</code> on the body element.</p>
-                    </div>
-                </div>
-                <div class="accordion__item">
-                    <button class="accordion__button" aria-expanded="false" aria-controls="accordion-panel-4">
-                        What browsers are supported?
-                    </button>
-                    <div class="accordion__panel" id="accordion-panel-4" hidden>
-                        <p>The framework supports all modern browsers including Chrome, Firefox, Safari, and Edge. It includes graceful fallbacks for older browsers.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h3 id="modals" class="h3 mt-6">Modals</h3>
-            <p>Modal dialogs with focus trapping and keyboard support.</p>
-            <div class="grid">
-                <div class="col-12 col-md-6">
-                    <button class="btn btn--primary" data-modal-target="modal-example-1">Open Modal</button>
-                </div>
-                <div class="col-12 col-md-6">
-                    <button class="btn btn--secondary" data-modal-target="modal-example-2">Open Confirmation</button>
-                </div>
-            </div>
-
-            <!-- Modal Example 1 -->
-            <div class="modal" id="modal-example-1" hidden>
-                <div class="modal__overlay" data-modal-close></div>
-                <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title-1">
-                    <div class="modal__header">
-                        <h3 id="modal-title-1">Modal Example</h3>
-                        <button class="modal__close" data-modal-close aria-label="Close modal">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="modal__body">
-                        <p>This is a modal dialog example. It includes focus trapping, keyboard support (ESC to close), and backdrop click to close.</p>
-                        <p>Modals are perfect for confirmations, forms, and important information.</p>
-                    </div>
-                    <div class="modal__footer">
-                        <button class="btn btn--primary" data-modal-close>Confirm</button>
-                        <button class="btn btn--outline" data-modal-close>Cancel</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal Example 2 -->
-            <div class="modal" id="modal-example-2" hidden>
-                <div class="modal__overlay" data-modal-close></div>
-                <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title-2">
-                    <div class="modal__header">
-                        <h3 id="modal-title-2">Confirm Action</h3>
-                        <button class="modal__close" data-modal-close aria-label="Close modal">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="modal__body">
-                        <p>Are you sure you want to perform this action? This cannot be undone.</p>
-                    </div>
-                    <div class="modal__footer">
-                        <button class="btn btn--danger" data-modal-close>Delete</button>
-                        <button class="btn btn--outline" data-modal-close>Cancel</button>
-                    </div>
-                </div>
-            </div>
-
-            <h3 id="spinners-progress" class="h3 mt-6">Spinners & Progress Bars</h3>
+                <h3 id="spinners-progress" class="h3 mt-6">Spinners & Progress Bars</h3>
             <div class="grid">
                 <div class="col-12 col-md-6">
                     <div class="demo-label">Loading Spinner</div>
@@ -2382,51 +2252,61 @@ h1 {
             <section class="demo-section">
                 <h2 id="a11y">Accessibility & Touch Optimization</h2>
             
-            <h3 class="h3 mt-4">Accessibility Features</h3>
-            <ul>
-                <li><strong>Focus States:</strong> All interactive elements have visible focus indicators using <code>focus-visible</code> with 3px outline and 2px offset.</li>
-                <li><strong>Keyboard Navigation:</strong> Full keyboard support for all components. Modals trap focus and can be closed with <kbd>Esc</kbd>.</li>
-                <li><strong>ARIA Support:</strong> Modals use <code>aria-modal</code> and <code>role="dialog"</code>. Accordions use <code>aria-expanded</code>. Tabs use proper ARIA roles: <code>tablist</code>, <code>tab</code>, <code>tabpanel</code>.</li>
-                <li><strong>Color Contrast:</strong> All text meets WCAG AA standards (4.5:1 for normal text, 3:1 for large text).</li>
-                <li><strong>Semantic HTML:</strong> Proper heading hierarchy, landmark regions, and semantic elements throughout.</li>
-                <li><strong>Screen Reader Support:</strong> Tooltips visible on focus, proper labels for form controls, descriptive alt text patterns.</li>
-            </ul>
-
-            <h3 class="h3 mt-4">Touch Device Optimization</h3>
-            <ul>
-                <li><strong>Touch Targets:</strong> All interactive elements meet WCAG 2.5.5 minimum size of 44×44px (comfortable 48px).</li>
-                <li><strong>Spacing:</strong> Increased spacing between touch targets (minimum 8px) to prevent accidental taps.</li>
-                <li><strong>Tap Highlight:</strong> Removed default iOS tap highlight for cleaner interactions.</li>
-                <li><strong>Touch Scrolling:</strong> Smooth scrolling with <code>-webkit-overflow-scrolling: touch</code> for better mobile performance.</li>
-                <li><strong>Form Controls:</strong> Checkboxes and radio buttons enlarged to 20×20px on touch devices.</li>
-                <li><strong>Active States:</strong> Visual feedback on touch with scale transforms and background changes.</li>
-            </ul>
-
-            <h3 class="h3 mt-4">Interactive States</h3>
-            <p>All interactive components include comprehensive state management:</p>
-            <div class="grid">
-                <div class="col-12 col-md-6">
-                    <h4>Button States</h4>
-                    <ul>
-                        <li><code>:hover</code> - Subtle lift with shadow</li>
-                        <li><code>:active</code> - Pressed state (scale down)</li>
-                        <li><code>:focus-visible</code> - Keyboard focus ring</li>
-                        <li><code>:disabled</code> - Reduced opacity, no pointer events</li>
-                    </ul>
+                <h3 class="h3 mt-4">Accessibility Features</h3>
+                <div class="grid">
+                    <div class="col-12">
+                        <ul>
+                            <li><strong>Focus States:</strong> All interactive elements have visible focus indicators using <code>focus-visible</code> with 3px outline and 2px offset.</li>
+                            <li><strong>Keyboard Navigation:</strong> Full keyboard support for all components. Modals trap focus and can be closed with <kbd>Esc</kbd>.</li>
+                            <li><strong>ARIA Support:</strong> Modals use <code>aria-modal</code> and <code>role="dialog"</code>. Accordions use <code>aria-expanded</code>. Tabs use proper ARIA roles: <code>tablist</code>, <code>tab</code>, <code>tabpanel</code>.</li>
+                            <li><strong>Color Contrast:</strong> All text meets WCAG AA standards (4.5:1 for normal text, 3:1 for large text).</li>
+                            <li><strong>Semantic HTML:</strong> Proper heading hierarchy, landmark regions, and semantic elements throughout.</li>
+                            <li><strong>Screen Reader Support:</strong> Tooltips visible on focus, proper labels for form controls, descriptive alt text patterns.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-12 col-md-6">
-                    <h4>Form States</h4>
-                    <ul>
-                        <li><code>:focus</code> - Border color change + focus ring</li>
-                        <li><code>:disabled</code> - Grayed out, not interactive</li>
-                        <li><code>:invalid</code> - Error styling (when implemented)</li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="code-example mt-4">
-                <strong>Example: Button with all states</strong><br>
-                <code>/* Example: Button with all states */<br>
+                <h3 class="h3 mt-4">Touch Device Optimization</h3>
+                <div class="grid">
+                    <div class="col-12">
+                        <ul>
+                            <li><strong>Touch Targets:</strong> All interactive elements meet WCAG 2.5.5 minimum size of 44×44px (comfortable 48px).</li>
+                            <li><strong>Spacing:</strong> Increased spacing between touch targets (minimum 8px) to prevent accidental taps.</li>
+                            <li><strong>Tap Highlight:</strong> Removed default iOS tap highlight for cleaner interactions.</li>
+                            <li><strong>Touch Scrolling:</strong> Smooth scrolling with <code>-webkit-overflow-scrolling: touch</code> for better mobile performance.</li>
+                            <li><strong>Form Controls:</strong> Checkboxes and radio buttons enlarged to 20×20px on touch devices.</li>
+                            <li><strong>Active States:</strong> Visual feedback on touch with scale transforms and background changes.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="h3 mt-4">Interactive States</h3>
+                <p>All interactive components include comprehensive state management:</p>
+                <div class="grid">
+                    <div class="col-12 col-md-6">
+                        <h4>Button States</h4>
+                        <ul>
+                            <li><code>:hover</code> - Subtle lift with shadow</li>
+                            <li><code>:active</code> - Pressed state (scale down)</li>
+                            <li><code>:focus-visible</code> - Keyboard focus ring</li>
+                            <li><code>:disabled</code> - Reduced opacity, no pointer events</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h4>Form States</h4>
+                        <ul>
+                            <li><code>:focus</code> - Border color change + focus ring</li>
+                            <li><code>:disabled</code> - Grayed out, not interactive</li>
+                            <li><code>:invalid</code> - Error styling (when implemented)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid mt-4">
+                    <div class="col-12">
+                        <div class="code-example">
+                            <strong>Example: Button with all states</strong><br>
+                            <code>/* Example: Button with all states */<br>
 .btn {<br>
 &nbsp;&nbsp;/* Base styles */<br>
 &nbsp;&nbsp;min-height: 44px; /* Touch target */<br>
@@ -2437,8 +2317,10 @@ h1 {
 .btn:active { transform: translateY(0); }<br>
 .btn:focus-visible { outline: 3px solid var(--focus-ring-color); }<br>
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }</code>
-            </div>
-        </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
                 <div class="tab__panel" role="tabpanel" id="tab-typography" aria-labelledby="tab-btn-typography" hidden>
             <section class="demo-section">
@@ -2446,96 +2328,136 @@ h1 {
                 <p class="lead">All typography uses fluid clamp() scaling across all breakpoints (300px - 2400px).</p>
 
                 <h3 class="mt-6">Display Styles</h3>
-                <div class="demo-item">
-                    <div class="demo-label">Display 1</div>
-                    <div class="display-1">Display One: The Largest Heading</div>
-                </div>
-                <div class="demo-item">
-                    <div class="demo-label">Display 2</div>
-                    <div class="display-2">Display Two: Large Hero Text</div>
-                </div>
-                <div class="demo-item">
-                    <div class="demo-label">Display 3</div>
-                    <div class="display-3">Display Three: Prominent Heading</div>
-                </div>
-                <div class="demo-item">
-                    <div class="demo-label">Display 4</div>
-                    <div class="display-4">Display Four: Section Header</div>
+                <div class="grid">
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <div class="demo-label">Display 1</div>
+                            <div class="display-1">Display One: The Largest Heading</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <div class="demo-label">Display 2</div>
+                            <div class="display-2">Display Two: Large Hero Text</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <div class="demo-label">Display 3</div>
+                            <div class="display-3">Display Three: Prominent Heading</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <div class="demo-label">Display 4</div>
+                            <div class="display-4">Display Four: Section Header</div>
+                        </div>
+                    </div>
                 </div>
 
                 <h3 class="mt-6">Heading Hierarchy</h3>
-                <div class="demo-item">
-                    <h1>Heading 1: Main Page Title</h1>
-                    <h2>Heading 2: Section Title</h2>
-                    <h3>Heading 3: Subsection</h3>
-                    <h4>Heading 4: Minor Section</h4>
-                    <h5>Heading 5: Small Heading</h5>
-                    <h6>Heading 6: Smallest Heading</h6>
+                <div class="grid">
+                    <div class="col-12">
+                        <div class="demo-item">
+                            <h1>Heading 1: Main Page Title</h1>
+                            <h2>Heading 2: Section Title</h2>
+                            <h3>Heading 3: Subsection</h3>
+                            <h4>Heading 4: Minor Section</h4>
+                            <h5>Heading 5: Small Heading</h5>
+                            <h6>Heading 6: Smallest Heading</h6>
+                        </div>
+                    </div>
                 </div>
 
                 <h3 class="mt-6">Enhanced Headings</h3>
-                <div class="demo-item">
-                    <h1 class="enhanced">Enhanced Heading 1</h1>
-                    <h2 class="enhanced">Enhanced Heading 2</h2>
-                    <h3 class="enhanced">Enhanced Heading 3</h3>
+                <div class="grid">
+                    <div class="col-12">
+                        <div class="demo-item">
+                            <h1 class="enhanced">Enhanced Heading 1</h1>
+                            <h2 class="enhanced">Enhanced Heading 2</h2>
+                            <h3 class="enhanced">Enhanced Heading 3</h3>
+                        </div>
+                    </div>
                 </div>
 
                 <h3 class="mt-6">Text Utilities</h3>
-                <div class="demo-item">
-                    <div class="demo-label">Lead Paragraph</div>
-                    <p class="lead">This is a lead paragraph. It's larger and more prominent than regular body text, perfect for introductions and important statements.</p>
-                </div>
-                <div class="demo-item">
-                    <div class="demo-label">Muted and Strong Text</div>
-                    <p>This is regular text with <span class="muted">muted text</span> for less emphasis and <span class="strong">strong text</span> for emphasis.</p>
-                </div>
-                <div class="demo-item">
-                    <div class="demo-label">Text Alignment</div>
-                    <p class="text-left">Left-aligned text (default)</p>
-                    <p class="text-center">Center-aligned text</p>
-                    <p class="text-right">Right-aligned text</p>
-                    <p class="text-justify">Justified text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                <div class="grid">
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <div class="demo-label">Lead Paragraph</div>
+                            <p class="lead">This is a lead paragraph. It's larger and more prominent than regular body text, perfect for introductions and important statements.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <div class="demo-label">Muted and Strong Text</div>
+                            <p>This is regular text with <span class="muted">muted text</span> for less emphasis and <span class="strong">strong text</span> for emphasis.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="demo-item">
+                            <div class="demo-label">Text Alignment</div>
+                            <p class="text-left">Left-aligned text (default)</p>
+                            <p class="text-center">Center-aligned text</p>
+                            <p class="text-right">Right-aligned text</p>
+                            <p class="text-justify">Justified text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <h3 class="mt-6">Font Size Utilities</h3>
-                <div class="demo-item">
-                    <p class="text-xs">Extra Small (.text-xs)</p>
-                    <p class="text-sm">Small (.text-sm)</p>
-                    <p class="text-base">Base (.text-base)</p>
-                    <p class="text-lg">Large (.text-lg)</p>
-                    <p class="text-xl">Extra Large (.text-xl)</p>
-                    <p class="text-2xl">2X Large (.text-2xl)</p>
-                    <p class="text-3xl">3X Large (.text-3xl)</p>
-                    <p class="text-4xl">4X Large (.text-4xl)</p>
+                <div class="grid">
+                    <div class="col-12">
+                        <div class="demo-item">
+                            <p class="text-xs">Extra Small (.text-xs)</p>
+                            <p class="text-sm">Small (.text-sm)</p>
+                            <p class="text-base">Base (.text-base)</p>
+                            <p class="text-lg">Large (.text-lg)</p>
+                            <p class="text-xl">Extra Large (.text-xl)</p>
+                            <p class="text-2xl">2X Large (.text-2xl)</p>
+                            <p class="text-3xl">3X Large (.text-3xl)</p>
+                            <p class="text-4xl">4X Large (.text-4xl)</p>
+                        </div>
+                    </div>
                 </div>
 
                 <h3 class="mt-6">Blockquote</h3>
-                <div class="demo-item">
-                    <blockquote>
-                        <p>The best way to predict the future is to invent it. Design is not just what it looks like and feels like—design is how it works.</p>
-                        <cite>Steve Jobs</cite>
-                    </blockquote>
+                <div class="grid">
+                    <div class="col-12">
+                        <div class="demo-item">
+                            <blockquote>
+                                <p>The best way to predict the future is to invent it. Design is not just what it looks like and feels like—design is how it works.</p>
+                                <cite>Steve Jobs</cite>
+                            </blockquote>
+                        </div>
+                    </div>
                 </div>
 
                 <h3 class="mt-6">Code</h3>
-                <div class="demo-item">
-                    <div class="demo-label">Inline Code</div>
-                    <p>Use <code>const variable = 'value'</code> for inline code snippets.</p>
-                </div>
-                <div class="demo-item">
-                    <div class="demo-label">Code Block</div>
-                    <pre><code>function greet(name) {
+                <div class="grid">
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <div class="demo-label">Inline Code</div>
+                            <p>Use <code>const variable = 'value'</code> for inline code snippets.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
+                            <div class="demo-label">Code Block</div>
+                            <pre><code>function greet(name) {
     return `Hello, ${name}!`;
 }
 
 const message = greet('World');
 console.log(message);</code></pre>
+                        </div>
+                    </div>
                 </div>
 
                 <h3 class="mt-6">Lists</h3>
-                <div class="demo-item">
-                    <div class="grid">
-                        <div class="col-12 col-md-6">
+                <div class="grid">
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
                             <div class="demo-label">Unordered List</div>
                             <ul>
                                 <li>First item in the list</li>
@@ -2548,7 +2470,9 @@ console.log(message);</code></pre>
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-12 col-md-6">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="demo-item">
                             <div class="demo-label">Ordered List</div>
                             <ol>
                                 <li>First step in the process</li>

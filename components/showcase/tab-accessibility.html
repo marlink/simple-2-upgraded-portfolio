@@ -2,51 +2,61 @@
             <section class="demo-section">
                 <h2 id="a11y">Accessibility & Touch Optimization</h2>
             
-            <h3 class="h3 mt-4">Accessibility Features</h3>
-            <ul>
-                <li><strong>Focus States:</strong> All interactive elements have visible focus indicators using <code>focus-visible</code> with 3px outline and 2px offset.</li>
-                <li><strong>Keyboard Navigation:</strong> Full keyboard support for all components. Modals trap focus and can be closed with <kbd>Esc</kbd>.</li>
-                <li><strong>ARIA Support:</strong> Modals use <code>aria-modal</code> and <code>role="dialog"</code>. Accordions use <code>aria-expanded</code>. Tabs use proper ARIA roles: <code>tablist</code>, <code>tab</code>, <code>tabpanel</code>.</li>
-                <li><strong>Color Contrast:</strong> All text meets WCAG AA standards (4.5:1 for normal text, 3:1 for large text).</li>
-                <li><strong>Semantic HTML:</strong> Proper heading hierarchy, landmark regions, and semantic elements throughout.</li>
-                <li><strong>Screen Reader Support:</strong> Tooltips visible on focus, proper labels for form controls, descriptive alt text patterns.</li>
-            </ul>
-
-            <h3 class="h3 mt-4">Touch Device Optimization</h3>
-            <ul>
-                <li><strong>Touch Targets:</strong> All interactive elements meet WCAG 2.5.5 minimum size of 44×44px (comfortable 48px).</li>
-                <li><strong>Spacing:</strong> Increased spacing between touch targets (minimum 8px) to prevent accidental taps.</li>
-                <li><strong>Tap Highlight:</strong> Removed default iOS tap highlight for cleaner interactions.</li>
-                <li><strong>Touch Scrolling:</strong> Smooth scrolling with <code>-webkit-overflow-scrolling: touch</code> for better mobile performance.</li>
-                <li><strong>Form Controls:</strong> Checkboxes and radio buttons enlarged to 20×20px on touch devices.</li>
-                <li><strong>Active States:</strong> Visual feedback on touch with scale transforms and background changes.</li>
-            </ul>
-
-            <h3 class="h3 mt-4">Interactive States</h3>
-            <p>All interactive components include comprehensive state management:</p>
-            <div class="grid">
-                <div class="col-12 col-md-6">
-                    <h4>Button States</h4>
-                    <ul>
-                        <li><code>:hover</code> - Subtle lift with shadow</li>
-                        <li><code>:active</code> - Pressed state (scale down)</li>
-                        <li><code>:focus-visible</code> - Keyboard focus ring</li>
-                        <li><code>:disabled</code> - Reduced opacity, no pointer events</li>
-                    </ul>
+                <h3 class="h3 mt-4">Accessibility Features</h3>
+                <div class="grid">
+                    <div class="col-12">
+                        <ul>
+                            <li><strong>Focus States:</strong> All interactive elements have visible focus indicators using <code>focus-visible</code> with 3px outline and 2px offset.</li>
+                            <li><strong>Keyboard Navigation:</strong> Full keyboard support for all components. Modals trap focus and can be closed with <kbd>Esc</kbd>.</li>
+                            <li><strong>ARIA Support:</strong> Modals use <code>aria-modal</code> and <code>role="dialog"</code>. Accordions use <code>aria-expanded</code>. Tabs use proper ARIA roles: <code>tablist</code>, <code>tab</code>, <code>tabpanel</code>.</li>
+                            <li><strong>Color Contrast:</strong> All text meets WCAG AA standards (4.5:1 for normal text, 3:1 for large text).</li>
+                            <li><strong>Semantic HTML:</strong> Proper heading hierarchy, landmark regions, and semantic elements throughout.</li>
+                            <li><strong>Screen Reader Support:</strong> Tooltips visible on focus, proper labels for form controls, descriptive alt text patterns.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-12 col-md-6">
-                    <h4>Form States</h4>
-                    <ul>
-                        <li><code>:focus</code> - Border color change + focus ring</li>
-                        <li><code>:disabled</code> - Grayed out, not interactive</li>
-                        <li><code>:invalid</code> - Error styling (when implemented)</li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="code-example mt-4">
-                <strong>Example: Button with all states</strong><br>
-                <code>/* Example: Button with all states */<br>
+                <h3 class="h3 mt-4">Touch Device Optimization</h3>
+                <div class="grid">
+                    <div class="col-12">
+                        <ul>
+                            <li><strong>Touch Targets:</strong> All interactive elements meet WCAG 2.5.5 minimum size of 44×44px (comfortable 48px).</li>
+                            <li><strong>Spacing:</strong> Increased spacing between touch targets (minimum 8px) to prevent accidental taps.</li>
+                            <li><strong>Tap Highlight:</strong> Removed default iOS tap highlight for cleaner interactions.</li>
+                            <li><strong>Touch Scrolling:</strong> Smooth scrolling with <code>-webkit-overflow-scrolling: touch</code> for better mobile performance.</li>
+                            <li><strong>Form Controls:</strong> Checkboxes and radio buttons enlarged to 20×20px on touch devices.</li>
+                            <li><strong>Active States:</strong> Visual feedback on touch with scale transforms and background changes.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="h3 mt-4">Interactive States</h3>
+                <p>All interactive components include comprehensive state management:</p>
+                <div class="grid">
+                    <div class="col-12 col-md-6">
+                        <h4>Button States</h4>
+                        <ul>
+                            <li><code>:hover</code> - Subtle lift with shadow</li>
+                            <li><code>:active</code> - Pressed state (scale down)</li>
+                            <li><code>:focus-visible</code> - Keyboard focus ring</li>
+                            <li><code>:disabled</code> - Reduced opacity, no pointer events</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h4>Form States</h4>
+                        <ul>
+                            <li><code>:focus</code> - Border color change + focus ring</li>
+                            <li><code>:disabled</code> - Grayed out, not interactive</li>
+                            <li><code>:invalid</code> - Error styling (when implemented)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid mt-4">
+                    <div class="col-12">
+                        <div class="code-example">
+                            <strong>Example: Button with all states</strong><br>
+                            <code>/* Example: Button with all states */<br>
 .btn {<br>
 &nbsp;&nbsp;/* Base styles */<br>
 &nbsp;&nbsp;min-height: 44px; /* Touch target */<br>
@@ -57,6 +67,8 @@
 .btn:active { transform: translateY(0); }<br>
 .btn:focus-visible { outline: 3px solid var(--focus-ring-color); }<br>
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }</code>
-            </div>
-        </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
