@@ -106,6 +106,7 @@
   --border-radius: 0.5rem; /* 8px */
   --border-radius-sm: 0.25rem; /* 4px */
   --border-radius-lg: 1rem; /* 16px */
+  --card-image-height: calc(var(--baseline) * 30); /* 240px standard card media height */
 
   /* Shadows: sophisticated multi-layer depth hierarchy */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.02);
@@ -3807,44 +3808,23 @@ body[data-theme="light"] .about__stat-card:hover {
   flex-direction: column;
   position: relative;
 }
-/* Image container: 50% height using aspect-ratio, prevents full-height stretching */
+/* Fixed media height for consistency */
 .card--image-top img {
   width: 100%;
-  aspect-ratio: 2 / 1; /* 2:1 ratio = 50% height relative to width */
+  height: var(--card-image-height);
   display: block;
-  object-fit: cover; /* Fills space, crops excess */
+  object-fit: cover;
   object-position: center;
-  flex-shrink: 0; /* Prevents image from shrinking */
+  flex-shrink: 0;
 }
-/* Mobile: use contain to show full image, adjust ratio for portrait */
 @media (max-width: 599px) {
   .card--image-top img {
-    aspect-ratio: 4 / 3; /* Slightly taller on mobile */
-    object-fit: contain; /* Shows full image, may have letterboxing */
-    background: var(--color-surface); /* Background for letterboxing */
+    height: calc(var(--card-image-height) * 0.75);
   }
 }
-/* Tablet: cover with smart positioning for landscape images */
-@media (min-width: 600px) and (max-width: 1023px) {
-  .card--image-top img {
-    aspect-ratio: 16 / 9; /* Wider ratio for tablets */
-    object-fit: cover;
-    object-position: center top; /* Focus on top portion */
-  }
-}
-/* Desktop: cover with center focus, optimized for wide screens */
-@media (min-width: 1024px) {
-  .card--image-top img {
-    aspect-ratio: 2 / 1; /* Standard 2:1 ratio */
-    object-fit: cover;
-    object-position: center;
-  }
-}
-/* Large screens: slightly taller for better visual balance */
 @media (min-width: 1600px) {
   .card--image-top img {
-    aspect-ratio: 3 / 2; /* Slightly taller on large screens */
-    object-fit: cover;
+    height: calc(var(--card-image-height) * 1.1);
   }
 }
 .card--image-top .card__body {
@@ -3859,19 +3839,9 @@ body[data-theme="light"] .about__stat-card:hover {
   margin-bottom: var(--space-2);
 }
 
-/* Compact variant: 40% shorter image height for tighter layout */
+/* Compact variant: shorter fixed height */
 .card--image-top--compact img {
-  aspect-ratio: 3 / 1; /* Wider ratio = shorter height (~40% less) */
-}
-@media (min-width: 600px) {
-  .card--image-top--compact img {
-    aspect-ratio: 3.5 / 1; /* Slightly taller on tablet+ */
-  }
-}
-@media (min-width: 1024px) {
-  .card--image-top--compact img {
-    aspect-ratio: 4 / 1; /* Even wider on desktop for compact look */
-  }
+  height: calc(var(--card-image-height) * 0.65);
 }
 
 /* Image as Background with Heading and Description */
