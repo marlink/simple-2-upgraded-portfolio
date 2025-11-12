@@ -2175,6 +2175,13 @@ body[data-theme="light"] .about .display-1 {
   color: rgba(0, 0, 0, 0.9);
 }
 
+/* Second line in display-1: 50% of parent font size */
+.display-1__subline {
+  font-size: 0.5em; /* 50% of parent (.display-1) font size */
+  line-height: inherit; /* Inherit line-height from parent */
+  display: inline-block; /* Ensure proper scaling */
+}
+
 /* TIMELINE SECTION */
 .timeline {
   padding: var(--space-8) 0;
