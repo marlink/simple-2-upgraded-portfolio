@@ -10,23 +10,23 @@ module.exports = {
         {
             name: "should have navigation menu",
             run: async (page, helpers) => {
-                const { $, expect } = helpers;
+                const { $ } = helpers;
                 const nav = await $(page, ".nav");
-                expect(nav).notToBeNull();
+                helpers.expect(nav).notToBeNull();
             },
         },
         {
             name: "should have all required navigation links",
             run: async (page, helpers) => {
-                const { $$, expect } = helpers;
+                const { $$ } = helpers;
                 const navLinks = await $$(page, ".nav__link");
-                expect(navLinks.length).toBeGreaterThanOrEqual(5); // Home, About, Solutions, Contact, Blog
+                helpers.expect(navLinks.length).toBeGreaterThanOrEqual(5); // Home, About, Solutions, Contact, Blog
             },
         },
         {
             name: "should toggle mobile menu on burger click",
             run: async (page, helpers) => {
-                const { click, isVisible, setViewport } = helpers;
+                const { click, isVisible, setViewport, expect } = helpers;
                 // Set mobile viewport
                 await setViewport(page, { width: 375, height: 667 });
                 await page.reload({ waitUntil: "networkidle0" });
@@ -40,13 +40,13 @@ module.exports = {
 
                 // Check menu is now visible
                 const afterClick = await isVisible(page, ".nav__mobile-menu");
-                expect(afterClick).notToBe(initiallyVisible);
+                helpers.expect(afterClick).notToBe(initiallyVisible);
             },
         },
         {
             name: "should close mobile menu on overlay click",
             run: async (page, helpers) => {
-                const { click, setViewport } = helpers;
+                const { click, isVisible, setViewport, expect } = helpers;
                 await setViewport(page, { width: 375, height: 667 });
                 await page.reload({ waitUntil: "networkidle0" });
 
@@ -59,14 +59,14 @@ module.exports = {
                 await page.waitForTimeout(300);
 
                 // Check menu is closed
-                const menuVisible = await helpers.isVisible(page, ".nav__mobile-menu");
-                expect(menuVisible).toBeFalsy();
+                const menuVisible = await isVisible(page, ".nav__mobile-menu");
+                helpers.expect(menuVisible).toBeFalsy();
             },
         },
         {
             name: "should highlight active navigation link",
             run: async (page, helpers) => {
-                const { goto, getAttribute } = helpers;
+                const { goto, expect } = helpers;
                 await goto(page, "/index.html");
                 await page.waitForTimeout(500);
 
@@ -81,7 +81,7 @@ module.exports = {
                         );
                     }, homeLink);
                     // At least one active indicator should be present
-                    expect(hasActive || true).toBeTruthy(); // Flexible check
+                    helpers.expect(hasActive || true).toBeTruthy(); // Flexible check
                 }
             },
         },

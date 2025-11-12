@@ -10,18 +10,18 @@ module.exports = {
     {
       name: 'should initialize tabs component',
       run: async (page, helpers) => {
-        const { goto, $, expect } = helpers;
+        const { goto, $ } = helpers;
         await goto(page, '/showcase.html');
         await page.waitForSelector('.tabs', { timeout: 5000 });
         
         const tabs = await $(page, '.tabs');
-        expect(tabs).notToBeNull();
+        helpers.expect(tabs).notToBeNull();
       }
     },
     {
       name: 'should switch tabs on click',
       run: async (page, helpers) => {
-        const { goto, click, getAttribute, expect } = helpers;
+        const { goto, click, getAttribute } = helpers;
         await goto(page, '/showcase.html');
         await page.waitForSelector('.tab', { timeout: 5000 });
         
@@ -49,17 +49,17 @@ module.exports = {
                  el.getAttribute('aria-selected') === 'true';
         }, secondTab);
         
-        expect(isActive).toBeTruthy();
+        helpers.expect(isActive).toBeTruthy();
       }
     },
     {
       name: 'should open modal on trigger click',
       run: async (page, helpers) => {
-        const { goto, click, isVisible, expect } = helpers;
+        const { goto, click, isVisible, $, expect } = helpers;
         await goto(page, '/showcase.html');
         
         // Find modal trigger
-        const trigger = await page.$('[data-modal-target]');
+        const trigger = await $(page, '[data-modal-target]');
         if (!trigger) {
           // Skip if no modal on page
           return;
@@ -70,7 +70,7 @@ module.exports = {
         
         // Check modal is initially hidden
         const initiallyVisible = await isVisible(page, modalSelector);
-        expect(initiallyVisible).toBeFalsy();
+        helpers.expect(initiallyVisible).toBeFalsy();
         
         // Click trigger
         await click(page, '[data-modal-target]');
@@ -78,16 +78,16 @@ module.exports = {
         
         // Check modal is visible
         const afterClick = await isVisible(page, modalSelector);
-        expect(afterClick).toBeTruthy();
+        helpers.expect(afterClick).toBeTruthy();
       }
     },
     {
       name: 'should close modal on close button click',
       run: async (page, helpers) => {
-        const { goto, click, isVisible, expect } = helpers;
+        const { goto, click, isVisible, $, expect } = helpers;
         await goto(page, '/showcase.html');
         
-        const trigger = await page.$('[data-modal-target]');
+        const trigger = await $(page, '[data-modal-target]');
         if (!trigger) return;
         
         const modalId = await page.evaluate(el => el.getAttribute('data-modal-target'), trigger);
@@ -97,22 +97,23 @@ module.exports = {
         await click(page, '[data-modal-target]');
         await page.waitForTimeout(300);
         
-        // Close modal
+        // Close modal - wait for close button to be visible
+        await page.waitForSelector('[data-modal-close]', { timeout: 2000 });
         await click(page, '[data-modal-close]');
         await page.waitForTimeout(300);
         
         // Check modal is hidden
         const isHidden = await isVisible(page, modalSelector);
-        expect(isHidden).toBeFalsy();
+        helpers.expect(isHidden).toBeFalsy();
       }
     },
     {
       name: 'should toggle accordion on button click',
       run: async (page, helpers) => {
-        const { goto, click, getAttribute, expect } = helpers;
+        const { goto, click, getAttribute, $, expect } = helpers;
         await goto(page, '/showcase.html');
         
-        const accordionButton = await page.$('.accordion__button');
+        const accordionButton = await $(page, '.accordion__button');
         if (!accordionButton) {
           // Skip if no accordion on page
           return;
@@ -127,7 +128,7 @@ module.exports = {
         
         // Check state changed
         const newExpanded = await getAttribute(page, '.accordion__button', 'aria-expanded');
-        expect(newExpanded).notToBe(initialExpanded);
+        helpers.expect(newExpanded).notToBe(initialExpanded);
       }
     }
   ]
