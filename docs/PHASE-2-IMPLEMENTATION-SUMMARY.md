@@ -520,19 +520,19 @@ All enhancements compatible:
 ### Additional Polish
 
 1. **Code Block Refinement**
-   - Better syntax highlighting colors
-   - Enhanced copy button
-   - Smoother scrollbar styling
+    - Better syntax highlighting colors
+    - Enhanced copy button
+    - Smoother scrollbar styling
 
 2. **Table Enhancement**
-   - Refined row hover states
-   - Better cell spacing
-   - Premium borders
+    - Refined row hover states
+    - Better cell spacing
+    - Premium borders
 
 3. **Alert Improvements**
-   - Better color contrast
-   - Enhanced icons
-   - Smoother entry animations
+    - Better color contrast
+    - Enhanced icons
+    - Smoother entry animations
 
 ---
 

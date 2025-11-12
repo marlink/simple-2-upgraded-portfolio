@@ -1820,7 +1820,8 @@ body[data-theme="dark"] .nav__burger-line {
     justify-content: center;
     text-align: center;
     color: var(--hero-text);
-    transition: background-color 0.3s ease;
+    /* Enhanced transitions for premium feel */
+    transition: background-color 0.4s var(--ease-out-smooth);
     overflow: hidden;
 }
 
@@ -1833,8 +1834,20 @@ body[data-theme="dark"] .nav__burger-line {
     background-position: center;
     background-repeat: no-repeat;
     opacity: var(--transition-opacity, 1);
-    transition: opacity 0.6s ease-in-out;
+    /* Enhanced transition with custom easing */
+    transition: opacity 0.7s var(--ease-out-smooth);
     z-index: 0;
+}
+
+/* Subtle texture overlay for premium feel */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* Dark theme: black rider image */
@@ -4600,17 +4613,22 @@ input[type="radio"]:focus {
 pre,
 .code-block {
     background: var(--code-bg);
-    border: 2px solid var(--code-border);
-    border-radius: var(--border-radius);
-    padding: var(--space-4);
+    /* Thinner border for elegance */
+    border: 1px solid var(--code-border);
+    /* Larger radius for premium feel */
+    border-radius: var(--space-2);
+    /* More generous padding */
+    padding: var(--space-5);
     overflow-x: auto;
     font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
+    letter-spacing: -0.01em;
     color: var(--code-text);
     margin: var(--space-4) 0;
     position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Enhanced shadow for depth */
+    box-shadow: var(--elevation-2);
     -webkit-overflow-scrolling: touch;
 }
 
