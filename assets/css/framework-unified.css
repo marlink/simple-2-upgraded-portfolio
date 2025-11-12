@@ -69,9 +69,15 @@
     --color-secondary: #19242b;
     --color-primary-contrast: #eaf4f4;
     --color-accent: #f59e0b; /* amber-500 */
+    --color-accent-hover: #b7f04d; /* green accent for hover states */
     --color-success: #10b981; /* emerald-500 */
     --color-danger: #ef4444; /* red-500 */
     --color-warning: #f59e0b; /* amber-500 */
+    
+    /* Hero section colors */
+    --hero-bg-dark: #010101; /* Very dark background for dark theme hero */
+    --hero-bg-light: #a3b5c1; /* Light background for light theme hero */
+    --hero-text: var(--color-primary); /* Hero text color */
 
     /* Spacing scale: all values are multiples of baseline for visual rhythm */
     --space-1: var(--baseline); /* 8px */
@@ -148,9 +154,15 @@ body[data-theme="dark"] {
     --color-secondary: #f8fafc; /* light surface color - inverted */
     --color-primary-contrast: #080c0e; /* dark - matches light theme primary */
     --color-accent: #fbbf24; /* amber-300 */
+    --color-accent-hover: #b7f04d; /* green accent for hover states (same in both themes) */
     --color-success: #34d399; /* emerald-400 */
     --color-danger: #f87171; /* red-400 */
     --color-warning: #fbbf24; /* amber-300 */
+    
+    /* Hero section colors */
+    --hero-bg-dark: #010101; /* Very dark background for dark theme hero */
+    --hero-bg-light: #a3b5c1; /* Light background for light theme hero */
+    --hero-text: var(--color-primary); /* Hero text color */
 
     /* Code block colors for dark theme */
     --code-bg: #0a0a0a;
@@ -1415,14 +1427,14 @@ body[data-theme="dark"] .theme-toggle {
 
 /* Light theme hover: green border to match outline buttons */
 body[data-theme="light"] .theme-toggle:hover {
-    border-color: rgb(183, 240, 77); /* Green border on hover */
+    border-color: var(--color-accent-hover);
     opacity: 1;
     transform: scale(1.05);
 }
 
 /* Dark theme hover: green border to match outline buttons */
 body[data-theme="dark"] .theme-toggle:hover {
-    border-color: rgb(183, 240, 77); /* Green border on hover */
+    border-color: var(--color-accent-hover);
     opacity: 1;
     transform: scale(1.05);
 }
@@ -1741,7 +1753,7 @@ body[data-theme="dark"] .nav__burger-line {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #eaf4f4;
+    color: var(--hero-text);
     transition: background-color 0.3s ease;
     overflow: hidden;
 }
@@ -1771,12 +1783,12 @@ body[data-theme="light"] .hero::before {
 
 /* Dark theme: custom background color */
 body[data-theme="dark"] .hero {
-    background-color: #010101;
+    background-color: var(--hero-bg-dark);
 }
 
 /* Light theme: custom background color to match image edges */
 body[data-theme="light"] .hero {
-    background-color: #a3b5c1;
+    background-color: var(--hero-bg-light);
 }
 
 /* Ensure overlay and content are above background */
@@ -1801,7 +1813,7 @@ body[data-theme="light"] .hero {
 
 /* Dark theme: radial gradient with opacity 0 in center, fading to dark at edges */
 body[data-theme="dark"] .hero__overlay {
-    background: #010101;
+    background: var(--hero-bg-dark);
     background: radial-gradient(
         circle,
         rgba(1, 1, 1, 0) 0%,
@@ -1814,7 +1826,7 @@ body[data-theme="dark"] .hero__overlay {
 
 /* Light theme: radial gradient with opacity 0 in center, fading to almost-white at edges */
 body[data-theme="light"] .hero__overlay {
-    background: #a3b5c1;
+    background: var(--hero-bg-light);
     background: radial-gradient(
         circle,
         rgba(163, 181, 193, 0) 0%,
@@ -2504,7 +2516,7 @@ body[data-theme="light"] .site-footer {
 .footer__subscribe-btn {
     padding: var(--space-3) var(--space-4);
     background: var(--color-accent);
-    color: #111;
+    color: var(--color-text);
     border: 2px solid var(--color-accent);
     border-radius: 9999px;
     font-weight: 600;
@@ -2733,7 +2745,7 @@ body[data-theme="dark"] .newsletter__message--error {
 
 .btn--secondary {
     --btn-bg: var(--color-accent);
-    --btn-fg: #111;
+    --btn-fg: var(--color-text);
     --btn-border: var(--color-accent);
 }
 .btn--secondary:hover {
@@ -2759,24 +2771,24 @@ body[data-theme="dark"] .btn--outline {
 }
 
 body[data-theme="dark"] .btn--outline:hover {
-    --btn-border: rgb(183, 240, 77); /* Green border on hover */
+    --btn-border: var(--color-accent-hover);
     background: rgba(183, 240, 77, 0.1);
-    color: rgb(183, 240, 77); /* Green text on hover */
+    color: var(--color-accent-hover);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
 }
 
 body[data-theme="dark"] .btn--outline:focus-visible {
-    --btn-border: rgb(183, 240, 77); /* Green border on focus */
+    --btn-border: var(--color-accent-hover);
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);
-    color: rgb(183, 240, 77); /* Green text on focus */
+    color: var(--color-accent-hover);
 }
 
 body[data-theme="dark"] .btn--outline:active {
-    --btn-border: rgb(183, 240, 77); /* Green border on active */
+    --btn-border: var(--color-accent-hover);
     background: rgba(183, 240, 77, 0.15);
-    color: rgb(183, 240, 77); /* Green text on active */
+    color: var(--color-accent-hover);
     transform: translateY(0);
     box-shadow: none;
 }
@@ -2826,7 +2838,7 @@ body[data-theme="light"] .btn--outline:active,
 /* White button variant: white background with dark text */
 .btn--white {
     --btn-bg: #fff;
-    --btn-fg: #111;
+    --btn-fg: var(--color-text);
     --btn-border: rgba(0, 0, 0, 0.2);
     background: var(--btn-bg);
     color: var(--btn-fg);
@@ -2846,7 +2858,7 @@ body[data-theme="light"] .btn--outline:active,
 /* Dark theme: white buttons need adjustment */
 [data-theme="dark"] .btn--white {
     --btn-bg: #fff;
-    --btn-fg: #111;
+    --btn-fg: var(--color-text);
     --btn-border: rgba(0, 0, 0, 0.2);
 }
 [data-theme="dark"] .btn--white:hover {
@@ -2861,7 +2873,7 @@ body[data-theme="light"] .btn--outline:active,
 /* Light theme: white buttons */
 [data-theme="light"] .btn--white {
     --btn-bg: #fff;
-    --btn-fg: #111;
+    --btn-fg: var(--color-text);
     --btn-border: rgba(0, 0, 0, 0.2);
 }
 [data-theme="light"] .btn--white:hover {
@@ -2881,13 +2893,13 @@ body[data-theme="light"] .btn--outline:active,
 .btn[style*="background-color"][style*="white"]:hover,
 .btn[style*="background-color"][style*="#fff"]:hover,
 .btn[style*="background-color"][style*="#ffffff"]:hover {
-    color: #111 !important;
+    color: var(--color-text) !important;
 }
 
 /* Additional safeguard: if button has white background via CSS variable or class, ensure dark text */
 .btn[style*="--btn-bg"][style*="white"]:hover,
 .btn[style*="--btn-bg"][style*="#fff"]:hover {
-    color: #111 !important;
+    color: var(--color-text) !important;
 }
 
 /* Button Sizes */
@@ -2977,7 +2989,7 @@ body[data-theme="light"] .btn--outline:active,
 }
 .nav__link--background.is-active {
     background: rgba(183, 240, 77, 0.15);
-    color: #b7f04d;
+    color: var(--color-accent-hover);
     font-weight: 600;
 }
 
@@ -3001,7 +3013,7 @@ body[data-theme="light"] .btn--outline:active,
     transform: translateX(-50%) scaleX(0);
     width: calc(100% - var(--space-3)); /* Shorter width to match text, accounting for padding */
     height: 1px;
-    background-color: #b7f04d;
+    background-color: var(--color-accent-hover);
     transition:
         transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3366,7 +3378,7 @@ body[data-theme="dark"] .card--glass-outline .card__footer {
 }
 
 .about__stat-card:focus-visible {
-    outline: var(--focus-ring-width) solid #b7f04d;
+    outline: var(--focus-ring-width) solid var(--color-accent-hover);
     outline-offset: var(--focus-ring-offset);
 }
 
@@ -3438,7 +3450,7 @@ body[data-theme="light"] .about__stat-card:hover {
     font-family: var(--font-family-heading);
     font-size: var(--font-size-2xl);
     font-weight: 600;
-    color: #b7f04d;
+    color: var(--color-accent-hover);
     line-height: 1;
     letter-spacing: -0.02em;
 }
@@ -3450,7 +3462,7 @@ body[data-theme="light"] .about__stat-card:hover {
     right: var(--space-3);
     width: 20px;
     height: 20px;
-    color: #b7f04d;
+    color: var(--color-accent-hover);
     opacity: 0;
     transform: translate(4px, 4px) scale(0.8);
     transition:
@@ -3559,7 +3571,7 @@ body[data-theme="light"] .about__stat-card:hover {
     min-height: 300px;
     background-size: cover;
     background-position: center;
-    color: #eaf4f4;
+    color: var(--hero-text);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -3581,7 +3593,7 @@ body[data-theme="light"] .about__stat-card:hover {
 .card--image-bg .card__body h4,
 .card--image-bg .card__body h3,
 .card--image-bg .card__body h2 {
-    color: #eaf4f4;
+    color: var(--hero-text);
     margin-top: 0;
 }
 .card--image-bg .card__body p {
@@ -4934,7 +4946,7 @@ pre code,
     top: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.5);
-    color: #eaf4f4;
+    color: var(--hero-text);
     padding: calc(var(--baseline) * 0.5) calc(var(--baseline) * 1.5);
     font-size: 0.75rem;
     z-index: 1000;

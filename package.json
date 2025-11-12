@@ -21,20 +21,26 @@
         "review:check": "node scripts/check-review-needed.js",
         "review:complete": "node scripts/check-review-needed.js --mark-complete",
         "generate:article": "node scripts/generate-article.js",
-        "generate:case-study": "node scripts/generate-article.js case-study"
+        "generate:case-study": "node scripts/generate-article.js case-study",
+        "build:showcase": "node scripts/build-showcase.js",
+        "build:css": "node scripts/build-css.js",
+        "build": "npm run build:showcase && npm run build:css"
     },
     "devDependencies": {
+        "@playwright/test": "^1.40.0",
+        "cssnano": "^7.1.2",
         "eslint": "^8.57.0",
         "eslint-config-standard": "^17.1.0",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-n": "^16.6.2",
         "eslint-plugin-promise": "^6.1.1",
         "html-validate": "^8.7.3",
+        "postcss": "^8.5.6",
+        "postcss-cli": "^11.0.1",
         "prettier": "^3.2.5",
-        "@playwright/test": "^1.40.0",
+        "sharp": "^0.33.0",
         "stylelint": "^16.0.0",
-        "stylelint-config-standard": "^36.0.0",
-        "sharp": "^0.33.0"
+        "stylelint-config-standard": "^36.0.0"
     },
     "keywords": [
         "static-site",

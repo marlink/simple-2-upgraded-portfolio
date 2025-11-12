@@ -1,0 +1,131 @@
+        <div class="tab__panel is-active" role="tabpanel" id="tab-overview" aria-labelledby="tab-btn-overview">
+            <section class="demo-section">
+                <h2>Framework Overview</h2>
+                <p>Welcome to the unified responsive CSS framework showcase. Use the tabs above to explore different sections.</p>
+                
+                <h3 class="h3 mt-4">Quick Links</h3>
+                <div class="grid">
+                    <div class="col-12 col-md-4 col-xxxl-3">
+                        <article class="card">
+                            <div class="card__body">
+                                <h4>Components</h4>
+                                <p>Buttons, forms, alerts, badges, and interactive elements with all states demonstrated.</p>
+                                <a href="#tab-components" class="btn btn--primary btn--sm" onclick="switchTab('components'); return false;">View Components</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-4 col-xxxl-3">
+                        <article class="card">
+                            <div class="card__body">
+                                <h4>Cards</h4>
+                                <p>All card variants including glass morphism, image cards, and horizontal layouts.</p>
+                                <a href="#tab-cards" class="btn btn--primary btn--sm" onclick="switchTab('cards'); return false;">View Cards</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-4 col-xxxl-3">
+                        <article class="card">
+                            <div class="card__body">
+                                <h4>Design Tokens</h4>
+                                <p>Colors, typography, spacing, borders, and shadows - the foundation of the design system.</p>
+                                <a href="#tab-tokens" class="btn btn--primary btn--sm" onclick="switchTab('tokens'); return false;">View Tokens</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- CAROUSELS -->
+                <h2 id="carousels" class="h2 mt-6">Carousels</h2>
+                <p>Horizontal and vertical carousels with navigation controls and indicators.</p>
+
+                <h3 class="h3 mt-4">Horizontal Carousel</h3>
+                <div class="carousel carousel--horizontal" id="carousel-horizontal">
+                    <div class="carousel__track">
+                        <div class="carousel__slide">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop" alt="Slide 1" style="width: 100%; height: 400px; object-fit: cover;">
+                        </div>
+                        <div class="carousel__slide">
+                            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&h=600&fit=crop" alt="Slide 2" style="width: 100%; height: 400px; object-fit: cover;">
+                        </div>
+                        <div class="carousel__slide">
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=600&fit=crop" alt="Slide 3" style="width: 100%; height: 400px; object-fit: cover;">
+                        </div>
+                        <div class="carousel__slide">
+                            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=600&fit=crop" alt="Slide 4" style="width: 100%; height: 400px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <!-- 
+                        Carousel navigation buttons support:
+                        - Optional icons (remove .carousel__nav-icon element to have icon-less button)
+                        - Icon positioning: carousel__nav-button--icon-left or carousel__nav-button--icon-right
+                        - Icon types via data-icon attribute: 'chevron-right', 'chevron-right-o', 'chevron-right-r', 'arrow-right'
+                        Example: data-icon="chevron-right-o" for outlined chevron
+                    -->
+                    <button class="carousel__nav-button carousel__nav-button--prev carousel__nav-button--icon-left" data-carousel-prev="carousel-horizontal" data-icon="chevron-right" aria-label="Previous slide">
+                        <svg class="carousel__nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <button class="carousel__nav-button carousel__nav-button--next carousel__nav-button--icon-right" data-carousel-next="carousel-horizontal" data-icon="chevron-right" aria-label="Next slide">
+                        <svg class="carousel__nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <div class="carousel__indicators" id="indicators-horizontal"></div>
+                </div>
+
+                <h3 class="h3 mt-6">Vertical Carousel</h3>
+                <div class="carousel carousel--vertical" id="carousel-vertical">
+                    <div class="carousel__track">
+                        <div class="carousel__slide">
+                            <div class="card" style="height: 100%; margin: 0;">
+                                <div class="card__body">
+                                    <h4>Card 1</h4>
+                                    <p>First card in vertical carousel. Scroll through to see more content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="card" style="height: 100%; margin: 0;">
+                                <div class="card__body">
+                                    <h4>Card 2</h4>
+                                    <p>Second card with different content. Perfect for showcasing multiple items.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="card" style="height: 100%; margin: 0;">
+                                <div class="card__body">
+                                    <h4>Card 3</h4>
+                                    <p>Third card demonstrates vertical scrolling capability.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="card" style="height: 100%; margin: 0;">
+                                <div class="card__body">
+                                    <h4>Card 4</h4>
+                                    <p>Final card in the vertical carousel sequence.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel__controls">
+                        <button class="carousel__button" data-carousel-prev="carousel-vertical">↑ Prev</button>
+                        <button class="carousel__button" data-carousel-next="carousel-vertical">Next ↓</button>
+                    </div>
+                    <div class="carousel__indicators" id="indicators-vertical"></div>
+                </div>
+
+                <div class="code-example mt-4">
+                    <strong>Carousel HTML Structure:</strong><br>
+                    &lt;div class="carousel carousel--horizontal" id="my-carousel"&gt;<br>
+                    &nbsp;&nbsp;&lt;div class="carousel__track"&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="carousel__slide"&gt;...&lt;/div&gt;<br>
+                    &nbsp;&nbsp;&lt;/div&gt;<br>
+                    &nbsp;&nbsp;&lt;div class="carousel__controls"&gt;...&lt;/div&gt;<br>
+                    &nbsp;&nbsp;&lt;div class="carousel__indicators"&gt;&lt;/div&gt;<br>
+                    &lt;/div&gt;
+                </div>
+            </section>
+        </div>

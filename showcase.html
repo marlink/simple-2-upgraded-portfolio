@@ -1,247 +1,356 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Framework Showcase | Marceli Cieplik | UI/UX Designer</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Interactive showcase of the responsive CSS framework featuring grid system, components, typography, and design tokens. Explore the framework capabilities.">
-    <meta name="keywords" content="CSS framework, responsive design, grid system, design system, UI components">
-    <meta name="author" content="Marceli Cieplik">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://marceicieplik.com/showcase.html">
-    <meta property="og:title" content="Framework Showcase - Responsive CSS Framework">
-    <meta property="og:description" content="Interactive showcase of the responsive CSS framework featuring grid system, components, and typography.">
-    <meta property="og:image" content="https://marceicieplik.com/assets/logo/mc-logo.svg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:url" content="https://marceicieplik.com/showcase.html">
-    <meta name="twitter:title" content="Framework Showcase - Responsive CSS Framework">
-    <meta name="twitter:description" content="Interactive showcase of the responsive CSS framework featuring grid system, components, and typography.">
-    <meta name="twitter:image" content="https://marceicieplik.com/assets/logo/mc-logo.svg">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Framework Showcase | Marceli Cieplik | UI/UX Designer</title>
 
+        <!-- SEO Meta Tags -->
+        <meta
+            name="description"
+            content="Interactive showcase of the responsive CSS framework featuring grid system, components, typography, and design tokens. Explore the framework capabilities."
+        />
+        <meta name="keywords" content="CSS framework, responsive design, grid system, design system, UI components" />
+        <meta name="author" content="Marceli Cieplik" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://marceicieplik.com/showcase.html" />
+        <meta property="og:title" content="Framework Showcase - Responsive CSS Framework" />
+        <meta
+            property="og:description"
+            content="Interactive showcase of the responsive CSS framework featuring grid system, components, and typography."
+        />
+        <meta property="og:image" content="https://marceicieplik.com/assets/logo/mc-logo.svg" />
 
-    <!-- Unified Responsive Framework -->
-    <link rel="stylesheet" href="assets/css/framework-unified.css">
-    <!-- Typography System -->
-    <link rel="stylesheet" href="assets/css/typography-system.css">
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:url" content="https://marceicieplik.com/showcase.html" />
+        <meta name="twitter:title" content="Framework Showcase - Responsive CSS Framework" />
+        <meta
+            name="twitter:description"
+            content="Interactive showcase of the responsive CSS framework featuring grid system, components, and typography."
+        />
+        <meta name="twitter:image" content="https://marceicieplik.com/assets/logo/mc-logo.svg" />
 
-    <style>
-        .demo-section {
-            padding: var(--space-8) 0;
-            border-bottom: 1px solid var(--color-border);
-        }
-        .demo-section:last-child {
-            border-bottom: none;
-        }
-        .demo-section h2 {
-            margin-top: 0;
-            margin-bottom: var(--space-6);
-            padding-bottom: var(--space-4);
-            border-bottom: 2px solid var(--color-border);
-        }
-        .demo-item {
-            margin-bottom: var(--space-6);
-        }
-        .demo-item:last-child {
-            margin-bottom: 0;
-        }
-        .demo-label {
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-text-muted);
-            margin-bottom: var(--space-2);
-        }
-        .color-swatch {
-            width: 100%;
-            height: 80px;
-            border-radius: var(--border-radius);
-            border: 2px solid var(--color-border);
-            margin-bottom: var(--space-2);
-        }
-        .icon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: var(--space-4);
-        }
-        .icon-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: var(--space-3);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            text-align: center;
-        }
-        .icon-item img {
-            width: 32px;
-            height: 32px;
-            margin-bottom: var(--space-2);
-            transition: filter 0.2s ease, opacity 0.2s ease;
-        }
-        /* Theme-aware icon colors - make SVG icons visible in both themes */
-        /* Light theme: icons should be dark */
-        body[data-theme="light"] .icon-item img {
-            filter: brightness(0) saturate(100%);
-            opacity: 0.9;
-        }
-        /* Dark theme: icons should be light */
-        body[data-theme="dark"] .icon-item img {
-            filter: brightness(0) saturate(100%) invert(1);
-            opacity: 0.95;
-        }
-        /* Photo Stats Counter - Inspired by Cursor Settings */
-        .stat-counter {
-            text-align: center;
-            padding: var(--space-4);
-        }
-        .stat-counter__value {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 600;
-            font-family: var(--font-family-heading);
-            color: var(--color-primary);
-            line-height: 1.2;
-            margin-bottom: var(--space-2);
-            transition: transform 0.2s ease;
-        }
-        .stat-counter__label {
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: var(--space-1);
-        }
-        .stat-counter__subtitle {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-muted);
-        }
-        .photo-item {
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .photo-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-        .photo-item:hover img {
-            transform: scale(1.05);
-        }
-        body[data-theme="dark"] .stat-counter__value {
-            color: var(--color-primary);
-        }
-    </style>
-</head>
-<body data-theme="dark">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header">
-        <nav class="nav">
-            <a class="nav__logo" href="index.html" aria-label="Marceli Cieplik">
-                <img src="assets/logo/mc-logo.svg" alt="Marceli Cieplik" class="nav__logo-img">
-            </a>
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
 
-            <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
-                <span class="nav__burger-line"></span>
-                <span class="nav__burger-line"></span>
-                <span class="nav__burger-line"></span>
-            </button>
+        <!-- Unified Responsive Framework -->
+        <link rel="stylesheet" href="assets/css/framework-unified.css" />
+        <!-- Typography System -->
+        <link rel="stylesheet" href="assets/css/typography-system.css" />
 
-            <div class="nav__menu">
-                <ul class="nav__links">
-                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
-                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
-                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                    <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
-                </ul>
+        <style>
+            .demo-section {
+                padding: var(--space-8) 0;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .demo-section:last-child {
+                border-bottom: none;
+            }
+            .demo-section h2 {
+                margin-top: 0;
+                margin-bottom: var(--space-6);
+                padding-bottom: var(--space-4);
+                border-bottom: 2px solid var(--color-border);
+            }
+            .demo-item {
+                margin-bottom: var(--space-6);
+            }
+            .demo-item:last-child {
+                margin-bottom: 0;
+            }
+            .demo-label {
+                font-size: var(--font-size-xs);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--color-text-muted);
+                margin-bottom: var(--space-2);
+            }
+            .color-swatch {
+                width: 100%;
+                height: 80px;
+                border-radius: var(--border-radius);
+                border: 2px solid var(--color-border);
+                margin-bottom: var(--space-2);
+            }
+            .icon-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: var(--space-4);
+            }
+            .icon-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: var(--space-3);
+                border: 1px solid var(--color-border);
+                border-radius: var(--border-radius);
+                text-align: center;
+            }
+            .icon-item img {
+                width: 32px;
+                height: 32px;
+                margin-bottom: var(--space-2);
+                transition:
+                    filter 0.2s ease,
+                    opacity 0.2s ease;
+            }
+            /* Theme-aware icon colors - make SVG icons visible in both themes */
+            /* Light theme: icons should be dark */
+            body[data-theme="light"] .icon-item img {
+                filter: brightness(0) saturate(100%);
+                opacity: 0.9;
+            }
+            /* Dark theme: icons should be light */
+            body[data-theme="dark"] .icon-item img {
+                filter: brightness(0) saturate(100%) invert(1);
+                opacity: 0.95;
+            }
+            /* Photo Stats Counter - Inspired by Cursor Settings */
+            .stat-counter {
+                text-align: center;
+                padding: var(--space-4);
+            }
+            .stat-counter__value {
+                font-size: clamp(2rem, 4vw, 3.5rem);
+                font-weight: 600;
+                font-family: var(--font-family-heading);
+                color: var(--color-primary);
+                line-height: 1.2;
+                margin-bottom: var(--space-2);
+                transition: transform 0.2s ease;
+            }
+            .stat-counter__label {
+                font-size: var(--font-size-base);
+                font-weight: 600;
+                color: var(--color-text);
+                margin-bottom: var(--space-1);
+            }
+            .stat-counter__subtitle {
+                font-size: var(--font-size-sm);
+                color: var(--color-text-muted);
+            }
+            .photo-item {
+                cursor: pointer;
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease;
+            }
+            .photo-item:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-md);
+            }
+            .photo-item:hover img {
+                transform: scale(1.05);
+            }
+            body[data-theme="dark"] .stat-counter__value {
+                color: var(--color-primary);
+            }
+        </style>
+    </head>
+    <body data-theme="dark">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <header class="site-header">
+            <nav class="nav">
+                <a class="nav__logo" href="index.html" aria-label="Marceli Cieplik">
+                    <img src="assets/logo/mc-logo.svg" alt="Marceli Cieplik" class="nav__logo-img" />
+                </a>
 
-                <!-- THEME TOGGLE -->
-                <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
+                <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="nav__burger-line"></span>
+                    <span class="nav__burger-line"></span>
+                    <span class="nav__burger-line"></span>
                 </button>
 
-                <a href="contact.html" class="btn btn--outline">Free website</a>
-            </div>
+                <div class="nav__menu">
+                    <ul class="nav__links">
+                        <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
+                        <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
+                        <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
+                        <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
+                        <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
+                        <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
+                    </ul>
 
-            <!-- Mobile Menu Overlay -->
-            <div class="nav__overlay"></div>
-            <div class="nav__mobile-menu">
-                <ul class="nav__links nav__links--mobile">
-                    <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
-                    <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
-                    <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
-                    <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
-                    <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
-                </ul>
+                    <!-- THEME TOGGLE -->
+                    <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                        <span class="theme-toggle__icon theme-toggle__icon--light">
+                            <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24" />
+                        </span>
+                        <span class="theme-toggle__icon theme-toggle__icon--dark">
+                            <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24" />
+                        </span>
+                    </button>
 
-                <button class="theme-toggle theme-toggle--mobile" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
-                </button>
+                    <a href="contact.html" class="btn btn--outline">Free website</a>
+                </div>
 
-                <a href="contact.html" class="btn btn--outline btn--mobile">Free website</a>
-            </div>
+                <!-- Mobile Menu Overlay -->
+                <div class="nav__overlay"></div>
+                <div class="nav__mobile-menu">
+                    <ul class="nav__links nav__links--mobile">
+                        <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
+                        <li><a href="about.html" class="nav__link nav__link--underline">About</a></li>
+                        <li><a href="solutions.html" class="nav__link nav__link--underline">Solutions</a></li>
+                        <li><a href="contact.html" class="nav__link nav__link--underline">Contact</a></li>
+                        <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
+                        <li><a href="showcase.html" class="nav__link nav__link--underline is-active">Showcase</a></li>
+                    </ul>
 
-        </nav>
-    </header>
+                    <button
+                        class="theme-toggle theme-toggle--mobile"
+                        type="button"
+                        aria-label="Toggle color theme"
+                        title="Toggle theme"
+                    >
+                        <span class="theme-toggle__icon theme-toggle__icon--light">
+                            <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24" />
+                        </span>
+                        <span class="theme-toggle__icon theme-toggle__icon--dark">
+                            <img src="assets/icons/moon.svg" alt="Dark theme" width="24" height="24" />
+                        </span>
+                    </button>
 
-    <div class="viewport-info" id="viewport-info">
-        w: <span id="viewport-width">0px</span> | <span id="breakpoint">XS</span>
-    </div>
+                    <a href="contact.html" class="btn btn--outline btn--mobile">Free website</a>
+                </div>
+            </nav>
+        </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero__overlay"></div>
-        <div class="hero__content">
-            <h1 class="hero__title display-1">Framework Showcase</h1>
-            <p class="hero__subtitle lead">
-                Complete design system with fluid typography, interactive components, carousels, and responsive layouts.
-            </p>
-        </div>
-    </section>
-
-    <main id="main-content">
-        <div class="container py-8">
-        <!-- MAIN TABS NAVIGATION -->
-        <div class="tabs showcase-tabs" style="margin-bottom: var(--space-6);">
-            <div class="tablist" role="tablist" aria-label="Showcase navigation">
-                <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-overview" id="tab-btn-overview" data-tab="overview">Overview</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-components" id="tab-btn-components" data-tab="components">Components</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-cards" id="tab-btn-cards" data-tab="cards">Cards</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-tokens" id="tab-btn-tokens" data-tab="tokens">Design Tokens</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-layout" id="tab-btn-layout" data-tab="layout">Layout</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-accessibility" id="tab-btn-accessibility" data-tab="accessibility">Accessibility</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-typography" id="tab-btn-typography" data-tab="typography">Typography</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-icons" id="tab-btn-icons" data-tab="icons">Icons</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-utilities" id="tab-btn-utilities" data-tab="utilities">Utilities</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="tab-photos" id="tab-btn-photos" data-tab="photos">Photos</button>
-            </div>
+        <div class="viewport-info" id="viewport-info">
+            w: <span id="viewport-width">0px</span> | <span id="breakpoint">XS</span>
         </div>
 
-        <!-- TAB PANELS -->
-        
-        <!-- OVERVIEW TAB -->
-        <div class="tab__panel is-active" role="tabpanel" id="tab-overview" aria-labelledby="tab-btn-overview">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero__overlay"></div>
+            <div class="hero__content">
+                <h1 class="hero__title display-1">Framework Showcase</h1>
+                <p class="hero__subtitle lead">
+                    Complete design system with fluid typography, interactive components, carousels, and responsive
+                    layouts.
+                </p>
+            </div>
+        </section>
+
+        <main id="main-content">
+            <div class="container py-8">
+                <!-- MAIN TABS NAVIGATION -->
+                <div class="tabs showcase-tabs mb-6">
+                    <div class="tablist" role="tablist" aria-label="Showcase navigation">
+                        <button
+                            class="tab is-active"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="tab-overview"
+                            id="tab-btn-overview"
+                            data-tab="overview"
+                        >
+                            Overview
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-components"
+                            id="tab-btn-components"
+                            data-tab="components"
+                        >
+                            Components
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-cards"
+                            id="tab-btn-cards"
+                            data-tab="cards"
+                        >
+                            Cards
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-tokens"
+                            id="tab-btn-tokens"
+                            data-tab="tokens"
+                        >
+                            Design Tokens
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-layout"
+                            id="tab-btn-layout"
+                            data-tab="layout"
+                        >
+                            Layout
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-accessibility"
+                            id="tab-btn-accessibility"
+                            data-tab="accessibility"
+                        >
+                            Accessibility
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-typography"
+                            id="tab-btn-typography"
+                            data-tab="typography"
+                        >
+                            Typography
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-icons"
+                            id="tab-btn-icons"
+                            data-tab="icons"
+                        >
+                            Icons
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-utilities"
+                            id="tab-btn-utilities"
+                            data-tab="utilities"
+                        >
+                            Utilities
+                        </button>
+                        <button
+                            class="tab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="tab-photos"
+                            id="tab-btn-photos"
+                            data-tab="photos"
+                        >
+                            Photos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB PANELS -->
+
+                <div class="tab__panel is-active" role="tabpanel" id="tab-overview" aria-labelledby="tab-btn-overview">
             <section class="demo-section">
                 <h2>Framework Overview</h2>
                 <p>Welcome to the unified responsive CSS framework showcase. Use the tabs above to explore different sections.</p>
@@ -372,9 +481,7 @@
                 </div>
             </section>
         </div>
-
-        <!-- COMPONENTS TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-components" aria-labelledby="tab-btn-components" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-components" aria-labelledby="tab-btn-components" hidden>
             <section class="demo-section">
                 <h2 id="components">UI Components</h2>
                 <p>Every component uses the token system, is mobile‑first and supports light/dark theming.</p>
@@ -520,7 +627,7 @@
                 
                 <div class="grid mt-4">
                     <div class="col-12">
-                        <div class="glass" style="padding: var(--space-4); border-radius: var(--border-radius); margin-bottom: var(--space-4);">
+                        <div class="glass p-4 mb-4" style="border-radius: var(--border-radius);">
                             <h4 class="h4 mb-2">Glassmorphism Effect</h4>
                             <p class="text-sm mb-3">This demonstrates the reusable <code>.glass</code> utility class. The navigation bar at the top of this page uses the same glassmorphism effect.</p>
                             <p class="text-sm"><strong>Features:</strong></p>
@@ -619,7 +726,7 @@
                 <h3 id="tooltips" class="h3 mt-6">Tooltips</h3>
                 <p>Interactive tooltips that appear on hover or focus. Hover over the elements below:</p>
             
-            <div class="grid" style="margin-top: var(--space-4);">
+            <div class="grid mt-4">
                 <div class="col-12 col-sm-6 col-md-4 col-xxxl-3">
                     <button class="btn btn--primary" data-tooltip="This is a primary button tooltip">Primary Button</button>
                 </div>
@@ -1495,9 +1602,7 @@ if (element) {
             </div>
             </section>
         </div>
-
-        <!-- CARDS TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-cards" aria-labelledby="tab-btn-cards" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-cards" aria-labelledby="tab-btn-cards" hidden>
             <section class="demo-section">
                 <h2 id="cards">Card Components</h2>
                 <p>All card variants with different styles and layouts. Cards in the same row automatically have equal height.</p>
@@ -1671,9 +1776,7 @@ if (element) {
                 </div>
             </section>
         </div>
-
-        <!-- DESIGN TOKENS TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-tokens" aria-labelledby="tab-btn-tokens" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-tokens" aria-labelledby="tab-btn-tokens" hidden>
             <section class="demo-section">
                 <h2 id="tokens">Design Tokens</h2>
                 <p>All visual decisions are stored as reusable CSS custom properties (variables). They are grouped by intent – colour, spacing, typography, radius, shadows, etc.</p>
@@ -1736,7 +1839,7 @@ if (element) {
                         <h3 class="h3 mt-4">Typography (Fully Fluid)</h3>
                         <p>Font families: <strong>Space Grotesk</strong> (headings), <strong>Inter</strong> (body). All sizes use <code>clamp()</code> for fluid scaling across breakpoints.</p>
                         <div class="typography-sample">
-                            <div class="display-1" style="margin-bottom: var(--space-4);">Display 1</div>
+                            <div class="display-1 mb-4">Display 1</div>
                             <h1 style="font-size:var(--font-size-3xl)">Heading 1</h1>
                             <h2 style="font-size:var(--font-size-2xl)">Heading 2</h2>
                             <h3 style="font-size:var(--font-size-xl)">Heading 3</h3>
@@ -1841,7 +1944,7 @@ h1 {
                 <h2 id="typography">Fluid Typography</h2>
                 <p>All typography scales fluidly using clamp() from mobile to ultra-wide displays.</p>
                 
-                <div class="grid" style="margin-top: var(--space-4);">
+                <div class="grid mt-4">
                     <div class="col-12 col-md-6">
                         <h1 class="h1">Heading 1 (3xl)</h1>
                         <h2 class="h2">Heading 2 (2xl)</h2>
@@ -1863,9 +1966,7 @@ h1 {
                 </div>
             </section>
         </div>
-
-        <!-- LAYOUT TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-layout" aria-labelledby="tab-btn-layout" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-layout" aria-labelledby="tab-btn-layout" hidden>
             <section class="demo-section">
                 <h2 id="grid">12-Column Grid System</h2>
                 <p>Responsive columns that adapt from mobile (1 col) to ultra-wide displays (4 cols).</p>
@@ -2277,9 +2378,7 @@ h1 {
             </div>
             </section>
         </div>
-
-        <!-- ACCESSIBILITY TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-accessibility" aria-labelledby="tab-btn-accessibility" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-accessibility" aria-labelledby="tab-btn-accessibility" hidden>
             <section class="demo-section">
                 <h2 id="a11y">Accessibility & Touch Optimization</h2>
             
@@ -2341,9 +2440,7 @@ h1 {
             </div>
         </section>
         </div>
-
-        <!-- TYPOGRAPHY TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-typography" aria-labelledby="tab-btn-typography" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-typography" aria-labelledby="tab-btn-typography" hidden>
             <section class="demo-section">
                 <h2>Fluid Typography System</h2>
                 <p class="lead">All typography uses fluid clamp() scaling across all breakpoints (300px - 2400px).</p>
@@ -2468,9 +2565,7 @@ console.log(message);</code></pre>
                 </div>
             </section>
         </div>
-
-        <!-- ICONS TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-icons" aria-labelledby="tab-btn-icons" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-icons" aria-labelledby="tab-btn-icons" hidden>
             <section class="demo-section">
                 <h2>Icon Library</h2>
                 <p class="lead">Complete icon set available in the assets/icons/ folder.</p>
@@ -2547,9 +2642,7 @@ console.log(message);</code></pre>
                 </div>
             </section>
         </div>
-
-        <!-- UTILITIES TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-utilities" aria-labelledby="tab-btn-utilities" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-utilities" aria-labelledby="tab-btn-utilities" hidden>
             <section class="demo-section">
                 <h2>Utility Classes</h2>
                 <p class="lead">Spacing, display, and other utility classes for rapid development.</p>
@@ -2622,9 +2715,7 @@ console.log(message);</code></pre>
                 </div>
             </section>
         </div>
-
-        <!-- PHOTOS TAB -->
-        <div class="tab__panel" role="tabpanel" id="tab-photos" aria-labelledby="tab-btn-photos" hidden>
+                <div class="tab__panel" role="tabpanel" id="tab-photos" aria-labelledby="tab-btn-photos" hidden>
             <section class="demo-section">
                 <h2>Photo Gallery & Usage Stats</h2>
                 <p class="lead">Image gallery with live consumption counter inspired by modern settings interfaces.</p>
@@ -2678,7 +2769,7 @@ console.log(message);</code></pre>
                     </div>
                 </div>
 
-                <div class="demo-item" style="margin-top: var(--space-6);">
+                <div class="demo-item mt-6">
                     <div class="demo-label">Gallery Features</div>
                     <ul style="list-style: disc; padding-left: var(--space-5);">
                         <li>Responsive grid layout that adapts to viewport size</li>
@@ -2689,73 +2780,111 @@ console.log(message);</code></pre>
                 </div>
             </section>
         </div>
-        </div>
+            </div>
+        </main>
 
-    </main>
+        <footer class="site-footer">
+            <div class="container">
+                <div class="grid footer__content">
+                    <!-- Column 1: Navigation Links -->
+                    <div class="col-12 col-md-4 footer__column">
+                        <h4>Navigation</h4>
+                        <ul class="footer__nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="solutions.html">Solutions</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="showcase.html">Showcase</a></li>
+                        </ul>
+                    </div>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="grid footer__content">
-                <!-- Column 1: Navigation Links -->
-                <div class="col-12 col-md-4 footer__column">
-                    <h4>Navigation</h4>
-                    <ul class="footer__nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="solutions.html">Solutions</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="showcase.html">Showcase</a></li>
-                    </ul>
-                </div>
+                    <!-- Column 2: Social Media Icons -->
+                    <div class="col-12 col-md-4 footer__column">
+                        <h4>Follow Us</h4>
+                        <div class="footer__social">
+                            <a
+                                href="https://facebook.com"
+                                class="footer__social-link"
+                                aria-label="Facebook"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                                    />
+                                </svg>
+                            </a>
+                            <a
+                                href="https://twitter.com"
+                                class="footer__social-link"
+                                aria-label="Twitter"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                                    />
+                                </svg>
+                            </a>
+                            <a
+                                href="https://instagram.com"
+                                class="footer__social-link"
+                                aria-label="Instagram"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                                    />
+                                </svg>
+                            </a>
+                            <a
+                                href="https://linkedin.com"
+                                class="footer__social-link"
+                                aria-label="LinkedIn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                                    />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
 
-                <!-- Column 2: Social Media Icons -->
-                <div class="col-12 col-md-4 footer__column">
-                    <h4>Follow Us</h4>
-                    <div class="footer__social">
-                        <a href="https://facebook.com" class="footer__social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="https://twitter.com" class="footer__social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                            </svg>
-                        </a>
-                        <a href="https://instagram.com" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-                        <a href="https://linkedin.com" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
+                    <!-- Column 3: Newsletter -->
+                    <div class="col-12 col-md-4 footer__column">
+                        <div class="footer__newsletter">
+                            <h4>Newsletter</h4>
+                            <input
+                                type="email"
+                                class="footer__email-input"
+                                placeholder="Enter your email"
+                                aria-label="Email address"
+                            />
+                            <button type="button" class="footer__subscribe-btn" disabled>Subscribe</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Column 3: Newsletter -->
-                <div class="col-12 col-md-4 footer__column">
-                    <div class="footer__newsletter">
-                        <h4>Newsletter</h4>
-                        <input type="email" class="footer__email-input" placeholder="Enter your email" aria-label="Email address">
-                        <button type="button" class="footer__subscribe-btn" disabled>Subscribe</button>
-                    </div>
+                <!-- Copyright Line -->
+                <div class="footer__copyright">
+                    <p>
+                        @ <span id="year">2025</span> Design System LTD | Designed with love MC designss. | ver. 0.0.3
+                    </p>
                 </div>
             </div>
+        </footer>
 
-            <!-- Copyright Line -->
-            <div class="footer__copyright">
-                <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designss. | ver. 0.0.3</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="assets/js/utils.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/components.js"></script>
-    <script src="assets/js/showcase.js"></script>
-</body>
+        <script src="assets/js/utils.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/components.js"></script>
+        <script src="assets/js/showcase.js"></script>
+    </body>
 </html>

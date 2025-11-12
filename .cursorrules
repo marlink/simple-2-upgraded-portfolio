@@ -9,6 +9,45 @@ This is a static HTML/CSS/JS website with a custom responsive CSS framework.
 - `assets/js/utils.js` - Utility functions (safeQuery, safeQueryAll, copyToClipboard)
 - Design tokens use CSS custom properties (--baseline, --gutter-*, etc.)
 
+## Workflow & Git Operations
+
+### Git Workflow Rules
+- **Always check current branch** before making changes - verify you're on the correct branch (typically `main`)
+- **Verify git remote** is correct - ensure origin points to the right repository (`origin/main`)
+- **Single branch workflow** - This project uses `main` branch only (no feature branches)
+- **Avoid git nesting** - Prevent nested git repositories and ensure clean git state
+- **Auto-commit workflow** - After completing changes:
+  - Stage all modified files: `git add .`
+  - Commit with descriptive message: `git commit -m "descriptive message"`
+  - Push to remote: `git push origin main`
+- **Never commit to wrong repo/branch** - Always verify repository and branch before committing
+
+### Before Making Changes
+1. Check current branch: `git branch` or `git status`
+2. Verify remote repository: `git remote -v`
+3. Ensure working directory is clean or changes are intentional
+
+### After Completing Changes
+1. Review changes: `git status`
+2. Stage changes: `git add .` (or specific files)
+3. Commit with clear message
+4. Push to remote: `git push origin main`
+
+## Problem-Solving Principles
+
+### Root Cause Fixing
+- **Fix root causes, not symptoms** - When debugging, trace issues to their source
+- **Avoid workarounds** - Implement proper fixes rather than temporary patches
+- **Investigate thoroughly** - Understand the full context before making changes
+- **Test the fix** - Verify that the root cause is addressed, not just the visible issue
+
+### Debugging Approach
+1. Identify the symptom (what's broken)
+2. Trace to the root cause (why it's broken)
+3. Implement a proper fix (address the root cause)
+4. Verify the fix resolves the issue completely
+5. Check for similar issues elsewhere
+
 ## Coding Standards
 - Mobile-first responsive design
 - Use CSS custom properties for all design tokens
@@ -277,15 +316,31 @@ This is a static HTML/CSS/JS website with a custom responsive CSS framework.
 - Use utility classes for spacing
 - Use BEM naming convention
 - Include ARIA attributes for accessibility
-- Test in both light and dark themes
+- **ALWAYS test colors in both light and dark themes** - Every color change must be verified in both themes
 - Use semantic HTML5 elements
 - Include skip links for accessibility
 
-## Color Guidelines
-- Always check colors work on both light and dark themes
-- Use CSS custom properties for theme-aware colors: `var(--color-primary)`, `var(--color-text)`, etc.
-- Test contrast ratios for accessibility (WCAG AA minimum)
-- Available colors: `--color-primary`, `--color-secondary`, `--color-accent`, `--color-success`, `--color-danger`, `--color-warning`, `--color-text`, `--color-text-muted`, `--color-bg`, `--color-surface`, `--color-border`
+## Color & Theme Guidelines
+
+### Critical: Theme Testing (REQUIRED)
+- **ALWAYS test every color change in both light and dark themes** - This is mandatory, not optional
+- When adding or modifying colors, verify they work correctly in both `data-theme="light"` and `data-theme="dark"`
+- Check contrast ratios in both themes to ensure accessibility
+- Never assume a color will work in both themes - always verify
+
+### Color Usage Rules
+- **Use CSS custom properties for all colors** - Never hardcode color values
+- Use theme-aware color variables: `var(--color-primary)`, `var(--color-text)`, `var(--color-bg)`, etc.
+- Test contrast ratios for accessibility (WCAG AA minimum) in both themes
+- Available color tokens: `--color-primary`, `--color-secondary`, `--color-accent`, `--color-success`, `--color-danger`, `--color-warning`, `--color-text`, `--color-text-muted`, `--color-bg`, `--color-surface`, `--color-border`
+
+### Theme Testing Checklist
+When changing colors, verify:
+1. ✅ Color is visible and readable in light theme
+2. ✅ Color is visible and readable in dark theme
+3. ✅ Contrast ratio meets WCAG AA (4.5:1 for text, 3:1 for UI)
+4. ✅ Color maintains visual hierarchy in both themes
+5. ✅ Interactive states (hover, focus) work in both themes
 
 ## Responsive Breakpoints
 - xs: 300px
