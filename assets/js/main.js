@@ -206,19 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ========================================================================
      * 2️⃣.7 SCROLL-RESPONSIVE NAVIGATION
      * ========================================================================
-     * Auto-hide/show navigation bar based on scroll direction
+     * Navigation bar that becomes fixed after scrolling past hero section
      * - Navbar is static initially, becomes fixed after scrolling past hero section
-     * - Hides navbar when scrolling down (more screen space)
-     * - Shows navbar when scrolling up (easy access to navigation)
-     * - Always visible at top of page
+     * - Always visible after scroll (no auto-hide behavior)
      * - Uses requestAnimationFrame for smooth 60fps performance
      * 
      * Behavior:
      * - Navbar position: static until past hero section, then fixed
-     * - At top (scrollY === 0): Always visible
-     * - Scrolling down: Hide instantly
-     * - Scrolling up: Show after 450ms delay (prevents flicker)
-     * - After 275px scroll: Navbar becomes "scrolled" state (styling change)
+     * - Always visible: Navbar remains visible at all times for easy navigation access
+     * - After 275px scroll: Navbar becomes "scrolled" state (glassmorphism styling)
      */
     try {
         const siteHeader = safeQuery('.site-header');
@@ -227,12 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
         // Performance optimization: throttle scroll handler
         let ticking = false;
-        
-        // Track scroll state
-        let lastScrollY = window.scrollY || window.pageYOffset;
-        let showTimeout = null;        // Timeout for showing navbar when scrolling up
-        let isScrolling = false;       // Track if user is actively scrolling
-        let scrollStopTimeout = null;  // Timeout for detecting scroll stop
         
         // Get hero section to calculate when to make navbar fixed
         const hero = safeQuery('.hero');
@@ -270,12 +260,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
         
         // Configuration constants
-        const fixedThreshold = 275;    // Navbar becomes fixed after this scroll distance (px)
-        const showDelay = 450;         // Delay before showing navbar when scrolling up (ms)
+        const fixedThreshold = 275;    // Navbar becomes "scrolled" state after this scroll distance (px)
 
         const handleScroll = () => {
             const scrollY = window.scrollY || window.pageYOffset;
-            const scrollDelta = scrollY - lastScrollY;
             
             // Make navbar fixed only after scrolling past hero section
             if (hero) {
@@ -300,57 +288,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 siteHeader.classList.remove('site-header--scrolled');
             }
             
-            // At top of page (scrollY === 0): always show navbar, but allow it to hide when scrolling down starts
-            if (scrollY === 0 && scrollDelta === 0) {
-                // Only show when at top AND not scrolling
-                siteHeader.classList.remove('site-header--hidden');
-                if (showTimeout) {
-                    clearTimeout(showTimeout);
-                    showTimeout = null;
-                }
-                if (scrollStopTimeout) {
-                    clearTimeout(scrollStopTimeout);
-                    scrollStopTimeout = null;
-                }
-                isScrolling = false;
-            } else {
-                // Handle auto-hide/show behavior when not at exact top or when scrolling
-                // Clear scroll stop timeout
-                if (scrollStopTimeout) {
-                    clearTimeout(scrollStopTimeout);
-                    scrollStopTimeout = null;
-                }
-                
-                // Determine scroll direction
-                if (scrollDelta > 0) {
-                    // Scrolling down: hide instantly (even at top)
-                    if (showTimeout) {
-                        clearTimeout(showTimeout);
-                        showTimeout = null;
-                    }
-                    siteHeader.classList.add('site-header--hidden');
-                    isScrolling = true;
-                } else if (scrollDelta < 0) {
-                    // Scrolling up: clear any existing show timeout and set new one with delay
-                    if (showTimeout) {
-                        clearTimeout(showTimeout);
-                    }
-                    showTimeout = setTimeout(() => {
-                        siteHeader.classList.remove('site-header--hidden');
-                        showTimeout = null;
-                    }, showDelay);
-                    isScrolling = true;
-                }
-                
-                // Track when scrolling stops (do nothing when it stops, just keep current state)
-                scrollStopTimeout = setTimeout(() => {
-                    isScrolling = false;
-                    scrollStopTimeout = null;
-                    // Don't change navbar state when scroll stops - keep it as is
-                }, 150);
-            }
+            // Ensure navbar is always visible (remove any hidden state)
+            siteHeader.classList.remove('site-header--hidden');
             
-            lastScrollY = scrollY;
             ticking = false;
         };
 
