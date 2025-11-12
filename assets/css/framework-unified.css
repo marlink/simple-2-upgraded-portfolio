@@ -2568,6 +2568,19 @@ body[data-theme="light"] .site-footer {
   width: auto;
   display: block;
   margin: 0 auto;
+  transition:
+    opacity 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Light theme: off-black logo */
+body[data-theme="light"] .footer__logo-img {
+  filter: brightness(0.7) sepia(0.35) hue-rotate(190deg) saturate(0.55);
+}
+
+/* Dark theme: white logo */
+body[data-theme="dark"] .footer__logo-img {
+  filter: brightness(0) invert(1);
 }
 
 @media (min-width: 768px) {
