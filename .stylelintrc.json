@@ -1,7 +1,6 @@
 {
   "extends": ["stylelint-config-standard"],
   "rules": {
-    "color-hex-case": "lower",
     "color-hex-length": "long",
     "declaration-block-no-duplicate-properties": true,
     "declaration-block-no-shorthand-property-overrides": true,
@@ -12,7 +11,16 @@
     "at-rule-no-vendor-prefix": true,
     "media-feature-name-no-vendor-prefix": true,
     "selector-no-vendor-prefix": true,
-    "value-keyword-case": "lower"
+    "value-keyword-case": "lower",
+    "color-function-notation": "legacy",
+    "alpha-value-notation": "number",
+    "media-feature-range-notation": "prefix",
+    "declaration-property-value-allowed-list": {
+      "border-color": ["/^var\\(/", "^rgba\\(", "^color-mix\\(", "transparent", "inherit", "unset"],
+      "box-shadow": ["/^var\\(/", "^rgba\\(", "^color-mix\\("],
+      "color": ["/^var\\(/", "^rgba\\(", "^color-mix\\(", "inherit", "unset", "transparent"],
+      "background-color": ["/^var\\(/", "^rgba\\(", "^color-mix\\(", "inherit", "unset", "transparent"]
+    }
   },
   "ignoreFiles": [
     "**/archive/**",
@@ -20,4 +28,3 @@
     "**/*.min.css"
   ]
 }
-

@@ -65,7 +65,7 @@ module.exports = {
             name: "should have proper tab roles",
             run: async (page, helpers) => {
                 const { goto, $, expect } = helpers;
-                await goto(page, "/showcase.html");
+                await goto(page, "/demo/components.html");
 
                 const tab = await $(page, ".tab");
                 if (tab) {
@@ -80,7 +80,7 @@ module.exports = {
             name: "should have proper modal ARIA attributes",
             run: async (page, helpers) => {
                 const { goto, $, expect } = helpers;
-                await goto(page, "/showcase.html");
+                await goto(page, "/demo/components.html");
 
                 const modal = await $(page, ".modal");
                 if (modal) {

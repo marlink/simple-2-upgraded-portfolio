@@ -96,7 +96,7 @@ function debounce (func, wait) {
  *   element.textContent = 'Hello';
  * }
  */
-function safeQuery (selector, context = document) {
+window.safeQuery = window.safeQuery || function (selector, context = document) {
     try {
         return context.querySelector(selector)
     } catch (e) {
@@ -117,7 +117,7 @@ function safeQuery (selector, context = document) {
  * const elements = safeQueryAll('.my-class');
  * elements.forEach(el => el.classList.add('active'));
  */
-function safeQueryAll (selector, context = document) {
+window.safeQueryAll = window.safeQueryAll || function (selector, context = document) {
     try {
         return Array.from(context.querySelectorAll(selector))
     } catch (e) {

@@ -29,8 +29,8 @@
 
 // Import utility functions from utils.js (loaded globally)
 // Note: utils.js must be loaded before this file
-const safeQuery = window.safeQuery
-const safeQueryAll = window.safeQueryAll
+const $q = window.safeQuery
+const $qa = window.safeQueryAll
 
 document.addEventListener('DOMContentLoaded', () => {
     try {
@@ -52,14 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
          * - Keyboard navigation support
          * - Smooth transitions (handled by CSS)
          */
-        const tabContainers = safeQueryAll('.tabs')
+        const tabContainers = $qa('.tabs')
         if (!tabContainers || tabContainers.length === 0) {
             // No tabs on this page
         } else {
             tabContainers.forEach(container => {
                 if (!container) return
-                const tabs = safeQueryAll('.tab', container)
-                const panels = safeQueryAll('.tab__panel', container)
+                const tabs = $qa('.tab', container)
+                const panels = $qa('.tab__panel', container)
                 if (!tabs || tabs.length === 0 || !panels || panels.length === 0) {
                     console.warn('Tabs component missing required elements', container)
                     return
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         tab.classList.add('is-active')
                         tab.setAttribute('aria-selected', 'true')
                         const panelId = tab.getAttribute('aria-controls')
-                        const panel = safeQuery('#' + panelId, container)
+                        const panel = $q('#' + panelId, container)
                         if (panel) panel.classList.add('is-active')
                     })
                 })
@@ -108,12 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
      */
 
     try {
-        const accordions = safeQueryAll('.accordion')
+        const accordions = $qa('.accordion')
         accordions.forEach(accordion => {
-            const items = safeQueryAll('.accordion__item', accordion)
+            const items = $qa('.accordion__item', accordion)
             items.forEach(item => {
-                const button = safeQuery('.accordion__button', item)
-                const panel = safeQuery('.accordion__panel', item)
+                const button = $q('.accordion__button', item)
+                const panel = $q('.accordion__panel', item)
 
                 if (button && panel) {
                     button.addEventListener('click', () => {
@@ -154,28 +154,28 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Restores focus to trigger element on close
      * - Prevents body scroll when open
      */
-        const openTriggers = safeQueryAll('[data-modal-target]')
-        const modals = safeQueryAll('.modal')
+        const openTriggers = $qa('[data-modal-target]')
+        const modals = $qa('.modal')
 
         // Initialize modals
         modals.forEach(modal => {
-            const overlay = safeQuery('.modal__overlay', modal)
-            const dialog = safeQuery('.modal__dialog', modal)
-            const closeButtons = safeQueryAll('[data-modal-close]', modal)
+            const overlay = $q('.modal__overlay', modal)
+            const dialog = $q('.modal__dialog', modal)
+            const closeButtons = $qa('[data-modal-close]', modal)
             let lastFocused = null
 
             const openModal = () => {
                 lastFocused = document.activeElement
                 modal.removeAttribute('hidden')
                 // focus first focusable element inside dialog
-                const focusable = safeQuery('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
+                const focusable = $q('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
                 if (focusable) focusable.focus()
 
                 const onKeydown = (e) => {
                     if (e.key === 'Escape') closeModal()
                     if (e.key === 'Tab') {
                     // focus trap
-                        const focusable = safeQueryAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
+                        const focusable = $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
                         if (focusable.length === 0) return
                         const first = focusable[0]
                         const last = focusable[focusable.length - 1]
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault()
                 const targetSel = btn.getAttribute('data-modal-target')
-                const modal = safeQuery(targetSel)
+                const modal = $q(targetSel)
                 if (modal && modal._openModal) {
                     modal._openModal()
                 }
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Created dynamically on page load
      * - Simple CSS-based positioning
      */
-        const tooltipTriggers = safeQueryAll('[data-tooltip]')
+        const tooltipTriggers = $qa('[data-tooltip]')
         tooltipTriggers.forEach(trigger => {
             const tip = document.createElement('span')
             tip.className = 'tooltip'
@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // For pre.code-block, get code element text
             if (codeBlock.classList.contains('code-block')) {
-                const codeElement = safeQuery('code', codeBlock)
+                const codeElement = $q('code', codeBlock)
                 if (codeElement) {
                     return codeElement.textContent || codeElement.innerText
                 }
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
         const setupCopyButton = (codeBlock) => {
         // Skip if button already exists
-            if (safeQuery('.code-copy-btn', codeBlock)) {
+            if ($q('.code-copy-btn', codeBlock)) {
                 return
             }
 
@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Find all code blocks and add copy buttons
-        const codeBlocks = safeQueryAll('.code-example, pre.code-block')
+        const codeBlocks = $qa('.code-example, pre.code-block')
         codeBlocks.forEach(setupCopyButton)
     } catch (error) {
         console.error('Error initializing code copy button:', error)
@@ -429,16 +429,16 @@ document.addEventListener('DOMContentLoaded', () => {
          * - Toggle play/pause on repeated clicks
          */
 
-        const videoCovers = safeQueryAll('[data-video-cover]')
+        const videoCovers = $qa('[data-video-cover]')
 
         if (videoCovers && videoCovers.length > 0) {
             // Detect if device has fine pointer (desktop/mouse)
             const hasFinePointer = window.matchMedia('(pointer: fine)').matches
 
             videoCovers.forEach(container => {
-                const video = safeQuery('.video-cover__video', container)
-                const cover = safeQuery('.video-cover__cover', container)
-                const playIcon = safeQuery('.video-cover__play-icon', container)
+                const video = $q('.video-cover__video', container)
+                const cover = $q('.video-cover__cover', container)
+                const playIcon = $q('.video-cover__play-icon', container)
 
                 if (!video) {
                     console.warn('Video cover component missing video element', container)

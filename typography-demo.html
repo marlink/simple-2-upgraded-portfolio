@@ -4,6 +4,7 @@
         <meta charset="UTF-8" >
         <meta name="viewport" content="width=device-width, initial-scale=1" >
         <title>Typography System Demo | Marceli Cieplik | UI/UX Designer</title>
+        <meta name="color-scheme" content="light dark">
 
         <!-- SEO Meta Tags -->
         <meta
@@ -42,6 +43,7 @@
         >
 
         <!-- Unified Responsive Framework -->
+        <script>try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);document.body&&document.body.setAttribute('data-theme',t);}catch(e){}</script>
         <link rel="stylesheet" href="assets/css/framework-unified.css" >
         <!-- Typography System -->
         <link rel="stylesheet" href="assets/css/typography-system.css" >
@@ -82,7 +84,7 @@
             }
         </style>
     </head>
-<body data-theme="dark">
+<body>
     <!-- Page Load Spinner -->
     <div class="page-spinner">
         <div class="page-spinner__content">

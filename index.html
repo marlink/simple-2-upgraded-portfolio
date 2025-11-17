@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home | Marceli Cieplik | UI/UX Designer</title>
+    <meta name="color-scheme" content="light dark">
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Marceli Cieplik - UI/UX/AI Designer with 18+ years of experience crafting intuitive digital products for global brands. Expert in design systems, AI integration, and user-centered design.">
@@ -31,9 +32,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Unified Responsive Framework (includes grid, base styles, components, accessibility, touch optimization) -->
+    <script>try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);document.body&&document.body.setAttribute('data-theme',t);}catch(e){}</script>
     <link rel="stylesheet" href="assets/css/framework-unified.css">
 </head>
-<body data-theme="dark">
+<body>
     <!-- Page Load Spinner -->
     <div class="page-spinner">
         <div class="page-spinner__content">
@@ -116,10 +118,21 @@
             </div>
         </section>
 
+        <!-- HERO CATEGORY CARDS -->
+        <section class="hero-categories">
+            <div class="container">
+                <h1 class="display-1">18+ years of experience<br><span class="display-1__subline">crafting intuitive digital products</span></h1>
+                <div class="hero-categories__row">
+                    <div class="hero-card">WEB</div>
+                    <div class="hero-card">MOBILE</div>
+                    <div class="hero-card">WEB</div>
+                </div>
+            </div>
+        </section>
+
         <!-- OPTIONAL – QUICK INFO / ABOUT SNIPPET -->
         <section id="about" class="about">
             <div class="container">
-                <h1 class="display-1">18+ years of experience<br><span class="display-1__subline">crafting intuitive digital products</span></h1>
                 <div class="about__stats">
                     <button type="button" class="about__stat-card" aria-label="32 completed web sites">
                         <span class="about__stat-content">
@@ -224,13 +237,14 @@
                 <!-- Column 1: Navigation Links -->
                 <div class="col-12 col-md-4 footer__column">
                     <h4>Navigation</h4>
-                    <ul class="footer__nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="solutions.html">Solutions</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
+        <ul class="footer__nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="solutions.html">Solutions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="components.html">Components</a></li>
+        </ul>
                 </div>
 
                 <!-- Column 2: Social Media Icons -->

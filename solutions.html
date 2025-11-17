@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Solutions | Marceli Cieplik | UI/UX Designer</title>
+    <meta name="color-scheme" content="light dark">
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Discover comprehensive UI/UX design solutions, design systems, and AI integration services. Expert design leadership, technical execution, and strategic consulting for digital products.">
@@ -31,9 +32,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Unified Responsive Framework -->
+    <script>try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);document.body&&document.body.setAttribute('data-theme',t);}catch(e){}</script>
     <link rel="stylesheet" href="assets/css/framework-unified.css">
 </head>
-<body data-theme="dark">
+<body>
     <!-- Page Load Spinner -->
     <div class="page-spinner">
         <div class="page-spinner__content">
@@ -183,6 +185,76 @@
                 </div>
             </div>
         </section>
+
+        <!-- Intelligent Automation Section -->
+        <section class="solutions-automation">
+            <div class="container">
+                <div class="solutions-automation__pill">Intelligent Automation</div>
+                <h2 class="h2 solutions-automation__title">Meet Your AI Workforce</h2>
+                <p class="solutions-automation__subtitle">Specialized agents that understand your tasks and execute them autonomously.</p>
+
+                <div class="solutions-automation__agents">
+                    <article class="agent-card">
+                        <div class="agent-card__icon">R</div>
+                        <h3 class="h4">Research Agent</h3>
+                        <p>Web research and information gathering</p>
+                    </article>
+                    <article class="agent-card">
+                        <div class="agent-card__icon">C</div>
+                        <h3 class="h4">Coding Agent</h3>
+                        <p>Code generation and development</p>
+                    </article>
+                    <article class="agent-card">
+                        <div class="agent-card__icon">B</div>
+                        <h3 class="h4">Browser Agent</h3>
+                        <p>Web automation and browser tasks</p>
+                    </article>
+                    <article class="agent-card">
+                        <div class="agent-card__icon">D</div>
+                        <h3 class="h4">Document Agent</h3>
+                        <p>PDF processing and organization</p>
+                    </article>
+                    <article class="agent-card">
+                        <div class="agent-card__icon">M</div>
+                        <h3 class="h4">Media Agent</h3>
+                        <p>Image and video generation</p>
+                    </article>
+                </div>
+
+                <h3 class="h3 solutions-automation__how">How it works</h3>
+                <div class="solutions-automation__flow">
+                    <div class="flow-step">
+                        <div class="flow-step__num">1</div>
+                        <div class="flow-step__label">Task Created</div>
+                        <div class="flow-step__desc">Describe your task in natural language</div>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-step">
+                        <div class="flow-step__num">2</div>
+                        <div class="flow-step__label">AI Analysis</div>
+                        <div class="flow-step__desc">LLM categorizes task type</div>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-step">
+                        <div class="flow-step__num">3</div>
+                        <div class="flow-step__label">Agent Routing</div>
+                        <div class="flow-step__desc">Task assigned to specialized agent</div>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-step">
+                        <div class="flow-step__num">4</div>
+                        <div class="flow-step__label">Execution</div>
+                        <div class="flow-step__desc">Agent works autonomously</div>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="flow-step">
+                        <div class="flow-step__num">5</div>
+                        <div class="flow-step__label">Completion</div>
+                        <div class="flow-step__desc">Delivered results with report</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -202,6 +274,7 @@
                         <li><a href="solutions.html">Solutions</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="blog.html">Blog</a></li>
+                        <li><a href="components.html">Components</a></li>
                     </ul>
                 </div>
 

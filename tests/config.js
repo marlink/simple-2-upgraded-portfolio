@@ -44,6 +44,7 @@ module.exports = {
         "navigation.test.js",
         "components.test.js",
         "accessibility.test.js",
+        "style-regression.test.js",
     ],
 
     // Screenshot settings

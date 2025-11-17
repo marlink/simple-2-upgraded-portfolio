@@ -4,6 +4,7 @@
         <meta charset="UTF-8" >
         <meta name="viewport" content="width=device-width, initial-scale=1" >
         <title>Blog | Marceli Cieplik | UI/UX Designer</title>
+        <meta name="color-scheme" content="light dark">
 
         <!-- SEO Meta Tags -->
         <meta
@@ -43,9 +44,10 @@
         >
 
         <!-- Unified Responsive Framework -->
+        <script>try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);document.body&&document.body.setAttribute('data-theme',t);}catch(e){}</script>
         <link rel="stylesheet" href="assets/css/framework-unified.css" >
     </head>
-<body data-theme="dark">
+<body>
     <!-- Page Load Spinner -->
     <div class="page-spinner">
         <div class="page-spinner__content">
@@ -136,6 +138,24 @@
             <!-- BLOG GRID - 3x4 Layout -->
             <section class="container py-8">
                 <div class="grid">
+                    <!-- NEW: CEO Design Post -->
+                    <div class="col-12 col-sm-6 col-md-4 col-xxxl-3">
+                        <article class="card card--image-top card--image-top--compact">
+                            <img
+                                loading="lazy"
+                                src="https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Minimal%20flat%20illustration%20of%20a%20CEO%20in%20a%20suit%20leaning%20over%20a%20designer%27s%20desk%2C%20pointing%20at%20a%20Figma%20screen%2C%20bright%20color%20palette%2C%20subtle%20humor&image_size=portrait_4_3"
+                                alt="CEO hovering over designer shoulder"
+                            >
+                            <div class="card__body">
+                                <h4>Designing with the CEO</h4>
+                                <p class="text-sm">Guardrails, metrics and playbooks to keep executive input valuable—without derailing your product.</p>
+                            </div>
+                            <div class="card__footer">
+                                <a href="blog-details-ceo.html" class="btn btn--sm btn--outline">Read More</a>
+                            </div>
+                        </article>
+                    </div>
+
                     <!-- Blog Post 1 -->
                     <div class="col-12 col-sm-6 col-md-4 col-xxxl-3">
                         <article class="card card--image-top card--image-top--compact">
@@ -372,6 +392,7 @@
                             <li><a href="solutions.html">Solutions</a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li><a href="blog.html">Blog</a></li>
+                            <li><a href="components.html">Components</a></li>
                         </ul>
                     </div>
 
