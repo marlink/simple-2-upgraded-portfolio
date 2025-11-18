@@ -2893,7 +2893,7 @@ body[data-theme="light"] .about .display-1 {
 /* Dark theme footer adjustments */
 body[data-theme="dark"] .site-footer {
   color: var(--color-text);
-  border-top-color: rgba(255, 255, 255, 0.04);
+  border-top-color: rgba(255, 255, 255, 0.02);
 
   /* Subtle gradient background for depth */
   background: linear-gradient(
@@ -3049,7 +3049,7 @@ body[data-theme="dark"] .footer__logo-img {
 .footer__social-link:hover {
   opacity: 1;
   background: var(--color-surface);
-  border-color: var(--color-accent);
+  border-color: var(--color-accent-hover);
   color: var(--color-primary);
   box-shadow: var(--shadow-sm);
   transform: translateY(-2px);
