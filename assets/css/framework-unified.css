@@ -4851,6 +4851,22 @@ body[data-theme="light"] .about__stat-card:hover {
   background: rgba(183, 240, 77, 0.05);
 }
 
+.accordion__chevron {
+  margin-left: auto;
+  transition: transform 0.3s ease, color 0.2s ease;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.accordion__button:hover .accordion__chevron {
+  color: var(--color-accent-hover);
+}
+
+.accordion__button[aria-expanded="true"] .accordion__chevron {
+  transform: rotate(90deg);
+  color: var(--color-accent-hover);
+}
+
 .accordion__panel {
   padding: 0 var(--space-3) var(--space-3);
 }
