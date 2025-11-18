@@ -2507,41 +2507,41 @@ body[data-theme="light"] .hero__content:focus-within .hero__logo {
 }
 
 /* ABOUT SECTION */
-.about {
+/* About Content Section */
+.about-content {
   padding: var(--space-7) 0;
   position: relative;
-
-  /* Darker background with fade on top for smooth transition from hero */
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.3) 10%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
+  background: var(--color-bg);
 }
 
-body[data-theme="light"] .about {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.1) 10%,
-    rgba(0, 0, 0, 0.2) 30%,
-    rgba(0, 0, 0, 0.4) 100%
-  );
+body[data-theme="light"] .about-content {
+  background: rgba(248, 250, 252, 1); /* Subtle light gray background */
 }
 
-body[data-theme="dark"] .about {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.4) 10%,
-    rgba(0, 0, 0, 0.7) 30%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
+body[data-theme="dark"] .about-content {
+  background: var(--color-bg);
 }
 
-.about h2 {
+.about-content h2 {
+  margin-top: 0;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: var(--space-7) 0;
+  position: relative;
+  background: var(--color-bg);
+}
+
+body[data-theme="light"] .faq-section {
+  background: rgba(241, 245, 249, 1); /* Slightly different subtle gray */
+}
+
+body[data-theme="dark"] .faq-section {
+  background: var(--color-bg);
+}
+
+.faq-section h2 {
   margin-top: 0;
 }
 
@@ -3049,7 +3049,8 @@ body[data-theme="dark"] .footer__logo-img {
 .footer__social-link:hover {
   opacity: 1;
   background: var(--color-surface);
-  border-color: var(--color-primary);
+  border-color: var(--color-accent);
+  color: #ffffff;
   box-shadow: var(--shadow-sm);
   transform: translateY(-2px);
   text-decoration: none;
@@ -3222,6 +3223,7 @@ body[data-theme="dark"] .newsletter__message--error {
 .footer__branded-link:hover {
   background: var(--color-bg);
   border-color: var(--color-primary);
+  color: var(--color-text);
   box-shadow: var(--shadow-sm);
   transform: translateX(2px);
   text-decoration: none;
@@ -4148,6 +4150,25 @@ body[data-theme="dark"] .card--glass-outline .card__footer {
   background: var(--color-bg);
   border: 2px solid var(--color-border);
   box-shadow: var(--shadow-sm);
+}
+
+/* Clean white cards like hero section */
+.card--clean {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--glass-border-light);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s var(--ease-out-smooth);
+}
+
+body[data-theme="dark"] .card--clean {
+  background: var(--color-surface);
+  backdrop-filter: none;
+  border: 1px solid var(--color-border);
+}
+
+.card--clean:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .card--outline {
