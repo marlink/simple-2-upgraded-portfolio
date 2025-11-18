@@ -893,8 +893,7 @@ const $qa = window.safeQueryAll
     }, 0) // Small delay to ensure DOM is ready
 })()
 
-// Also initialize on DOMContentLoaded as fallback for dynamically added content
-document.addEventListener('DOMContentLoaded', initializeComponents)
+// Components are initialized immediately when the script loads
 
 /* ========================================================================
  * GLOBAL TAB SWITCHING FUNCTION

@@ -2492,6 +2492,7 @@ body[data-theme="light"] .hero__content:focus-within .hero__logo {
 }
 
 /* ABOUT SECTION */
+
 /* About Content Section */
 .about-content {
   padding: var(--space-7) 0;
@@ -4023,7 +4024,7 @@ body[data-theme="dark"] .glass {
   border: 2px solid rgba(241, 245, 249, 0.35);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 body[data-theme="dark"] .card--glass-solid {
@@ -4068,7 +4069,7 @@ body[data-theme="light"] .card--glass-outline {
     0 1px 4px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px) saturate(120%);
-  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  backdrop-filter: blur(12px) saturate(120%);
 }
 
 /* Hover only: Green border from style guide */
@@ -6592,7 +6593,6 @@ body[data-theme="light"] .video-cover__play-icon {
 
 /* Example fix */
 .example {
-
   /* becomes */
   background: rgba(0 0 0 / 0.5);
 }
