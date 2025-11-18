@@ -250,7 +250,7 @@
                             </svg>
                         </button>
                         <div class="accordion__panel" hidden>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>I specialize in UI/UX design for web and mobile applications across various industries including FinTech, Travel & Hospitality, Gaming & Betting, EdTech, and E-Commerce. I also create comprehensive design systems and lead design teams for large-scale digital products.</p>
                         </div>
                     </div>
                     <div class="accordion__item">
@@ -261,7 +261,7 @@
                             </svg>
                         </button>
                         <div class="accordion__panel" hidden>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>I proactively integrate AI tools like LLMs, agentic workflows, and generative media into design processes. This includes using AI for research, prototyping, content generation, and automating repetitive design tasks to enhance creativity and efficiency.</p>
                         </div>
                     </div>
                     <div class="accordion__item">
@@ -272,7 +272,7 @@
                             </svg>
                         </button>
                         <div class="accordion__panel" hidden>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>Absolutely. I have extensive experience architecting and implementing design systems for web, iOS, and Android platforms. My design systems achieve 100% WCAG AAA compliance and include integrated tools like Sketch libraries, Zeplin, and Storybook for seamless development workflows.</p>
                         </div>
                     </div>
                     <div class="accordion__item">
@@ -283,7 +283,7 @@
                             </svg>
                         </button>
                         <div class="accordion__panel" hidden>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>I've led design teams from 10 to 20+ members, implementing mentorship programs that reduce onboarding time by 50%. I excel at strategic design leadership, product vision development, and creating scalable design processes that align with business objectives.</p>
                         </div>
                     </div>
                     <div class="accordion__item">
@@ -294,7 +294,7 @@
                             </svg>
                         </button>
                         <div class="accordion__panel" hidden>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>Accessibility is fundamental to my design approach. All my work follows WCAG guidelines, includes proper ARIA attributes, semantic HTML, and comprehensive keyboard navigation. I conduct regular accessibility audits and usability testing to ensure inclusive digital experiences.</p>
                         </div>
                     </div>
                     <div class="accordion__item">
@@ -305,7 +305,7 @@
                             </svg>
                         </button>
                         <div class="accordion__panel" hidden>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>I've worked across diverse industries including FinTech (Barclays, Superbet), Travel & Hospitality (Costa Coffee), Gaming & Betting (Superbet), EdTech (Pearson), and Community Platforms (Movemeback). Each industry brings unique challenges and opportunities for user-centered design.</p>
                         </div>
                     </div>
                 </div>
@@ -381,6 +381,49 @@
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/components.js"></script>
+
+    <!-- Initialize accordion specifically for About page -->
+    <script>
+        // Ensure accordion works on About page
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const accordions = document.querySelectorAll('.accordion');
+                accordions.forEach(function(accordion) {
+                    const items = accordion.querySelectorAll('.accordion__item');
+                    items.forEach(function(item, index) {
+                        const button = item.querySelector('.accordion__button');
+                        const panel = item.querySelector('.accordion__panel');
+
+                        if (button && panel) {
+                            // Set IDs
+                            const buttonId = 'accordion-btn-' + Date.now() + '-' + index;
+                            const panelId = 'accordion-panel-' + Date.now() + '-' + index;
+
+                            button.id = buttonId;
+                            panel.id = panelId;
+
+                            // Set ARIA attributes
+                            button.setAttribute('aria-controls', panelId);
+                            button.setAttribute('aria-expanded', 'false');
+                            panel.setAttribute('aria-labelledby', buttonId);
+                            panel.setAttribute('role', 'region');
+                            panel.hidden = true;
+
+                            // Add click event listener
+                            button.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const currentlyExpanded = button.getAttribute('aria-expanded') === 'true';
+                                const shouldExpand = !currentlyExpanded;
+
+                                button.setAttribute('aria-expanded', String(shouldExpand));
+                                panel.hidden = !shouldExpand;
+                            });
+                        }
+                    });
+                });
+            }, 100);
+        });
+    </script>
 </body>
 </html>
 

@@ -32,8 +32,11 @@
 const $q = window.safeQuery
 const $qa = window.safeQueryAll
 
-document.addEventListener('DOMContentLoaded', () => {
-    try {
+// Initialize components immediately for better performance
+(function initializeComponents() {
+    // Use setTimeout to ensure DOM is fully ready
+    setTimeout(() => {
+        try {
         /* ========================================================================
          * TABS COMPONENT
          * ========================================================================
@@ -193,14 +196,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
         const accordions = $qa('.accordion')
-        if (!accordions || accordions.length === 0) return
 
-        accordions.forEach(accordion => {
-            if (!accordion) return
+        if (!accordions || accordions.length === 0) {
+            return;
+        }
+
+        accordions.forEach((accordion, accordionIndex) => {
+            if (!accordion) return;
 
             const items = $qa('.accordion__item', accordion)
+
             if (!items || items.length === 0) {
-                console.warn('Accordion missing items', accordion)
                 return
             }
 
@@ -844,7 +850,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
         console.error('Error initializing video cover component:', error)
     }
-})
+        }, 0); // Execute immediately after current call stack
+    }, 0); // Small delay to ensure DOM is ready
+})()
+
+// Also initialize on DOMContentLoaded as fallback for dynamically added content
+document.addEventListener('DOMContentLoaded', initializeComponents)
 
 /* ========================================================================
  * GLOBAL TAB SWITCHING FUNCTION
