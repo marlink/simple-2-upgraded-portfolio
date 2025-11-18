@@ -31,6 +31,39 @@
 
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+<!-- Demo Navigation -->
+<header class="demo-header">
+    <nav class="demo-nav">
+        <div class="demo-nav__inner">
+            <div class="demo-nav__brand">
+                <a href="overview.html" class="demo-nav__logo">
+                    <span class="demo-nav__logo-text">Framework Demo</span>
+                </a>
+            </div>
+            <ul class="demo-nav__links">
+                <li><a href="overview.html" class="demo-nav__link">Overview</a></li>
+                <li><a href="components.html" class="demo-nav__link">Components</a></li>
+                <li><a href="cards.html" class="demo-nav__link">Cards</a></li>
+                <li><a href="forms.html" class="demo-nav__link">Forms</a></li>
+                <li><a href="navigation.html" class="demo-nav__link is-active" aria-current="page">Navigation</a></li>
+                <li><a href="typography.html" class="demo-nav__link">Typography</a></li>
+                <li><a href="colors.html" class="demo-nav__link">Colors</a></li>
+                <li><a href="tokens.html" class="demo-nav__link">Tokens</a></li>
+            </ul>
+            <div class="demo-nav__controls">
+                <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                    <span class="theme-toggle__icon theme-toggle__icon--light">
+                        <img src="../assets/icons/sun.svg" alt="Light theme" width="24" height="24">
+                    </span>
+                    <span class="theme-toggle__icon theme-toggle__icon--dark">
+                        <img src="../assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
+                    </span>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
     <main id="main-content" class="demo-main">
         <div class="container">
             <div class="demo-page-intro">
@@ -39,60 +72,6 @@
                 <p class="demo-page-intro__description">These snippets use the production markup found in the marketing site. Copy them as-is to ensure burger menus, overlays, and theme toggles hook into `assets/js/main.js` automatically.</p>
             </div>
 
-            <section class="demo-section" id="header">
-                <div class="demo-section__heading">
-                    <h2 class="demo-section__title h3">Primary site header</h2>
-                    <p class="demo-section__subtitle">Matches the production navigation with burger menu support. Theme toggle, overlay, and mobile drawer all rely on `main.js`.</p>
-                </div>
-                <div class="card">
-                    <div class="card__body">
-                        <header class="site-header">
-                            <nav class="nav">
-                                <a class="nav__logo" href="#" aria-label="YourSchool">
-                                    <img src="../assets/logo/mc-logo.svg" alt="YourSchool" class="nav__logo-img" width="128" height="32">
-                                </a>
-                                <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
-                                    <span class="nav__burger-line"></span>
-                                    <span class="nav__burger-line"></span>
-                                    <span class="nav__burger-line"></span>
-                                </button>
-                                <div class="nav__menu">
-                                    <ul class="nav__links">
-                                        <li><a href="#" class="nav__link nav__link--underline is-active" aria-current="page">Home</a></li>
-                                        <li><a href="#" class="nav__link nav__link--underline">About</a></li>
-                                        <li><a href="#" class="nav__link nav__link--underline">Solutions</a></li>
-                                        <li><a href="#" class="nav__link nav__link--underline">Contact</a></li>
-                                        <li><a href="#" class="nav__link nav__link--underline">Blog</a></li>
-                                    </ul>
-                                    <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                                        <span class="theme-toggle__icon theme-toggle__icon--light">
-                                            <img src="../assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                                        </span>
-                                        <span class="theme-toggle__icon theme-toggle__icon--dark">
-                                            <img src="../assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                                        </span>
-                                    </button>
-                                    <a href="#" class="btn btn--outline">Free website</a>
-                                </div>
-                                <div class="nav__overlay"></div>
-                                <div class="nav__mobile-menu">
-                                    <div class="nav__mobile-header">
-                                        <span class="nav__mobile-title">Menu</span>
-                                        <button class="nav__mobile-close" aria-label="Close menu">✕</button>
-                                    </div>
-                                    <ul class="nav__links nav__links--mobile">
-                                        <li><a href="#" class="nav__link nav__link--underline">Home</a></li>
-                                        <li><a href="#" class="nav__link nav__link--underline">About</a></li>
-                                        <li><a href="#" class="nav__link nav__link--underline">Solutions</a></li>
-                                        <li><a href="#" class="nav__link nav__link--underline">Contact</a></li>
-                                        <li><a href="#" class="nav__link nav__link--underline">Blog</a></li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </header>
-                    </div>
-                </div>
-            </section>
 
             <section class="demo-section" id="breadcrumbs">
                 <div class="demo-section__heading">
