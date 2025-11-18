@@ -30,36 +30,110 @@
     </div>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="demo-toolbar" role="banner">
-        <div class="demo-toolbar__inner container">
-            <div class="demo-toolbar__brand">
-                <a class="demo-toolbar__title" href="overview.html">Framework Demo</a>
+    <nav class="demo-navbar" role="banner">
+        <div class="demo-navbar__inner">
+            <div class="demo-navbar__brand">
+                <a class="demo-navbar__title" href="overview.html">Framework Demo</a>
                 <div class="demo-toolbar__meta" aria-label="Current section">
                     <span>Card gallery</span>
                     <span class="demo-toolbar__meta-dot" aria-hidden="true"></span>
                     <span>Surface variants</span>
                 </div>
             </div>
-            <nav class="demo-toolbar__nav demo-scroll-shadow" aria-label="Component index">
-                <ul class="demo-toolbar__list">
-                    <li><a class="demo-toolbar__link" href="overview.html">Overview</a></li>
-                    <li><a class="demo-toolbar__link" href="components.html">Components</a></li>
-                    <li><a class="demo-toolbar__link" href="cards.html" aria-current="page">Cards</a></li>
-                    <li><a class="demo-toolbar__link" href="tokens.html">Tokens</a></li>
-                    <li><a class="demo-toolbar__link" href="layout.html">Layout</a></li>
-                    <li><a class="demo-toolbar__link" href="forms.html">Forms</a></li>
-                    <li><a class="demo-toolbar__link" href="navigation.html">Navigation</a></li>
-                    <li><a class="demo-toolbar__link" href="utilities.html">Utilities</a></li>
-                    <li><a class="demo-toolbar__link" href="typography.html">Typography</a></li>
-                    <li><a class="demo-toolbar__link" href="icons.html">Icons</a></li>
-                    <li><a class="demo-toolbar__link" href="accessibility.html">Accessibility</a></li>
-                    <li><a class="demo-toolbar__link" href="photos.html">Photos</a></li>
-                    <li><a class="demo-toolbar__link" href="light-theme.html">Light Theme</a></li>
-                    <li><a class="demo-toolbar__link" href="dark-theme.html">Dark Theme</a></li>
-                    <li><a class="demo-toolbar__link" href="../index.html">Marketing Site</a></li>
-                </ul>
-            </nav>
-            <div class="demo-toolbar__controls">
+
+            <ul class="demo-navbar__menu" role="menubar">
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link" href="overview.html" role="menuitem">Overview</a>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link demo-navbar__link--dropdown" href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        Foundation
+                    </a>
+                    <div class="demo-navbar__dropdown" role="menu" aria-label="Foundation pages">
+                        <ul class="demo-navbar__dropdown-list">
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="tokens.html" role="menuitem">Design Tokens</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="colors.html" role="menuitem">Colors</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="typography.html" role="menuitem">Typography</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="layout.html" role="menuitem">Layout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link demo-navbar__link--dropdown" href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        Components
+                    </a>
+                    <div class="demo-navbar__dropdown" role="menu" aria-label="Component pages">
+                        <ul class="demo-navbar__dropdown-list">
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="components.html" role="menuitem">All Components</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="cards.html" aria-current="page" role="menuitem">Cards</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="forms.html" role="menuitem">Forms</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="navigation.html" role="menuitem">Navigation</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link demo-navbar__link--dropdown" href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        Utilities
+                    </a>
+                    <div class="demo-navbar__dropdown" role="menu" aria-label="Utility pages">
+                        <ul class="demo-navbar__dropdown-list">
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="utilities.html" role="menuitem">All Utilities</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="icons.html" role="menuitem">Icons</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="photos.html" role="menuitem">Photos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link demo-navbar__link--dropdown" href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        Themes &amp; A11y
+                    </a>
+                    <div class="demo-navbar__dropdown" role="menu" aria-label="Theme and accessibility pages">
+                        <ul class="demo-navbar__dropdown-list">
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="light-theme.html" role="menuitem">Light Theme</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="dark-theme.html" role="menuitem">Dark Theme</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="accessibility.html" role="menuitem">Accessibility</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link" href="../index.html" role="menuitem">Marketing Site</a>
+                </li>
+            </ul>
+
+            <div class="demo-navbar__controls">
                 <div class="demo-toolbar__theme">
                     <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
                         <span class="theme-toggle__icon theme-toggle__icon--light">
@@ -72,7 +146,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
     <main id="main-content" class="demo-main">
         <div class="container py-8">
 

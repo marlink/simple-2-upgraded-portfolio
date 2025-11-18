@@ -410,6 +410,160 @@
     }
 }
 
+/* Enhanced Navbar Styles */
+.demo-navbar {
+    position: relative;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    z-index: 100;
+}
+
+.demo-navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-6);
+    max-width: none;
+}
+
+.demo-navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+}
+
+.demo-navbar__title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.demo-navbar__title:hover,
+.demo-navbar__title:focus {
+    color: var(--color-primary);
+}
+
+.demo-navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    justify-content: center;
+}
+
+.demo-navbar__item {
+    position: relative;
+}
+
+.demo-navbar__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.demo-navbar__link:hover,
+.demo-navbar__link:focus {
+    background: var(--color-bg);
+    color: var(--color-primary);
+}
+
+.demo-navbar__link--dropdown::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid currentColor;
+    transition: transform 0.2s ease;
+}
+
+.demo-navbar__item:hover .demo-navbar__link--dropdown::after,
+.demo-navbar__item:focus-within .demo-navbar__link--dropdown::after {
+    transform: rotate(180deg);
+}
+
+.demo-navbar__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    z-index: 200;
+    margin-top: var(--space-1);
+}
+
+.demo-navbar__item:hover .demo-navbar__dropdown,
+.demo-navbar__item:focus-within .demo-navbar__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.demo-navbar__dropdown-list {
+    list-style: none;
+    padding: var(--space-2) 0;
+    margin: 0;
+}
+
+.demo-navbar__dropdown-item {
+    margin: 0;
+}
+
+.demo-navbar__dropdown-link {
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.demo-navbar__dropdown-link:hover,
+.demo-navbar__dropdown-link:focus {
+    background: var(--color-bg);
+    color: var(--color-primary);
+    border-left-color: var(--color-primary);
+}
+
+.demo-navbar__dropdown-link[aria-current="page"] {
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+    border-left-color: var(--color-primary);
+    font-weight: 600;
+}
+
+.demo-navbar__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+}
+
 /* Mobile Responsive Behavior */
 @media (max-width: 64rem) {
     .demo-sidebar {
@@ -463,6 +617,23 @@
         flex-direction: row;
         align-items: center;
         padding: var(--space-2) var(--space-3);
+    }
+
+    /* Enhanced Navbar Mobile Styles */
+    .demo-navbar__inner {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .demo-navbar__menu {
+        display: none; /* Hide dropdown menus on mobile */
+    }
+
+    .demo-navbar__brand {
+        gap: var(--space-2);
+    }
+
+    .demo-navbar__title {
+        font-size: var(--font-size-base);
     }
 }
 

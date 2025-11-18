@@ -143,129 +143,124 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="demo-layout">
-    <!-- Sidebar Navigation -->
-    <aside class="demo-sidebar" id="demo-sidebar">
-        <div class="demo-sidebar__header">
-            <a class="demo-sidebar__title" href="overview.html">Framework Demo</a>
-        </div>
-
-        <nav class="demo-sidebar__nav" aria-label="Framework navigation">
-            <!-- Foundation Section -->
-            <div class="demo-sidebar__section">
-                <h3 class="demo-sidebar__section-title">Foundation</h3>
-                <ul class="demo-sidebar__list">
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="overview.html" aria-current="page">Overview</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="tokens.html">Design Tokens</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="colors.html">Colors</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="typography.html">Typography</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="layout.html">Layout</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Components Section -->
-            <div class="demo-sidebar__section">
-                <h3 class="demo-sidebar__section-title">Components</h3>
-                <ul class="demo-sidebar__list">
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="components.html">All Components</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="cards.html">Cards</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="forms.html">Forms</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="navigation.html">Navigation</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Utilities Section -->
-            <div class="demo-sidebar__section">
-                <h3 class="demo-sidebar__section-title">Utilities</h3>
-                <ul class="demo-sidebar__list">
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="utilities.html">All Utilities</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="icons.html">Icons</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="photos.html">Photos</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Themes & Accessibility Section -->
-            <div class="demo-sidebar__section">
-                <h3 class="demo-sidebar__section-title">Themes &amp; A11y</h3>
-                <ul class="demo-sidebar__list">
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="light-theme.html">Light Theme</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="dark-theme.html">Dark Theme</a>
-                    </li>
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="accessibility.html">Accessibility</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- External Links -->
-            <div class="demo-sidebar__section">
-                <h3 class="demo-sidebar__section-title">Links</h3>
-                <ul class="demo-sidebar__list">
-                    <li class="demo-sidebar__item">
-                        <a class="demo-sidebar__link" href="../index.html">Marketing Site</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </aside>
-
-    <!-- Main Content Area -->
-    <div class="demo-main-content">
         <!-- Top Toolbar -->
-        <header class="demo-toolbar" role="banner">
-            <div class="demo-toolbar__inner">
-                <div class="demo-toolbar__brand">
-                    <button class="demo-sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation menu">
-                        <svg class="demo-sidebar-toggle__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                        </svg>
-                    </button>
-                    <div class="demo-toolbar__meta" aria-label="Current section">
-                        <span>Showcase overview</span>
-                        <span class="demo-toolbar__meta-dot" aria-hidden="true"></span>
-                        <span>Start here</span>
-                    </div>
-                </div>
-                <div class="demo-toolbar__controls">
-                    <div class="demo-toolbar__theme">
-                        <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                            <span class="theme-toggle__icon theme-toggle__icon--light">
-                                <img src="../assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                            </span>
-                            <span class="theme-toggle__icon theme-toggle__icon--dark">
-                                <img src="../assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                            </span>
-                        </button>
-                    </div>
+    <nav class="demo-navbar" role="banner">
+        <div class="demo-navbar__inner">
+            <div class="demo-navbar__brand">
+                <a class="demo-navbar__title" href="overview.html">Framework Demo</a>
+                <div class="demo-toolbar__meta" aria-label="Current section">
+                    <span>Showcase overview</span>
+                    <span class="demo-toolbar__meta-dot" aria-hidden="true"></span>
+                    <span>Start here</span>
                 </div>
             </div>
-        </header>
+
+            <ul class="demo-navbar__menu" role="menubar">
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link" href="overview.html" aria-current="page" role="menuitem">Overview</a>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link demo-navbar__link--dropdown" href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        Foundation
+                    </a>
+                    <div class="demo-navbar__dropdown" role="menu" aria-label="Foundation pages">
+                        <ul class="demo-navbar__dropdown-list">
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="tokens.html" role="menuitem">Design Tokens</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="colors.html" role="menuitem">Colors</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="typography.html" role="menuitem">Typography</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="layout.html" role="menuitem">Layout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link demo-navbar__link--dropdown" href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        Components
+                    </a>
+                    <div class="demo-navbar__dropdown" role="menu" aria-label="Component pages">
+                        <ul class="demo-navbar__dropdown-list">
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="components.html" role="menuitem">All Components</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="cards.html" role="menuitem">Cards</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="forms.html" role="menuitem">Forms</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="navigation.html" role="menuitem">Navigation</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link demo-navbar__link--dropdown" href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        Utilities
+                    </a>
+                    <div class="demo-navbar__dropdown" role="menu" aria-label="Utility pages">
+                        <ul class="demo-navbar__dropdown-list">
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="utilities.html" role="menuitem">All Utilities</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="icons.html" role="menuitem">Icons</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="photos.html" role="menuitem">Photos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link demo-navbar__link--dropdown" href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                        Themes &amp; A11y
+                    </a>
+                    <div class="demo-navbar__dropdown" role="menu" aria-label="Theme and accessibility pages">
+                        <ul class="demo-navbar__dropdown-list">
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="light-theme.html" role="menuitem">Light Theme</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="dark-theme.html" role="menuitem">Dark Theme</a>
+                            </li>
+                            <li class="demo-navbar__dropdown-item" role="none">
+                                <a class="demo-navbar__dropdown-link" href="accessibility.html" role="menuitem">Accessibility</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="demo-navbar__item" role="none">
+                    <a class="demo-navbar__link" href="../index.html" role="menuitem">Marketing Site</a>
+                </li>
+            </ul>
+
+            <div class="demo-navbar__controls">
+                <div class="demo-toolbar__theme">
+                    <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                        <span class="theme-toggle__icon theme-toggle__icon--light">
+                            <img src="../assets/icons/sun.svg" alt="Light theme" width="24" height="24">
+                        </span>
+                        <span class="theme-toggle__icon theme-toggle__icon--dark">
+                            <img src="../assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
     <main id="main-content" class="demo-main">
         <div class="container py-8">
 
@@ -356,40 +351,11 @@
             </section>
         </div>
     </main>
-    </div> <!-- Close demo-main-content -->
 </div> <!-- Close demo-layout -->
 
 <script src="../assets/js/utils.js"></script>
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/components.js"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Handle sidebar toggle
-        const sidebarToggle = document.getElementById('sidebar-toggle')
-        const sidebar = document.getElementById('demo-sidebar')
-
-        if (sidebarToggle && sidebar) {
-            sidebarToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('demo-sidebar--open')
-            })
-
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth <= 1024 && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-                    sidebar.classList.remove('demo-sidebar--open')
-                }
-            })
-
-            // Close sidebar on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && sidebar.classList.contains('demo-sidebar--open')) {
-                    sidebar.classList.remove('demo-sidebar--open')
-                    sidebarToggle.focus()
-                }
-            })
-        }
-    })
-</script>
 </body>
 </html>
