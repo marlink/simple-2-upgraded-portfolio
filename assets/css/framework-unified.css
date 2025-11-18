@@ -2361,14 +2361,14 @@ body[data-theme="light"] .hero__overlay {
   }
 }
 
-/* Hero Logo - Default State (1.25x larger) */
+/* Hero Logo - Default State (smaller) */
 .hero__logo {
   position: absolute;
   width: auto;
   height: auto;
   max-width: 300px;
   max-height: 300px;
-  transform: scale(1.25);
+  transform: scale(0.8);
   opacity: 0.7;
   filter: brightness(0.5);
   transition:
@@ -2462,7 +2462,7 @@ body[data-theme="light"] .hero__content:focus-within .hero__logo {
   }
 
   .hero__logo {
-    transform: scale(1.25) !important;
+    transform: scale(0.8) !important;
     animation: none !important;
   }
 

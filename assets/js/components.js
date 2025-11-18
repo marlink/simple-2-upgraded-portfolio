@@ -27,10 +27,8 @@
  * ============================================================================
  */
 
-// Import utility functions from utils.js (loaded globally)
-// Note: utils.js must be loaded before this file
-const $q = window.safeQuery
-const $qa = window.safeQueryAll
+// Utility functions are available globally from utils.js
+// $q and $qa are shorthand aliases for safeQuery and safeQueryAll
 
 // Initialize components immediately for better performance
 (() => {
@@ -58,7 +56,7 @@ const $qa = window.safeQueryAll
          * - Smooth transitions (handled by CSS)
          * - Automatic activation on focus for screen readers
          */
-            const tabContainers = $qa('.tabs')
+            const tabContainers = safeQueryAll('.tabs')
             if (!tabContainers || tabContainers.length === 0) {
             // No tabs on this page
                 return
@@ -67,8 +65,8 @@ const $qa = window.safeQueryAll
             tabContainers.forEach(container => {
                 if (!container) return
 
-                const tabs = $qa('.tab', container)
-                const panels = $qa('.tab__panel', container)
+                const tabs = safeQueryAll('.tab', container)
+                const panels = safeQueryAll('.tab__panel', container)
 
                 if (!tabs || tabs.length === 0 || !panels || panels.length === 0) {
                 // Silently skip containers without required elements (common for partial implementations)
@@ -80,7 +78,7 @@ const $qa = window.safeQueryAll
                 tabs.forEach(tab => {
                     const panelId = tab.getAttribute('aria-controls')
                     if (panelId) {
-                        const panel = $q('#' + panelId, container)
+                        const panel = safeQuery('#' + panelId, container)
                         panel && tabPanelMap.set(tab, panel)
                     }
                 })
@@ -203,7 +201,7 @@ const $qa = window.safeQueryAll
      */
 
         try {
-            const accordions = $qa('.accordion')
+            const accordions = safeQueryAll('.accordion')
 
             if (!accordions || accordions.length === 0) {
                 return
@@ -212,15 +210,15 @@ const $qa = window.safeQueryAll
             accordions.forEach((accordion) => {
                 if (!accordion) return
 
-                const items = $qa('.accordion__item', accordion)
+                const items = safeQueryAll('.accordion__item', accordion)
 
                 if (!items || items.length === 0) {
                     return
                 }
 
                 items.forEach((item, index) => {
-                    const button = $q('.accordion__button', item)
-                    const panel = $q('.accordion__panel', item)
+                    const button = safeQuery('.accordion__button', item)
+                    const panel = safeQuery('.accordion__panel', item)
 
                     if (!button || !panel) {
                     // Skip items without required elements
@@ -304,8 +302,8 @@ const $qa = window.safeQueryAll
      * - Restores focus to trigger element on close
      * - Prevents body scroll when open
      */
-            const openTriggers = $qa('[data-modal-target]')
-            const modals = $qa('.modal')
+            const openTriggers = safeQueryAll('[data-modal-target]')
+            const modals = safeQueryAll('.modal')
 
             if (!modals || modals.length === 0) return
 
@@ -313,9 +311,9 @@ const $qa = window.safeQueryAll
             modals.forEach(modal => {
                 if (!modal) return
 
-                const overlay = $q('.modal__overlay', modal)
-                const dialog = $q('.modal__dialog', modal)
-                const closeButtons = $qa('[data-modal-close]', modal)
+                const overlay = safeQuery('.modal__overlay', modal)
+                const dialog = safeQuery('.modal__dialog', modal)
+                const closeButtons = safeQueryAll('[data-modal-close]', modal)
 
                 if (!overlay || !dialog) {
                 // Skip modals without required elements
@@ -338,7 +336,7 @@ const $qa = window.safeQueryAll
              * Update the cache of focusable elements for better performance
              */
                 const updateFocusableElements = () => {
-                    focusableElements = $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
+                    focusableElements = safeQueryAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
                 }
 
                 /**
@@ -366,7 +364,7 @@ const $qa = window.safeQueryAll
                     }
 
                     // Announce modal to screen readers
-                    const heading = $q('h1, h2, h3, h4, h5, h6', dialog)
+                    const heading = safeQuery('h1, h2, h3, h4, h5, h6', dialog)
                     if (heading) {
                         modal.setAttribute('aria-labelledby', heading.id || `modal-heading-${Date.now()}`)
                         if (!heading.id) heading.id = modal.getAttribute('aria-labelledby')
@@ -466,7 +464,7 @@ const $qa = window.safeQueryAll
                 btn.addEventListener('click', (e) => {
                     e.preventDefault()
                     const targetSel = btn.getAttribute('data-modal-target')
-                    const modal = $q(targetSel)
+                    const modal = safeQuery(targetSel)
                     if (modal && modal._openModal) {
                         modal._openModal()
                         // Set up keydown listener when opening
@@ -507,7 +505,7 @@ const $qa = window.safeQueryAll
      * - Created dynamically on page load
      * - Simple CSS-based positioning
      */
-            const tooltipTriggers = $qa('[data-tooltip]')
+            const tooltipTriggers = safeQueryAll('[data-tooltip]')
             if (!tooltipTriggers || tooltipTriggers.length === 0) return
 
             tooltipTriggers.forEach((trigger, index) => {
@@ -536,10 +534,8 @@ const $qa = window.safeQueryAll
                     tip.style.transform = 'translate(-50%, -6px)'
 
                     // Get positions
-                    const triggerRect = trigger.getBoundingClientRect()
                     const tipRect = tip.getBoundingClientRect()
                     const viewportWidth = window.innerWidth
-                    const viewportHeight = window.innerHeight
 
                     // Check if tooltip goes off-screen horizontally
                     if (tipRect.left < 0) {
@@ -677,7 +673,7 @@ const $qa = window.safeQueryAll
 
                 // For pre.code-block, get code element text
                 if (codeBlock.classList.contains('code-block')) {
-                    const codeElement = $q('code', codeBlock)
+                    const codeElement = safeQuery('code', codeBlock)
                     if (codeElement) {
                         return codeElement.textContent || codeElement.innerText
                     }
@@ -700,7 +696,7 @@ const $qa = window.safeQueryAll
      */
             const setupCopyButton = (codeBlock) => {
                 // Skip if button already exists
-                if ($q('.code-copy-btn', codeBlock)) {
+                if (safeQuery('.code-copy-btn', codeBlock)) {
                     return
                 }
 
@@ -754,7 +750,7 @@ const $qa = window.safeQueryAll
             }
 
             // Find all code blocks and add copy buttons
-            const codeBlocks = $qa('.code-example, pre.code-block')
+            const codeBlocks = safeQueryAll('.code-example, pre.code-block')
             codeBlocks.forEach(setupCopyButton)
         } catch (error) {
             console.error('Error initializing code copy button:', error)
@@ -783,16 +779,16 @@ const $qa = window.safeQueryAll
          * - Toggle play/pause on repeated clicks
          */
 
-            const videoCovers = $qa('[data-video-cover]')
+            const videoCovers = safeQueryAll('[data-video-cover]')
 
             if (videoCovers && videoCovers.length > 0) {
             // Detect if device has fine pointer (desktop/mouse)
                 const hasFinePointer = window.matchMedia('(pointer: fine)').matches
 
                 videoCovers.forEach(container => {
-                    const video = $q('.video-cover__video', container)
-                    const cover = $q('.video-cover__cover', container)
-                    const playIcon = $q('.video-cover__play-icon', container)
+                    const video = safeQuery('.video-cover__video', container)
+                    const cover = safeQuery('.video-cover__cover', container)
+                    const playIcon = safeQuery('.video-cover__play-icon', container)
 
                     if (!video) {
                     // Skip containers without video elements

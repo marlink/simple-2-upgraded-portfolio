@@ -257,19 +257,19 @@
       <div class="demo-stack gap-4">
         <div class="alert alert--success">
           <strong>Success!</strong> Your changes have been saved successfully.
-          <button class="alert__close" aria-label="Close alert">&times;</button>
+          <button type="button" class="alert__close" aria-label="Close alert">&times;</button>
         </div>
         <div class="alert alert--error">
           <strong>Error!</strong> Something went wrong. Please try again.
-          <button class="alert__close" aria-label="Close alert">&times;</button>
+          <button type="button" class="alert__close" aria-label="Close alert">&times;</button>
         </div>
         <div class="alert alert--warning">
           <strong>Warning!</strong> This action cannot be undone.
-          <button class="alert__close" aria-label="Close alert">&times;</button>
+          <button type="button" class="alert__close" aria-label="Close alert">&times;</button>
         </div>
         <div class="alert alert--info">
           <strong>Info!</strong> Here's some important information.
-          <button class="alert__close" aria-label="Close alert">&times;</button>
+          <button type="button" class="alert__close" aria-label="Close alert">&times;</button>
         </div>
       </div>
     </section>
@@ -392,7 +392,7 @@
         <div class="col-12">
           <div class="card card--glass-outline">
             <div class="card__body">
-              <h4 class="mb-4">Code & Technical Content</h4>
+              <h4 class="mb-4">Code &amp; Technical Content</h4>
               <p class="text-sm text-muted mb-4">Typography system for displaying code snippets, technical documentation, and developer-focused content.</p>
 
               <div class="grid gap-4">
@@ -510,9 +510,9 @@
         <div class="card__body">
           <div class="tabs" data-tabs>
             <div class="tablist" role="tablist" aria-label="Component examples">
-              <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-panel-1" id="tab-btn-1">Overview</button>
-              <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-2" id="tab-btn-2">Usage</button>
-              <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-3" id="tab-btn-3">Accessibility</button>
+              <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-panel-1" id="tab-btn-1" type="button">Overview</button>
+              <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-2" id="tab-btn-2" type="button">Usage</button>
+              <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-3" id="tab-btn-3" type="button">Accessibility</button>
             </div>
             <div id="tab-panel-1" class="tab__panel is-active" role="tabpanel" aria-labelledby="tab-btn-1">
               <h4>Tab Component Overview</h4>
@@ -538,19 +538,19 @@
         <div class="card__body">
           <div class="accordion" data-accordion>
             <div class="accordion__item">
-              <button class="accordion__button" aria-expanded="false">What is an accordion component?</button>
+              <button type="button" class="accordion__button" aria-expanded="false">What is an accordion component?</button>
               <div class="accordion__panel" hidden>
                 <p>An accordion is a vertically stacked set of interactive headings that each contain a title, content snippet, or thumbnail representing a section of content.</p>
               </div>
             </div>
             <div class="accordion__item">
-              <button class="accordion__button" aria-expanded="false">When should I use accordions?</button>
+              <button type="button" class="accordion__button" aria-expanded="false">When should I use accordions?</button>
               <div class="accordion__panel" hidden>
                 <p>Use accordions when you want to organize related information in a compact way. They're perfect for FAQs, settings panels, or any content that benefits from progressive disclosure.</p>
               </div>
             </div>
             <div class="accordion__item">
-              <button class="accordion__button" aria-expanded="false">Accessibility features</button>
+              <button type="button" class="accordion__button" aria-expanded="false">Accessibility features</button>
               <div class="accordion__panel" hidden>
                 <p>This accordion component includes proper ARIA attributes, keyboard navigation, and screen reader support. Multiple items can be expanded simultaneously.</p>
               </div>
@@ -566,8 +566,8 @@
       <div class="card card--glass-outline">
         <div class="card__body">
           <div class="demo-flex gap-3">
-            <button class="btn btn--primary" data-modal-target="#demo-modal">Open Basic Modal</button>
-            <button class="btn btn--outline" data-modal-target="#demo-modal-large">Open Large Modal</button>
+            <button class="btn btn--primary" data-modal-target="#demo-modal" type="button">Open Basic Modal</button>
+            <button class="btn btn--outline" data-modal-target="#demo-modal-large" type="button">Open Large Modal</button>
           </div>
         </div>
       </div>
@@ -578,15 +578,15 @@
         <div class="modal__dialog">
           <div class="modal__header">
             <h3>Basic Modal</h3>
-            <button class="modal__close" data-modal-close aria-label="Close modal">&times;</button>
+            <button class="modal__close" data-modal-close aria-label="Close modal" type="button">&times;</button>
           </div>
           <div class="modal__body">
             <p>This is a basic modal dialog. It includes proper focus management, keyboard navigation, and accessibility features.</p>
             <p>You can close this modal by clicking the overlay, pressing the close button, or pressing the Escape key.</p>
           </div>
           <div class="modal__footer">
-            <button class="btn btn--outline" data-modal-close>Cancel</button>
-            <button class="btn btn--primary" data-modal-close>OK</button>
+            <button class="btn btn--outline" data-modal-close type="button">Cancel</button>
+            <button class="btn btn--primary" data-modal-close type="button">OK</button>
           </div>
         </div>
       </div>
