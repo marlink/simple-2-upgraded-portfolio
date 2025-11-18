@@ -262,7 +262,7 @@ body[data-theme="dark"] {
   --color-primary: #eaf4f4; /* light off-white - inverted from light theme */
   --color-secondary: #f8fafc; /* light surface color - inverted */
   --color-primary-contrast: #080c0e; /* dark - matches light theme primary */
-  --color-accent: #fbbf24; /* amber-300 */
+  --color-accent: #b7f04d; /* navbar green - replacing orange */
   --color-accent-hover: #b7f04d; /* green accent for hover states (same in both themes) */
   --color-success: #34d399; /* emerald-400 */
   --color-danger: #f87171; /* red-400 */
@@ -293,6 +293,49 @@ body[data-theme="dark"] {
   /* Brand aliases */
   --brand-youtube: var(--color-youtube);
   --brand-substack: var(--color-substack);
+
+  /* ========================================
+     ESSENTIAL COLOR PALETTE
+     ======================================== */
+
+  /* Core Theme Colors - Light (default) */
+  --light-bg: #f0f7f7;        /* Background */
+  --light-surface: #ffffff;   /* Cards, surfaces */
+  --light-text: #0f172a;      /* Primary text */
+  --light-text-muted: #64748b; /* Secondary text */
+  --light-border: #e8eef0;    /* Borders */
+
+  /* Core Theme Colors - Dark */
+  --dark-bg: #080c0e;         /* Background */
+  --dark-surface: #19242b;    /* Cards, surfaces */
+  --dark-text: #eaf4f4;       /* Primary text */
+  --dark-text-muted: #94a3b8; /* Secondary text */
+  --dark-border: #243044;     /* Borders */
+
+  /* Semantic Colors - Consistent across themes */
+  --semantic-primary: #080c0e;     /* Dark - for light theme */
+  --semantic-primary-light: #eaf4f4; /* Light - for dark theme */
+  --semantic-accent: #83c5be;      /* Teal accent */
+  --semantic-accent-hover: #006d77; /* Dark teal */
+  --semantic-accent-alt: #b7f04d;  /* Green (navbar, dark theme accent) */
+
+  /* Status Colors - Consistent across themes */
+  --status-success: #34d399;   /* Success green */
+  --status-danger: #f87171;    /* Error red */
+  --status-warning: #fbbf24;   /* Warning amber */
+  --status-info: #3b82f6;      /* Info blue */
+
+  /* Brand Colors - Third party */
+  --brand-youtube: #ff0000;
+  --brand-youtube-hover: #cc0000;
+  --brand-substack: #ff6600;
+  --brand-substack-hover: #cc5200;
+
+  /* Special Purpose Colors */
+  --special-hero-light: #edf6f9;
+  --special-hero-dark: #010101;
+  --special-code-bg: #0a0a0a;
+  --special-code-text: #e2e8f0;
 
   /* Dark theme shadows - deeper and more pronounced */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -3408,30 +3451,42 @@ body[data-theme="dark"] .newsletter__message--error {
 }
 
 .btn--primary {
-  --btn-bg: var(--color-primary);
-  --btn-fg: var(--color-primary-contrast);
-  --btn-border: var(--color-primary);
+  --btn-bg: #16a34a; /* Green background */
+  --btn-fg: #0f172a; /* Near black text for light theme */
+  --btn-border: #16a34a; /* Green border */
+}
+
+/* Dark theme override for primary button text */
+body[data-theme="dark"] .btn--primary {
+  --btn-fg: #ffffff; /* White text for better contrast in dark theme */
 }
 
 .btn--primary:hover { /* Fallback for older browsers */
   background: color-mix(
     in srgb,
-    var(--color-primary) 90%,
+    #16a34a 90%,
     black
-  ); /* Modern: darkens primary color */
+  ); /* Modern: darkens green color */
 
   color: var(--btn-fg); /* Preserve text color */
 }
 
 .btn--primary:active { /* Fallback */
-  background: color-mix(in srgb, var(--color-primary) 85%, black);
+  background: color-mix(in srgb, #16a34a 85%, black);
   color: var(--btn-fg); /* Preserve text color */
 }
 
 .btn--secondary {
-  --btn-bg: var(--color-accent);
-  --btn-fg: var(--color-text);
-  --btn-border: var(--color-accent);
+  --btn-bg: #fafafa; /* Near white background in light theme */
+  --btn-fg: var(--color-text); /* Use appropriate text color */
+  --btn-border: #fafafa; /* Near white border in light theme */
+}
+
+/* Dark theme override for secondary button */
+body[data-theme="dark"] .btn--secondary {
+  --btn-bg: #374151; /* Gray-700 for dark theme */
+  --btn-fg: var(--color-text); /* Light text for dark theme */
+  --btn-border: #374151; /* Gray-700 border for dark theme */
 }
 
 .btn--secondary:hover {
@@ -3957,7 +4012,7 @@ body[data-theme="dark"] .badge {
 
   /* Smooth transitions with custom easing */
   transition: all 0.35s var(--ease-out-smooth);
-  height: 100%; /* Cards in grid rows stretch to match tallest card */
+  min-height: 240px; /* Reasonable minimum height for consistency */
   display: flex;
   flex-direction: column;
 }
@@ -4022,11 +4077,41 @@ body[data-theme="light"] .card:hover {
   box-shadow: var(--shadow-lg);
 }
 
-/* Image card */
+/* Image card - now uses background images for consistent sizing */
+.card--image {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 200px; /* Fixed height for image area */
+}
+
+/* Hide any img tags inside background-image cards */
 .card--image img {
-  display: block;
-  width: 100%;
-  height: auto;
+  display: none;
+}
+
+/* Optional: Add a subtle overlay for better text readability */
+.card--image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.card--image:hover::before {
+  opacity: 1;
+}
+
+/* Ensure content is positioned above the background */
+.card--image .card__body {
+  position: relative;
+  z-index: 2;
+  background: none;
+  padding-top: var(--space-3);
 }
 
 /* =========================================
