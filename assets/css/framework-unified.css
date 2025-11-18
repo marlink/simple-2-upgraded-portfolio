@@ -1836,12 +1836,15 @@ body[data-theme="dark"] .site-header--scrolled {
   width: auto;
   display: block;
   margin: 0;
-  padding: 0;
-  transition:
-    opacity 0.2s ease,
-    filter 0.2s ease;
+}
 
-  /* No transform transition - appears instantly */
+.nav__logo-text {
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 /* Light theme: match hero background color #A3B5C1 (rgb(163, 181, 193)) */

@@ -142,35 +142,52 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Demo Navigation -->
-<header class="demo-header">
-    <nav class="demo-nav">
-        <div class="demo-nav__inner">
-            <div class="demo-nav__brand">
-                <a href="overview.html" class="demo-nav__logo">
-                    <span class="demo-nav__logo-text">Framework Demo</span>
-                </a>
-            </div>
-            <ul class="demo-nav__links">
-                <li><a href="overview.html" class="demo-nav__link is-active" aria-current="page">Overview</a></li>
-                <li><a href="components.html" class="demo-nav__link">Components</a></li>
-                <li><a href="cards.html" class="demo-nav__link">Cards</a></li>
-                <li><a href="forms.html" class="demo-nav__link">Forms</a></li>
-                <li><a href="navigation.html" class="demo-nav__link">Navigation</a></li>
-                <li><a href="typography.html" class="demo-nav__link">Typography</a></li>
-                <li><a href="colors.html" class="demo-nav__link">Colors</a></li>
-                <li><a href="tokens.html" class="demo-nav__link">Tokens</a></li>
+<header class="site-header">
+    <nav class="nav">
+        <a class="nav__logo" href="overview.html" aria-label="Framework Demo">
+            <span class="nav__logo-text">Framework Demo</span>
+        </a>
+        <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false">
+            <span class="nav__burger-line"></span>
+            <span class="nav__burger-line"></span>
+            <span class="nav__burger-line"></span>
+        </button>
+        <div class="nav__menu">
+            <ul class="nav__links">
+                <li><a href="overview.html" class="nav__link nav__link--underline is-active" aria-current="page">Overview</a></li>
+                <li><a href="components.html" class="nav__link nav__link--underline">Components</a></li>
+                <li><a href="cards.html" class="nav__link nav__link--underline">Cards</a></li>
+                <li><a href="forms.html" class="nav__link nav__link--underline">Forms</a></li>
+                <li><a href="navigation.html" class="nav__link nav__link--underline">Navigation</a></li>
+                <li><a href="typography.html" class="nav__link nav__link--underline">Typography</a></li>
+                <li><a href="colors.html" class="nav__link nav__link--underline">Colors</a></li>
+                <li><a href="tokens.html" class="nav__link nav__link--underline">Tokens</a></li>
             </ul>
-            <div class="demo-nav__controls">
-                <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
-                    <span class="theme-toggle__icon theme-toggle__icon--light">
-                        <img src="../assets/icons/sun.svg" alt="Light theme" width="24" height="24">
-                    </span>
-                    <span class="theme-toggle__icon theme-toggle__icon--dark">
-                        <img src="../assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
-                    </span>
-                </button>
+            <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                <span class="theme-toggle__icon theme-toggle__icon--light">
+                    <img src="../assets/icons/sun.svg" alt="Light theme" width="24" height="24">
+                </span>
+                <span class="theme-toggle__icon theme-toggle__icon--dark">
+                    <img src="../assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
+                </span>
+            </button>
+        </div>
+        <div class="nav__overlay"></div>
+        <div class="nav__mobile-menu">
+            <div class="nav__mobile-header">
+                <span class="nav__mobile-title">Menu</span>
+                <button class="nav__mobile-close" aria-label="Close menu">✕</button>
             </div>
+            <ul class="nav__links nav__links--mobile">
+                <li><a href="overview.html" class="nav__link nav__link--underline">Overview</a></li>
+                <li><a href="components.html" class="nav__link nav__link--underline">Components</a></li>
+                <li><a href="cards.html" class="nav__link nav__link--underline">Cards</a></li>
+                <li><a href="forms.html" class="nav__link nav__link--underline">Forms</a></li>
+                <li><a href="navigation.html" class="nav__link nav__link--underline">Navigation</a></li>
+                <li><a href="typography.html" class="nav__link nav__link--underline">Typography</a></li>
+                <li><a href="colors.html" class="nav__link nav__link--underline">Colors</a></li>
+                <li><a href="tokens.html" class="nav__link nav__link--underline">Tokens</a></li>
+            </ul>
         </div>
     </nav>
 </header>
