@@ -120,8 +120,9 @@ const $qa = window.safeQueryAll
             }
 
             /**
-             * Handle keyboard navigation
-             * Pre-compute tab array for better performance
+             * Handle keyboard navigation for accessibility
+             * Supports Arrow Left/Right, Home, and End keys
+             * @param {KeyboardEvent} e - Keyboard event
              */
             const tabArray = Array.from(tabs)
             const handleKeydown = (e) => {
@@ -327,19 +328,22 @@ const $qa = window.safeQueryAll
 
             /**
              * Get all focusable elements within the modal dialog
-             * Cached for performance, updates when modal opens
+             * @returns {Array<Element>} Array of focusable elements
              */
             const getFocusableElements = () => {
                 return focusableElements
             }
 
             /**
-             * Update the cache of focusable elements
+             * Update the cache of focusable elements for better performance
              */
             const updateFocusableElements = () => {
                 focusableElements = $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
             }
 
+            /**
+             * Open the modal with proper accessibility and focus management
+             */
             const openModal = () => {
                 if (isOpen) return
 
@@ -369,6 +373,9 @@ const $qa = window.safeQueryAll
                 }
             }
 
+            /**
+             * Close the modal and restore focus to the trigger element
+             */
             const closeModal = () => {
                 if (!isOpen) return
 

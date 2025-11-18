@@ -1569,8 +1569,8 @@ body[data-theme="dark"] .site-header--scrolled {
   justify-content: space-between;
   padding: var(--space-3) var(--gutter-xl);
   gap: var(--space-3);
-
-  /* No transition - appears instantly */
+  transition: transform var(--transition-duration-normal) var(--transition-timing),
+              opacity var(--transition-duration-normal) var(--transition-timing);
 }
 
 /* Responsive padding adjustments */
@@ -6776,16 +6776,5 @@ body {
               border-color var(--transition-duration-normal) var(--transition-timing);
 }
 
-/* Prevent image jumps during loading */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
 
-/* Ensure smooth navigation transitions */
-.nav {
-  transition: transform var(--transition-duration-normal) var(--transition-timing),
-              opacity var(--transition-duration-normal) var(--transition-timing);
-}
 
