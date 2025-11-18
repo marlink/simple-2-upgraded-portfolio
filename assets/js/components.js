@@ -33,7 +33,7 @@ const $q = window.safeQuery
 const $qa = window.safeQueryAll
 
 // Initialize components immediately for better performance
-(function initializeComponents() {
+(() => {
     // Use setTimeout to ensure DOM is fully ready
     setTimeout(() => {
         try {
@@ -58,132 +58,132 @@ const $qa = window.safeQueryAll
          * - Smooth transitions (handled by CSS)
          * - Automatic activation on focus for screen readers
          */
-        const tabContainers = $qa('.tabs')
-        if (!tabContainers || tabContainers.length === 0) {
+            const tabContainers = $qa('.tabs')
+            if (!tabContainers || tabContainers.length === 0) {
             // No tabs on this page
-            return
-        }
-
-        tabContainers.forEach(container => {
-            if (!container) return
-
-            const tabs = $qa('.tab', container)
-            const panels = $qa('.tab__panel', container)
-
-            if (!tabs || tabs.length === 0 || !panels || panels.length === 0) {
-                // Silently skip containers without required elements (common for partial implementations)
                 return
             }
 
-            // Create tab-to-panel mapping for efficient lookups
-            const tabPanelMap = new Map()
-            tabs.forEach(tab => {
-                const panelId = tab.getAttribute('aria-controls')
-                if (panelId) {
-                    const panel = $q('#' + panelId, container)
-                    panel && tabPanelMap.set(tab, panel)
-                }
-            })
+            tabContainers.forEach(container => {
+                if (!container) return
 
-            /**
+                const tabs = $qa('.tab', container)
+                const panels = $qa('.tab__panel', container)
+
+                if (!tabs || tabs.length === 0 || !panels || panels.length === 0) {
+                // Silently skip containers without required elements (common for partial implementations)
+                    return
+                }
+
+                // Create tab-to-panel mapping for efficient lookups
+                const tabPanelMap = new Map()
+                tabs.forEach(tab => {
+                    const panelId = tab.getAttribute('aria-controls')
+                    if (panelId) {
+                        const panel = $q('#' + panelId, container)
+                        panel && tabPanelMap.set(tab, panel)
+                    }
+                })
+
+                /**
              * Activate a specific tab
              * Optimized to only update elements that need changing
              */
-            const activateTab = (activeTab) => {
-                if (!tabPanelMap.has(activeTab)) return
+                const activateTab = (activeTab) => {
+                    if (!tabPanelMap.has(activeTab)) return
 
-                const activePanel = tabPanelMap.get(activeTab)
-                if (!activePanel) return
+                    const activePanel = tabPanelMap.get(activeTab)
+                    if (!activePanel) return
 
-                // Find currently active tab and panel for efficient updates
-                const currentActiveTab = tabs.find(tab => tab.classList.contains('is-active'))
-                const currentActivePanel = panels.find(panel => panel.classList.contains('is-active'))
+                    // Find currently active tab and panel for efficient updates
+                    const currentActiveTab = tabs.find(tab => tab.classList.contains('is-active'))
+                    const currentActivePanel = panels.find(panel => panel.classList.contains('is-active'))
 
-                // Only update if different from current active
-                if (currentActiveTab === activeTab) return
+                    // Only update if different from current active
+                    if (currentActiveTab === activeTab) return
 
-                // Deactivate current active elements
-                if (currentActiveTab) {
-                    currentActiveTab.classList.remove('is-active')
-                    currentActiveTab.setAttribute('aria-selected', 'false')
+                    // Deactivate current active elements
+                    if (currentActiveTab) {
+                        currentActiveTab.classList.remove('is-active')
+                        currentActiveTab.setAttribute('aria-selected', 'false')
+                    }
+                    if (currentActivePanel) {
+                        currentActivePanel.classList.remove('is-active')
+                        currentActivePanel.setAttribute('hidden', '')
+                    }
+
+                    // Activate selected tab and panel
+                    activeTab.classList.add('is-active')
+                    activeTab.setAttribute('aria-selected', 'true')
+                    activePanel.classList.add('is-active')
+                    activePanel.removeAttribute('hidden')
                 }
-                if (currentActivePanel) {
-                    currentActivePanel.classList.remove('is-active')
-                    currentActivePanel.setAttribute('hidden', '')
-                }
 
-                // Activate selected tab and panel
-                activeTab.classList.add('is-active')
-                activeTab.setAttribute('aria-selected', 'true')
-                activePanel.classList.add('is-active')
-                activePanel.removeAttribute('hidden')
-            }
-
-            /**
+                /**
              * Handle keyboard navigation for accessibility
              * Supports Arrow Left/Right, Home, and End keys
              * @param {KeyboardEvent} e - Keyboard event
              */
-            const tabArray = Array.from(tabs)
-            const handleKeydown = (e) => {
-                const currentTab = e.target.closest('.tab')
-                if (!currentTab || !tabPanelMap.has(currentTab)) return
+                const tabArray = Array.from(tabs)
+                const handleKeydown = (e) => {
+                    const currentTab = e.target.closest('.tab')
+                    if (!currentTab || !tabPanelMap.has(currentTab)) return
 
-                const currentIndex = tabArray.indexOf(currentTab)
-                let newIndex = currentIndex
+                    const currentIndex = tabArray.indexOf(currentTab)
+                    let newIndex = currentIndex
 
-                switch (e.key) {
-                    case 'ArrowLeft':
-                        newIndex = currentIndex > 0 ? currentIndex - 1 : tabArray.length - 1
-                        break
-                    case 'ArrowRight':
-                        newIndex = currentIndex < tabArray.length - 1 ? currentIndex + 1 : 0
-                        break
-                    case 'Home':
-                        newIndex = 0
-                        break
-                    case 'End':
-                        newIndex = tabArray.length - 1
-                        break
-                    default:
-                        return // Don't prevent default for other keys
-                }
+                    switch (e.key) {
+                        case 'ArrowLeft':
+                            newIndex = currentIndex > 0 ? currentIndex - 1 : tabArray.length - 1
+                            break
+                        case 'ArrowRight':
+                            newIndex = currentIndex < tabArray.length - 1 ? currentIndex + 1 : 0
+                            break
+                        case 'Home':
+                            newIndex = 0
+                            break
+                        case 'End':
+                            newIndex = tabArray.length - 1
+                            break
+                        default:
+                            return // Don't prevent default for other keys
+                    }
 
-                e.preventDefault()
-                const newTab = tabArray[newIndex]
-                if (newTab) {
-                    newTab.focus()
-                    activateTab(newTab)
-                }
-            }
-
-            // Set up event listeners
-            tabs.forEach(tab => {
-                // Click handler
-                tab.addEventListener('click', (e) => {
                     e.preventDefault()
-                    activateTab(tab)
-                })
+                    const newTab = tabArray[newIndex]
+                    if (newTab) {
+                        newTab.focus()
+                        activateTab(newTab)
+                    }
+                }
 
-                // Keyboard navigation
-                tab.addEventListener('keydown', handleKeydown)
+                // Set up event listeners
+                tabs.forEach(tab => {
+                // Click handler
+                    tab.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        activateTab(tab)
+                    })
+
+                    // Keyboard navigation
+                    tab.addEventListener('keydown', handleKeydown)
 
                 // Optional: Activate on focus for screen readers
                 // Uncomment if you want automatic activation on focus
                 // tab.addEventListener('focus', () => activateTab(tab))
+                })
+
+                // Initialize with first active tab or first tab
+                const initialActiveTab = tabs.find(tab => tab.classList.contains('is-active')) || tabs[0]
+                if (initialActiveTab) {
+                    activateTab(initialActiveTab)
+                }
             })
+        } catch (error) {
+            console.error('Error initializing tabs component:', error)
+        }
 
-            // Initialize with first active tab or first tab
-            const initialActiveTab = tabs.find(tab => tab.classList.contains('is-active')) || tabs[0]
-            if (initialActiveTab) {
-                activateTab(initialActiveTab)
-            }
-        })
-    } catch (error) {
-        console.error('Error initializing tabs component:', error)
-    }
-
-    /* ========================================================================
+        /* ========================================================================
      * ACCORDION COMPONENT
      * ========================================================================
      * Expandable/collapsible content sections (FAQ-style)
@@ -202,83 +202,83 @@ const $qa = window.safeQueryAll
      * - Independent item expansion (multiple can be open)
      */
 
-    try {
-        const accordions = $qa('.accordion')
+        try {
+            const accordions = $qa('.accordion')
 
-        if (!accordions || accordions.length === 0) {
-            return;
-        }
-
-        accordions.forEach((accordion) => {
-            if (!accordion) return;
-
-            const items = $qa('.accordion__item', accordion)
-
-            if (!items || items.length === 0) {
+            if (!accordions || accordions.length === 0) {
                 return
             }
 
-            items.forEach((item, index) => {
-                const button = $q('.accordion__button', item)
-                const panel = $q('.accordion__panel', item)
+            accordions.forEach((accordion) => {
+                if (!accordion) return
 
-                if (!button || !panel) {
-                    // Skip items without required elements
+                const items = $qa('.accordion__item', accordion)
+
+                if (!items || items.length === 0) {
                     return
                 }
 
-                // Generate unique IDs if not present
-                const buttonId = button.id || `accordion-btn-${index}`
-                const panelId = panel.id || `accordion-panel-${index}`
+                items.forEach((item, index) => {
+                    const button = $q('.accordion__button', item)
+                    const panel = $q('.accordion__panel', item)
 
-                button.id = buttonId
-                panel.id = panelId
-
-                // Set up ARIA attributes
-                button.setAttribute('aria-controls', panelId)
-                button.setAttribute('aria-expanded', button.getAttribute('aria-expanded') || 'false')
-                panel.setAttribute('aria-labelledby', buttonId)
-                panel.setAttribute('role', 'region')
-
-                // Ensure initial state is correct
-                const isExpanded = button.getAttribute('aria-expanded') === 'true'
-                panel.hidden = !isExpanded
-
-                // Handle click events
-                button.addEventListener('click', (e) => {
-                    e.preventDefault()
-
-                    const currentlyExpanded = button.getAttribute('aria-expanded') === 'true'
-                    const shouldExpand = !currentlyExpanded
-
-                    // Update button state
-                    button.setAttribute('aria-expanded', String(shouldExpand))
-
-                    // Update panel visibility
-                    panel.hidden = !shouldExpand
-
-                    // Optional: Scroll to expanded panel for better UX
-                    if (shouldExpand && window.getComputedStyle(panel).display !== 'none') {
-                        setTimeout(() => {
-                            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-                        }, 100)
+                    if (!button || !panel) {
+                    // Skip items without required elements
+                        return
                     }
-                })
 
-                // Optional: Support for Enter and Space keys
-                button.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
+                    // Generate unique IDs if not present
+                    const buttonId = button.id || `accordion-btn-${index}`
+                    const panelId = panel.id || `accordion-panel-${index}`
+
+                    button.id = buttonId
+                    panel.id = panelId
+
+                    // Set up ARIA attributes
+                    button.setAttribute('aria-controls', panelId)
+                    button.setAttribute('aria-expanded', button.getAttribute('aria-expanded') || 'false')
+                    panel.setAttribute('aria-labelledby', buttonId)
+                    panel.setAttribute('role', 'region')
+
+                    // Ensure initial state is correct
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true'
+                    panel.hidden = !isExpanded
+
+                    // Handle click events
+                    button.addEventListener('click', (e) => {
                         e.preventDefault()
-                        button.click()
-                    }
+
+                        const currentlyExpanded = button.getAttribute('aria-expanded') === 'true'
+                        const shouldExpand = !currentlyExpanded
+
+                        // Update button state
+                        button.setAttribute('aria-expanded', String(shouldExpand))
+
+                        // Update panel visibility
+                        panel.hidden = !shouldExpand
+
+                        // Optional: Scroll to expanded panel for better UX
+                        if (shouldExpand && window.getComputedStyle(panel).display !== 'none') {
+                            setTimeout(() => {
+                                panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+                            }, 100)
+                        }
+                    })
+
+                    // Optional: Support for Enter and Space keys
+                    button.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault()
+                            button.click()
+                        }
+                    })
                 })
             })
-        })
-    } catch (error) {
-        console.error('Error initializing accordion component:', error)
-    }
+        } catch (error) {
+            console.error('Error initializing accordion component:', error)
+        }
 
-    try {
+        try {
         /* ========================================================================
          * MODAL COMPONENT
          * ========================================================================
@@ -304,197 +304,197 @@ const $qa = window.safeQueryAll
      * - Restores focus to trigger element on close
      * - Prevents body scroll when open
      */
-        const openTriggers = $qa('[data-modal-target]')
-        const modals = $qa('.modal')
+            const openTriggers = $qa('[data-modal-target]')
+            const modals = $qa('.modal')
 
-        if (!modals || modals.length === 0) return
+            if (!modals || modals.length === 0) return
 
-        // Initialize modals
-        modals.forEach(modal => {
-            if (!modal) return
+            // Initialize modals
+            modals.forEach(modal => {
+                if (!modal) return
 
-            const overlay = $q('.modal__overlay', modal)
-            const dialog = $q('.modal__dialog', modal)
-            const closeButtons = $qa('[data-modal-close]', modal)
+                const overlay = $q('.modal__overlay', modal)
+                const dialog = $q('.modal__dialog', modal)
+                const closeButtons = $qa('[data-modal-close]', modal)
 
-            if (!overlay || !dialog) {
+                if (!overlay || !dialog) {
                 // Skip modals without required elements
-                return
-            }
-
-            let lastFocused = null
-            let isOpen = false
-            let focusableElements = []
-
-            /**
-             * Get all focusable elements within the modal dialog
-             * @returns {Array<Element>} Array of focusable elements
-             */
-            const getFocusableElements = () => {
-                return focusableElements
-            }
-
-            /**
-             * Update the cache of focusable elements for better performance
-             */
-            const updateFocusableElements = () => {
-                focusableElements = $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
-            }
-
-            /**
-             * Open the modal with proper accessibility and focus management
-             */
-            const openModal = () => {
-                if (isOpen) return
-
-                isOpen = true
-                lastFocused = document.activeElement
-
-                // Update focusable elements cache
-                updateFocusableElements()
-
-                // Show modal
-                modal.removeAttribute('hidden')
-                modal.setAttribute('aria-hidden', 'false')
-
-                // Prevent body scroll
-                document.body.style.overflow = 'hidden'
-
-                // Focus management
-                if (focusableElements.length > 0) {
-                    requestAnimationFrame(() => focusableElements[0].focus())
-                }
-
-                // Announce modal to screen readers
-                const heading = $q('h1, h2, h3, h4, h5, h6', dialog)
-                if (heading) {
-                    modal.setAttribute('aria-labelledby', heading.id || `modal-heading-${Date.now()}`)
-                    if (!heading.id) heading.id = modal.getAttribute('aria-labelledby')
-                }
-            }
-
-            /**
-             * Close the modal and restore focus to the trigger element
-             */
-            const closeModal = () => {
-                if (!isOpen) return
-
-                isOpen = false
-
-                // Hide modal
-                modal.setAttribute('hidden', '')
-                modal.setAttribute('aria-hidden', 'true')
-
-                // Restore body scroll
-                document.body.style.overflow = ''
-
-                // Restore focus
-                if (lastFocused && typeof lastFocused.focus === 'function') {
-                    lastFocused.focus()
-                }
-            }
-
-            /**
-             * Enhanced focus trapping with proper tab order
-             */
-            const handleKeydown = (e) => {
-                if (!isOpen) return
-
-                if (e.key === 'Escape') {
-                    e.preventDefault()
-                    closeModal()
                     return
                 }
 
-                if (e.key === 'Tab') {
-                    const focusable = getFocusableElements()
-                    if (focusable.length === 0) return
+                let lastFocused = null
+                let isOpen = false
+                let focusableElements = []
 
-                    const first = focusable[0]
-                    const last = focusable[focusable.length - 1]
-                    const active = document.activeElement
+                /**
+             * Get all focusable elements within the modal dialog
+             * @returns {Array<Element>} Array of focusable elements
+             */
+                const getFocusableElements = () => {
+                    return focusableElements
+                }
 
-                    if (e.shiftKey) {
+                /**
+             * Update the cache of focusable elements for better performance
+             */
+                const updateFocusableElements = () => {
+                    focusableElements = $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
+                }
+
+                /**
+             * Open the modal with proper accessibility and focus management
+             */
+                const openModal = () => {
+                    if (isOpen) return
+
+                    isOpen = true
+                    lastFocused = document.activeElement
+
+                    // Update focusable elements cache
+                    updateFocusableElements()
+
+                    // Show modal
+                    modal.removeAttribute('hidden')
+                    modal.setAttribute('aria-hidden', 'false')
+
+                    // Prevent body scroll
+                    document.body.style.overflow = 'hidden'
+
+                    // Focus management
+                    if (focusableElements.length > 0) {
+                        requestAnimationFrame(() => focusableElements[0].focus())
+                    }
+
+                    // Announce modal to screen readers
+                    const heading = $q('h1, h2, h3, h4, h5, h6', dialog)
+                    if (heading) {
+                        modal.setAttribute('aria-labelledby', heading.id || `modal-heading-${Date.now()}`)
+                        if (!heading.id) heading.id = modal.getAttribute('aria-labelledby')
+                    }
+                }
+
+                /**
+             * Close the modal and restore focus to the trigger element
+             */
+                const closeModal = () => {
+                    if (!isOpen) return
+
+                    isOpen = false
+
+                    // Hide modal
+                    modal.setAttribute('hidden', '')
+                    modal.setAttribute('aria-hidden', 'true')
+
+                    // Restore body scroll
+                    document.body.style.overflow = ''
+
+                    // Restore focus
+                    if (lastFocused && typeof lastFocused.focus === 'function') {
+                        lastFocused.focus()
+                    }
+                }
+
+                /**
+             * Enhanced focus trapping with proper tab order
+             */
+                const handleKeydown = (e) => {
+                    if (!isOpen) return
+
+                    if (e.key === 'Escape') {
+                        e.preventDefault()
+                        closeModal()
+                        return
+                    }
+
+                    if (e.key === 'Tab') {
+                        const focusable = getFocusableElements()
+                        if (focusable.length === 0) return
+
+                        const first = focusable[0]
+                        const last = focusable[focusable.length - 1]
+                        const active = document.activeElement
+
+                        if (e.shiftKey) {
                         // Shift+Tab: move to previous element
-                        if (active === first) {
-                            e.preventDefault()
-                            last.focus()
-                        }
-                    } else {
+                            if (active === first) {
+                                e.preventDefault()
+                                last.focus()
+                            }
+                        } else {
                         // Tab: move to next element
-                        if (active === last) {
-                            e.preventDefault()
-                            first.focus()
+                            if (active === last) {
+                                e.preventDefault()
+                                first.focus()
+                            }
                         }
                     }
                 }
-            }
 
-            // Set up event handlers
-            const keydownHandler = handleKeydown
-            modal._keydownHandler = keydownHandler
+                // Set up event handlers
+                const keydownHandler = handleKeydown
+                modal._keydownHandler = keydownHandler
 
-            // Add event listeners only once
-            if (!modal._initialized) {
-                modal._initialized = true
+                // Add event listeners only once
+                if (!modal._initialized) {
+                    modal._initialized = true
 
-                // Overlay click to close
-                overlay.addEventListener('click', closeModal)
+                    // Overlay click to close
+                    overlay.addEventListener('click', closeModal)
 
-                // Close buttons
-                closeButtons.forEach(btn => {
-                    btn.addEventListener('click', closeModal)
+                    // Close buttons
+                    closeButtons.forEach(btn => {
+                        btn.addEventListener('click', closeModal)
+                    })
+
+                    // Global keydown listener (added/removed dynamically)
+                    modal._setupKeydown = () => {
+                        document.addEventListener('keydown', keydownHandler)
+                    }
+
+                    modal._cleanupKeydown = () => {
+                        document.removeEventListener('keydown', keydownHandler)
+                    }
+                }
+
+                // Store functions on modal element
+                modal._openModal = openModal
+                modal._closeModal = closeModal
+            })
+
+            // Set up open triggers
+            openTriggers.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    const targetSel = btn.getAttribute('data-modal-target')
+                    const modal = $q(targetSel)
+                    if (modal && modal._openModal) {
+                        modal._openModal()
+                        // Set up keydown listener when opening
+                        if (modal._setupKeydown) modal._setupKeydown()
+                    }
                 })
+            })
 
-                // Global keydown listener (added/removed dynamically)
-                modal._setupKeydown = () => {
-                    document.addEventListener('keydown', keydownHandler)
+            // Handle modal opening/closing with proper cleanup
+            modals.forEach(modal => {
+                if (modal._openModal) {
+                    const originalOpen = modal._openModal
+                    modal._openModal = () => {
+                        originalOpen()
+                        if (modal._setupKeydown) modal._setupKeydown()
+                    }
                 }
 
-                modal._cleanupKeydown = () => {
-                    document.removeEventListener('keydown', keydownHandler)
-                }
-            }
-
-            // Store functions on modal element
-            modal._openModal = openModal
-            modal._closeModal = closeModal
-        })
-
-        // Set up open triggers
-        openTriggers.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault()
-                const targetSel = btn.getAttribute('data-modal-target')
-                const modal = $q(targetSel)
-                if (modal && modal._openModal) {
-                    modal._openModal()
-                    // Set up keydown listener when opening
-                    if (modal._setupKeydown) modal._setupKeydown()
+                if (modal._closeModal) {
+                    const originalClose = modal._closeModal
+                    modal._closeModal = () => {
+                        if (modal._cleanupKeydown) modal._cleanupKeydown()
+                        originalClose()
+                    }
                 }
             })
-        })
 
-        // Handle modal opening/closing with proper cleanup
-        modals.forEach(modal => {
-            if (modal._openModal) {
-                const originalOpen = modal._openModal
-                modal._openModal = () => {
-                    originalOpen()
-                    if (modal._setupKeydown) modal._setupKeydown()
-                }
-            }
-
-            if (modal._closeModal) {
-                const originalClose = modal._closeModal
-                modal._closeModal = () => {
-                    if (modal._cleanupKeydown) modal._cleanupKeydown()
-                    originalClose()
-                }
-            }
-        })
-
-        /* ========================================================================
+            /* ========================================================================
      * TOOLTIP COMPONENT
      * ========================================================================
      * Simple hover tooltips
@@ -507,96 +507,96 @@ const $qa = window.safeQueryAll
      * - Created dynamically on page load
      * - Simple CSS-based positioning
      */
-        const tooltipTriggers = $qa('[data-tooltip]')
-        if (!tooltipTriggers || tooltipTriggers.length === 0) return
+            const tooltipTriggers = $qa('[data-tooltip]')
+            if (!tooltipTriggers || tooltipTriggers.length === 0) return
 
-        tooltipTriggers.forEach((trigger, index) => {
-            const tooltipText = trigger.getAttribute('data-tooltip')
-            if (!tooltipText) return
+            tooltipTriggers.forEach((trigger, index) => {
+                const tooltipText = trigger.getAttribute('data-tooltip')
+                if (!tooltipText) return
 
-            // Create tooltip element
-            const tip = document.createElement('span')
-            tip.className = 'tooltip'
-            tip.textContent = tooltipText
-            tip.setAttribute('role', 'tooltip')
-            tip.id = `tooltip-${index}-${Date.now()}`
+                // Create tooltip element
+                const tip = document.createElement('span')
+                tip.className = 'tooltip'
+                tip.textContent = tooltipText
+                tip.setAttribute('role', 'tooltip')
+                tip.id = `tooltip-${index}-${Date.now()}`
 
-            // Set up ARIA attributes
-            trigger.setAttribute('aria-describedby', tip.id)
-            trigger.setAttribute('tabindex', '0') // Make focusable if not already
+                // Set up ARIA attributes
+                trigger.setAttribute('aria-describedby', tip.id)
+                trigger.setAttribute('tabindex', '0') // Make focusable if not already
 
-            // Enhanced positioning with collision detection
-            const positionTooltip = () => {
-                if (!tip.isConnected) return
+                // Enhanced positioning with collision detection
+                const positionTooltip = () => {
+                    if (!tip.isConnected) return
 
-                // Reset positioning
-                tip.style.left = '50%'
-                tip.style.top = ''
-                tip.style.bottom = ''
-                tip.style.transform = 'translate(-50%, -6px)'
-
-                // Get positions
-                const triggerRect = trigger.getBoundingClientRect()
-                const tipRect = tip.getBoundingClientRect()
-                const viewportWidth = window.innerWidth
-                const viewportHeight = window.innerHeight
-
-                // Check if tooltip goes off-screen horizontally
-                if (tipRect.left < 0) {
-                    tip.style.left = '0'
-                    tip.style.transform = 'translateX(0)'
-                } else if (tipRect.right > viewportWidth) {
-                    tip.style.left = '100%'
-                    tip.style.transform = 'translateX(-100%)'
-                }
-
-                // Check if tooltip goes off-screen vertically (prefer bottom, fallback to top)
-                if (tipRect.top < 0) {
-                    // Move to bottom
-                    tip.style.top = '100%'
+                    // Reset positioning
+                    tip.style.left = '50%'
+                    tip.style.top = ''
                     tip.style.bottom = ''
-                    tip.style.transform = tip.style.transform.replace('-6px', '6px')
+                    tip.style.transform = 'translate(-50%, -6px)'
+
+                    // Get positions
+                    const triggerRect = trigger.getBoundingClientRect()
+                    const tipRect = tip.getBoundingClientRect()
+                    const viewportWidth = window.innerWidth
+                    const viewportHeight = window.innerHeight
+
+                    // Check if tooltip goes off-screen horizontally
+                    if (tipRect.left < 0) {
+                        tip.style.left = '0'
+                        tip.style.transform = 'translateX(0)'
+                    } else if (tipRect.right > viewportWidth) {
+                        tip.style.left = '100%'
+                        tip.style.transform = 'translateX(-100%)'
+                    }
+
+                    // Check if tooltip goes off-screen vertically (prefer bottom, fallback to top)
+                    if (tipRect.top < 0) {
+                    // Move to bottom
+                        tip.style.top = '100%'
+                        tip.style.bottom = ''
+                        tip.style.transform = tip.style.transform.replace('-6px', '6px')
+                    }
                 }
-            }
 
-            // Event handlers
-            const showTooltip = () => {
-                tip.classList.add('tooltip--visible')
-                positionTooltip()
-            }
-
-            const hideTooltip = () => {
-                tip.classList.remove('tooltip--visible')
-            }
-
-            // Mouse events
-            trigger.addEventListener('mouseenter', showTooltip)
-            trigger.addEventListener('mouseleave', hideTooltip)
-
-            // Focus events for keyboard accessibility
-            trigger.addEventListener('focus', showTooltip)
-            trigger.addEventListener('blur', hideTooltip)
-
-            // Reposition on window resize (only when tooltip is visible)
-            let resizeTimeout = null
-            const handleResize = () => {
-                if (tip.classList.contains('tooltip--visible')) {
-                    clearTimeout(resizeTimeout)
-                    resizeTimeout = setTimeout(positionTooltip, 100)
+                // Event handlers
+                const showTooltip = () => {
+                    tip.classList.add('tooltip--visible')
+                    positionTooltip()
                 }
-            }
-            window.addEventListener('resize', handleResize, { passive: true })
 
-            // Append tooltip to trigger element
-            trigger.appendChild(tip)
+                const hideTooltip = () => {
+                    tip.classList.remove('tooltip--visible')
+                }
 
-            // Position tooltip once initially (will be repositioned when shown)
-            requestAnimationFrame(() => {
-                if (tip.isConnected) positionTooltip()
+                // Mouse events
+                trigger.addEventListener('mouseenter', showTooltip)
+                trigger.addEventListener('mouseleave', hideTooltip)
+
+                // Focus events for keyboard accessibility
+                trigger.addEventListener('focus', showTooltip)
+                trigger.addEventListener('blur', hideTooltip)
+
+                // Reposition on window resize (only when tooltip is visible)
+                let resizeTimeout = null
+                const handleResize = () => {
+                    if (tip.classList.contains('tooltip--visible')) {
+                        clearTimeout(resizeTimeout)
+                        resizeTimeout = setTimeout(positionTooltip, 100)
+                    }
+                }
+                window.addEventListener('resize', handleResize, { passive: true })
+
+                // Append tooltip to trigger element
+                trigger.appendChild(tip)
+
+                // Position tooltip once initially (will be repositioned when shown)
+                requestAnimationFrame(() => {
+                    if (tip.isConnected) positionTooltip()
+                })
             })
-        })
 
-        /* ========================================================================
+            /* ========================================================================
      * CODE COPY BUTTON COMPONENT
      * ========================================================================
      * Adds copy-to-clipboard functionality to code blocks
@@ -616,151 +616,151 @@ const $qa = window.safeQueryAll
      * - Touch-friendly (prevents text selection on tap)
      */
 
-        /**
+            /**
          * Decode HTML entities in a string
          * @param {string} html - HTML string with entities
          * @returns {string} - Decoded string
          */
-        const decodeHtmlEntities = (html) => {
+            const decodeHtmlEntities = (html) => {
             // Use a single, reusable textarea for better performance
-            if (!decodeHtmlEntities.textarea) {
-                decodeHtmlEntities.textarea = document.createElement('textarea')
+                if (!decodeHtmlEntities.textarea) {
+                    decodeHtmlEntities.textarea = document.createElement('textarea')
+                }
+                decodeHtmlEntities.textarea.innerHTML = html
+                return decodeHtmlEntities.textarea.value
             }
-            decodeHtmlEntities.textarea.innerHTML = html
-            return decodeHtmlEntities.textarea.value
-        }
 
-        /**
+            /**
      * Extract text content from a code block
      * @param {HTMLElement} codeBlock - The code block element
      * @returns {string} - The code text to copy
      */
-        const extractCodeText = (codeBlock) => {
-        // For .code-example, decode HTML entities and handle HTML structure
-            if (codeBlock.classList.contains('code-example')) {
-            // Clone the element to avoid modifying the original
-                const clone = codeBlock.cloneNode(true)
+            const extractCodeText = (codeBlock) => {
+                // For .code-example, decode HTML entities and handle HTML structure
+                if (codeBlock.classList.contains('code-example')) {
+                    // Clone the element to avoid modifying the original
+                    const clone = codeBlock.cloneNode(true)
 
-                // Replace <br> tags with newlines
-                clone.querySelectorAll('br').forEach(br => {
-                    br.replaceWith(document.createTextNode('\n'))
-                })
+                    // Replace <br> tags with newlines
+                    clone.querySelectorAll('br').forEach(br => {
+                        br.replaceWith(document.createTextNode('\n'))
+                    })
 
-                // Remove <strong> tags but keep their content, add newline after if followed by content
-                const strongTags = Array.from(clone.querySelectorAll('strong'))
-                strongTags.forEach(strong => {
-                    const parent = strong.parentNode
-                    const nextSibling = strong.nextSibling
+                    // Remove <strong> tags but keep their content, add newline after if followed by content
+                    const strongTags = Array.from(clone.querySelectorAll('strong'))
+                    strongTags.forEach(strong => {
+                        const parent = strong.parentNode
+                        const nextSibling = strong.nextSibling
 
-                    // Move strong content before the strong element
-                    while (strong.firstChild) {
-                        parent.insertBefore(strong.firstChild, strong)
-                    }
-
-                    // Add newline after strong content if there's following content
-                    if (nextSibling && (nextSibling.nodeType === Node.TEXT_NODE || nextSibling.nodeType === Node.ELEMENT_NODE)) {
-                        const nextText = nextSibling.textContent ? nextSibling.textContent.trim() : ''
-                        if (nextText) {
-                            parent.insertBefore(document.createTextNode('\n'), strong)
+                        // Move strong content before the strong element
+                        while (strong.firstChild) {
+                            parent.insertBefore(strong.firstChild, strong)
                         }
-                    }
 
-                    parent.removeChild(strong)
-                })
+                        // Add newline after strong content if there's following content
+                        if (nextSibling && (nextSibling.nodeType === Node.TEXT_NODE || nextSibling.nodeType === Node.ELEMENT_NODE)) {
+                            const nextText = nextSibling.textContent ? nextSibling.textContent.trim() : ''
+                            if (nextText) {
+                                parent.insertBefore(document.createTextNode('\n'), strong)
+                            }
+                        }
 
-                // Get text content and decode HTML entities
-                let text = clone.textContent || clone.innerText
-                // Clean up multiple consecutive newlines (max 2)
-                text = text.replace(/\n{3,}/g, '\n\n')
-                return decodeHtmlEntities(text).trim()
-            }
+                        parent.removeChild(strong)
+                    })
 
-            // For pre.code-block, get code element text
-            if (codeBlock.classList.contains('code-block')) {
-                const codeElement = $q('code', codeBlock)
-                if (codeElement) {
-                    return codeElement.textContent || codeElement.innerText
+                    // Get text content and decode HTML entities
+                    let text = clone.textContent || clone.innerText
+                    // Clean up multiple consecutive newlines (max 2)
+                    text = text.replace(/\n{3,}/g, '\n\n')
+                    return decodeHtmlEntities(text).trim()
                 }
+
+                // For pre.code-block, get code element text
+                if (codeBlock.classList.contains('code-block')) {
+                    const codeElement = $q('code', codeBlock)
+                    if (codeElement) {
+                        return codeElement.textContent || codeElement.innerText
+                    }
+                    return codeBlock.textContent || codeBlock.innerText
+                }
+
+                // Fallback: get all text content
                 return codeBlock.textContent || codeBlock.innerText
             }
 
-            // Fallback: get all text content
-            return codeBlock.textContent || codeBlock.innerText
-        }
-
-        /**
+            /**
      * Copy text to clipboard
      * Uses copyToClipboard from utils.js
      */
-        const copyToClipboard = window.copyToClipboard
+            const copyToClipboard = window.copyToClipboard
 
-        /**
+            /**
      * Create and setup copy button for a code block
      * @param {HTMLElement} codeBlock - The code block element
      */
-        const setupCopyButton = (codeBlock) => {
-        // Skip if button already exists
-            if ($q('.code-copy-btn', codeBlock)) {
-                return
-            }
-
-            const copyBtn = document.createElement('button')
-            copyBtn.className = 'code-copy-btn'
-            copyBtn.setAttribute('aria-label', 'Copy code')
-            copyBtn.setAttribute('type', 'button')
-            copyBtn.textContent = 'Copy'
-
-            // Prevent text selection when tapping
-            copyBtn.addEventListener('mousedown', (e) => e.preventDefault())
-            copyBtn.addEventListener('touchstart', (e) => e.preventDefault())
-
-            // Handle copy on click/touch
-            const handleCopy = async (e) => {
-                e.preventDefault()
-                e.stopPropagation()
-
-                const codeText = extractCodeText(codeBlock)
-                const success = await copyToClipboard(codeText)
-
-                if (success) {
-                // Show success feedback
-                    const originalText = copyBtn.textContent
-                    copyBtn.textContent = 'Copied!'
-                    copyBtn.classList.add('copied')
-
-                    // Reset after 2 seconds
-                    setTimeout(() => {
-                        copyBtn.textContent = originalText
-                        copyBtn.classList.remove('copied')
-                    }, 2000)
-                } else {
-                // Show error feedback (optional)
-                    const originalText = copyBtn.textContent
-                    copyBtn.textContent = 'Error'
-                    setTimeout(() => {
-                        copyBtn.textContent = originalText
-                    }, 2000)
+            const setupCopyButton = (codeBlock) => {
+                // Skip if button already exists
+                if ($q('.code-copy-btn', codeBlock)) {
+                    return
                 }
+
+                const copyBtn = document.createElement('button')
+                copyBtn.className = 'code-copy-btn'
+                copyBtn.setAttribute('aria-label', 'Copy code')
+                copyBtn.setAttribute('type', 'button')
+                copyBtn.textContent = 'Copy'
+
+                // Prevent text selection when tapping
+                copyBtn.addEventListener('mousedown', (e) => e.preventDefault())
+                copyBtn.addEventListener('touchstart', (e) => e.preventDefault())
+
+                // Handle copy on click/touch
+                const handleCopy = async (e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+
+                    const codeText = extractCodeText(codeBlock)
+                    const success = await copyToClipboard(codeText)
+
+                    if (success) {
+                        // Show success feedback
+                        const originalText = copyBtn.textContent
+                        copyBtn.textContent = 'Copied!'
+                        copyBtn.classList.add('copied')
+
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText
+                            copyBtn.classList.remove('copied')
+                        }, 2000)
+                    } else {
+                        // Show error feedback (optional)
+                        const originalText = copyBtn.textContent
+                        copyBtn.textContent = 'Error'
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText
+                        }, 2000)
+                    }
+                }
+
+                // Support both click and touch events
+                copyBtn.addEventListener('click', handleCopy)
+                copyBtn.addEventListener('touchend', (e) => {
+                    e.preventDefault()
+                    handleCopy(e)
+                })
+
+                codeBlock.appendChild(copyBtn)
             }
 
-            // Support both click and touch events
-            copyBtn.addEventListener('click', handleCopy)
-            copyBtn.addEventListener('touchend', (e) => {
-                e.preventDefault()
-                handleCopy(e)
-            })
-
-            codeBlock.appendChild(copyBtn)
+            // Find all code blocks and add copy buttons
+            const codeBlocks = $qa('.code-example, pre.code-block')
+            codeBlocks.forEach(setupCopyButton)
+        } catch (error) {
+            console.error('Error initializing code copy button:', error)
         }
 
-        // Find all code blocks and add copy buttons
-        const codeBlocks = $qa('.code-example, pre.code-block')
-        codeBlocks.forEach(setupCopyButton)
-    } catch (error) {
-        console.error('Error initializing code copy button:', error)
-    }
-
-    try {
+        try {
         /* ========================================================================
          * VIDEO COVER COMPONENT
          * ========================================================================
@@ -783,113 +783,113 @@ const $qa = window.safeQueryAll
          * - Toggle play/pause on repeated clicks
          */
 
-        const videoCovers = $qa('[data-video-cover]')
+            const videoCovers = $qa('[data-video-cover]')
 
-        if (videoCovers && videoCovers.length > 0) {
+            if (videoCovers && videoCovers.length > 0) {
             // Detect if device has fine pointer (desktop/mouse)
-            const hasFinePointer = window.matchMedia('(pointer: fine)').matches
+                const hasFinePointer = window.matchMedia('(pointer: fine)').matches
 
-            videoCovers.forEach(container => {
-                const video = $q('.video-cover__video', container)
-                const cover = $q('.video-cover__cover', container)
-                const playIcon = $q('.video-cover__play-icon', container)
+                videoCovers.forEach(container => {
+                    const video = $q('.video-cover__video', container)
+                    const cover = $q('.video-cover__cover', container)
+                    const playIcon = $q('.video-cover__play-icon', container)
 
-                if (!video) {
+                    if (!video) {
                     // Skip containers without video elements
-                    return
-                }
+                        return
+                    }
 
-                let isPlaying = false
-                let showIconTimeout = null
+                    let isPlaying = false
+                    let showIconTimeout = null
 
-                /**
+                    /**
                  * Play video and hide cover
                  */
-                const playVideo = () => {
-                    if (!isPlaying) {
-                        video.play().then(() => {
-                            isPlaying = true
-                            container.classList.add('video-cover--playing')
-                            container.classList.remove('video-cover--show-icon')
-                            container.setAttribute('aria-expanded', 'true')
-                        }).catch(err => {
-                            console.error('Error playing video:', err)
-                        })
-                    } else {
+                    const playVideo = () => {
+                        if (!isPlaying) {
+                            video.play().then(() => {
+                                isPlaying = true
+                                container.classList.add('video-cover--playing')
+                                container.classList.remove('video-cover--show-icon')
+                                container.setAttribute('aria-expanded', 'true')
+                            }).catch(err => {
+                                console.error('Error playing video:', err)
+                            })
+                        } else {
                         // Toggle pause
-                        video.pause()
-                        isPlaying = false
-                        container.classList.remove('video-cover--playing')
-                        container.setAttribute('aria-expanded', 'false')
+                            video.pause()
+                            isPlaying = false
+                            container.classList.remove('video-cover--playing')
+                            container.setAttribute('aria-expanded', 'false')
+                        }
                     }
-                }
 
-                /**
+                    /**
                  * Show play icon temporarily on mobile
                  */
-                const showPlayIcon = () => {
-                    container.classList.add('video-cover--show-icon')
+                    const showPlayIcon = () => {
+                        container.classList.add('video-cover--show-icon')
 
-                    // Auto-hide after 2 seconds if not played
-                    clearTimeout(showIconTimeout)
-                    showIconTimeout = setTimeout(() => {
-                        if (!isPlaying) {
-                            container.classList.remove('video-cover--show-icon')
-                        }
-                    }, 2000)
-                }
+                        // Auto-hide after 2 seconds if not played
+                        clearTimeout(showIconTimeout)
+                        showIconTimeout = setTimeout(() => {
+                            if (!isPlaying) {
+                                container.classList.remove('video-cover--show-icon')
+                            }
+                        }, 2000)
+                    }
 
-                // Desktop: Click to play (hover handled by CSS)
-                if (hasFinePointer) {
-                    container.addEventListener('click', (e) => {
-                        e.preventDefault()
-                        playVideo()
-                    })
-                } else {
-                    // Mobile: First tap shows icon, second tap plays
-                    let tapped = false
-
-                    container.addEventListener('click', (e) => {
-                        e.preventDefault()
-
-                        if (!tapped && !isPlaying) {
-                            // First tap: show icon
-                            tapped = true
-                            showPlayIcon()
-
-                            // Reset tapped state after 3 seconds
-                            setTimeout(() => {
-                                tapped = false
-                            }, 3000)
-                        } else {
-                            // Second tap or toggle: play/pause video
+                    // Desktop: Click to play (hover handled by CSS)
+                    if (hasFinePointer) {
+                        container.addEventListener('click', (e) => {
+                            e.preventDefault()
                             playVideo()
-                            tapped = false
-                        }
-                    })
-                }
+                        })
+                    } else {
+                    // Mobile: First tap shows icon, second tap plays
+                        let tapped = false
 
-                // Reset when video ends (if not looping)
-                video.addEventListener('ended', () => {
-                    isPlaying = false
-                    container.classList.remove('video-cover--playing')
-                    container.classList.remove('video-cover--show-icon')
-                    container.setAttribute('aria-expanded', 'false')
-                })
+                        container.addEventListener('click', (e) => {
+                            e.preventDefault()
 
-                // Handle video pause event
-                video.addEventListener('pause', () => {
-                    if (isPlaying) {
+                            if (!tapped && !isPlaying) {
+                            // First tap: show icon
+                                tapped = true
+                                showPlayIcon()
+
+                                // Reset tapped state after 3 seconds
+                                setTimeout(() => {
+                                    tapped = false
+                                }, 3000)
+                            } else {
+                            // Second tap or toggle: play/pause video
+                                playVideo()
+                                tapped = false
+                            }
+                        })
+                    }
+
+                    // Reset when video ends (if not looping)
+                    video.addEventListener('ended', () => {
                         isPlaying = false
                         container.classList.remove('video-cover--playing')
+                        container.classList.remove('video-cover--show-icon')
                         container.setAttribute('aria-expanded', 'false')
-                    }
+                    })
+
+                    // Handle video pause event
+                    video.addEventListener('pause', () => {
+                        if (isPlaying) {
+                            isPlaying = false
+                            container.classList.remove('video-cover--playing')
+                            container.setAttribute('aria-expanded', 'false')
+                        }
+                    })
                 })
-            })
+            }
+        } catch (error) {
+            console.error('Error initializing video cover component:', error)
         }
-    } catch (error) {
-        console.error('Error initializing video cover component:', error)
-    }
     }, 0) // Small delay to ensure DOM is ready
 })()
 

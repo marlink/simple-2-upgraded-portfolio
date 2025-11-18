@@ -3343,7 +3343,7 @@ body[data-theme="dark"] .newsletter__message--error {
   height: 16px;
   margin: -8px 0 0 -8px;
   border: 2px solid transparent;
-  border-top: 2px solid currentColor;
+  border-top: 2px solid currentcolor;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
