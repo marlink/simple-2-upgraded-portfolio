@@ -92,12 +92,35 @@ jobs:
             --latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+
+      - name: Update HTML Version
+        if: steps.check.outputs.should_release == 'true'
+        run: |
+          # Update version in HTML files
+          node scripts/update-version.js
+
+          # Configure git for commit
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # Check if there are changes to commit
+          if git diff --quiet; then
+            echo "No changes to commit - HTML files already up to date"
+          else
+            # Commit the version updates
+            git add .
+            git commit -m "chore: update HTML footer version to v${{ steps.version.outputs.version }}"
+            git push origin main
+
+            echo "✅ Updated HTML files with version v${{ steps.version.outputs.version }}"
+          fi
+
       - name: Summary
         run: |
           if [ "${{ steps.check.outputs.should_release }}" == "true" ]; then
-            echo "## ✅ Release Created" >> $GITHUB_STEP_SUMMARY
+            echo "## ✅ Release Created & HTML Updated" >> $GITHUB_STEP_SUMMARY
             echo "Created release **v${{ steps.version.outputs.version }}**" >> $GITHUB_STEP_SUMMARY
+            echo "Updated HTML footer version to **v${{ steps.version.outputs.version }}**" >> $GITHUB_STEP_SUMMARY
             echo "Commits since last release: ${{ steps.commits.outputs.count }}" >> $GITHUB_STEP_SUMMARY
           else
             echo "## ⏳ No Release Needed" >> $GITHUB_STEP_SUMMARY
