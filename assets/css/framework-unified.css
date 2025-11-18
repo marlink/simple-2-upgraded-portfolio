@@ -262,8 +262,8 @@ body[data-theme="dark"] {
   --color-primary: #eaf4f4; /* light off-white - inverted from light theme */
   --color-secondary: #f8fafc; /* light surface color - inverted */
   --color-primary-contrast: #080c0e; /* dark - matches light theme primary */
-  --color-accent: #b7f04d; /* navbar green - replacing orange */
-  --color-accent-hover: #b7f04d; /* green accent for hover states (same in both themes) */
+  --color-accent: #83c5be; /* consistent with light theme */
+  --color-accent-hover: #006d77; /* consistent with light theme */
   --color-success: #34d399; /* emerald-400 */
   --color-danger: #f87171; /* red-400 */
   --color-warning: #fbbf24; /* amber-300 */
