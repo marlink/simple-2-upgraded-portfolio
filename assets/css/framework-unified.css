@@ -4098,19 +4098,19 @@ body[data-theme="light"] .card--glass-outline {
 body[data-theme="dark"] .card--glass-outline:hover {
   border-color: var(--color-accent-hover); /* Green hover from style guide */
   box-shadow:
-    0 12px 48px rgba(0, 0, 0, 0.25),
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  background: rgba(0, 0, 0, 0.75);
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 body[data-theme="light"] .card--glass-outline:hover {
   border-color: var(--color-accent-hover); /* Green hover from style guide */
   box-shadow:
-    0 12px 48px rgba(0, 0, 0, 0.16),
-    0 4px 12px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.55);
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 /* Prevent buttons inside glass cards from lifting */
