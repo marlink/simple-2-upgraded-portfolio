@@ -1404,6 +1404,46 @@ a:focus-visible {
 }
 
 /* =========================================
+   NAVIGATION LIST
+   Vertical navigation for sidebars and menus
+   ========================================= */
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.nav-list__link {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-list__link:hover,
+.nav-list__link:focus-visible {
+  background: var(--color-bg);
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+}
+
+.nav-list__link.is-active,
+.nav-list__link[aria-current="page"] {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border-left-color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* =========================================
    FLUID TYPOGRAPHY
    Scales smoothly between breakpoints using clamp()
    ========================================= */
