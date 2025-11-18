@@ -1,0 +1,21 @@
+{
+  "name": "simple-2",
+  "version": "1.0.0",
+  "description": "Static HTML/CSS/JS website with custom responsive CSS framework",
+  "context": {
+    "projectType": "static-website",
+    "framework": "vanilla-js",
+    "cssFramework": "custom",
+    "features": ["responsive-design", "theme-switching", "custom-components"],
+    "importantFiles": [
+      "assets/css/framework-unified.css",
+      "assets/css/typography-system.css", 
+      "assets/js/main.js",
+      "index.html"
+    ]
+  },
+  "mcp": {
+    "enabled": true,
+    "configFile": ".trae/mcp.json"
+  }
+}

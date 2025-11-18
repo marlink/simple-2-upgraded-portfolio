@@ -25,6 +25,9 @@ package-lock.json
 
 .vercel
 
+# Cache directory
+.trae-cache/
+
 # Test artifacts
 tests/screenshots/
 *.test.log

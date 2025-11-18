@@ -109,6 +109,9 @@ Use this checklist to ensure your code follows project standards before committi
   - [ ] All inputs have associated labels
   - [ ] Required fields marked
   - [ ] Form validation works
+  - [ ] Input field height: reduced padding (`var(--space-2)` vertical) for shorter appearance
+  - [ ] Consistent spacing with design tokens (`var(--space-*)`)
+  - [ ] Touch target minimum 44px maintained for accessibility
 
 ## Accessibility
 

@@ -1,0 +1,19 @@
+{
+  "name": "simple-2",
+  "version": "1.0.0",
+  "ide": "trae",
+  "description": "Configuration for Trae IDE",
+  "mcp": {
+    "enabled": true,
+    "servers": [
+      "filesystem",
+      "everything",
+      "puppeteer"
+    ]
+  },
+  "features": {
+    "browserAutomation": true,
+    "fileOperations": true,
+    "demoTools": true
+  }
+}

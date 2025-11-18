@@ -81,24 +81,25 @@
     letter-spacing: -0.02em;
     margin-bottom: var(--space-6);
     color: var(--color-text);
+
     /* Radial gradient text effect - sophisticated edge fade */
     background: radial-gradient(ellipse 100% 80% at 50% 50%, 
-        currentColor 0%, 
-        currentColor 60%, 
+        currentcolor 0%, 
+        currentcolor 60%, 
         rgba(0, 0, 0, 0.85) 85%, 
         rgba(0, 0, 0, 0.7) 100%);
-    -webkit-background-clip: text;
+    background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 body[data-theme="dark"] .display-1 {
     background: radial-gradient(ellipse 100% 80% at 50% 50%, 
-        currentColor 0%, 
-        currentColor 60%, 
+        currentcolor 0%, 
+        currentcolor 60%, 
         rgba(255, 255, 255, 0.85) 85%, 
         rgba(255, 255, 255, 0.7) 100%);
-    -webkit-background-clip: text;
+    background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -118,24 +119,25 @@ body[data-theme="dark"] .display-1 {
     letter-spacing: -0.015em;
     margin-bottom: var(--space-5);
     color: var(--color-text);
+
     /* Radial gradient text effect - sophisticated edge fade */
     background: radial-gradient(ellipse 100% 80% at 50% 50%, 
-        currentColor 0%, 
-        currentColor 60%, 
+        currentcolor 0%, 
+        currentcolor 60%, 
         rgba(0, 0, 0, 0.85) 85%, 
         rgba(0, 0, 0, 0.7) 100%);
-    -webkit-background-clip: text;
+    background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 body[data-theme="dark"] .display-2 {
     background: radial-gradient(ellipse 100% 80% at 50% 50%, 
-        currentColor 0%, 
-        currentColor 60%, 
+        currentcolor 0%, 
+        currentcolor 60%, 
         rgba(255, 255, 255, 0.85) 85%, 
         rgba(255, 255, 255, 0.7) 100%);
-    -webkit-background-clip: text;
+    background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -682,7 +684,6 @@ body[data-theme="dark"] {
     --code-text: #d1d5db;
     --code-scrollbar-track: rgba(234, 244, 244, 0.03);
     --code-scrollbar-thumb: rgba(234, 244, 244, 0.15);
-    
     --tooltip-bg: var(--color-text);
     --tooltip-color: var(--color-bg);
 }

@@ -272,6 +272,36 @@ function safeStorageSet (key, value) {
     }
 }
 
+function memoizeLocal (key, compute, ttlMs) {
+    const now = Date.now()
+    const entry = safeStorageGet(key, null)
+    if (entry && typeof entry === 'object' && typeof entry.expiresAt === 'number' && entry.expiresAt > now) {
+        return entry.value
+    }
+    const result = compute()
+    if (result && typeof result.then === 'function') {
+        return result.then((v) => {
+            safeStorageSet(key, { value: v, expiresAt: now + (ttlMs > 0 ? ttlMs : 0) })
+            return v
+        })
+    }
+    safeStorageSet(key, { value: result, expiresAt: now + (ttlMs > 0 ? ttlMs : 0) })
+    return result
+}
+
+async function cacheJson (url, ttlMs = 5 * 60 * 1000) {
+    const key = `json:${url}`
+    const now = Date.now()
+    const entry = safeStorageGet(key, null)
+    if (entry && typeof entry === 'object' && typeof entry.expiresAt === 'number' && entry.expiresAt > now) {
+        return entry.value
+    }
+    const res = await fetch(url, { method: 'GET', headers: { Accept: 'application/json' } })
+    const data = await res.json()
+    safeStorageSet(key, { value: data, expiresAt: now + ttlMs })
+    return data
+}
+
 // Export functions to global scope for use in other scripts
 // Note: In a module system, you would use export instead
 if (typeof window !== 'undefined') {
@@ -284,4 +314,6 @@ if (typeof window !== 'undefined') {
     window.copyToClipboard = copyToClipboard
     window.safeStorageGet = safeStorageGet
     window.safeStorageSet = safeStorageSet
+    window.memoizeLocal = memoizeLocal
+    window.cacheJson = cacheJson
 }

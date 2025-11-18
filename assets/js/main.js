@@ -354,6 +354,7 @@
         const burgerButton = safeQuery('.nav__burger')
         const overlay = safeQuery('.nav__overlay')
         const mobileMenu = safeQuery('.nav__mobile-menu')
+        const mobileMenuClose = safeQuery('.nav__mobile-close')
         const mobileMenuLinks = safeQueryAll('.nav__mobile-menu .nav__link')
 
         /**
@@ -374,6 +375,7 @@
         if (nav && burgerButton && overlay && mobileMenu) {
             let isMenuOpen = false
             let previousFocus = null
+            let savedScrollY = 0
 
             const openMenu = () => {
                 if (isMenuOpen) return
@@ -382,8 +384,14 @@
                 nav.setAttribute('data-menu-open', 'true')
                 burgerButton.setAttribute('aria-expanded', 'true')
 
-                // Prevent body scroll
+                savedScrollY = window.pageYOffset || document.documentElement.scrollTop || 0
+                document.body.style.position = 'fixed'
+                document.body.style.top = `-${savedScrollY}px`
+                document.body.style.left = '0'
+                document.body.style.right = '0'
+                document.body.style.width = '100%'
                 document.body.style.overflow = 'hidden'
+                document.body.classList.add('nav-menu-open')
 
                 // Store previous focus
                 previousFocus = document.activeElement
@@ -405,8 +413,14 @@
                 nav.setAttribute('data-menu-open', 'false')
                 burgerButton.setAttribute('aria-expanded', 'false')
 
-                // Restore body scroll
+                document.body.style.position = ''
+                document.body.style.top = ''
+                document.body.style.left = ''
+                document.body.style.right = ''
+                document.body.style.width = ''
                 document.body.style.overflow = ''
+                document.body.classList.remove('nav-menu-open')
+                window.scrollTo(0, savedScrollY)
 
                 // Restore focus
                 if (previousFocus) {
@@ -429,6 +443,13 @@
             overlay.addEventListener('click', () => {
                 closeMenu()
             })
+
+            // Close menu on close button click
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', () => {
+                    closeMenu()
+                })
+            }
 
             // Close menu on escape key
             document.addEventListener('keydown', (e) => {
