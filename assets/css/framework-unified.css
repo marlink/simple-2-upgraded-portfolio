@@ -6569,7 +6569,7 @@ body[data-theme="dark"] .page-spinner__spinner {
   align-items: center;
   justify-content: center;
   font-size: 32px;
-  color: #ffffff;
+  color: var(--color-primary-contrast);
   background: rgba(0, 0, 0, 0.6);
   border-radius: 50%;
   z-index: 3;

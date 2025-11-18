@@ -92,7 +92,7 @@
          * Automatically updates the current year in the footer
          * Element must have id="year" to be updated
          */
-            const yearEl = document.getElementById('year')
+            const yearEl = safeQuery('#year')
             if (yearEl) {
                 yearEl.textContent = new Date().getFullYear()
             } else {
