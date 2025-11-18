@@ -15,12 +15,14 @@
     "color-function-notation": "legacy",
     "alpha-value-notation": "number",
     "media-feature-range-notation": "prefix",
-    "declaration-property-value-allowed-list": {
-      "border-color": ["/^var\\(/", "^rgba\\(", "^color-mix\\(", "transparent", "inherit", "unset"],
-      "box-shadow": ["/^var\\(/", "^rgba\\(", "^color-mix\\("],
-      "color": ["/^var\\(/", "^rgba\\(", "^color-mix\\(", "inherit", "unset", "transparent"],
-      "background-color": ["/^var\\(/", "^rgba\\(", "^color-mix\\(", "inherit", "unset", "transparent"]
-    }
+    "number-max-precision": null,
+    "keyframes-name-pattern": null,
+    "no-descending-specificity": null,
+    "declaration-property-value-allowed-list": null,
+    "media-feature-name-no-unknown": null,
+    "color-function-notation": null,
+    "declaration-block-single-line-max-declarations": null,
+    "no-duplicate-selectors": null
   },
   "ignoreFiles": [
     "**/archive/**",

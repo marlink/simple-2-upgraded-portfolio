@@ -4109,7 +4109,6 @@ body[data-theme="light"] .card--glass-outline {
     0 1px 4px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px) saturate(120%);
-  backdrop-filter: blur(12px) saturate(120%);
 }
 
 /* Hover only: Green border from style guide */

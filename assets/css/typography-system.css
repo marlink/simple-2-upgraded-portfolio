@@ -89,7 +89,6 @@
         rgba(0, 0, 0, 0.85) 85%, 
         rgba(0, 0, 0, 0.7) 100%);
     background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -99,7 +98,6 @@ body[data-theme="dark"] .display-1 {
         currentcolor 60%, 
         rgba(255, 255, 255, 0.85) 85%, 
         rgba(255, 255, 255, 0.7) 100%);
-    background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -127,7 +125,6 @@ body[data-theme="dark"] .display-1 {
         rgba(0, 0, 0, 0.85) 85%, 
         rgba(0, 0, 0, 0.7) 100%);
     background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -137,7 +134,6 @@ body[data-theme="dark"] .display-2 {
         currentcolor 60%, 
         rgba(255, 255, 255, 0.85) 85%, 
         rgba(255, 255, 255, 0.7) 100%);
-    background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
