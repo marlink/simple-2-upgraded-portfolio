@@ -7,11 +7,23 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 // Read version from version.json
 const versionFile = path.join(__dirname, '..', 'version.json');
 const versionData = JSON.parse(fs.readFileSync(versionFile, 'utf8'));
 const version = versionData.version;
+
+// Get git commit hash
+let gitCommit = '';
+try {
+  gitCommit = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
+} catch (error) {
+  console.warn('Warning: Could not get git commit hash, using version only');
+}
+
+// Create version string with git info
+const versionWithGit = gitCommit ? `${version} (${gitCommit})` : version;
 
 // HTML files to update
 const htmlFiles = [
@@ -41,12 +53,14 @@ htmlFiles.forEach(file => {
   // Pattern to match the copyright line and add/update version
   // Matches: <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designss.</p>
   // Or similar patterns
-  const patterns = [
-    // Standard pattern
-    /(<p>@ <span id="year">\d+<\/span> Design System LTD \| Designed with love MC designss\.<\/p>)/g,
-    // Typography demo pattern
-    /(<p>@ <span id="year">\d+<\/span> Design System LTD \| Fluid Typography System<\/p>)/g
-  ];
+const patterns = [
+  // Standard pattern with copyright symbol
+  /(<p>&copy; <span id="year">\d+<\/span> Design System LTD \| Designed with love MC designs\..*?<\/p>)/g,
+  // Standard pattern with @ symbol
+  /(<p>@ <span id="year">\d+<\/span> Design System LTD \| Designed with love MC designs\..*?<\/p>)/g,
+  // Typography demo pattern
+  /(<p>@ <span id="year">\d+<\/span> Design System LTD \| Fluid Typography System.*?<\/p>)/g
+];
   
   let updated = false;
   
@@ -56,10 +70,10 @@ htmlFiles.forEach(file => {
         // Check if version already exists
         if (match.includes('ver.')) {
           // Update existing version
-          return match.replace(/ver\. \d+\.\d+\.\d+/, `ver. ${version}`);
+          return match.replace(/ver\. [\d\.\w\(\)\-\s]+/, `ver. ${versionWithGit}`);
         } else {
           // Add version
-          return match.replace('</p>', ` | ver. ${version}</p>`);
+          return match.replace('</p>', ` | ver. ${versionWithGit}</p>`);
         }
       });
       updated = true;
@@ -74,5 +88,5 @@ htmlFiles.forEach(file => {
   }
 });
 
-console.log(`\nVersion ${version} has been updated in all HTML files.`);
+console.log(`\nVersion ${versionWithGit} has been updated in all HTML files.`);
 
