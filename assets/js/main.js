@@ -208,7 +208,7 @@
             window.addEventListener('load', preloadThemeImage)
         }
 
-        // Attach click handlers using event delegation (most reliable)
+        // Attach click handlers using event delegation (efficient and reliable)
         document.addEventListener('click', (e) => {
             const toggle = e.target.closest('.theme-toggle')
             if (toggle) {
@@ -216,13 +216,12 @@
             }
         })
 
-        // Also attach directly to existing toggles as backup
+        // Initialize existing toggles and set up mutation observer for dynamically added ones
         const initThemeToggles = () => {
             const themeToggles = safeQueryAll('.theme-toggle')
-
             themeToggles.forEach((toggle) => {
                 if (toggle && !toggle.dataset.themeListenerAttached) {
-                    toggle.addEventListener('click', toggleTheme)
+                    // Mark as initialized to avoid duplicate listeners
                     toggle.dataset.themeListenerAttached = 'true'
                 }
             })
@@ -234,9 +233,6 @@
         } else {
             initThemeToggles()
         }
-
-        // Also re-initialize after a short delay to catch dynamically added toggles
-        setTimeout(initThemeToggles, 100)
 
         /* ========================================================================
      * 2️⃣.7 SCROLL-RESPONSIVE NAVIGATION

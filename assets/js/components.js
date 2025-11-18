@@ -89,38 +89,47 @@ const $qa = window.safeQueryAll
 
             /**
              * Activate a specific tab
+             * Optimized to only update elements that need changing
              */
             const activateTab = (activeTab) => {
                 if (!tabPanelMap.has(activeTab)) return
 
-                // Deactivate all tabs and panels
-                tabs.forEach(tab => {
-                    tab.classList.remove('is-active')
-                    tab.setAttribute('aria-selected', 'false')
-                })
-                panels.forEach(panel => {
-                    panel.classList.remove('is-active')
-                    panel.setAttribute('hidden', '')
-                })
+                const activePanel = tabPanelMap.get(activeTab)
+                if (!activePanel) return
+
+                // Find currently active tab and panel for efficient updates
+                const currentActiveTab = tabs.find(tab => tab.classList.contains('is-active'))
+                const currentActivePanel = panels.find(panel => panel.classList.contains('is-active'))
+
+                // Only update if different from current active
+                if (currentActiveTab === activeTab) return
+
+                // Deactivate current active elements
+                if (currentActiveTab) {
+                    currentActiveTab.classList.remove('is-active')
+                    currentActiveTab.setAttribute('aria-selected', 'false')
+                }
+                if (currentActivePanel) {
+                    currentActivePanel.classList.remove('is-active')
+                    currentActivePanel.setAttribute('hidden', '')
+                }
 
                 // Activate selected tab and panel
                 activeTab.classList.add('is-active')
                 activeTab.setAttribute('aria-selected', 'true')
-                const activePanel = tabPanelMap.get(activeTab)
-                if (activePanel) {
-                    activePanel.classList.add('is-active')
-                    activePanel.removeAttribute('hidden')
-                }
+                activePanel.classList.add('is-active')
+                activePanel.removeAttribute('hidden')
             }
 
             /**
              * Handle keyboard navigation
+             * Pre-compute tab array for better performance
              */
+            const tabArray = Array.from(tabs)
             const handleKeydown = (e) => {
                 const currentTab = e.target.closest('.tab')
                 if (!currentTab || !tabPanelMap.has(currentTab)) return
 
-                const tabArray = Array.from(tabs)
                 const currentIndex = tabArray.indexOf(currentTab)
                 let newIndex = currentIndex
 
@@ -316,12 +325,21 @@ const $qa = window.safeQueryAll
 
             let lastFocused = null
             let isOpen = false
+            let focusableElements = []
 
             /**
              * Get all focusable elements within the modal dialog
+             * Cached for performance, updates when modal opens
              */
             const getFocusableElements = () => {
-                return $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
+                return focusableElements
+            }
+
+            /**
+             * Update the cache of focusable elements
+             */
+            const updateFocusableElements = () => {
+                focusableElements = $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
             }
 
             const openModal = () => {
@@ -329,6 +347,9 @@ const $qa = window.safeQueryAll
 
                 isOpen = true
                 lastFocused = document.activeElement
+
+                // Update focusable elements cache
+                updateFocusableElements()
 
                 // Show modal
                 modal.removeAttribute('hidden')
@@ -338,9 +359,8 @@ const $qa = window.safeQueryAll
                 document.body.style.overflow = 'hidden'
 
                 // Focus management
-                const focusable = getFocusableElements()
-                if (focusable.length > 0) {
-                    requestAnimationFrame(() => focusable[0].focus())
+                if (focusableElements.length > 0) {
+                    requestAnimationFrame(() => focusableElements[0].focus())
                 }
 
                 // Announce modal to screen readers
@@ -552,15 +572,23 @@ const $qa = window.safeQueryAll
             trigger.addEventListener('focus', showTooltip)
             trigger.addEventListener('blur', hideTooltip)
 
-            // Reposition on window resize
-            const debouncedReposition = window.debounce ? window.debounce(positionTooltip, 100) : positionTooltip
-            window.addEventListener('resize', debouncedReposition, { passive: true })
+            // Reposition on window resize (only when tooltip is visible)
+            let resizeTimeout = null
+            const handleResize = () => {
+                if (tip.classList.contains('tooltip--visible')) {
+                    clearTimeout(resizeTimeout)
+                    resizeTimeout = setTimeout(positionTooltip, 100)
+                }
+            }
+            window.addEventListener('resize', handleResize, { passive: true })
 
             // Append tooltip to trigger element
             trigger.appendChild(tip)
 
-            // Initial positioning
-            requestAnimationFrame(positionTooltip)
+            // Position tooltip once initially (will be repositioned when shown)
+            requestAnimationFrame(() => {
+                if (tip.isConnected) positionTooltip()
+            })
         })
 
         /* ========================================================================
@@ -584,14 +612,17 @@ const $qa = window.safeQueryAll
      */
 
         /**
-     * Decode HTML entities in a string
-     * @param {string} html - HTML string with entities
-     * @returns {string} - Decoded string
-     */
+         * Decode HTML entities in a string
+         * @param {string} html - HTML string with entities
+         * @returns {string} - Decoded string
+         */
         const decodeHtmlEntities = (html) => {
-            const textarea = document.createElement('textarea')
-            textarea.innerHTML = html
-            return textarea.value
+            // Use a single, reusable textarea for better performance
+            if (!decodeHtmlEntities.textarea) {
+                decodeHtmlEntities.textarea = document.createElement('textarea')
+            }
+            decodeHtmlEntities.textarea.innerHTML = html
+            return decodeHtmlEntities.textarea.value
         }
 
         /**
@@ -850,8 +881,7 @@ const $qa = window.safeQueryAll
     } catch (error) {
         console.error('Error initializing video cover component:', error)
     }
-        }, 0); // Execute immediately after current call stack
-    }, 0); // Small delay to ensure DOM is ready
+    }, 0) // Small delay to ensure DOM is ready
 })()
 
 // Also initialize on DOMContentLoaded as fallback for dynamically added content
