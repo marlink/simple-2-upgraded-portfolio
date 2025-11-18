@@ -3632,6 +3632,7 @@ body[data-theme="light"] .btn--outline:active,
 
 /* Small: compact button for tight spaces */
 .btn--sm {
+  --btn-scale: 0.6 !important; /* More aggressive scaling for truly small buttons */
   padding: calc((var(--space-2) - 3px) * var(--btn-scale))
     calc((var(--space-3) - 2px) * var(--btn-scale));
   font-size: var(--font-size-sm);
@@ -3643,6 +3644,7 @@ body[data-theme="light"] .btn--outline:active,
 
 /* Big: larger button for emphasis */
 .btn--big {
+  --btn-scale: 1.0 !important; /* Full size for emphasis buttons */
   padding: calc((var(--space-3) - 3px) * var(--btn-scale))
     calc((var(--space-5) - 2px) * var(--btn-scale));
   font-size: var(--font-size-base);
@@ -3652,6 +3654,7 @@ body[data-theme="light"] .btn--outline:active,
 
 /* Large: extra large button for hero sections and CTAs */
 .btn--lg {
+  --btn-scale: 1.2 !important; /* Extra large scaling for hero buttons */
   padding: calc((var(--space-4) - 3px) * var(--btn-scale))
     calc((var(--space-6) - 2px) * var(--btn-scale));
   font-size: var(--font-size-lg);
@@ -3697,6 +3700,7 @@ body[data-theme="light"] .btn--outline:active,
 }
 
 /* Nav bar buttons 25% smaller while retaining touch target */
+/* Note: Size classes (.btn--sm, .btn--big, .btn--lg) will override this */
 .nav .btn { --btn-scale: 0.75; }
 
 /* Background variant: uses background color change on hover */
