@@ -326,10 +326,6 @@ body[data-theme="dark"] {
   --status-info: #3b82f6;      /* Info blue */
 
   /* Brand Colors - Third party */
-  --brand-youtube: #ff0000;
-  --brand-youtube-hover: #cc0000;
-  --brand-substack: #ff6600;
-  --brand-substack-hover: #cc5200;
 
   /* Special Purpose Colors */
   --special-hero-light: #edf6f9;

@@ -259,7 +259,7 @@
     width: 12px;
     height: 12px;
     transition: transform 0.2s ease;
-    fill: currentColor;
+    fill: currentcolor;
 }
 
 .demo-nav-category[aria-expanded="true"] .demo-nav-category__arrow {
