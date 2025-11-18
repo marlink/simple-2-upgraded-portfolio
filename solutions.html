@@ -138,60 +138,112 @@
                 <h1 class="display-1">Comprehensive Design Solutions</h1>
                 <p>We deliver end-to-end design services that transform ideas into exceptional digital experiences. From strategic design leadership to technical execution, our solutions are tailored to drive business growth and user satisfaction.</p>
 
-                <div class="grid mt-6">
-                    <div class="col-12 col-lg-4 col-xxxl-3">
-                        <article class="card card--glass-outline">
-                            <div class="card__body">
-                                <h4>Design Leadership &amp; Strategy</h4>
-                                <p>Product vision and strategy development. Design team leadership, mentorship programs, and scalable design processes that align with business objectives.</p>
-                            </div>
-                        </article>
+                <div class="tabs mt-6" data-service-tabs>
+                    <div class="tablist" role="tablist" aria-label="Service categories">
+                        <button class="tab is-active" role="tab" id="services-strategy" aria-selected="true" aria-controls="services-panel-strategy">Strategy &amp; Leadership</button>
+                        <button class="tab" role="tab" id="services-research" aria-selected="false" aria-controls="services-panel-research">Research &amp; Design</button>
+                        <button class="tab" role="tab" id="services-technical" aria-selected="false" aria-controls="services-panel-technical">Technical &amp; AI</button>
                     </div>
-                    <div class="col-12 col-lg-4 col-xxxl-3">
-                        <article class="card card--glass-outline">
-                            <div class="card__body">
-                                <h4>User Research &amp; Testing</h4>
-                                <p>Comprehensive user research, usability testing, and data-driven insights to inform design decisions and optimize user experiences.</p>
+
+                    <div id="services-panel-strategy" class="tab__panel is-active" role="tabpanel" aria-labelledby="services-strategy">
+                        <div class="grid">
+                            <div class="col-12 col-lg-6">
+                                <article class="card card--glass-outline">
+                                    <div class="card__body">
+                                        <h4>Design Leadership &amp; Strategy</h4>
+                                        <p>Product vision and strategy development. Design team leadership, mentorship programs, and scalable design processes that align with business objectives.</p>
+                                    </div>
+                                </article>
                             </div>
-                        </article>
+                            <div class="col-12 col-lg-6">
+                                <article class="card card--glass-outline">
+                                    <div class="card__body">
+                                        <h4>Brand Identity &amp; Visual Design</h4>
+                                        <p>Complete brand identity development, visual design systems, and brand refresh projects that boost awareness and engagement.</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-12 col-lg-4 col-xxxl-3">
-                        <article class="card card--glass-outline">
-                            <div class="card__body">
-                                <h4>Technical Execution</h4>
-                                <p>Hands-on design implementation, prototyping, and collaboration with development teams to ensure pixel-perfect execution of design systems.</p>
+
+                    <div id="services-panel-research" class="tab__panel" role="tabpanel" aria-labelledby="services-research">
+                        <div class="grid">
+                            <div class="col-12 col-lg-6">
+                                <article class="card card--glass-outline">
+                                    <div class="card__body">
+                                        <h4>User Research &amp; Testing</h4>
+                                        <p>Comprehensive user research, usability testing, and data-driven insights to inform design decisions and optimize user experiences.</p>
+                                    </div>
+                                </article>
                             </div>
-                        </article>
+                            <div class="col-12 col-lg-6">
+                                <article class="card card--glass-outline">
+                                    <div class="card__body">
+                                        <h4>Prototyping &amp; Interaction Design</h4>
+                                        <p>Interactive prototypes, user flow design, and interaction patterns that create intuitive and engaging digital experiences.</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-12 col-lg-4 col-xxxl-3">
-                        <article class="card card--glass-outline">
-                            <div class="card__body">
-                                <h4>AI Integration &amp; Automation</h4>
-                                <p>Proactive integration of AI tools—LLMs, agentic workflows, process automation, and generative media—into design workflows to supercharge creativity and efficiency.</p>
+
+                    <div id="services-panel-technical" class="tab__panel" role="tabpanel" aria-labelledby="services-technical">
+                        <div class="grid">
+                            <div class="col-12 col-lg-6">
+                                <article class="card card--glass-outline">
+                                    <div class="card__body">
+                                        <h4>Technical Execution</h4>
+                                        <p>Hands-on design implementation, prototyping, and collaboration with development teams to ensure pixel-perfect execution of design systems.</p>
+                                    </div>
+                                </article>
                             </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-lg-4 col-xxxl-3">
-                        <article class="card card--glass-outline">
-                            <div class="card__body">
-                                <h4>Brand Identity &amp; Visual Design</h4>
-                                <p>Complete brand identity development, visual design systems, and brand refresh projects that boost awareness and engagement.</p>
+                            <div class="col-12 col-lg-6">
+                                <article class="card card--glass-outline">
+                                    <div class="card__body">
+                                        <h4>AI Integration &amp; Automation</h4>
+                                        <p>Proactive integration of AI tools—LLMs, agentic workflows, process automation, and generative media—into design workflows to supercharge creativity and efficiency.</p>
+                                    </div>
+                                </article>
                             </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-lg-4 col-xxxl-3">
-                        <article class="card card--glass-outline">
-                            <div class="card__body">
-                                <h4>Prototyping &amp; Interaction Design</h4>
-                                <p>Interactive prototypes, user flow design, and interaction patterns that create intuitive and engaging digital experiences.</p>
-                            </div>
-                        </article>
+                        </div>
                     </div>
                 </div>
 
                 <div class="mt-8">
                     <h2>Design Systems</h2>
                     <p>We architect and deliver comprehensive design systems for web, iOS, and Android platforms. Our design systems achieve 100% WCAG AAA compliance and streamline development workflows through integrated tools like Sketch libraries, Zeplin, and Storybook.</p>
+
+                    <h3 class="mt-6">Implementation Example</h3>
+                    <p>Here's how we structure design tokens for consistent theming:</p>
+
+                    <div class="mt-4">
+                        <pre class="code-block"><code>/* Design Tokens Example */
+:root {
+  /* Colors */
+  --color-primary: #0066cc;
+  --color-secondary: #6b7280;
+  --color-success: #10b981;
+
+  /* Spacing */
+  --space-1: 0.25rem;    /* 4px */
+  --space-2: 0.5rem;     /* 8px */
+  --space-3: 0.75rem;    /* 12px */
+
+  /* Typography */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+}</code></pre>
+
+                        <div class="code-example mt-4">
+                            <strong>Component Usage:</strong><br>
+                            .btn {<br>
+                            &nbsp;&nbsp;background: var(--color-primary);<br>
+                            &nbsp;&nbsp;padding: var(--space-2) var(--space-3);<br>
+                            &nbsp;&nbsp;font-size: var(--font-size-base);<br>
+                            }
+                        </div>
+                    </div>
 
                     <h3 class="mt-6">Industries We Serve</h3>
                     <p>Proven track record across multiple industries including FinTech, Travel &amp; Hospitality, Banking &amp; Finance, Gaming &amp; Betting, Esports, EdTech, E-Commerce, and Community Platforms.</p>

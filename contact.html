@@ -137,22 +137,22 @@
 
                         <div class="form__row">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Jane Doe">
+                            <input type="text" id="name" name="name" required placeholder="Jane Doe" data-tooltip="Enter your full name as it appears on official documents">
                         </div>
 
                         <div class="form__row">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="jane@example.com">
+                            <input type="email" id="email" name="email" required placeholder="jane@example.com" data-tooltip="We'll use this to send you a confirmation and follow up">
                         </div>
 
                         <div class="form__row">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Inquiry about enrollment">
+                            <input type="text" id="subject" name="subject" required placeholder="Inquiry about enrollment" data-tooltip="Brief description of your inquiry (e.g., 'Website design project')">
                         </div>
 
                         <div class="form__row">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
+                            <textarea id="message" name="message" rows="5" required placeholder="How can we help?" data-tooltip="Include project details, timeline, and any specific requirements"></textarea>
                         </div>
 
                         <div class="form__actions">
@@ -171,8 +171,32 @@
                         <p>123 Education Lane, Learning City, LC 12345</p>
                         <p>Phone: <a href="tel:+1234567890">+1&nbsp;(234)&nbsp;567‑890</a></p>
                         <p>Email: <a href="mailto:hello@marceicieplik.com">hello@marceicieplik.com</a></p>
+
+                        <div class="mt-4">
+                            <button class="btn btn--outline" data-modal-target="#contact-details-modal">
+                                <img src="assets/icons/phone.svg" alt="" width="16" height="16" aria-hidden="true">
+                                View Contact Details
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Alert Demo Section -->
+        <section class="contact__alerts container py-6">
+            <h2 class="h3 mb-4">Message Status Examples</h2>
+            <div class="alert alert--success mb-3">
+                <strong>Message sent successfully!</strong> Thank you for your inquiry. We'll get back to you within 24 hours.
+                <button class="alert__close" aria-label="Close alert">&times;</button>
+            </div>
+            <div class="alert alert--error mb-3">
+                <strong>Failed to send message.</strong> Please check your internet connection and try again.
+                <button class="alert__close" aria-label="Close alert">&times;</button>
+            </div>
+            <div class="alert alert--warning">
+                <strong>Form validation error.</strong> Please fill in all required fields before submitting.
+                <button class="alert__close" aria-label="Close alert">&times;</button>
             </div>
         </section>
 
@@ -213,6 +237,56 @@
                 </div>
             </div>
         </section>
+
+        <!-- Contact Details Modal -->
+        <div class="modal" id="contact-details-modal" hidden>
+            <div class="modal__overlay"></div>
+            <div class="modal__dialog">
+                <button class="btn btn--ghost btn--sm" data-modal-close aria-label="Close contact details">Close</button>
+                <h2 class="h4 mt-4">Get In Touch</h2>
+                <p class="mb-4">Choose your preferred way to connect with me for your next design project.</p>
+
+                <div class="contact-modal__options">
+                    <div class="contact-modal__option">
+                        <div class="contact-modal__icon">
+                            <img src="assets/icons/phone.svg" alt="" width="24" height="24" aria-hidden="true">
+                        </div>
+                        <div class="contact-modal__content">
+                            <h3>Phone Call</h3>
+                            <p>Schedule a 30-minute discovery call to discuss your project needs.</p>
+                            <a href="tel:+1234567890" class="btn btn--primary btn--sm">Call Now</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-modal__option">
+                        <div class="contact-modal__icon">
+                            <img src="assets/icons/comment.svg" alt="" width="24" height="24" aria-hidden="true">
+                        </div>
+                        <div class="contact-modal__content">
+                            <h3>Email Consultation</h3>
+                            <p>Send me project details and I'll respond within 24 hours.</p>
+                            <a href="mailto:hello@marceicieplik.com" class="btn btn--primary btn--sm">Send Email</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-modal__option">
+                        <div class="contact-modal__icon">
+                            <img src="assets/icons/notes.svg" alt="" width="24" height="24" aria-hidden="true">
+                        </div>
+                        <div class="contact-modal__content">
+                            <h3>Project Brief</h3>
+                            <p>Use the contact form above to submit detailed project requirements.</p>
+                            <button class="btn btn--outline btn--sm" data-modal-close>Fill Form</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-modal__availability">
+                    <h4>Response Time</h4>
+                    <p>Typically respond within 24 hours during business days. For urgent projects, please mention this in your message.</p>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="site-footer">
