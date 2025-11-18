@@ -11,6 +11,12 @@
    Change here → updates everywhere automatically
    ========================================= */
 :root {
+  /* Prevent layout shifts and ensure smooth transitions */
+  --transition-duration-fast: 0.15s;
+  --transition-duration-normal: 0.25s;
+  --transition-duration-slow: 0.4s;
+  --transition-timing: var(--ease-out-smooth);
+
   /* Breakpoint widths - mobile-first: styles apply from this width up */
   --bp-xs: 300px;
   --bp-sm: 600px;
@@ -256,17 +262,7 @@ body[data-theme="dark"] {
   --color-danger: #f87171; /* red-400 */
   --color-warning: #fbbf24; /* amber-300 */
 
-  /* Semantic aliases (dark) */
-  --text-primary: var(--color-text);
-  --text-secondary: var(--color-text-muted);
-  --surface-1: var(--color-surface);
-  --surface-2: var(--color-bg);
-  --border-default: var(--color-border);
-  --border-muted: color-mix(in srgb, var(--color-border) 60%, black);
-  --border-strong: color-mix(in srgb, var(--color-border) 80%, white);
-  --link-color: var(--color-primary);
-  --link-color-hover: var(--color-primary);
-  --overlay-scrim: rgba(0, 0, 0, 0.6);
+  /* Theme-aware semantic aliases are handled through color variables */
 
   /* Hero section colors */
   --hero-bg-dark: #010101; /* Very dark background for dark theme hero */
@@ -392,7 +388,7 @@ body.navbar-fixed.navbar-scrolled {
   z-index: 10000;
   font-weight: 600;
   border-radius: 0 0 var(--border-radius-sm) 0;
-  transition: top 0.2s ease;
+  transition: top var(--transition-duration-fast) var(--transition-timing);
   clip: rect(0, 0, 0, 0);
   clip-path: inset(50%);
 }
@@ -1655,7 +1651,7 @@ body[data-theme="dark"] .site-header--scrolled {
   color: var(--color-text);
   font-size: 1.2rem;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--transition-duration-fast) var(--transition-timing);
   min-height: var(--touch-target-min);
   display: flex;
   align-items: center;
@@ -1884,7 +1880,7 @@ body[data-theme="dark"] .theme-toggle__icon--light img {
 
   /* Better positioning and accessibility */
   border-radius: var(--border-radius-sm);
-  transition: all 0.2s ease;
+  transition: all var(--transition-duration-fast) var(--transition-timing);
 
   /* Ensure proper touch target */
   margin: 0;
@@ -1997,7 +1993,7 @@ body[data-theme="dark"] .nav__burger-line {
   justify-content: center;
   min-width: 40px;
   min-height: 40px;
-  transition: all 0.2s ease;
+  transition: all var(--transition-duration-fast) var(--transition-timing);
 }
 
 .nav__mobile-close:hover {
@@ -2072,7 +2068,7 @@ body.nav-menu-open {
   font-weight: 500;
 
   /* Smooth transitions for interactive feel */
-  transition: all 0.2s ease;
+  transition: all var(--transition-duration-fast) var(--transition-timing);
 
   /* Ensure text is readable */
   color: var(--color-text);
@@ -2256,7 +2252,7 @@ body.nav-menu-open {
   color: var(--hero-text);
 
   /* Enhanced transitions for premium feel */
-  transition: background-color 0.4s var(--ease-out-smooth);
+  transition: background-color var(--transition-duration-slow) var(--transition-timing);
   overflow: hidden;
 }
 
@@ -2286,14 +2282,14 @@ body.nav-menu-open {
   z-index: 1;
 }
 
-/* Dark theme: black rider image */
+/* Dark theme: hero background image (WebP with JS fallback) */
 body[data-theme="dark"] .hero::before {
-  background-image: url("../images/heros/black-rider-lg.jpg");
+  background-image: url("../images/heros/black-rider-lg.webp");
 }
 
-/* Light theme: white rider image */
+/* Light theme: hero background image (WebP with JS fallback) */
 body[data-theme="light"] .hero::before {
-  background-image: url("../images/heros/white-rider-lg.jpg");
+  background-image: url("../images/heros/white-rider-lg.webp");
 }
 
 /* Dark theme: custom background color */
@@ -2487,7 +2483,7 @@ body[data-theme="light"] .hero__overlay {
 @media (prefers-reduced-motion: reduce) {
   .hero__logo,
   .hero__text {
-    transition: opacity 0.2s ease;
+    transition: opacity var(--transition-duration-fast) var(--transition-timing);
   }
 
   .hero__logo {
@@ -3057,7 +3053,7 @@ body[data-theme="dark"] .footer__logo-img {
 
   /* More refined transitions */
   opacity: 0.7;
-  transition: all 0.25s var(--ease-out-smooth);
+  transition: all var(--transition-duration-normal) var(--transition-timing);
 }
 
 .footer__social-link:hover {
@@ -3256,7 +3252,7 @@ body[data-theme="dark"] .newsletter__message--error {
   object-fit: contain;
   flex-shrink: 0;
   opacity: 0.9;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--transition-duration-fast) var(--transition-timing);
 }
 
 .footer__branded-link:hover img {
@@ -3312,7 +3308,7 @@ body[data-theme="dark"] .newsletter__message--error {
     0 0 1px rgba(0, 0, 0, 0.05);
 
   /* Smoother transitions with custom easing */
-  transition: all 0.25s var(--ease-out-smooth);
+  transition: all var(--transition-duration-normal) var(--transition-timing);
   min-height: var(--touch-target-min);
   min-width: var(--touch-target-min);
   text-align: center;
@@ -3352,6 +3348,46 @@ body[data-theme="dark"] .newsletter__message--error {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+/* Button loading states */
+.btn--loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn--loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Button text and spinner states */
+.btn__text,
+.btn__spinner {
+  transition: opacity var(--transition-duration-fast) var(--transition-timing);
+}
+
+.btn--loading .btn__text {
+  opacity: 0;
+}
+
+.btn--loading .btn__spinner {
+  opacity: 1;
 }
 
 .btn--primary {
@@ -5078,7 +5114,7 @@ input[type="radio"]:focus {
   background: var(--color-bg);
   color: var(--color-text);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-duration-fast) var(--transition-timing);
   min-height: var(--touch-target-min);
   font-weight: 500;
   text-align: center;
@@ -5944,7 +5980,7 @@ pre code,
   padding: var(--space-2) var(--space-3);
   cursor: pointer;
   min-height: var(--touch-target-min);
-  transition: opacity 0.2s ease;
+  transition: opacity var(--transition-duration-fast) var(--transition-timing);
 }
 
 .carousel__button:hover {
@@ -6362,7 +6398,7 @@ body[data-theme="dark"] .viewport-info {
   z-index: 99999;
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.4s var(--ease-out-smooth), visibility 0.4s;
+  transition: opacity var(--transition-duration-slow) var(--transition-timing), visibility var(--transition-duration-slow);
 }
 
 .page-spinner.hidden {
@@ -6698,8 +6734,74 @@ body[data-theme="dark"] .card--substack .card__footer {
   .contact__branded {
     margin: var(--space-8) 0 var(--space-6) 0;
   }
-  
+
   .contact__branded .card__header h3 {
     font-size: var(--font-size-lg);
   }
+}
+
+/* =========================================
+   SMOOTH TRANSITIONS & LAYOUT STABILITY
+   ========================================= */
+
+/* Prevent layout shifts during page transitions */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Ensure smooth transitions for all interactive elements */
+button,
+a,
+input,
+textarea,
+select,
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
+  transition: all var(--transition-duration-fast) var(--transition-timing);
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+html {
+  opacity: 0;
+  transition: opacity var(--transition-duration-normal) var(--ease-out-smooth);
+}
+
+html.loaded {
+  opacity: 1;
+}
+
+/* Ensure consistent spacing and prevent jumps */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  line-height: var(--line-height-normal);
+}
+
+/* Smooth theme transitions */
+[data-theme] * {
+  transition: background-color var(--transition-duration-normal) var(--transition-timing),
+              color var(--transition-duration-normal) var(--transition-timing),
+              border-color var(--transition-duration-normal) var(--transition-timing);
+}
+
+/* Prevent image jumps during loading */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure smooth navigation transitions */
+.nav {
+  transition: transform var(--transition-duration-normal) var(--transition-timing),
+              opacity var(--transition-duration-normal) var(--transition-timing);
+}
+
+/* Smooth modal transitions */
+.modal {
+  transition: opacity var(--transition-duration-normal) var(--transition-timing),
+              visibility var(--transition-duration-normal) var(--transition-timing);
 }

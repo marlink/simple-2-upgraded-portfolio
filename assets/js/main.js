@@ -67,12 +67,20 @@
         }
     }
 
-    // Remove spinner on DOMContentLoaded
+    // Remove spinner and show content smoothly
+    const showContent = () => {
+        removeSpinner()
+        // Add loaded class to trigger smooth opacity transition
+        setTimeout(() => {
+            document.documentElement.classList.add('loaded')
+        }, 50)
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', removeSpinner)
+        document.addEventListener('DOMContentLoaded', showContent)
     } else {
         // DOM already loaded
-        removeSpinner()
+        showContent()
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -104,40 +112,44 @@
      */
 
         /**
-     * Apply theme to the document
-     * @param {string} theme - 'light' or 'dark'
-     */
+         * Apply theme to the document
+         * @param {string} theme - 'light' or 'dark'
+         */
         const applyTheme = (theme) => {
             if (!document.body) {
                 console.error('Body element not found!')
                 return
             }
 
-            // Set theme attribute immediately
-            document.body.setAttribute('data-theme', theme)
-            document.documentElement.setAttribute('data-theme', theme) // Also set on html for extra specificity
+            // Validate theme parameter
+            if (theme !== 'light' && theme !== 'dark') {
+                console.warn('Invalid theme:', theme, '- defaulting to dark')
+                theme = 'dark'
+            }
 
-            // Save to localStorage
-            try {
-                localStorage.setItem('theme', theme)
-            } catch (e) {
-                console.warn('Could not save theme to localStorage:', e)
+            // Set theme attributes
+            document.body.setAttribute('data-theme', theme)
+            document.documentElement.setAttribute('data-theme', theme)
+
+            // Save to localStorage using safe utility
+            if (!safeStorageSet('theme', theme)) {
+                console.warn('Could not save theme to localStorage')
             }
 
             // Force reflow to ensure CSS updates
             void document.body.offsetHeight
-            void document.documentElement.offsetHeight
 
             // Handle hero image transition if present
             const hero = safeQuery('.hero')
             if (hero) {
+                // Use CSS transition for smoother animation
                 hero.style.setProperty('--transition-opacity', '0')
-                setTimeout(() => {
+                requestAnimationFrame(() => {
                     void hero.offsetHeight // Force reflow
-                    setTimeout(() => {
+                    requestAnimationFrame(() => {
                         hero.style.setProperty('--transition-opacity', '1')
-                    }, 10)
-                }, 100)
+                    })
+                })
             }
 
             updateTokenValueDisplays()
@@ -159,32 +171,34 @@
             return false
         }
 
-        // Load saved theme preference on page load (before DOM is ready)
-        const savedTheme = localStorage.getItem('theme') || 'dark'
+        // Load saved theme preference on page load
+        const savedTheme = safeStorageGet('theme', 'dark')
         if (document.body) {
-            document.body.setAttribute('data-theme', savedTheme)
-            document.documentElement.setAttribute('data-theme', savedTheme)
-            updateTokenValueDisplays()
+            applyTheme(savedTheme)
         } else {
             document.addEventListener('DOMContentLoaded', () => {
-                document.body.setAttribute('data-theme', savedTheme)
-                document.documentElement.setAttribute('data-theme', savedTheme)
-                updateTokenValueDisplays()
+                applyTheme(savedTheme)
             })
         }
 
         /**
-     * Preload the opposite theme's hero image
-     */
+         * Preload the opposite theme's hero image with WebP support
+         */
         const preloadThemeImage = () => {
             const currentTheme = document.body.getAttribute('data-theme') || 'dark'
             const otherTheme = currentTheme === 'light' ? 'dark' : 'light'
-            const imagePath = otherTheme === 'light'
-                ? 'assets/images/heros/white-rider-lg.jpg'
-                : 'assets/images/heros/black-rider-lg.jpg'
+            const basePath = otherTheme === 'light'
+                ? 'assets/images/heros/white-rider-lg'
+                : 'assets/images/heros/black-rider-lg'
 
+            // Try WebP first, fallback to JPG
             const img = new Image()
-            img.src = imagePath
+            img.src = `${basePath}.webp`
+
+            // Fallback to JPG if WebP fails to load
+            img.onerror = () => {
+                img.src = `${basePath}.jpg`
+            }
         }
 
         // Preload after page is fully loaded
@@ -241,99 +255,98 @@
             const siteHeader = safeQuery('.site-header')
             if (!siteHeader) {
                 console.warn('Site header not found')
-            } else {
-                // Performance optimization: throttle scroll handler
-                let ticking = false
-
-                // Get hero section to calculate when to make navbar fixed
-                const hero = safeQuery('.hero')
-                let heroHeight = 0
-                let heroOffsetTop = 0
-
-                // Calculate hero dimensions (recalculate on resize)
-                const calculateHeroDimensions = () => {
-                    if (hero) {
-                        const rect = hero.getBoundingClientRect()
-                        heroHeight = rect.height
-                        heroOffsetTop = rect.top + window.scrollY
-                    }
-                }
-
-                // Initial calculation - wait for page to be fully loaded for accurate hero dimensions
-                if (document.readyState === 'complete') {
-                    calculateHeroDimensions()
-                } else {
-                    window.addEventListener('load', () => {
-                        calculateHeroDimensions()
-                        // Initial scroll check after hero dimensions are calculated
-                        handleScroll()
-                    })
-                }
-
-                // Recalculate on resize (hero height may change with viewport)
-                window.addEventListener('resize', () => {
-                    calculateHeroDimensions()
-                    // Re-check scroll position after resize
-                    if (!ticking) {
-                        window.requestAnimationFrame(handleScroll)
-                        ticking = true
-                    }
-                }, { passive: true })
-
-                // Configuration constants
-                const fixedThreshold = 275 // Navbar becomes "scrolled" state after this scroll distance (px)
-
-                const handleScroll = () => {
-                    const scrollY = window.scrollY || window.pageYOffset
-
-                    // Make navbar fixed only after scrolling past hero section
-                    if (hero) {
-                        const heroBottom = heroOffsetTop + heroHeight
-                        if (scrollY >= heroBottom) {
-                            siteHeader.classList.add('site-header--fixed')
-                            document.body.classList.add('navbar-fixed')
-                        } else {
-                            siteHeader.classList.remove('site-header--fixed')
-                            document.body.classList.remove('navbar-fixed')
-                        }
-                    } else {
-                        // No hero section: make fixed immediately (for pages without hero)
-                        siteHeader.classList.add('site-header--fixed')
-                        document.body.classList.add('navbar-fixed')
-                    }
-
-                    // Handle scrolled state (for styling changes) - only applies after fixed threshold
-                    if (scrollY > fixedThreshold) {
-                        siteHeader.classList.add('site-header--scrolled')
-                        document.body.classList.add('navbar-scrolled')
-                    } else {
-                        siteHeader.classList.remove('site-header--scrolled')
-                        document.body.classList.remove('navbar-scrolled')
-                    }
-
-                    // Ensure navbar is always visible (remove any hidden state)
-                    siteHeader.classList.remove('site-header--hidden')
-
-                    ticking = false
-                }
-
-                const onScroll = () => {
-                    if (!ticking) {
-                        window.requestAnimationFrame(handleScroll)
-                        ticking = true
-                    }
-                }
-
-                // Handle initial state - check after a brief delay to ensure hero dimensions are calculated
-                setTimeout(() => {
-                    calculateHeroDimensions()
-                    handleScroll()
-                }, 100)
-
-                // Listen to scroll events (works for both desktop and touch devices)
-                window.addEventListener('scroll', onScroll, { passive: true })
-                window.addEventListener('touchmove', onScroll, { passive: true })
+                return
             }
+
+            // Configuration constants
+            const fixedThreshold = 275 // Navbar becomes "scrolled" state after this scroll distance (px)
+
+            // State tracking
+            let ticking = false
+            let heroHeight = 0
+            let heroOffsetTop = 0
+            let isInitialized = false
+
+            // Get hero section
+            const hero = safeQuery('.hero')
+
+            // Calculate hero dimensions
+            const calculateHeroDimensions = () => {
+                if (!hero) return
+
+                const rect = hero.getBoundingClientRect()
+                heroHeight = rect.height
+                heroOffsetTop = rect.top + window.scrollY
+            }
+
+            // Optimized scroll handler
+            const handleScroll = () => {
+                const scrollY = window.scrollY || window.pageYOffset
+
+                // Make navbar fixed only after scrolling past hero section
+                if (hero && isInitialized) {
+                    const heroBottom = heroOffsetTop + heroHeight
+                    const shouldBeFixed = scrollY >= heroBottom
+
+                    siteHeader.classList.toggle('site-header--fixed', shouldBeFixed)
+                    document.body.classList.toggle('navbar-fixed', shouldBeFixed)
+                } else if (!hero) {
+                    // No hero section: make fixed immediately (for pages without hero)
+                    siteHeader.classList.add('site-header--fixed')
+                    document.body.classList.add('navbar-fixed')
+                }
+
+                // Handle scrolled state (for styling changes)
+                const shouldBeScrolled = scrollY > fixedThreshold
+                siteHeader.classList.toggle('site-header--scrolled', shouldBeScrolled)
+                document.body.classList.toggle('navbar-scrolled', shouldBeScrolled)
+
+                ticking = false
+            }
+
+            // Throttled scroll event handler
+            const onScroll = () => {
+                if (!ticking) {
+                    requestAnimationFrame(handleScroll)
+                    ticking = true
+                }
+            }
+
+            // Initialize dimensions and scroll state
+            const initializeScrollNav = () => {
+                calculateHeroDimensions()
+                isInitialized = true
+                handleScroll() // Initial state check
+            }
+
+            // Set up event listeners
+            window.addEventListener('scroll', onScroll, { passive: true })
+            window.addEventListener('touchmove', onScroll, { passive: true })
+
+            // Debounced resize handler
+            const debouncedResize = debounce(() => {
+                calculateHeroDimensions()
+                if (!ticking) {
+                    requestAnimationFrame(handleScroll)
+                }
+            }, 100)
+
+            window.addEventListener('resize', debouncedResize, { passive: true })
+
+            // Initialize after page load or immediately if already loaded
+            if (document.readyState === 'complete') {
+                initializeScrollNav()
+            } else {
+                window.addEventListener('load', initializeScrollNav)
+            }
+
+            // Fallback initialization after a short delay
+            setTimeout(() => {
+                if (!isInitialized) {
+                    initializeScrollNav()
+                }
+            }, 100)
+
         } catch (error) {
             console.error('Error initializing scroll-responsive navigation:', error)
         }
@@ -350,32 +363,26 @@
      * - Auto-closes on window resize to desktop width
      * - Syncs theme toggle state
      */
-        const nav = safeQuery('.nav')
-        const burgerButton = safeQuery('.nav__burger')
-        const overlay = safeQuery('.nav__overlay')
-        const mobileMenu = safeQuery('.nav__mobile-menu')
-        const mobileMenuClose = safeQuery('.nav__mobile-close')
-        const mobileMenuLinks = safeQueryAll('.nav__mobile-menu .nav__link')
+        try {
+            const nav = safeQuery('.nav')
+            const burgerButton = safeQuery('.nav__burger')
+            const overlay = safeQuery('.nav__overlay')
+            const mobileMenu = safeQuery('.nav__mobile-menu')
+            const mobileMenuClose = safeQuery('.nav__mobile-close')
+            const mobileMenuLinks = safeQueryAll('.nav__mobile-menu .nav__link')
 
-        /**
-     * Sync mobile menu theme toggle with current theme
-     * Ensures mobile theme toggle displays correct icon state
-     * Currently handled by CSS, but function exists for future enhancements
-     */
-        const syncMobileTheme = () => {
-            const mobileThemeToggle = mobileMenu?.querySelector('.theme-toggle')
-
-            if (mobileThemeToggle) {
-            // Theme toggle icons are controlled by CSS based on data-theme attribute
-            // No additional action needed as body data-theme already controls visibility
-            // This function exists for potential future enhancements
+            if (!nav || !burgerButton || !overlay || !mobileMenu) {
+                console.warn('Mobile menu elements not found')
+                return
             }
-        }
 
-        if (nav && burgerButton && overlay && mobileMenu) {
+            // State management
             let isMenuOpen = false
             let previousFocus = null
             let savedScrollY = 0
+
+            // Get the mobile menu theme toggle for syncing
+            const mobileThemeToggle = mobileMenu?.querySelector('.theme-toggle')
 
             const openMenu = () => {
                 if (isMenuOpen) return
@@ -384,26 +391,19 @@
                 nav.setAttribute('data-menu-open', 'true')
                 burgerButton.setAttribute('aria-expanded', 'true')
 
-                savedScrollY = window.pageYOffset || document.documentElement.scrollTop || 0
+                // Prevent body scroll
+                savedScrollY = window.scrollY
                 document.body.style.position = 'fixed'
                 document.body.style.top = `-${savedScrollY}px`
-                document.body.style.left = '0'
-                document.body.style.right = '0'
                 document.body.style.width = '100%'
-                document.body.style.overflow = 'hidden'
                 document.body.classList.add('nav-menu-open')
 
-                // Store previous focus
+                // Focus management
                 previousFocus = document.activeElement
-
-                // Focus first focusable element in menu
                 const firstFocusable = safeQuery('a, button, input, [tabindex]:not([tabindex="-1"])', mobileMenu)
                 if (firstFocusable) {
-                    setTimeout(() => firstFocusable.focus(), 100)
+                    requestAnimationFrame(() => firstFocusable.focus())
                 }
-
-                // Sync theme on open
-                syncMobileTheme()
             }
 
             const closeMenu = () => {
@@ -413,71 +413,57 @@
                 nav.setAttribute('data-menu-open', 'false')
                 burgerButton.setAttribute('aria-expanded', 'false')
 
+                // Restore body scroll
                 document.body.style.position = ''
                 document.body.style.top = ''
-                document.body.style.left = ''
-                document.body.style.right = ''
                 document.body.style.width = ''
-                document.body.style.overflow = ''
                 document.body.classList.remove('nav-menu-open')
                 window.scrollTo(0, savedScrollY)
 
                 // Restore focus
-                if (previousFocus) {
+                if (previousFocus && typeof previousFocus.focus === 'function') {
                     previousFocus.focus()
                     previousFocus = null
                 }
             }
 
-            // Toggle menu on burger click
-            burgerButton.addEventListener('click', (e) => {
+            // Event handlers
+            const handleBurgerClick = (e) => {
+                e.preventDefault()
                 e.stopPropagation()
-                if (isMenuOpen) {
-                    closeMenu()
-                } else {
-                    openMenu()
-                }
-            })
-
-            // Close menu on overlay click
-            overlay.addEventListener('click', () => {
-                closeMenu()
-            })
-
-            // Close menu on close button click
-            if (mobileMenuClose) {
-                mobileMenuClose.addEventListener('click', () => {
-                    closeMenu()
-                })
+                isMenuOpen ? closeMenu() : openMenu()
             }
 
-            // Close menu on escape key
-            document.addEventListener('keydown', (e) => {
+            const handleEscapeKey = (e) => {
                 if (e.key === 'Escape' && isMenuOpen) {
                     closeMenu()
                 }
-            })
+            }
 
-            // Close menu when clicking on a link
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', () => {
+            const handleResize = debounce(() => {
+                if (window.innerWidth > 768 && isMenuOpen) {
                     closeMenu()
-                })
+                }
+            }, 100)
+
+            // Attach event listeners
+            burgerButton.addEventListener('click', handleBurgerClick)
+            overlay.addEventListener('click', closeMenu)
+            document.addEventListener('keydown', handleEscapeKey)
+            window.addEventListener('resize', handleResize, { passive: true })
+
+            // Close on link clicks
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu)
             })
 
-            // Close menu on resize if switching to desktop view
-            let resizeTimeout
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout)
-                resizeTimeout = setTimeout(() => {
-                    if (window.innerWidth > 600 && isMenuOpen) {
-                        closeMenu()
-                    }
-                }, 100)
-            })
+            // Close button if exists
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', closeMenu)
+            }
 
-            // Initial sync
-            syncMobileTheme()
+        } catch (error) {
+            console.error('Error initializing mobile menu:', error)
         }
 
         /* ========================================================================
@@ -517,33 +503,41 @@
      * Real-time email validation for newsletter subscription
      * - Validates email format as user types
      * - Enables/disables subscribe button based on validity
-     * - Uses standard email regex pattern
+     * - Uses comprehensive email validation from utils.js
      */
-        const emailInput = safeQuery('.footer__email-input')
-        const subscribeBtn = safeQuery('.footer__subscribe-btn')
+        try {
+            const emailInput = safeQuery('.footer__email-input')
+            const subscribeBtn = safeQuery('.footer__subscribe-btn')
 
-        /**
-     * Update subscribe button state based on email validity
-     * Uses validateEmail from utils.js (must be loaded before main.js)
-     */
-        const updateSubscribeButton = () => {
             if (emailInput && subscribeBtn) {
-                const email = emailInput.value.trim()
-                // Use validateEmail from utils.js (global function)
-                const isValid = window.validateEmail ? window.validateEmail(email) : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-                subscribeBtn.disabled = !isValid
+                // Initially disable the button (no email entered)
+                subscribeBtn.disabled = true
+
+                /**
+                 * Update subscribe button state based on email validity
+                 * Debounced for better performance
+                 */
+                const updateSubscribeButton = debounce(() => {
+                    const email = emailInput.value.trim()
+                    const isValid = window.validateEmail ? window.validateEmail(email) : false
+                    subscribeBtn.disabled = !isValid
+                }, 150)
+
+                // Validate on input (real-time feedback)
+                emailInput.addEventListener('input', updateSubscribeButton)
+
+                // Validate on blur (when user leaves the field)
+                emailInput.addEventListener('blur', updateSubscribeButton)
+
+                // Clear validation on focus
+                emailInput.addEventListener('focus', () => {
+                    if (emailInput.value.trim() === '') {
+                        subscribeBtn.disabled = true
+                    }
+                })
             }
-        }
-
-        if (emailInput && subscribeBtn) {
-        // Initially disable the button (no email entered)
-            subscribeBtn.disabled = true
-
-            // Validate on input (real-time feedback)
-            emailInput.addEventListener('input', updateSubscribeButton)
-
-            // Validate on blur (when user leaves the field)
-            emailInput.addEventListener('blur', updateSubscribeButton)
+        } catch (error) {
+            console.error('Error initializing newsletter validation:', error)
         }
 
         /* ========================================================================
@@ -559,108 +553,145 @@
      * or replace with your own backend endpoint
      */
         try {
-            const contactForm = document.getElementById('contact-form')
-            const formMessages = document.getElementById('form-messages')
-            const submitBtn = document.getElementById('submit-btn')
+            const contactForm = safeQuery('#contact-form')
+            const formMessages = safeQuery('#form-messages')
+            const submitBtn = safeQuery('#submit-btn')
 
             // Formspree endpoint - replace with your actual endpoint
             // Get your endpoint from https://formspree.io/
             const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
 
             if (!contactForm || !formMessages || !submitBtn) {
-            // Contact form not available on this page
-            } else {
-                const btnText = safeQuery('.btn__text', submitBtn)
-                const btnSpinner = safeQuery('.btn__spinner', submitBtn)
-
-                /**
-         * Show message to user
-         * @param {string} message - Message text
-         * @param {string} type - 'success' or 'error'
-         */
-                const showMessage = (message, type) => {
-                    formMessages.textContent = message
-                    formMessages.className = `form__messages form__messages--${type}`
-                    formMessages.style.display = 'block'
-
-                    // Scroll to message
-                    formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-
-                    // Hide message after 5 seconds for errors, keep success visible
-                    if (type === 'error') {
-                        setTimeout(() => {
-                            formMessages.style.display = 'none'
-                        }, 5000)
-                    }
-                }
-
-                /**
-         * Show loading state
-         */
-                const showLoading = () => {
-                    submitBtn.disabled = true
-                    if (btnText) btnText.style.display = 'none'
-                    if (btnSpinner) btnSpinner.style.display = 'inline'
-                }
-
-                /**
-         * Hide loading state
-         */
-                const hideLoading = () => {
-                    submitBtn.disabled = false
-                    if (btnText) btnText.style.display = 'inline'
-                    if (btnSpinner) btnSpinner.style.display = 'none'
-                }
-
-                contactForm.addEventListener('submit', async (e) => {
-                    e.preventDefault()
-
-                    // Hide previous messages
-                    formMessages.style.display = 'none'
-
-                    // Validate form
-                    if (!contactForm.checkValidity()) {
-                        contactForm.reportValidity()
-                        return
-                    }
-
-                    // Get form data
-                    const formData = new FormData(contactForm)
-                    const data = Object.fromEntries(formData)
-
-                    // Show loading state
-                    showLoading()
-
-                    try {
-                        // Submit to Formspree or your backend
-                        const response = await fetch(FORMSPREE_ENDPOINT, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                Accept: 'application/json'
-                            },
-                            body: JSON.stringify(data)
-                        })
-
-                        if (response.ok) {
-                            // Success
-                            showMessage('Thank you! Your message has been sent successfully.', 'success')
-                            contactForm.reset()
-                        } else {
-                            // Error from server
-                            const errorData = await response.json().catch(() => ({}))
-                            const errorMessage = errorData.error || 'There was an error sending your message. Please try again.'
-                            showMessage(errorMessage, 'error')
-                        }
-                    } catch (error) {
-                        // Network or other error
-                        console.error('Form submission error:', error)
-                        showMessage('Unable to send message. Please check your connection and try again.', 'error')
-                    } finally {
-                        hideLoading()
-                    }
-                })
+                // Contact form not available on this page
+                return
             }
+
+            // Form state management
+            let isSubmitting = false
+
+            /**
+             * Show message to user
+             * @param {string} message - Message text
+             * @param {string} type - 'success' or 'error'
+             */
+            const showMessage = (message, type) => {
+                formMessages.textContent = message
+                formMessages.className = `form__messages form__messages--${type}`
+                formMessages.style.display = 'block'
+                formMessages.setAttribute('role', 'alert')
+                formMessages.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite')
+
+                // Scroll to message for better UX
+                formMessages.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+
+                // Auto-hide error messages after delay
+                if (type === 'error') {
+                    setTimeout(() => {
+                        if (formMessages.style.display !== 'none') {
+                            formMessages.style.display = 'none'
+                        }
+                    }, 8000) // Longer delay for errors
+                }
+            }
+
+            /**
+             * Set loading state
+             */
+            const setLoading = (loading) => {
+                isSubmitting = loading
+                submitBtn.disabled = loading
+                submitBtn.classList.toggle('btn--loading', loading)
+                submitBtn.setAttribute('aria-busy', loading.toString())
+            }
+
+            /**
+             * Validate form data
+             */
+            const validateFormData = (data) => {
+                const required = ['name', 'email', 'message']
+                const missing = required.filter(field => !data[field]?.trim())
+
+                if (missing.length > 0) {
+                    throw new Error(`Please fill in all required fields: ${missing.join(', ')}`)
+                }
+
+                if (!window.validateEmail?.(data.email)) {
+                    throw new Error('Please enter a valid email address')
+                }
+
+                if (data.message.trim().length < 10) {
+                    throw new Error('Please provide a message with at least 10 characters')
+                }
+            }
+
+            /**
+             * Handle form submission
+             */
+            const handleSubmit = async (e) => {
+                e.preventDefault()
+
+                if (isSubmitting) return
+
+                // Hide previous messages
+                formMessages.style.display = 'none'
+
+                // Validate form using native validation
+                if (!contactForm.checkValidity()) {
+                    contactForm.reportValidity()
+                    return
+                }
+
+                // Get and validate form data
+                const formData = new FormData(contactForm)
+                const data = Object.fromEntries(formData)
+
+                try {
+                    validateFormData(data)
+                } catch (error) {
+                    showMessage(error.message, 'error')
+                    return
+                }
+
+                // Show loading state
+                setLoading(true)
+
+                try {
+                    const response = await fetch(FORMSPREE_ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+
+                    if (response.ok) {
+                        const result = await response.json().catch(() => ({}))
+                        showMessage(result.message || 'Thank you! Your message has been sent successfully.', 'success')
+                        contactForm.reset()
+                        // Keep success message visible
+                    } else {
+                        // Handle server errors
+                        let errorMessage = 'There was an error sending your message. Please try again.'
+                        try {
+                            const errorData = await response.json()
+                            errorMessage = errorData.error || errorMessage
+                        } catch {
+                            // Use default error message if JSON parsing fails
+                        }
+                        showMessage(errorMessage, 'error')
+                    }
+                } catch (error) {
+                    console.error('Form submission error:', error)
+                    showMessage('Unable to send message. Please check your connection and try again.', 'error')
+                } finally {
+                    setLoading(false)
+                }
+            }
+
+            // Attach form submission handler
+            contactForm.addEventListener('submit', handleSubmit)
+
         } catch (error) {
             console.error('Error initializing contact form:', error)
         }
@@ -734,8 +765,7 @@
                     if (email && isValidEmail) {
                         // Show loading state
                         newsletterBtn.disabled = true
-                        const originalText = newsletterBtn.textContent
-                        newsletterBtn.textContent = 'Subscribing...'
+                        newsletterBtn.classList.add('btn--loading')
 
                         try {
                             // Submit to Formspree or your backend
@@ -753,20 +783,21 @@
                                 showNewsletterMessage('Thank you! You have been subscribed successfully.', 'success')
                                 newsletterInput.value = ''
                                 newsletterBtn.disabled = true // Keep disabled until new email entered
+                                newsletterBtn.classList.remove('btn--loading')
                             } else {
                                 // Error from server
                                 const errorData = await response.json().catch(() => ({}))
                                 const errorMessage = errorData.error || 'There was an error subscribing. Please try again.'
                                 showNewsletterMessage(errorMessage, 'error')
                                 newsletterBtn.disabled = false
-                                newsletterBtn.textContent = originalText
+                                newsletterBtn.classList.remove('btn--loading')
                             }
                         } catch (error) {
                             // Network or other error
                             console.error('Newsletter subscription error:', error)
                             showNewsletterMessage('Unable to subscribe. Please check your connection and try again.', 'error')
                             newsletterBtn.disabled = false
-                            newsletterBtn.textContent = originalText
+                            newsletterBtn.classList.remove('btn--loading')
                         }
                     } else {
                         showNewsletterMessage('Please enter a valid email address.', 'error')
@@ -789,9 +820,3 @@
         }
     })
 })() // Close IIFE to scope safeQuery and safeQueryAll
-
-// Update the year in the footer
-const yearSpan = document.getElementById('year');
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}

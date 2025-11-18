@@ -28,8 +28,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Unified Responsive Framework -->
-    <script>try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);document.body&&document.body.setAttribute('data-theme',t);}catch(e){}</script>
+    <!-- Theme initialization script (runs before CSS to prevent FOUC) -->
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (!theme) {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.setAttribute('data-theme', theme);
+                if (document.body) {
+                    document.body.setAttribute('data-theme', theme);
+                }
+            } catch (e) {
+                // Silently fail if localStorage is not available
+            }
+        })();
+    </script>
+
+    <!-- Unified Responsive Framework (includes grid, base styles, components, accessibility, touch optimization) -->
     <link rel="stylesheet" href="assets/css/framework-unified.css">
 </head>
 <body>
@@ -193,7 +210,7 @@
 
             <!-- Copyright Line -->
             <div class="footer__copyright">
-                <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designss. | ver. 0.0.3</p>
+                <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designs. | ver. 0.0.3</p>
             </div>
         </div>
     </footer>

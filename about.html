@@ -31,8 +31,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Unified Responsive Framework -->
-    <script>try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);document.body&&document.body.setAttribute('data-theme',t);}catch(e){}</script>
+    <!-- Theme initialization script (runs before CSS to prevent FOUC) -->
+    <script>
+        (function() {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (!theme) {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.setAttribute('data-theme', theme);
+                if (document.body) {
+                    document.body.setAttribute('data-theme', theme);
+                }
+            } catch (e) {
+                // Silently fail if localStorage is not available
+            }
+        })();
+    </script>
+
+    <!-- Unified Responsive Framework (includes grid, base styles, components, accessibility, touch optimization) -->
     <link rel="stylesheet" href="assets/css/framework-unified.css">
 </head>
 <body>
@@ -66,7 +83,7 @@
                     <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
                 </ul>
 
-                                <!-- THEME TOGGLE -->
+                <!-- THEME TOGGLE -->
                 <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
                     <span class="theme-toggle__icon theme-toggle__icon--light">
                         <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
@@ -82,6 +99,11 @@
             <!-- Mobile Menu Overlay -->
             <div class="nav__overlay"></div>
             <div class="nav__mobile-menu">
+                <div class="nav__mobile-header">
+                    <span class="nav__mobile-title">Menu</span>
+                    <button class="nav__mobile-close" aria-label="Close menu">✕</button>
+                </div>
+
                 <ul class="nav__links nav__links--mobile">
                     <li><a href="index.html" class="nav__link nav__link--underline">Home</a></li>
                     <li><a href="about.html" class="nav__link nav__link--underline is-active">About</a></li>
@@ -90,7 +112,7 @@
                     <li><a href="blog.html" class="nav__link nav__link--underline">Blog</a></li>
                 </ul>
 
-                                <button class="theme-toggle theme-toggle--mobile" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                <button class="theme-toggle theme-toggle--mobile" type="button" aria-label="Toggle color theme" title="Toggle theme">
                     <span class="theme-toggle__icon theme-toggle__icon--light">
                         <img src="assets/icons/sun.svg" alt="Light theme" width="24" height="24">
                     </span>
@@ -276,7 +298,7 @@
 
             <!-- Copyright Line -->
             <div class="footer__copyright">
-                <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designss. | ver. 0.0.3</p>
+                <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designs. | ver. 0.0.3</p>
             </div>
         </div>
     </footer>

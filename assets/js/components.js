@@ -37,53 +37,137 @@ document.addEventListener('DOMContentLoaded', () => {
         /* ========================================================================
          * TABS COMPONENT
          * ========================================================================
-         * Multi-panel tab interface
+         * Multi-panel tab interface with enhanced accessibility and error handling
          *
          * HTML Structure:
          * <div class="tabs">
-         *   <button class="tab" aria-controls="panel-1" aria-selected="true">Tab 1</button>
-         *   <button class="tab" aria-controls="panel-2" aria-selected="false">Tab 2</button>
-         *   <div id="panel-1" class="tab__panel is-active">Content 1</div>
-         *   <div id="panel-2" class="tab__panel">Content 2</div>
+         *   <div class="tablist" role="tablist" aria-label="Tab navigation">
+         *     <button class="tab" role="tab" aria-controls="panel-1" aria-selected="true" id="tab-btn-1">Tab 1</button>
+         *     <button class="tab" role="tab" aria-controls="panel-2" aria-selected="false" id="tab-btn-2">Tab 2</button>
+         *   </div>
+         *   <div id="panel-1" class="tab__panel is-active" role="tabpanel" aria-labelledby="tab-btn-1">Content 1</div>
+         *   <div id="panel-2" class="tab__panel" role="tabpanel" aria-labelledby="tab-btn-2">Content 2</div>
          * </div>
          *
          * Features:
          * - ARIA attributes for accessibility
-         * - Keyboard navigation support
+         * - Keyboard navigation support (arrow keys, home, end)
          * - Smooth transitions (handled by CSS)
+         * - Automatic activation on focus for screen readers
          */
         const tabContainers = $qa('.tabs')
         if (!tabContainers || tabContainers.length === 0) {
             // No tabs on this page
-        } else {
-            tabContainers.forEach(container => {
-                if (!container) return
-                const tabs = $qa('.tab', container)
-                const panels = $qa('.tab__panel', container)
-                if (!tabs || tabs.length === 0 || !panels || panels.length === 0) {
-                    console.warn('Tabs component missing required elements', container)
-                    return
+            return
+        }
+
+        tabContainers.forEach(container => {
+            if (!container) return
+
+            const tabs = $qa('.tab', container)
+            const panels = $qa('.tab__panel', container)
+
+            if (!tabs || tabs.length === 0 || !panels || panels.length === 0) {
+                console.warn('Tabs component missing required elements', container)
+                return
+            }
+
+            // Create tab-to-panel mapping for efficient lookups
+            const tabPanelMap = new Map()
+            tabs.forEach(tab => {
+                const panelId = tab.getAttribute('aria-controls')
+                if (panelId) {
+                    const panel = $q('#' + panelId, container)
+                    if (panel) {
+                        tabPanelMap.set(tab, panel)
+                    }
+                }
+            })
+
+            /**
+             * Activate a specific tab
+             */
+            const activateTab = (activeTab) => {
+                if (!tabPanelMap.has(activeTab)) return
+
+                // Deactivate all tabs and panels
+                tabs.forEach(tab => {
+                    tab.classList.remove('is-active')
+                    tab.setAttribute('aria-selected', 'false')
+                })
+                panels.forEach(panel => {
+                    panel.classList.remove('is-active')
+                    panel.setAttribute('hidden', '')
+                })
+
+                // Activate selected tab and panel
+                activeTab.classList.add('is-active')
+                activeTab.setAttribute('aria-selected', 'true')
+                const activePanel = tabPanelMap.get(activeTab)
+                if (activePanel) {
+                    activePanel.classList.add('is-active')
+                    activePanel.removeAttribute('hidden')
+                }
+            }
+
+            /**
+             * Handle keyboard navigation
+             */
+            const handleKeydown = (e) => {
+                const currentTab = e.target.closest('.tab')
+                if (!currentTab || !tabPanelMap.has(currentTab)) return
+
+                const tabArray = Array.from(tabs)
+                const currentIndex = tabArray.indexOf(currentTab)
+                let newIndex = currentIndex
+
+                switch (e.key) {
+                    case 'ArrowLeft':
+                        newIndex = currentIndex > 0 ? currentIndex - 1 : tabArray.length - 1
+                        break
+                    case 'ArrowRight':
+                        newIndex = currentIndex < tabArray.length - 1 ? currentIndex + 1 : 0
+                        break
+                    case 'Home':
+                        newIndex = 0
+                        break
+                    case 'End':
+                        newIndex = tabArray.length - 1
+                        break
+                    default:
+                        return // Don't prevent default for other keys
                 }
 
-                tabs.forEach(tab => {
-                    tab.addEventListener('click', () => {
-                        // deactivate all
-                        tabs.forEach(t => {
-                            t.classList.remove('is-active')
-                            t.setAttribute('aria-selected', 'false')
-                        })
-                        panels.forEach(p => p.classList.remove('is-active'))
+                e.preventDefault()
+                const newTab = tabArray[newIndex]
+                if (newTab) {
+                    newTab.focus()
+                    activateTab(newTab)
+                }
+            }
 
-                        // activate clicked
-                        tab.classList.add('is-active')
-                        tab.setAttribute('aria-selected', 'true')
-                        const panelId = tab.getAttribute('aria-controls')
-                        const panel = $q('#' + panelId, container)
-                        if (panel) panel.classList.add('is-active')
-                    })
+            // Set up event listeners
+            tabs.forEach(tab => {
+                // Click handler
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    activateTab(tab)
                 })
+
+                // Keyboard navigation
+                tab.addEventListener('keydown', handleKeydown)
+
+                // Optional: Activate on focus for screen readers
+                // Uncomment if you want automatic activation on focus
+                // tab.addEventListener('focus', () => activateTab(tab))
             })
-        }
+
+            // Initialize with first active tab or first tab
+            const initialActiveTab = tabs.find(tab => tab.classList.contains('is-active')) || tabs[0]
+            if (initialActiveTab) {
+                activateTab(initialActiveTab)
+            }
+        })
     } catch (error) {
         console.error('Error initializing tabs component:', error)
     }
@@ -109,19 +193,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
         const accordions = $qa('.accordion')
+        if (!accordions || accordions.length === 0) return
+
         accordions.forEach(accordion => {
+            if (!accordion) return
+
             const items = $qa('.accordion__item', accordion)
-            items.forEach(item => {
+            if (!items || items.length === 0) {
+                console.warn('Accordion missing items', accordion)
+                return
+            }
+
+            items.forEach((item, index) => {
                 const button = $q('.accordion__button', item)
                 const panel = $q('.accordion__panel', item)
 
-                if (button && panel) {
-                    button.addEventListener('click', () => {
-                        const expanded = button.getAttribute('aria-expanded') === 'true'
-                        button.setAttribute('aria-expanded', String(!expanded))
-                        panel.hidden = expanded
-                    })
+                if (!button || !panel) {
+                    console.warn('Accordion item missing button or panel', item)
+                    return
                 }
+
+                // Generate unique IDs if not present
+                const buttonId = button.id || `accordion-btn-${index}`
+                const panelId = panel.id || `accordion-panel-${index}`
+
+                button.id = buttonId
+                panel.id = panelId
+
+                // Set up ARIA attributes
+                button.setAttribute('aria-controls', panelId)
+                button.setAttribute('aria-expanded', button.getAttribute('aria-expanded') || 'false')
+                panel.setAttribute('aria-labelledby', buttonId)
+                panel.setAttribute('role', 'region')
+
+                // Ensure initial state is correct
+                const isExpanded = button.getAttribute('aria-expanded') === 'true'
+                panel.hidden = !isExpanded
+
+                // Handle click events
+                button.addEventListener('click', (e) => {
+                    e.preventDefault()
+
+                    const currentlyExpanded = button.getAttribute('aria-expanded') === 'true'
+                    const shouldExpand = !currentlyExpanded
+
+                    // Update button state
+                    button.setAttribute('aria-expanded', String(shouldExpand))
+
+                    // Update panel visibility
+                    panel.hidden = !shouldExpand
+
+                    // Optional: Scroll to expanded panel for better UX
+                    if (shouldExpand && window.getComputedStyle(panel).display !== 'none') {
+                        setTimeout(() => {
+                            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+                        }, 100)
+                    }
+                })
+
+                // Optional: Support for Enter and Space keys
+                button.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        button.click()
+                    }
+                })
             })
         })
     } catch (error) {
@@ -157,55 +293,141 @@ document.addEventListener('DOMContentLoaded', () => {
         const openTriggers = $qa('[data-modal-target]')
         const modals = $qa('.modal')
 
+        if (!modals || modals.length === 0) return
+
         // Initialize modals
         modals.forEach(modal => {
+            if (!modal) return
+
             const overlay = $q('.modal__overlay', modal)
             const dialog = $q('.modal__dialog', modal)
             const closeButtons = $qa('[data-modal-close]', modal)
+
+            if (!overlay || !dialog) {
+                console.warn('Modal missing required elements (overlay or dialog)', modal)
+                return
+            }
+
             let lastFocused = null
+            let isOpen = false
+
+            /**
+             * Get all focusable elements within the modal dialog
+             */
+            const getFocusableElements = () => {
+                return $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
+            }
 
             const openModal = () => {
-                lastFocused = document.activeElement
-                modal.removeAttribute('hidden')
-                // focus first focusable element inside dialog
-                const focusable = $q('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
-                if (focusable) focusable.focus()
+                if (isOpen) return
 
-                const onKeydown = (e) => {
-                    if (e.key === 'Escape') closeModal()
-                    if (e.key === 'Tab') {
-                    // focus trap
-                        const focusable = $qa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', dialog)
-                        if (focusable.length === 0) return
-                        const first = focusable[0]
-                        const last = focusable[focusable.length - 1]
-                        if (e.shiftKey && document.activeElement === first) {
-                            e.preventDefault(); last.focus()
-                        } else if (!e.shiftKey && document.activeElement === last) {
-                            e.preventDefault(); first.focus()
-                        }
-                    }
+                isOpen = true
+                lastFocused = document.activeElement
+
+                // Show modal
+                modal.removeAttribute('hidden')
+                modal.setAttribute('aria-hidden', 'false')
+
+                // Prevent body scroll
+                document.body.style.overflow = 'hidden'
+
+                // Focus management
+                const focusable = getFocusableElements()
+                if (focusable.length > 0) {
+                    requestAnimationFrame(() => focusable[0].focus())
                 }
 
-                document.addEventListener('keydown', onKeydown)
-                modal._keydownHandler = onKeydown
+                // Announce modal to screen readers
+                const heading = $q('h1, h2, h3, h4, h5, h6', dialog)
+                if (heading) {
+                    modal.setAttribute('aria-labelledby', heading.id || `modal-heading-${Date.now()}`)
+                    if (!heading.id) heading.id = modal.getAttribute('aria-labelledby')
+                }
             }
 
             const closeModal = () => {
+                if (!isOpen) return
+
+                isOpen = false
+
+                // Hide modal
                 modal.setAttribute('hidden', '')
-                if (modal._keydownHandler) {
-                    document.removeEventListener('keydown', modal._keydownHandler)
-                    delete modal._keydownHandler
+                modal.setAttribute('aria-hidden', 'true')
+
+                // Restore body scroll
+                document.body.style.overflow = ''
+
+                // Restore focus
+                if (lastFocused && typeof lastFocused.focus === 'function') {
+                    lastFocused.focus()
                 }
-                if (lastFocused) lastFocused.focus()
             }
 
-            // Set up close handlers (only once)
-            if (overlay) overlay.addEventListener('click', closeModal)
-            closeButtons.forEach(btn => btn.addEventListener('click', closeModal))
+            /**
+             * Enhanced focus trapping with proper tab order
+             */
+            const handleKeydown = (e) => {
+                if (!isOpen) return
 
-            // Store open function on modal
+                if (e.key === 'Escape') {
+                    e.preventDefault()
+                    closeModal()
+                    return
+                }
+
+                if (e.key === 'Tab') {
+                    const focusable = getFocusableElements()
+                    if (focusable.length === 0) return
+
+                    const first = focusable[0]
+                    const last = focusable[focusable.length - 1]
+                    const active = document.activeElement
+
+                    if (e.shiftKey) {
+                        // Shift+Tab: move to previous element
+                        if (active === first) {
+                            e.preventDefault()
+                            last.focus()
+                        }
+                    } else {
+                        // Tab: move to next element
+                        if (active === last) {
+                            e.preventDefault()
+                            first.focus()
+                        }
+                    }
+                }
+            }
+
+            // Set up event handlers
+            const keydownHandler = handleKeydown
+            modal._keydownHandler = keydownHandler
+
+            // Add event listeners only once
+            if (!modal._initialized) {
+                modal._initialized = true
+
+                // Overlay click to close
+                overlay.addEventListener('click', closeModal)
+
+                // Close buttons
+                closeButtons.forEach(btn => {
+                    btn.addEventListener('click', closeModal)
+                })
+
+                // Global keydown listener (added/removed dynamically)
+                modal._setupKeydown = () => {
+                    document.addEventListener('keydown', keydownHandler)
+                }
+
+                modal._cleanupKeydown = () => {
+                    document.removeEventListener('keydown', keydownHandler)
+                }
+            }
+
+            // Store functions on modal element
             modal._openModal = openModal
+            modal._closeModal = closeModal
         })
 
         // Set up open triggers
@@ -216,8 +438,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 const modal = $q(targetSel)
                 if (modal && modal._openModal) {
                     modal._openModal()
+                    // Set up keydown listener when opening
+                    if (modal._setupKeydown) modal._setupKeydown()
                 }
             })
+        })
+
+        // Handle modal opening/closing with proper cleanup
+        modals.forEach(modal => {
+            if (modal._openModal) {
+                const originalOpen = modal._openModal
+                modal._openModal = () => {
+                    originalOpen()
+                    if (modal._setupKeydown) modal._setupKeydown()
+                }
+            }
+
+            if (modal._closeModal) {
+                const originalClose = modal._closeModal
+                modal._closeModal = () => {
+                    if (modal._cleanupKeydown) modal._cleanupKeydown()
+                    originalClose()
+                }
+            }
         })
 
         /* ========================================================================
@@ -234,15 +477,84 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Simple CSS-based positioning
      */
         const tooltipTriggers = $qa('[data-tooltip]')
-        tooltipTriggers.forEach(trigger => {
+        if (!tooltipTriggers || tooltipTriggers.length === 0) return
+
+        tooltipTriggers.forEach((trigger, index) => {
+            const tooltipText = trigger.getAttribute('data-tooltip')
+            if (!tooltipText) return
+
+            // Create tooltip element
             const tip = document.createElement('span')
             tip.className = 'tooltip'
-            tip.textContent = trigger.getAttribute('data-tooltip')
+            tip.textContent = tooltipText
+            tip.setAttribute('role', 'tooltip')
+            tip.id = `tooltip-${index}-${Date.now()}`
+
+            // Set up ARIA attributes
+            trigger.setAttribute('aria-describedby', tip.id)
+            trigger.setAttribute('tabindex', '0') // Make focusable if not already
+
+            // Enhanced positioning with collision detection
+            const positionTooltip = () => {
+                if (!tip.isConnected) return
+
+                // Reset positioning
+                tip.style.left = '50%'
+                tip.style.top = ''
+                tip.style.bottom = ''
+                tip.style.transform = 'translate(-50%, -6px)'
+
+                // Get positions
+                const triggerRect = trigger.getBoundingClientRect()
+                const tipRect = tip.getBoundingClientRect()
+                const viewportWidth = window.innerWidth
+                const viewportHeight = window.innerHeight
+
+                // Check if tooltip goes off-screen horizontally
+                if (tipRect.left < 0) {
+                    tip.style.left = '0'
+                    tip.style.transform = 'translateX(0)'
+                } else if (tipRect.right > viewportWidth) {
+                    tip.style.left = '100%'
+                    tip.style.transform = 'translateX(-100%)'
+                }
+
+                // Check if tooltip goes off-screen vertically (prefer bottom, fallback to top)
+                if (tipRect.top < 0) {
+                    // Move to bottom
+                    tip.style.top = '100%'
+                    tip.style.bottom = ''
+                    tip.style.transform = tip.style.transform.replace('-6px', '6px')
+                }
+            }
+
+            // Event handlers
+            const showTooltip = () => {
+                tip.classList.add('tooltip--visible')
+                positionTooltip()
+            }
+
+            const hideTooltip = () => {
+                tip.classList.remove('tooltip--visible')
+            }
+
+            // Mouse events
+            trigger.addEventListener('mouseenter', showTooltip)
+            trigger.addEventListener('mouseleave', hideTooltip)
+
+            // Focus events for keyboard accessibility
+            trigger.addEventListener('focus', showTooltip)
+            trigger.addEventListener('blur', hideTooltip)
+
+            // Reposition on window resize
+            const debouncedReposition = window.debounce ? window.debounce(positionTooltip, 100) : positionTooltip
+            window.addEventListener('resize', debouncedReposition, { passive: true })
+
+            // Append tooltip to trigger element
             trigger.appendChild(tip)
-            // Position tooltip above the element (simple)
-            tip.style.left = '50%'
-            tip.style.bottom = '100%'
-            tip.style.transform = 'translate(-50%, -6px)'
+
+            // Initial positioning
+            requestAnimationFrame(positionTooltip)
         })
 
         /* ========================================================================

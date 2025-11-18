@@ -41,13 +41,24 @@
  */
 function throttle (func, limit) {
     let inThrottle
-    return function () {
-        const args = arguments
-        const context = this
+    let lastArgs
+    let lastContext
+
+    return function (...args) {
+        lastArgs = args
+        lastContext = this
+
         if (!inThrottle) {
-            func.apply(context, args)
+            func.apply(lastContext, lastArgs)
             inThrottle = true
-            setTimeout(() => inThrottle = false, limit)
+            setTimeout(() => {
+                inThrottle = false
+                // Execute the last call if one was made during throttle
+                if (lastArgs) {
+                    func.apply(lastContext, lastArgs)
+                    lastArgs = null
+                }
+            }, limit)
         }
     }
 }
@@ -58,6 +69,7 @@ function throttle (func, limit) {
  *
  * @param {Function} func - Function to debounce
  * @param {number} wait - Wait time in milliseconds
+ * @param {boolean} immediate - Execute immediately on first call, then wait
  * @returns {Function} - Debounced function
  *
  * @example
@@ -66,13 +78,18 @@ function throttle (func, limit) {
  * }, 250);
  * window.addEventListener('resize', handleResize);
  */
-function debounce (func, wait) {
+function debounce (func, wait, immediate = false) {
     let timeout
-    return function () {
+    return function (...args) {
         const context = this
-        const args = arguments
+        const later = () => {
+            timeout = null
+            if (!immediate) func.apply(context, args)
+        }
+        const callNow = immediate && !timeout
         clearTimeout(timeout)
-        timeout = setTimeout(() => func.apply(context, args), wait)
+        timeout = setTimeout(later, wait)
+        if (callNow) func.apply(context, args)
     }
 }
 
@@ -157,7 +174,7 @@ function formatDate (date) {
 
 /**
  * Validate email format
- * Uses standard email regex pattern
+ * Uses comprehensive email regex pattern that follows RFC 5322 guidelines
  *
  * @param {string} email - Email address to validate
  * @returns {boolean} - True if valid email format
@@ -168,8 +185,12 @@ function formatDate (date) {
  * }
  */
 function validateEmail (email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
+    if (typeof email !== 'string') return false
+    if (email.length > 254) return false // RFC 5321 limit
+
+    // More comprehensive email regex
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+    return emailRegex.test(email.trim())
 }
 
 /**
@@ -272,34 +293,87 @@ function safeStorageSet (key, value) {
     }
 }
 
-function memoizeLocal (key, compute, ttlMs) {
+/**
+ * Memoize function with localStorage caching
+ * Caches function results in localStorage with TTL (Time To Live)
+ *
+ * @param {string} key - Cache key
+ * @param {Function} compute - Function to compute the value
+ * @param {number} ttlMs - Time to live in milliseconds (0 for no expiry)
+ * @returns {*} - Cached or computed value
+ *
+ * @example
+ * const result = memoizeLocal('api-data', () => fetchData(), 5 * 60 * 1000);
+ */
+function memoizeLocal (key, compute, ttlMs = 0) {
+    if (typeof compute !== 'function') {
+        throw new Error('memoizeLocal: compute must be a function')
+    }
+
     const now = Date.now()
     const entry = safeStorageGet(key, null)
-    if (entry && typeof entry === 'object' && typeof entry.expiresAt === 'number' && entry.expiresAt > now) {
+
+    // Check if we have a valid cached entry
+    if (entry && typeof entry === 'object' &&
+        typeof entry.expiresAt === 'number' &&
+        (entry.expiresAt === 0 || entry.expiresAt > now) &&
+        entry.hasOwnProperty('value')) {
         return entry.value
     }
-    const result = compute()
-    if (result && typeof result.then === 'function') {
-        return result.then((v) => {
-            safeStorageSet(key, { value: v, expiresAt: now + (ttlMs > 0 ? ttlMs : 0) })
-            return v
+
+    try {
+        const result = compute()
+
+        // Handle promises
+        if (result && typeof result.then === 'function') {
+            return result.then((value) => {
+                safeStorageSet(key, {
+                    value,
+                    expiresAt: ttlMs > 0 ? now + ttlMs : 0
+                })
+                return value
+            }).catch((error) => {
+                console.warn('memoizeLocal: compute function rejected:', error)
+                throw error
+            })
+        }
+
+        // Handle synchronous results
+        safeStorageSet(key, {
+            value: result,
+            expiresAt: ttlMs > 0 ? now + ttlMs : 0
         })
+        return result
+    } catch (error) {
+        console.warn('memoizeLocal: compute function threw:', error)
+        throw error
     }
-    safeStorageSet(key, { value: result, expiresAt: now + (ttlMs > 0 ? ttlMs : 0) })
-    return result
 }
 
+/**
+ * Cache JSON data from a URL with localStorage
+ * Automatically caches and serves from cache when available
+ *
+ * @param {string} url - URL to fetch JSON from
+ * @param {number} ttlMs - Cache time to live in milliseconds
+ * @returns {Promise<Object>} - JSON data
+ *
+ * @example
+ * const data = await cacheJson('https://api.example.com/data', 10 * 60 * 1000);
+ */
 async function cacheJson (url, ttlMs = 5 * 60 * 1000) {
-    const key = `json:${url}`
-    const now = Date.now()
-    const entry = safeStorageGet(key, null)
-    if (entry && typeof entry === 'object' && typeof entry.expiresAt === 'number' && entry.expiresAt > now) {
-        return entry.value
-    }
-    const res = await fetch(url, { method: 'GET', headers: { Accept: 'application/json' } })
-    const data = await res.json()
-    safeStorageSet(key, { value: data, expiresAt: now + ttlMs })
-    return data
+    return memoizeLocal(`json:${url}`, async () => {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: { Accept: 'application/json' }
+        })
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+        }
+
+        return response.json()
+    }, ttlMs)
 }
 
 // Export functions to global scope for use in other scripts
