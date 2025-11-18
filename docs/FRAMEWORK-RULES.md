@@ -658,14 +658,14 @@ git branch
 
 # 2. Make changes to files
 
-# 3. Stage changes
-git add .
+# 3. Use git manager for commit (auto-batches pushes every 5 commits)
+node scripts/git-manager.js commit "Improve components page layout and add missing components"
 
-# 4. Commit with descriptive message
-git commit -m "Improve components page layout and add missing components"
+# Check batch status anytime
+node scripts/git-manager.js status
 
-# 5. Push to remote
-git push origin main
+# Force immediate push if needed
+node scripts/git-manager.js push
 ```
 
 ### Commit Message Guidelines
@@ -679,12 +679,27 @@ Examples:
 - ✅ "Add video cover component to components page"
 - ✅ "Fix theme toggle accessibility in mobile menu"
 
+### Batch Commit System
+
+This project uses a batch commit system to reduce GitHub push frequency:
+
+- **Automatic batching**: Commits are automatically tracked and pushed every 5 commits
+- **Status tracking**: Use `node scripts/git-manager.js status` to see current batch progress
+- **Force push**: Use `node scripts/git-manager.js push` for immediate push when needed
+- **Counter reset**: Counter resets to 0 after each batch push
+
+Benefits:
+- Reduces GitHub API calls
+- Allows for more granular commits
+- Maintains backup frequency without constant pushing
+
 ### Forbidden Actions
 
 - ❌ Never commit to wrong repository
 - ❌ Never push without testing changes
 - ❌ Never commit broken code
 - ❌ Never modify git history without coordination
+- ❌ Never bypass the git manager script for commits
 
 ---
 

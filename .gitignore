@@ -40,3 +40,6 @@ tests/screenshots/
 .env.local
 .env.*.local
 .cursor/openrouter-api-key.txt
+
+# Git management files
+.git-commit-counter
