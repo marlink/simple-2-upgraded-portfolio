@@ -2396,70 +2396,40 @@ body[data-theme="light"] .hero__overlay {
   box-shadow: 0 0 0 0 rgba(183, 240, 77, 0);
 }
 
-/* Hero Logo - Hover/Focus State: Green glow appears, then fades out */
+/* Hero Logo - Hover/Focus State: Smooth fade out without glow */
 .hero__content:hover .hero__logo,
 .hero__content:focus-within .hero__logo {
   opacity: 0;
-  transform: scale(1.2);
-  filter: brightness(0.3);
+  transform: scale(1.15);
+  filter: brightness(0.2);
   transition:
-    opacity 0.2s ease 0.25s,
-    transform 0.4s ease,
-    filter 0.3s ease,
-    box-shadow 0.3s ease;
-  animation: heroLogoGlow 0.5s ease;
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out,
+    filter 0.4s ease-out;
 }
 
-@keyframes heroLogoGlow {
-  0% {
-    opacity: 0.4;
-    filter: brightness(0.3);
-    box-shadow: 0 0 0 0 rgba(183, 240, 77, 0);
-  }
-
-  30% {
-    opacity: 0.7;
-    filter: brightness(0.6) drop-shadow(0 0 12px rgba(183, 240, 77, 0.5))
-      drop-shadow(0 0 24px rgba(183, 240, 77, 0.3));
-    box-shadow:
-      0 0 20px rgba(183, 240, 77, 0.4),
-      0 0 40px rgba(183, 240, 77, 0.2);
-  }
-
-  60% {
-    opacity: 0.5;
-    filter: brightness(0.4) drop-shadow(0 0 8px rgba(183, 240, 77, 0.3))
-      drop-shadow(0 0 16px rgba(183, 240, 77, 0.15));
-    box-shadow:
-      0 0 15px rgba(183, 240, 77, 0.25),
-      0 0 30px rgba(183, 240, 77, 0.1);
-  }
-
-  100% {
-    opacity: 0;
-    filter: brightness(0.3);
-    box-shadow: 0 0 0 0 rgba(183, 240, 77, 0);
-  }
-}
 
 /* Hero Text - Hidden by default */
 .hero__text {
   position: relative;
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.95) translateY(10px);
   transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
   z-index: 1;
   text-align: center;
   width: 100%;
 }
 
-/* Hover State: Show text */
-
-.hero__content:hover .hero__text {
+/* Hover State: Show text with smooth entrance */
+.hero__content:hover .hero__text,
+.hero__content:focus-within .hero__text {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1) translateY(0);
+  transition:
+    opacity 0.6s ease-out 0.2s,
+    transform 0.6s ease-out 0.2s;
 }
 
 .hero__title {
