@@ -139,10 +139,10 @@
             <div class="card__body">
               <h4 class="mb-4">Button Sizes</h4>
               <div class="demo-flex demo-flex--wrap gap-3 align-items-center">
-                <button class="btn btn--primary btn--sm">Small</button>
-                <button class="btn btn--primary">Normal</button>
-                <button class="btn btn--primary btn--big">Big</button>
-                <button class="btn btn--primary btn--lg">Large</button>
+                <button type="button" class="btn btn--primary btn--sm">Small</button>
+                <button type="button" class="btn btn--primary">Normal</button>
+                <button type="button" class="btn btn--primary btn--big">Big</button>
+                <button type="button" class="btn btn--primary btn--lg">Large</button>
               </div>
             </div>
           </div>
@@ -243,6 +243,9 @@
                       <input type="radio" name="radio-demo"> Choice 2
                     </label>
                   </div>
+                </div>
+                <div class="form__row">
+                  <button type="submit" class="btn btn--primary">Submit Form</button>
                 </div>
               </form>
             </div>
@@ -358,7 +361,7 @@
         <div class="col-12 col-lg-6">
           <div class="card card--glass-outline">
             <div class="card__body">
-              <h4 class="mb-4">Text Styles & Utilities</h4>
+              <h4 class="mb-4">Text Styles &amp; Utilities</h4>
 
               <div class="mb-4">
                 <div class="demo-label">Lead Paragraph</div>
@@ -422,7 +425,7 @@
         <div class="col-12">
           <div class="card card--glass-outline">
             <div class="card__body">
-              <h4 class="mb-4">Lists & Structured Content</h4>
+              <h4 class="mb-4">Lists &amp; Structured Content</h4>
 
               <div class="grid gap-6">
                 <div class="col-12 col-md-4">
@@ -508,7 +511,7 @@
       <h2 class="h2 mb-6">Tabs</h2>
       <div class="card card--glass-outline">
         <div class="card__body">
-          <div class="tabs" data-tabs>
+      <div class="tabs" data-tabs>
             <div class="tablist" role="tablist" aria-label="Component examples">
               <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-panel-1" id="tab-btn-1" type="button">Overview</button>
               <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-2" id="tab-btn-2" type="button">Usage</button>
@@ -536,8 +539,8 @@
       <h2 class="h2 mb-6">Accordion</h2>
       <div class="card card--glass-outline">
         <div class="card__body">
-          <div class="accordion" data-accordion>
-            <div class="accordion__item">
+      <div class="accordion" data-accordion>
+        <div class="accordion__item">
               <button type="button" class="accordion__button" aria-expanded="false">What is an accordion component?</button>
               <div class="accordion__panel" hidden>
                 <p>An accordion is a vertically stacked set of interactive headings that each contain a title, content snippet, or thumbnail representing a section of content.</p>
@@ -545,13 +548,13 @@
             </div>
             <div class="accordion__item">
               <button type="button" class="accordion__button" aria-expanded="false">When should I use accordions?</button>
-              <div class="accordion__panel" hidden>
+          <div class="accordion__panel" hidden>
                 <p>Use accordions when you want to organize related information in a compact way. They're perfect for FAQs, settings panels, or any content that benefits from progressive disclosure.</p>
-              </div>
-            </div>
-            <div class="accordion__item">
+          </div>
+        </div>
+        <div class="accordion__item">
               <button type="button" class="accordion__button" aria-expanded="false">Accessibility features</button>
-              <div class="accordion__panel" hidden>
+          <div class="accordion__panel" hidden>
                 <p>This accordion component includes proper ARIA attributes, keyboard navigation, and screen reader support. Multiple items can be expanded simultaneously.</p>
               </div>
             </div>
@@ -585,8 +588,8 @@
             <p>You can close this modal by clicking the overlay, pressing the close button, or pressing the Escape key.</p>
           </div>
           <div class="modal__footer">
-            <button class="btn btn--outline" data-modal-close type="button">Cancel</button>
-            <button class="btn btn--primary" data-modal-close type="button">OK</button>
+            <button type="button" class="btn btn--outline" data-modal-close>Cancel</button>
+            <button type="button" class="btn btn--primary" data-modal-close>OK</button>
           </div>
         </div>
       </div>
@@ -597,7 +600,7 @@
         <div class="modal__dialog modal__dialog--large">
           <div class="modal__header">
             <h3>Large Modal Example</h3>
-            <button class="modal__close" data-modal-close aria-label="Close modal" type="button">&times;</button>
+            <button type="button" class="modal__close" data-modal-close aria-label="Close modal">&times;</button>
           </div>
           <div class="modal__body">
             <p>This modal demonstrates a larger dialog size, useful for forms or detailed content.</p>
@@ -613,8 +616,8 @@
             </div>
           </div>
           <div class="modal__footer">
-            <button class="btn btn--outline" data-modal-close type="button">Cancel</button>
-            <button class="btn btn--primary" data-modal-close type="button">Save Changes</button>
+            <button class="btn btn--outline" type="button" data-modal-close>Cancel</button>
+            <button class="btn btn--primary" type="button" data-modal-close>Save Changes</button>
           </div>
         </div>
       </div>
@@ -626,9 +629,9 @@
       <div class="card card--glass-outline">
         <div class="card__body">
           <div class="demo-tooltip-group">
-            <button class="btn btn--outline" data-tooltip="This is a simple tooltip" type="button">Hover me</button>
-            <button class="btn btn--primary" data-tooltip="Tooltips work on any element" type="button">Another tooltip</button>
-            <button class="btn btn--secondary" data-tooltip="Position automatically adjusts to viewport" type="button">Auto-positioning</button>
+            <button class="btn btn--outline" type="button" data-tooltip="This is a simple tooltip">Hover me</button>
+            <button class="btn btn--primary" type="button" data-tooltip="Tooltips work on any element">Another tooltip</button>
+            <button class="btn btn--secondary" type="button" data-tooltip="Position automatically adjusts to viewport">Auto-positioning</button>
           </div>
           <p class="mt-4 text-sm text-muted">Hover over the buttons above to see tooltips in action.</p>
         </div>
