@@ -205,34 +205,34 @@
     255,
     255,
     255,
-    0.65
-  ); /* Light theme glass background - more see-through for better transparency */
+    0.3
+  ); /* Light theme glass background - very see-through and subtle */
 
   --glass-bg-dark: rgba(
     15,
     15,
     15,
-    0.8
-  ); /* Dark theme glass background - see-through with good visibility */
+    0.4
+  ); /* Dark theme glass background - see-through and subtle */
 
-  --glass-blur: 20px; /* Blur amount for backdrop-filter - pronounced but not excessive */
-  --glass-saturation: 180%; /* Saturation percentage for backdrop-filter */
+  --glass-blur: 12px; /* Blur amount for backdrop-filter - subtle and refined */
+  --glass-saturation: 120%; /* Saturation percentage for backdrop-filter - natural look */
   --glass-border-light: rgba(
     241,
     245,
     249,
-    0.4
-  ); /* Light theme border - more subtle for see-through effect */
+    0.2
+  ); /* Light theme border - very subtle for see-through effect */
 
   --glass-border-dark: rgba(
     234,
     244,
     244,
-    0.35
-  ); /* Dark theme border - visible but subtle */
+    0.15
+  ); /* Dark theme border - barely visible for subtlety */
 
-  --glass-shadow-light: 0 8px 32px rgba(0, 0, 0, 0.08); /* Light theme shadow - lighter for more transparency */
-  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3); /* Dark theme shadow - subtle depth */
+  --glass-shadow-light: 0 4px 16px rgba(0, 0, 0, 0.04); /* Light theme shadow - very subtle and light */
+  --glass-shadow-dark: 0 4px 16px rgba(0, 0, 0, 0.12); /* Dark theme shadow - subtle depth */
 
   /* Code block colors */
   --code-bg: #0a0a0a;
@@ -4033,54 +4033,55 @@ body[data-theme="dark"] .glass {
 /* Glass morphism: backdrop-filter blurs content behind element */
 .card--glass-solid {
   background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px) saturate(180%); /* Modern glass effect */
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-backdrop-filter: blur(12px) saturate(180%); /* Safari prefix */
   border: 2px solid rgba(241, 245, 249, 0.35);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 body[data-theme="dark"] .card--glass-solid {
-  background: rgba(30, 41, 59, 0.75);
-  border: 2px solid rgba(234, 244, 244, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  background: rgba(30, 41, 59, 0.4);
+  border: 2px solid rgba(234, 244, 244, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .card--glass-outline {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.25);
 
-  /* Refined blur for premium effect */
-  backdrop-filter: blur(24px) saturate(150%);
+  /* Subtle blur for refined effect */
+  backdrop-filter: blur(12px) saturate(120%);
   /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
 
   /* Fixed border width to prevent layout shift on hover */
-  border: 2px solid rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.05);
 
-  /* More layered shadow for sophisticated depth */
+  /* Subtle shadow for sophisticated depth */
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.12),
-    0 2px 8px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 1px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
   transition: all 0.35s var(--ease-out-smooth);
 }
 
 body[data-theme="dark"] .card--glass-outline {
-  background: rgba(0, 0, 0, 0.6);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.05);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    0 1px 4px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 body[data-theme="light"] .card--glass-outline {
-  background: rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.06);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.12),
-    0 2px 8px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 1px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
 }
 
 /* Hover only: Green border from style guide */
@@ -4088,10 +4089,10 @@ body[data-theme="light"] .card--glass-outline {
   transform: translateY(-2px);
   border-color: var(--color-accent-hover); /* Green hover from style guide */
   box-shadow:
-    0 12px 48px rgba(0, 0, 0, 0.16),
-    0 4px 12px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  background: rgba(0, 0, 0, 0.65);
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.35);
 }
 
 body[data-theme="dark"] .card--glass-outline:hover {
@@ -4202,6 +4203,16 @@ body[data-theme="dark"] .card--glass-outline .card__footer {
   box-shadow: var(--shadow-md);
   position: relative;
   transition: transform 0.2s var(--ease-out-smooth), box-shadow 0.2s var(--ease-out-smooth), color 0.2s var(--ease-out-smooth);
+}
+
+/* Full width on mobile single column layout */
+@media (max-width: 768px) {
+  .hero-card {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    padding: var(--space-6) var(--space-4);
+  }
 }
 
 .hero-card:hover,
