@@ -6739,12 +6739,6 @@ body[data-theme="dark"] .card--substack .card__footer {
    SMOOTH TRANSITIONS & LAYOUT STABILITY
    ========================================= */
 
-/* Prevent layout shifts during page transitions */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
 /* Ensure smooth transitions for all interactive elements */
 button,

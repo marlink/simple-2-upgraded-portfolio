@@ -804,6 +804,7 @@ const $qa = window.safeQueryAll
                             isPlaying = true
                             container.classList.add('video-cover--playing')
                             container.classList.remove('video-cover--show-icon')
+                            container.setAttribute('aria-expanded', 'true')
                         }).catch(err => {
                             console.error('Error playing video:', err)
                         })
@@ -812,6 +813,7 @@ const $qa = window.safeQueryAll
                         video.pause()
                         isPlaying = false
                         container.classList.remove('video-cover--playing')
+                        container.setAttribute('aria-expanded', 'false')
                     }
                 }
 
@@ -865,6 +867,7 @@ const $qa = window.safeQueryAll
                     isPlaying = false
                     container.classList.remove('video-cover--playing')
                     container.classList.remove('video-cover--show-icon')
+                    container.setAttribute('aria-expanded', 'false')
                 })
 
                 // Handle video pause event
@@ -872,6 +875,7 @@ const $qa = window.safeQueryAll
                     if (isPlaying) {
                         isPlaying = false
                         container.classList.remove('video-cover--playing')
+                        container.setAttribute('aria-expanded', 'false')
                     }
                 })
             })
