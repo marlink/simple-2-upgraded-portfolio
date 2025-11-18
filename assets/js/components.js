@@ -787,8 +787,6 @@
 
                 videoCovers.forEach(container => {
                     const video = safeQuery('.video-cover__video', container)
-                    const cover = safeQuery('.video-cover__cover', container)
-                    const playIcon = safeQuery('.video-cover__play-icon', container)
 
                     if (!video) {
                     // Skip containers without video elements
