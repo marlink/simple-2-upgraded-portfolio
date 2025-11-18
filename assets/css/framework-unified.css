@@ -107,7 +107,9 @@
 
   /* Brand colors */
   --color-youtube: #ff0000; /* YouTube red */
+  --color-youtube-hover: #cc0000; /* Darker YouTube red for hover */
   --color-substack: #ff6600; /* Substack orange */
+  --color-substack-hover: #cc5200; /* Darker Substack orange for hover */
 
   /* Gradient colors for hero cards */
   --hero-card-gradient-start: #262c34;
@@ -4435,13 +4437,13 @@ body[data-theme="dark"] .about__stat-card {
 }
 
 body[data-theme="light"] .about__stat-card {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.5);
 
   /* Slightly reduced opacity to maintain visual weight with 2px border */
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.15),
-    0 1px 4px rgba(0, 0, 0, 0.1);
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* Hover only: Green border from style guide */
@@ -4465,9 +4467,9 @@ body[data-theme="dark"] .about__stat-card:hover {
 body[data-theme="light"] .about__stat-card:hover {
   border-color: var(--color-accent-hover); /* Green hover from style guide */
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.2),
-    0 2px 6px rgba(0, 0, 0, 0.15);
-  background: rgba(0, 0, 0, 0.55);
+    0 6px 20px rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .about__stat-content {
@@ -6629,8 +6631,8 @@ body[data-theme="light"] .video-cover__play-icon {
 }
 
 .card--youtube .btn:hover {
-  background: #cc0000;
-  border-color: #cc0000;
+  background: var(--color-youtube-hover);
+  border-color: var(--color-youtube-hover);
   color: white;
 }
 
