@@ -489,7 +489,7 @@
     height: 0;
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 4px solid currentColor;
+    border-top: 4px solid currentcolor;
     transition: transform 0.2s ease;
 }
 
