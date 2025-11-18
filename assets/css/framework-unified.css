@@ -6762,12 +6762,6 @@ html.loaded {
 }
 
 /* Ensure consistent spacing and prevent jumps */
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  line-height: var(--line-height-normal);
-}
 
 /* Smooth theme transitions */
 [data-theme] * {
