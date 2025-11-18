@@ -154,19 +154,105 @@
             <nav class="demo-toolbar__nav demo-scroll-shadow" aria-label="Component index">
                 <ul class="demo-toolbar__list">
                     <li><a class="demo-toolbar__link" href="overview.html" aria-current="page">Overview</a></li>
-                    <li><a class="demo-toolbar__link" href="components.html">Components</a></li>
-                    <li><a class="demo-toolbar__link" href="cards.html">Cards</a></li>
-                    <li><a class="demo-toolbar__link" href="tokens.html">Tokens</a></li>
-                    <li><a class="demo-toolbar__link" href="layout.html">Layout</a></li>
-                    <li><a class="demo-toolbar__link" href="forms.html">Forms</a></li>
-                    <li><a class="demo-toolbar__link" href="navigation.html">Navigation</a></li>
-                    <li><a class="demo-toolbar__link" href="utilities.html">Utilities</a></li>
-                    <li><a class="demo-toolbar__link" href="typography.html">Typography</a></li>
-                    <li><a class="demo-toolbar__link" href="icons.html">Icons</a></li>
-                    <li><a class="demo-toolbar__link" href="accessibility.html">Accessibility</a></li>
-                    <li><a class="demo-toolbar__link" href="photos.html">Photos</a></li>
-                    <li><a class="demo-toolbar__link" href="light-theme.html">Light Theme</a></li>
-                    <li><a class="demo-toolbar__link" href="dark-theme.html">Dark Theme</a></li>
+
+                    <!-- Foundation Category -->
+                    <li class="demo-nav-category" aria-haspopup="true" aria-expanded="false">
+                        <button class="demo-nav-category__trigger" aria-label="Foundation pages">
+                            Foundation
+                            <svg class="demo-nav-category__arrow" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M3 4.5L6 7.5L9 4.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <div class="demo-nav-category__dropdown" role="menu">
+                            <ul class="demo-nav-category__list" role="none">
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="tokens.html" role="menuitem">Design Tokens</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="colors.html" role="menuitem">Colors</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="typography.html" role="menuitem">Typography</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="layout.html" role="menuitem">Layout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Components Category -->
+                    <li class="demo-nav-category" aria-haspopup="true" aria-expanded="false">
+                        <button class="demo-nav-category__trigger" aria-label="Components pages">
+                            Components
+                            <svg class="demo-nav-category__arrow" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M3 4.5L6 7.5L9 4.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <div class="demo-nav-category__dropdown" role="menu">
+                            <ul class="demo-nav-category__list" role="none">
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="components.html" role="menuitem">All Components</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="cards.html" role="menuitem">Cards</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="forms.html" role="menuitem">Forms</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="navigation.html" role="menuitem">Navigation</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Utilities Category -->
+                    <li class="demo-nav-category" aria-haspopup="true" aria-expanded="false">
+                        <button class="demo-nav-category__trigger" aria-label="Utilities pages">
+                            Utilities
+                            <svg class="demo-nav-category__arrow" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M3 4.5L6 7.5L9 4.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <div class="demo-nav-category__dropdown" role="menu">
+                            <ul class="demo-nav-category__list" role="none">
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="utilities.html" role="menuitem">All Utilities</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="icons.html" role="menuitem">Icons</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="photos.html" role="menuitem">Photos</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Themes & Accessibility Category -->
+                    <li class="demo-nav-category" aria-haspopup="true" aria-expanded="false">
+                        <button class="demo-nav-category__trigger" aria-label="Themes and accessibility pages">
+                            Themes &amp; A11y
+                            <svg class="demo-nav-category__arrow" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M3 4.5L6 7.5L9 4.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <div class="demo-nav-category__dropdown" role="menu">
+                            <ul class="demo-nav-category__list" role="none">
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="light-theme.html" role="menuitem">Light Theme</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="dark-theme.html" role="menuitem">Dark Theme</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="accessibility.html" role="menuitem">Accessibility</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
                     <li><a class="demo-toolbar__link" href="../index.html">Marketing Site</a></li>
                 </ul>
             </nav>
@@ -280,16 +366,75 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const nav = window.safeQuery?.('.demo-scroll-shadow')
-            if (!nav) return
+            if (nav) {
+                const updateOverflowState = () => {
+                    const isOverflowing = nav.scrollWidth > nav.clientWidth + 4
+                    nav.classList.toggle('is-scrollable', isOverflowing)
+                }
 
-            const updateOverflowState = () => {
-                const isOverflowing = nav.scrollWidth > nav.clientWidth + 4
-                nav.classList.toggle('is-scrollable', isOverflowing)
+                updateOverflowState()
+                nav.addEventListener('scroll', updateOverflowState, { passive: true })
+                window.addEventListener('resize', updateOverflowState)
             }
 
-            updateOverflowState()
-            nav.addEventListener('scroll', updateOverflowState, { passive: true })
-            window.addEventListener('resize', updateOverflowState)
+            // Handle dropdown navigation
+            const categories = document.querySelectorAll('.demo-nav-category')
+            categories.forEach(category => {
+                const trigger = category.querySelector('.demo-nav-category__trigger')
+                const dropdown = category.querySelector('.demo-nav-category__dropdown')
+
+                trigger.addEventListener('click', (e) => {
+                    e.stopPropagation()
+                    const isExpanded = category.getAttribute('aria-expanded') === 'true'
+
+                    // Close all dropdowns first
+                    categories.forEach(cat => {
+                        cat.setAttribute('aria-expanded', 'false')
+                    })
+
+                    // Toggle this dropdown
+                    category.setAttribute('aria-expanded', !isExpanded)
+                })
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!category.contains(e.target)) {
+                        category.setAttribute('aria-expanded', 'false')
+                    }
+                })
+
+                // Close dropdown on escape key
+                trigger.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        category.setAttribute('aria-expanded', 'false')
+                        trigger.focus()
+                    }
+                })
+
+                // Handle arrow key navigation
+                dropdown.addEventListener('keydown', (e) => {
+                    const links = dropdown.querySelectorAll('.demo-nav-category__link')
+                    const currentIndex = Array.from(links).findIndex(link => link === document.activeElement)
+
+                    switch (e.key) {
+                        case 'ArrowDown':
+                            e.preventDefault()
+                            const nextIndex = (currentIndex + 1) % links.length
+                            links[nextIndex].focus()
+                            break
+                        case 'ArrowUp':
+                            e.preventDefault()
+                            const prevIndex = currentIndex <= 0 ? links.length - 1 : currentIndex - 1
+                            links[prevIndex].focus()
+                            break
+                        case 'Escape':
+                            e.preventDefault()
+                            category.setAttribute('aria-expanded', 'false')
+                            trigger.focus()
+                            break
+                    }
+                })
+            })
         })
     </script>
 </body>

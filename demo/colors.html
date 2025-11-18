@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Color Palette | Framework Showcase</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Complete color palette showcase for the responsive CSS framework.">
+    <meta name="keywords" content="CSS framework, color palette, design tokens, responsive design, UI components">
+    <meta name="author" content="Marceli Cieplik">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Unified Responsive Framework -->
+    <link rel="stylesheet" href="../assets/css/framework-unified.css">
+    <link rel="stylesheet" href="../assets/css/typography-system.css">
+    <link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body class="demo-body" data-theme="dark">
+    <!-- Page Load Spinner -->
+    <div class="page-spinner">
+        <div class="page-spinner__content">
+            <div class="page-spinner__logo"></div>
+            <div class="page-spinner__spinner"></div>
+        </div>
+    </div>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="demo-toolbar" role="banner">
+        <div class="demo-toolbar__inner container">
+            <div class="demo-toolbar__brand">
+                <a class="demo-toolbar__title" href="overview.html">Framework Demo</a>
+                <div class="demo-toolbar__meta" aria-label="Current section">
+                    <span>Design System</span>
+                    <span class="demo-toolbar__meta-dot" aria-hidden="true"></span>
+                    <span>Color Palette</span>
+                </div>
+            </div>
+            <nav class="demo-toolbar__nav demo-scroll-shadow" aria-label="Component index">
+                <ul class="demo-toolbar__list">
+                    <li><a class="demo-toolbar__link" href="overview.html">Overview</a></li>
+
+                    <!-- Foundation Category -->
+                    <li class="demo-nav-category" aria-haspopup="true" aria-expanded="false">
+                        <button class="demo-nav-category__trigger" aria-label="Foundation pages">
+                            Foundation
+                            <svg class="demo-nav-category__arrow" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M3 4.5L6 7.5L9 4.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <div class="demo-nav-category__dropdown" role="menu">
+                            <ul class="demo-nav-category__list" role="none">
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="tokens.html" role="menuitem">Design Tokens</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="colors.html" aria-current="page" role="menuitem">Colors</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="typography.html" role="menuitem">Typography</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="layout.html" role="menuitem">Layout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Components Category -->
+                    <li class="demo-nav-category" aria-haspopup="true" aria-expanded="false">
+                        <button class="demo-nav-category__trigger" aria-label="Components pages">
+                            Components
+                            <svg class="demo-nav-category__arrow" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M3 4.5L6 7.5L9 4.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <div class="demo-nav-category__dropdown" role="menu">
+                            <ul class="demo-nav-category__list" role="none">
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="components.html" role="menuitem">All Components</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="cards.html" role="menuitem">Cards</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="forms.html" role="menuitem">Forms</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="navigation.html" role="menuitem">Navigation</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Utilities Category -->
+                    <li class="demo-nav-category" aria-haspopup="true" aria-expanded="false">
+                        <button class="demo-nav-category__trigger" aria-label="Utilities pages">
+                            Utilities
+                            <svg class="demo-nav-category__arrow" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M3 4.5L6 7.5L9 4.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <div class="demo-nav-category__dropdown" role="menu">
+                            <ul class="demo-nav-category__list" role="none">
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="utilities.html" role="menuitem">All Utilities</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="icons.html" role="menuitem">Icons</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="photos.html" role="menuitem">Photos</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Themes & Accessibility Category -->
+                    <li class="demo-nav-category" aria-haspopup="true" aria-expanded="false">
+                        <button class="demo-nav-category__trigger" aria-label="Themes and accessibility pages">
+                            Themes &amp; A11y
+                            <svg class="demo-nav-category__arrow" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M3 4.5L6 7.5L9 4.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <div class="demo-nav-category__dropdown" role="menu">
+                            <ul class="demo-nav-category__list" role="none">
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="light-theme.html" role="menuitem">Light Theme</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="dark-theme.html" role="menuitem">Dark Theme</a>
+                                </li>
+                                <li class="demo-nav-category__item" role="none">
+                                    <a class="demo-nav-category__link" href="accessibility.html" role="menuitem">Accessibility</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li><a class="demo-toolbar__link" href="../index.html">Marketing Site</a></li>
+                </ul>
+            </nav>
+            <div class="demo-toolbar__controls">
+                <div class="demo-toolbar__theme">
+                    <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+                        <span class="theme-toggle__icon theme-toggle__icon--light">
+                            <img src="../assets/icons/sun.svg" alt="Light theme" width="24" height="24">
+                        </span>
+                        <span class="theme-toggle__icon theme-toggle__icon--dark">
+                            <img src="../assets/icons/moon.svg" alt="Dark theme" width="24" height="24">
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="demo-main">
+        <div class="container">
+            <div class="demo-page-intro">
+                <span class="demo-page-intro__eyebrow">Design System</span>
+                <h1 class="demo-page-intro__title h2">Color Palette</h1>
+                <p class="demo-page-intro__description">Essential color system used throughout the framework, organized by light and dark themes. Each color includes hex codes, usage context, and theme-specific variations.</p>
+            </div>
+
+            <!-- Core Theme Colors -->
+            <section class="demo-section" id="core-colors">
+                <div class="demo-section__heading">
+                    <h2 class="demo-section__title h3">Core Theme Colors</h2>
+                    <p class="demo-section__subtitle">Fundamental colors that change between light and dark themes.</p>
+                </div>
+
+                <h4 class="color-section-title">Light Theme</h4>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--light-bg); color: var(--light-text);">
+                        <div class="color-info">
+                            <div class="color-name">Background</div>
+                            <div class="color-hex">#f0f7f7</div>
+                            <div class="color-usage">Page background</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--light-surface); color: var(--light-text);">
+                        <div class="color-info">
+                            <div class="color-name">Surface</div>
+                            <div class="color-hex">#ffffff</div>
+                            <div class="color-usage">Cards, panels, surfaces</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--light-text); color: var(--light-surface);">
+                        <div class="color-info">
+                            <div class="color-name">Text Primary</div>
+                            <div class="color-hex">#0f172a</div>
+                            <div class="color-usage">Headings, primary text</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--light-text-muted); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Text Muted</div>
+                            <div class="color-hex">#64748b</div>
+                            <div class="color-usage">Secondary text, captions</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--light-border); color: var(--light-text);">
+                        <div class="color-info">
+                            <div class="color-name">Border</div>
+                            <div class="color-hex">#e8eef0</div>
+                            <div class="color-usage">Borders, dividers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="color-section-title">Dark Theme</h4>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--dark-bg); color: var(--dark-text);">
+                        <div class="color-info">
+                            <div class="color-name">Background</div>
+                            <div class="color-hex">#080c0e</div>
+                            <div class="color-usage">Page background</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--dark-surface); color: var(--dark-text);">
+                        <div class="color-info">
+                            <div class="color-name">Surface</div>
+                            <div class="color-hex">#19242b</div>
+                            <div class="color-usage">Cards, panels, surfaces</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--dark-text); color: var(--dark-bg);">
+                        <div class="color-info">
+                            <div class="color-name">Text Primary</div>
+                            <div class="color-hex">#eaf4f4</div>
+                            <div class="color-usage">Headings, primary text</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--dark-text-muted); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Text Muted</div>
+                            <div class="color-hex">#94a3b8</div>
+                            <div class="color-usage">Secondary text, captions</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--dark-border); color: var(--dark-text);">
+                        <div class="color-info">
+                            <div class="color-name">Border</div>
+                            <div class="color-hex">#243044</div>
+                            <div class="color-usage">Borders, dividers</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Semantic Colors -->
+            <section class="demo-section" id="semantic-colors">
+                <div class="demo-section__heading">
+                    <h2 class="demo-section__title h3">Semantic Colors</h2>
+                    <p class="demo-section__subtitle">Consistent colors used for UI elements, links, and interactions across both themes.</p>
+                </div>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--semantic-primary); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Primary</div>
+                            <div class="color-hex">#080c0e</div>
+                            <div class="color-usage">Primary actions, headings</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--semantic-primary-light); color: var(--semantic-primary);">
+                        <div class="color-info">
+                            <div class="color-name">Primary Light</div>
+                            <div class="color-hex">#eaf4f4</div>
+                            <div class="color-usage">Light theme primary elements</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--semantic-accent); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Accent</div>
+                            <div class="color-hex">#83c5be</div>
+                            <div class="color-usage">Links, focus states, accents</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--semantic-accent-hover); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Accent Hover</div>
+                            <div class="color-hex">#006d77</div>
+                            <div class="color-usage">Hover states, active states</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--semantic-accent-alt); color: var(--semantic-primary);">
+                        <div class="color-info">
+                            <div class="color-name">Accent Alt</div>
+                            <div class="color-hex">#b7f04d</div>
+                            <div class="color-usage">Navigation, dark theme accent</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Status Colors -->
+            <section class="demo-section" id="status-colors">
+                <div class="demo-section__heading">
+                    <h2 class="demo-section__title h3">Status Colors</h2>
+                    <p class="demo-section__subtitle">Semantic colors for alerts, notifications, and feedback states.</p>
+                </div>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--status-success); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Success</div>
+                            <div class="color-hex">#34d399</div>
+                            <div class="color-usage">Success states, confirmations</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--status-danger); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Danger</div>
+                            <div class="color-hex">#f87171</div>
+                            <div class="color-usage">Error states, deletions</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--status-warning); color: var(--semantic-primary);">
+                        <div class="color-info">
+                            <div class="color-name">Warning</div>
+                            <div class="color-hex">#fbbf24</div>
+                            <div class="color-usage">Warning states, cautions</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--status-info); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Info</div>
+                            <div class="color-hex">#3b82f6</div>
+                            <div class="color-usage">Information, help states</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Brand Colors -->
+            <section class="demo-section" id="brand-colors">
+                <div class="demo-section__heading">
+                    <h2 class="demo-section__title h3">Brand Colors</h2>
+                    <p class="demo-section__subtitle">Third-party brand colors used for social media links and external integrations.</p>
+                </div>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--brand-youtube); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">YouTube Red</div>
+                            <div class="color-hex">#ff0000</div>
+                            <div class="color-usage">YouTube branding</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--brand-youtube-hover); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">YouTube Hover</div>
+                            <div class="color-hex">#cc0000</div>
+                            <div class="color-usage">YouTube hover states</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--brand-substack); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Substack Orange</div>
+                            <div class="color-hex">#ff6600</div>
+                            <div class="color-usage">Substack branding</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--brand-substack-hover); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Substack Hover</div>
+                            <div class="color-hex">#cc5200</div>
+                            <div class="color-usage">Substack hover states</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Special Colors -->
+            <section class="demo-section" id="special-colors">
+                <div class="demo-section__heading">
+                    <h2 class="demo-section__title h3">Special Purpose Colors</h2>
+                    <p class="demo-section__subtitle">Colors used for specific UI elements and special cases.</p>
+                </div>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--special-hero-light); color: var(--semantic-primary);">
+                        <div class="color-info">
+                            <div class="color-name">Hero Light</div>
+                            <div class="color-hex">#edf6f9</div>
+                            <div class="color-usage">Light theme hero backgrounds</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--special-hero-dark); color: white;">
+                        <div class="color-info">
+                            <div class="color-name">Hero Dark</div>
+                            <div class="color-hex">#010101</div>
+                            <div class="color-usage">Dark theme hero backgrounds</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--special-code-bg); color: var(--special-code-text);">
+                        <div class="color-info">
+                            <div class="color-name">Code Background</div>
+                            <div class="color-hex">#0a0a0a</div>
+                            <div class="color-usage">Code block backgrounds</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--special-code-text); color: var(--special-code-bg);">
+                        <div class="color-info">
+                            <div class="color-name">Code Text</div>
+                            <div class="color-hex">#e2e8f0</div>
+                            <div class="color-usage">Code block text</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Complete Color Palette Preview -->
+            <section class="demo-section" id="complete-color-palette">
+                <div class="demo-section__heading">
+                    <h2 class="demo-section__title h3">Complete Color Palette</h2>
+                    <p class="demo-section__subtitle">All available color tokens in the design system, organized by theme and purpose.</p>
+                </div>
+
+                <!-- Base Colors -->
+                <h4 class="color-section-title">Base Colors</h4>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--color-bg); color: var(--color-text);">
+                        <div class="color-info">
+                            <div class="color-name">--color-bg</div>
+                            <div class="color-hex">#f0f7f7 / #080c0e</div>
+                            <div class="color-usage">Page background</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-surface); color: var(--color-text);">
+                        <div class="color-info">
+                            <div class="color-name">--color-surface</div>
+                            <div class="color-hex">#ffffff / #19242b</div>
+                            <div class="color-usage">Cards, panels, surfaces</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-text); color: var(--color-bg);">
+                        <div class="color-info">
+                            <div class="color-name">--color-text</div>
+                            <div class="color-hex">#0f172a / #eaf4f4</div>
+                            <div class="color-usage">Primary text</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-text-muted); color: var(--color-bg);">
+                        <div class="color-info">
+                            <div class="color-name">--color-text-muted</div>
+                            <div class="color-hex">#64748b / #94a3b8</div>
+                            <div class="color-usage">Secondary text</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-border); color: var(--color-text);">
+                        <div class="color-info">
+                            <div class="color-name">--color-border</div>
+                            <div class="color-hex">#e8eef0 / #243044</div>
+                            <div class="color-usage">Borders, dividers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand Colors -->
+                <h4 class="color-section-title">Brand Colors</h4>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--color-primary); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-primary</div>
+                            <div class="color-hex">#080c0e / #eaf4f4</div>
+                            <div class="color-usage">Primary brand color</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-secondary); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-secondary</div>
+                            <div class="color-hex">#1e293b / #f8fafc</div>
+                            <div class="color-usage">Secondary brand color</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-primary-contrast); color: var(--color-primary);">
+                        <div class="color-info">
+                            <div class="color-name">--color-primary-contrast</div>
+                            <div class="color-hex">#ffffff / #080c0e</div>
+                            <div class="color-usage">High contrast text</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accent Colors -->
+                <h4 class="color-section-title">Accent Colors</h4>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--color-accent); color: var(--color-primary);">
+                        <div class="color-info">
+                            <div class="color-name">--color-accent</div>
+                            <div class="color-hex">#83c5be / #b7f04d</div>
+                            <div class="color-usage">Accent, links, focus</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-accent-hover); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-accent-hover</div>
+                            <div class="color-hex">#006d77 / #b7f04d</div>
+                            <div class="color-usage">Hover states</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-accent-2); color: var(--color-primary);">
+                        <div class="color-info">
+                            <div class="color-name">--color-accent-2</div>
+                            <div class="color-hex">#e29578</div>
+                            <div class="color-usage">Secondary accent</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-accent-2-hover); color: var(--color-primary);">
+                        <div class="color-info">
+                            <div class="color-name">--color-accent-2-hover</div>
+                            <div class="color-hex">#ffddd2</div>
+                            <div class="color-usage">Light accent hover</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-accent-3); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-accent-3</div>
+                            <div class="color-hex">#3a86ff</div>
+                            <div class="color-usage">Tertiary accent</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-accent-3-hover); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-accent-3-hover</div>
+                            <div class="color-hex">#2563eb</div>
+                            <div class="color-usage">Tertiary hover</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Colors -->
+                <h4 class="color-section-title">Status Colors</h4>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--color-success); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-success</div>
+                            <div class="color-hex">#34d399</div>
+                            <div class="color-usage">Success states</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-danger); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-danger</div>
+                            <div class="color-hex">#f87171</div>
+                            <div class="color-usage">Error states</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-warning); color: var(--color-primary);">
+                        <div class="color-info">
+                            <div class="color-name">--color-warning</div>
+                            <div class="color-hex">#fbbf24</div>
+                            <div class="color-usage">Warning states</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-info); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-info</div>
+                            <div class="color-hex">#3b82f6</div>
+                            <div class="color-usage">Information states</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third-party Brand Colors -->
+                <h4 class="color-section-title">Third-party Brand Colors</h4>
+                <div class="color-grid">
+                    <div class="color-swatch" style="background-color: var(--color-youtube); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-youtube</div>
+                            <div class="color-hex">#ff0000</div>
+                            <div class="color-usage">YouTube branding</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-youtube-hover); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-youtube-hover</div>
+                            <div class="color-hex">#cc0000</div>
+                            <div class="color-usage">YouTube hover</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-substack); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-substack</div>
+                            <div class="color-hex">#ff6600</div>
+                            <div class="color-usage">Substack branding</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch" style="background-color: var(--color-substack-hover); color: var(--color-primary-contrast);">
+                        <div class="color-info">
+                            <div class="color-name">--color-substack-hover</div>
+                            <div class="color-hex">#cc5200</div>
+                            <div class="color-usage">Substack hover</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Handle dropdown navigation
+            const categories = document.querySelectorAll('.demo-nav-category')
+            categories.forEach(category => {
+                const trigger = category.querySelector('.demo-nav-category__trigger')
+                const dropdown = category.querySelector('.demo-nav-category__dropdown')
+
+                trigger.addEventListener('click', (e) => {
+                    e.stopPropagation()
+                    const isExpanded = category.getAttribute('aria-expanded') === 'true'
+
+                    // Close all dropdowns first
+                    categories.forEach(cat => {
+                        cat.setAttribute('aria-expanded', 'false')
+                    })
+
+                    // Toggle this dropdown
+                    category.setAttribute('aria-expanded', !isExpanded)
+                })
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!category.contains(e.target)) {
+                        category.setAttribute('aria-expanded', 'false')
+                    }
+                })
+
+                // Close dropdown on escape key
+                trigger.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        category.setAttribute('aria-expanded', 'false')
+                        trigger.focus()
+                    }
+                })
+
+                // Handle arrow key navigation
+                dropdown.addEventListener('keydown', (e) => {
+                    const links = dropdown.querySelectorAll('.demo-nav-category__link')
+                    const currentIndex = Array.from(links).findIndex(link => link === document.activeElement)
+
+                    switch (e.key) {
+                        case 'ArrowDown':
+                            e.preventDefault()
+                            const nextIndex = (currentIndex + 1) % links.length
+                            links[nextIndex].focus()
+                            break
+                        case 'ArrowUp':
+                            e.preventDefault()
+                            const prevIndex = currentIndex <= 0 ? links.length - 1 : currentIndex - 1
+                            links[prevIndex].focus()
+                            break
+                        case 'Escape':
+                            e.preventDefault()
+                            category.setAttribute('aria-expanded', 'false')
+                            trigger.focus()
+                            break
+                    }
+                })
+            })
+        })
+    </script>
+
+    <style>
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-8);
+        }
+
+        .color-swatch {
+            border-radius: var(--border-radius);
+            padding: var(--space-4);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--color-border);
+            transition: all var(--transition-duration-normal) var(--transition-timing);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .color-swatch:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .color-info {
+            text-align: center;
+        }
+
+        .color-name {
+            font-weight: 600;
+            font-size: var(--font-size-base);
+            margin-bottom: var(--space-1);
+        }
+
+        .color-hex {
+            font-family: 'Space Grotesk', monospace;
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+            margin-bottom: var(--space-1);
+        }
+
+        .color-usage {
+            font-size: var(--font-size-xs);
+            opacity: 0.7;
+            line-height: 1.3;
+        }
+
+        .color-section-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin: var(--space-6) 0 var(--space-4) 0;
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        /* Theme-aware adjustments */
+        [data-theme="dark"] .color-swatch {
+            border-color: var(--color-border);
+        }
+
+        .color-swatch .color-name {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            font-family: 'Space Grotesk', monospace;
+            margin-bottom: var(--space-1);
+        }
+
+        .color-swatch .color-hex {
+            font-size: var(--font-size-xs);
+            opacity: 0.8;
+            margin-bottom: var(--space-1);
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .color-swatch .color-usage {
+            font-size: var(--font-size-xs);
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .color-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-3);
+            }
+
+            .color-swatch {
+                min-height: 100px;
+                padding: var(--space-3);
+            }
+        }
+    </style>
+</body>
+</html>

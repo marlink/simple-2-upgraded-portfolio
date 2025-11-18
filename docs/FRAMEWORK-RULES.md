@@ -658,7 +658,7 @@ git branch
 
 # 2. Make changes to files
 
-# 3. Use git manager for commit (auto-batches pushes every 5 commits)
+# 3. Use git manager for commit (commits locally, pushes to GitHub every 5 commits)
 node scripts/git-manager.js commit "Improve components page layout and add missing components"
 
 # Check batch status anytime
@@ -679,19 +679,20 @@ Examples:
 - ✅ "Add video cover component to components page"
 - ✅ "Fix theme toggle accessibility in mobile menu"
 
-### Batch Commit System
+### Batch Push System
 
-This project uses a batch commit system to reduce GitHub push frequency:
+This project uses a batch push system to reduce GitHub API calls while maintaining local commit frequency:
 
-- **Automatic batching**: Commits are automatically tracked and pushed every 5 commits
+- **Local commits**: Changes are committed locally after every completed task
+- **Batched pushes**: Pushes to GitHub only every 5 commits
 - **Status tracking**: Use `node scripts/git-manager.js status` to see current batch progress
 - **Force push**: Use `node scripts/git-manager.js push` for immediate push when needed
 - **Counter reset**: Counter resets to 0 after each batch push
 
 Benefits:
-- Reduces GitHub API calls
-- Allows for more granular commits
-- Maintains backup frequency without constant pushing
+- **Local**: Granular version control with frequent local commits
+- **Remote**: Reduced GitHub API usage with batched pushes
+- **Reliable**: Local changes are always saved, remote backup every 5 tasks
 
 ### Forbidden Actions
 

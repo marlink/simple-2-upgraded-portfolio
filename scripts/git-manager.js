@@ -2,7 +2,8 @@
 
 /**
  * Git Management Script
- * Handles batched commits and pushes to GitHub every 5 commits
+ * - Commits locally every time a task is completed
+ * - Pushes to GitHub every 5 commits (batched push system)
  */
 
 const fs = require('fs');
@@ -57,7 +58,7 @@ class GitManager {
     }
 
     /**
-     * Check if we should push (every 5 commits)
+     * Check if we should push to GitHub (every 5 commits)
      */
     shouldPush() {
         const count = this.getCommitCount();
@@ -175,7 +176,7 @@ function main() {
 
         default:
             console.log('Git Manager Commands:');
-            console.log('  commit <message>  - Commit changes and auto-push every 5 commits');
+            console.log('  commit <message>  - Commit locally, push to GitHub every 5 commits');
             console.log('  push              - Force push immediately');
             console.log('  status            - Show current status');
             console.log('  reset             - Reset commit counter');
