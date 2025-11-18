@@ -212,10 +212,10 @@
     15,
     15,
     15,
-    0.2
+    0.35
   ); /* Dark theme glass background - see-through and subtle */
 
-  --glass-blur: 12px; /* Blur amount for backdrop-filter - subtle and refined */
+  --glass-blur: 8px; /* Blur amount for backdrop-filter - subtle and refined */
   --glass-saturation: 120%; /* Saturation percentage for backdrop-filter - natural look */
   --glass-border-light: rgba(
     241,
@@ -304,10 +304,10 @@ body[data-theme="dark"] {
 }
 
 body[data-theme="light"] {
-  --glass-bg-light: rgba(237, 246, 249, 0.25);
+  --glass-bg-light: rgba(237, 246, 249, 0.4);
   --glass-border-light: rgba(131, 197, 190, 0.35);
   --glass-shadow-light: 0 8px 32px rgba(0, 109, 119, 0.08);
-  --glass-blur: 24px;
+  --glass-blur: 16px;
 }
 
 /* =========================================
