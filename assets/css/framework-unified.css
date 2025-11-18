@@ -109,6 +109,10 @@
   --color-youtube: #ff0000; /* YouTube red */
   --color-substack: #ff6600; /* Substack orange */
 
+  /* Gradient colors for hero cards */
+  --hero-card-gradient-start: #262c34;
+  --hero-card-gradient-end: #14181f;
+
   /* Spacing scale: all values are multiples of baseline for visual rhythm */
   --space-0-5: calc(var(--baseline) * 0.5); /* 4px - Micro-spacing */
   --space-1: var(--baseline); /* 8px */
@@ -4023,8 +4027,9 @@ body[data-theme="dark"] .glass {
   background: rgba(255, 255, 255, 0.4);
   border: 2px solid rgba(241, 245, 249, 0.35);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  backdrop-filter: none;
-  backdrop-filter: none;
+  backdrop-filter: blur(12px) saturate(120%);
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
 }
 
 body[data-theme="dark"] .card--glass-solid {
@@ -4247,7 +4252,7 @@ body[data-theme="light"] .hero-card:hover { color: var(--color-accent-hover); }
 
 /* Dark theme: sophisticated black hero cards with rich shadow */
 body[data-theme="dark"] .hero-card {
-  background: linear-gradient(180deg, #262c34 0%, #14181f 100%);
+  background: linear-gradient(180deg, var(--hero-card-gradient-start) 0%, var(--hero-card-gradient-end) 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   color: var(--color-text);
   box-shadow:
