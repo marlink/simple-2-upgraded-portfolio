@@ -1345,6 +1345,65 @@ a:focus-visible {
 }
 
 /* =========================================
+   SIDEBAR LAYOUTS
+   Common sidebar configurations using the grid system
+   ========================================= */
+
+.sidebar-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--gutter-md);
+  min-height: 100vh;
+}
+
+.sidebar-layout--narrow {
+  grid-template-columns: 240px 1fr;
+}
+
+.sidebar-layout--wide {
+  grid-template-columns: 320px 1fr;
+}
+
+.sidebar-layout--right {
+  grid-template-columns: 1fr 280px;
+}
+
+.sidebar-layout--right.sidebar-layout--narrow {
+  grid-template-columns: 1fr 240px;
+}
+
+.sidebar-layout--right.sidebar-layout--wide {
+  grid-template-columns: 1fr 320px;
+}
+
+.sidebar-layout__sidebar {
+  position: sticky;
+  top: var(--space-4);
+  height: fit-content;
+  align-self: start;
+}
+
+.sidebar-layout__content {
+  min-width: 0; /* Prevent flex item from overflowing */
+}
+
+/* Responsive sidebar layouts */
+@media (max-width: 1024px) {
+  .sidebar-layout,
+  .sidebar-layout--narrow,
+  .sidebar-layout--wide,
+  .sidebar-layout--right {
+    grid-template-columns: 1fr;
+    gap: var(--gutter-sm);
+  }
+
+  .sidebar-layout__sidebar {
+    position: static;
+    order: -1; /* Sidebar appears first on mobile */
+  }
+}
+
+/* =========================================
    FLUID TYPOGRAPHY
    Scales smoothly between breakpoints using clamp()
    ========================================= */

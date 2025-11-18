@@ -258,6 +258,33 @@ Use the 12-column responsive grid system:
 - `.col-*`: Column classes (1-12)
 - Responsive breakpoints: `col-xs-*`, `col-sm-*`, `col-md-*`, `col-lg-*`, `col-xl-*`, `col-xxl-*`, `col-xxxl-*`
 
+### Sidebar Layouts
+
+For common sidebar layouts, use the dedicated sidebar layout classes:
+
+```html
+<div class="sidebar-layout">
+    <aside class="sidebar-layout__sidebar">
+        <!-- Sidebar content -->
+    </aside>
+    <main class="sidebar-layout__content">
+        <!-- Main content -->
+    </main>
+</div>
+```
+
+**Layout Variants:**
+- `.sidebar-layout` - Standard 280px left sidebar
+- `.sidebar-layout--narrow` - 240px sidebar
+- `.sidebar-layout--wide` - 320px sidebar
+- `.sidebar-layout--right` - Right-aligned sidebar (combine with --narrow/--wide)
+
+**Features:**
+- Sticky sidebar on desktop (position: sticky)
+- Responsive: Stacks vertically on mobile (≤1024px)
+- Sidebar appears first on mobile
+- Uses CSS Grid for modern browsers with flexbox fallback
+
 ### BEM Naming Convention
 
 **ALWAYS follow BEM methodology:**
