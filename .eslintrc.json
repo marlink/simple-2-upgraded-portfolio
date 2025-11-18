@@ -32,5 +32,6 @@
     "no-trailing-spaces": "error",
     "no-void": "off",
     "no-return-assign": "off"
-  }
+  },
+  "ignorePatterns": ["**/*.min.js", "**/*.min.css"]
 }

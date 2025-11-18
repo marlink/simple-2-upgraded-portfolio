@@ -314,7 +314,7 @@ function memoizeLocal (key, compute, ttlMs = 0) {
     if (entry && typeof entry === 'object' &&
         typeof entry.expiresAt === 'number' &&
         (entry.expiresAt === 0 || entry.expiresAt > now) &&
-        entry.hasOwnProperty('value')) {
+        Object.prototype.hasOwnProperty.call(entry, 'value')) {
         return entry.value
     }
 

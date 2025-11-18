@@ -342,7 +342,6 @@
                     initializeScrollNav()
                 }
             }, 100)
-
         } catch (error) {
             console.error('Error initializing scroll-responsive navigation:', error)
         }
@@ -377,8 +376,7 @@
             let previousFocus = null
             let savedScrollY = 0
 
-            // Get the mobile menu theme toggle for syncing
-            const mobileThemeToggle = mobileMenu?.querySelector('.theme-toggle')
+            // Mobile menu theme toggle syncing removed - handled by global theme toggle
 
             const openMenu = () => {
                 if (isMenuOpen) return
@@ -457,7 +455,6 @@
             if (mobileMenuClose) {
                 mobileMenuClose.addEventListener('click', closeMenu)
             }
-
         } catch (error) {
             console.error('Error initializing mobile menu:', error)
         }
@@ -687,7 +684,6 @@
 
             // Attach form submission handler
             contactForm.addEventListener('submit', handleSubmit)
-
         } catch (error) {
             console.error('Error initializing contact form:', error)
         }

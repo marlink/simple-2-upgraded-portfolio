@@ -282,6 +282,14 @@ body[data-theme="dark"] {
   --code-scrollbar-track: rgba(234, 244, 244, 0.03);
   --code-scrollbar-thumb: rgba(234, 244, 244, 0.15);
 
+  /* Syntax highlighting colors for dark theme */
+  --code-comment: #6b7280;
+  --code-tag: #60a5fa;
+  --code-attr-name: #34d399;
+  --code-attr-value: #fbbf24;
+  --code-string: #fbbf24;
+  --code-keyword: #a78bfa;
+
   /* Brand aliases */
   --brand-youtube: var(--color-youtube);
   --brand-substack: var(--color-substack);
@@ -5677,28 +5685,28 @@ pre code,
 }
 
 .code-block code .comment {
-  color: #6b7280;
+  color: var(--code-comment);
   font-style: italic;
 }
 
 .code-block code .tag {
-  color: #60a5fa;
+  color: var(--code-tag);
 }
 
 .code-block code .attr-name {
-  color: #34d399;
+  color: var(--code-attr-name);
 }
 
 .code-block code .attr-value {
-  color: #fbbf24;
+  color: var(--code-attr-value);
 }
 
 .code-block code .string {
-  color: #fbbf24;
+  color: var(--code-string);
 }
 
 .code-block code .keyword {
-  color: #a78bfa;
+  color: var(--code-keyword);
 }
 
 /* Scrollbar styling for code blocks */
