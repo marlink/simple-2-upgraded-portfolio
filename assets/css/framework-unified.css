@@ -205,14 +205,14 @@
     255,
     255,
     255,
-    0.3
+    0.15
   ); /* Light theme glass background - very see-through and subtle */
 
   --glass-bg-dark: rgba(
     15,
     15,
     15,
-    0.4
+    0.2
   ); /* Dark theme glass background - see-through and subtle */
 
   --glass-blur: 12px; /* Blur amount for backdrop-filter - subtle and refined */
@@ -304,7 +304,7 @@ body[data-theme="dark"] {
 }
 
 body[data-theme="light"] {
-  --glass-bg-light: rgba(237, 246, 249, 0.6);
+  --glass-bg-light: rgba(237, 246, 249, 0.25);
   --glass-border-light: rgba(131, 197, 190, 0.35);
   --glass-shadow-light: 0 8px 32px rgba(0, 109, 119, 0.08);
   --glass-blur: 24px;
@@ -4032,7 +4032,7 @@ body[data-theme="dark"] .glass {
 
 /* Glass morphism: backdrop-filter blurs content behind element */
 .card--glass-solid {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.4);
   border: 2px solid rgba(241, 245, 249, 0.35);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   backdrop-filter: none;
@@ -4040,13 +4040,13 @@ body[data-theme="dark"] .glass {
 }
 
 body[data-theme="dark"] .card--glass-solid {
-  background: rgba(30, 41, 59, 0.4);
+  background: rgba(30, 41, 59, 0.2);
   border: 2px solid rgba(234, 244, 244, 0.15);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .card--glass-outline {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.15);
 
   /* Subtle blur for refined effect */
   backdrop-filter: blur(12px) saturate(120%);
@@ -4065,7 +4065,7 @@ body[data-theme="dark"] .card--glass-solid {
 }
 
 body[data-theme="dark"] .card--glass-outline {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.15);
   border-color: rgba(255, 255, 255, 0.05);
   box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.12),
@@ -4074,7 +4074,7 @@ body[data-theme="dark"] .card--glass-outline {
 }
 
 body[data-theme="light"] .card--glass-outline {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1);
   border-color: rgba(255, 255, 255, 0.06);
   box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.06),
