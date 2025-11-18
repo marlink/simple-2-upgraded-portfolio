@@ -4794,6 +4794,7 @@ body[data-theme="light"] .about__stat-card:hover {
 .tab__panel {
   display: none; /* Hidden until activated */
   padding: var(--space-4);
+  animation: fadeIn 0.3s ease;
 }
 
 .tab__panel.is-active {
@@ -4880,6 +4881,8 @@ body[data-theme="light"] .about__stat-card:hover {
   place-items: center; /* Centers content both axes */
   z-index: 1000; /* Above everything */
   padding: var(--space-4);
+  transition: opacity var(--transition-duration-normal) var(--transition-timing),
+              visibility var(--transition-duration-normal) var(--transition-timing);
 }
 
 .modal__overlay {
@@ -6079,13 +6082,6 @@ pre code,
   transform: scaleX(-1);
 }
 
-.carousel__nav-button--prev:hover .carousel__nav-icon {
-  transform: scaleX(-1);
-}
-
-.carousel__nav-button--prev:active .carousel__nav-icon {
-  transform: scaleX(-1);
-}
 
 .carousel__nav-button--prev {
   left: var(--space-4);
@@ -6233,10 +6229,6 @@ body[data-theme="dark"] .viewport-info {
   margin-bottom: var(--space-2);
 }
 
-/* Tab panel animation */
-.tab__panel {
-  animation: fadeIn 0.3s ease;
-}
 
 @keyframes fadeIn {
   from {
@@ -6605,11 +6597,6 @@ body[data-theme="light"] .video-cover__play-icon {
   background: rgba(0 0 0 / 0.5);
 }
 
-/* Prevent buttons inside outline cards from lifting */
-.card--outline:hover .btn {
-  transform: none;
-}
-
 /* =========================================
    BRANDED SECTIONS - YouTube and Substack Cards
    ========================================= */
@@ -6696,12 +6683,6 @@ body[data-theme="dark"] .card--substack {
 body[data-theme="dark"] .card--substack:hover {
   border-color: var(--color-substack);
   box-shadow: 0 8px 25px rgba(255, 102, 0, 0.25);
-}
-
-body[data-theme="dark"] .card--substack .card__header,
-body[data-theme="dark"] .card--substack .card__footer {
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.15) 0%, rgba(255, 102, 0, 0.08) 100%);
-  border-bottom: 2px solid rgba(255, 102, 0, 0.3);
 }
 
 body[data-theme="dark"] .card--substack .card__header,
@@ -6814,8 +6795,3 @@ img {
               opacity var(--transition-duration-normal) var(--transition-timing);
 }
 
-/* Smooth modal transitions */
-.modal {
-  transition: opacity var(--transition-duration-normal) var(--transition-timing),
-              visibility var(--transition-duration-normal) var(--transition-timing);
-}

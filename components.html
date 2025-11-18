@@ -114,86 +114,360 @@
 
   <main id="main-content" class="container">
     <h1 class="display-1">Components</h1>
+    <p class="mb-8">Interactive component library and design system demos. All components follow accessibility standards and work in both light and dark themes.</p>
 
-    <section class="about">
-      <h2>Buttons</h2>
-      <div class="grid">
-        <div class="col-12 col-md-6">
-          <a href="#" class="btn btn--primary">Primary</a>
-          <a href="#" class="btn btn--outline">Outline</a>
-          <a href="#" class="btn btn--primary btn--sm">Small</a>
+    <!-- Buttons Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Buttons</h2>
+      <div class="grid gap-6">
+        <div class="col-12 col-lg-6">
+          <div class="card card--glass-outline">
+            <div class="card__body">
+              <h4 class="mb-4">Button Variants</h4>
+              <div class="demo-flex demo-flex--wrap gap-3">
+                <button class="btn btn--primary">Primary</button>
+                <button class="btn btn--secondary">Secondary</button>
+                <button class="btn btn--outline">Outline</button>
+                <button class="btn btn--ghost">Ghost</button>
+                <button class="btn btn--text">Text</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="card card--glass-outline">
+            <div class="card__body">
+              <h4 class="mb-4">Button Sizes</h4>
+              <div class="demo-flex demo-flex--wrap gap-3 align-items-center">
+                <button class="btn btn--primary btn--sm">Small</button>
+                <button class="btn btn--primary">Normal</button>
+                <button class="btn btn--primary btn--big">Big</button>
+                <button class="btn btn--primary btn--lg">Large</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="about">
-      <h2>Cards</h2>
-      <div class="grid">
-        <div class="col-12 col-md-6">
+    <!-- Cards Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Cards</h2>
+      <div class="grid gap-6">
+        <div class="col-12 col-md-6 col-lg-4">
           <article class="card card--glass-outline">
             <div class="card__body">
               <h4>Glass Outline</h4>
-              <p>Card example</p>
+              <p>Standard card with glassmorphism effect and subtle border.</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card card--solid">
+            <div class="card__body">
+              <h4>Solid Card</h4>
+              <p>Fully opaque card with solid background color.</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card card--shadow-md">
+            <div class="card__body">
+              <h4>Shadow Card</h4>
+              <p>Card with enhanced shadow for depth and elevation.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="about">
-      <h2>Tabs</h2>
-      <div class="tabs" data-tabs>
-        <div class="tablist" role="tablist">
-          <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-panel-1">Tab 1</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-2">Tab 2</button>
+    <!-- Forms Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Forms</h2>
+      <div class="grid gap-6">
+        <div class="col-12 col-lg-6">
+          <div class="card card--glass-outline">
+            <div class="card__body">
+              <h4 class="mb-4">Contact Form</h4>
+              <form class="form">
+                <div class="form__row">
+                  <label for="demo-name" class="form__label">Name</label>
+                  <input type="text" id="demo-name" class="form__input" placeholder="Your name" required>
+                </div>
+                <div class="form__row">
+                  <label for="demo-email" class="form__label">Email</label>
+                  <input type="email" id="demo-email" class="form__input" placeholder="your@email.com" required>
+                </div>
+                <div class="form__row">
+                  <label for="demo-message" class="form__label">Message</label>
+                  <textarea id="demo-message" class="form__input" rows="4" placeholder="Your message"></textarea>
+                </div>
+                <div class="form__row">
+                  <button type="submit" class="btn btn--primary">Send Message</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div id="tab-panel-1" class="tab__panel is-active" role="tabpanel">Content 1</div>
-        <div id="tab-panel-2" class="tab__panel" role="tabpanel">Content 2</div>
+        <div class="col-12 col-lg-6">
+          <div class="card card--glass-outline">
+            <div class="card__body">
+              <h4 class="mb-4">Form Elements</h4>
+              <form class="form">
+                <div class="form__row">
+                  <label for="demo-select" class="form__label">Select Option</label>
+                  <select id="demo-select" class="form__input">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                  </select>
+                </div>
+                <div class="form__row">
+                  <label class="form__label">Checkboxes</label>
+                  <div class="demo-flex gap-4">
+                    <label class="form__checkbox">
+                      <input type="checkbox" checked> Option A
+                    </label>
+                    <label class="form__checkbox">
+                      <input type="checkbox"> Option B
+                    </label>
+                  </div>
+                </div>
+                <div class="form__row">
+                  <label class="form__label">Radio Buttons</label>
+                  <div class="demo-flex gap-4">
+                    <label class="form__radio">
+                      <input type="radio" name="radio-demo" checked> Choice 1
+                    </label>
+                    <label class="form__radio">
+                      <input type="radio" name="radio-demo"> Choice 2
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="about">
-      <h2>Accordion</h2>
-      <div class="accordion" data-accordion>
-        <div class="accordion__item">
-          <button class="accordion__button" aria-expanded="false">Section 1</button>
-          <div class="accordion__panel" hidden>
-            <p>Accordion content</p>
-          </div>
+    <!-- Alerts Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Alerts</h2>
+      <div class="demo-stack gap-4">
+        <div class="alert alert--success">
+          <strong>Success!</strong> Your changes have been saved successfully.
+          <button class="alert__close" aria-label="Close alert">&times;</button>
         </div>
-        <div class="accordion__item">
-          <button class="accordion__button" aria-expanded="false">Section 2</button>
-          <div class="accordion__panel" hidden>
-            <p>More content</p>
+        <div class="alert alert--error">
+          <strong>Error!</strong> Something went wrong. Please try again.
+          <button class="alert__close" aria-label="Close alert">&times;</button>
+        </div>
+        <div class="alert alert--warning">
+          <strong>Warning!</strong> This action cannot be undone.
+          <button class="alert__close" aria-label="Close alert">&times;</button>
+        </div>
+        <div class="alert alert--info">
+          <strong>Info!</strong> Here's some important information.
+          <button class="alert__close" aria-label="Close alert">&times;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Badges Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Badges</h2>
+      <div class="card card--glass-outline">
+        <div class="card__body">
+          <div class="demo-badge-row">
+            <span class="badge">Default</span>
+            <span class="badge badge--pill">Pill</span>
+            <span class="badge badge--outline">Outline</span>
+            <span class="badge badge--success">Success</span>
+            <span class="badge badge--warning">Warning</span>
+            <span class="badge badge--danger">Danger</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="about">
-      <h2>Modal</h2>
-      <button class="btn btn--primary" data-modal-target="#demo-modal">Open Modal</button>
+    <!-- Tabs Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Tabs</h2>
+      <div class="card card--glass-outline">
+        <div class="card__body">
+          <div class="tabs" data-tabs>
+            <div class="tablist" role="tablist" aria-label="Component examples">
+              <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-panel-1" id="tab-btn-1">Overview</button>
+              <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-2" id="tab-btn-2">Usage</button>
+              <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-3" id="tab-btn-3">Accessibility</button>
+            </div>
+            <div id="tab-panel-1" class="tab__panel is-active" role="tabpanel" aria-labelledby="tab-btn-1">
+              <h4>Tab Component Overview</h4>
+              <p>The tabs component provides an accessible way to organize content into multiple panels. Users can switch between panels using mouse clicks or keyboard navigation.</p>
+            </div>
+            <div id="tab-panel-2" class="tab__panel" role="tabpanel" aria-labelledby="tab-btn-2">
+              <h4>Usage Guidelines</h4>
+              <p>Use tabs when you have related content that can be logically separated into distinct sections. Ensure each tab has a clear, descriptive label.</p>
+            </div>
+            <div id="tab-panel-3" class="tab__panel" role="tabpanel" aria-labelledby="tab-btn-3">
+              <h4>Accessibility Features</h4>
+              <p>Fully accessible with ARIA attributes, keyboard navigation (arrow keys, Home, End), and screen reader support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accordion Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Accordion</h2>
+      <div class="card card--glass-outline">
+        <div class="card__body">
+          <div class="accordion" data-accordion>
+            <div class="accordion__item">
+              <button class="accordion__button" aria-expanded="false">What is an accordion component?</button>
+              <div class="accordion__panel" hidden>
+                <p>An accordion is a vertically stacked set of interactive headings that each contain a title, content snippet, or thumbnail representing a section of content.</p>
+              </div>
+            </div>
+            <div class="accordion__item">
+              <button class="accordion__button" aria-expanded="false">When should I use accordions?</button>
+              <div class="accordion__panel" hidden>
+                <p>Use accordions when you want to organize related information in a compact way. They're perfect for FAQs, settings panels, or any content that benefits from progressive disclosure.</p>
+              </div>
+            </div>
+            <div class="accordion__item">
+              <button class="accordion__button" aria-expanded="false">Accessibility features</button>
+              <div class="accordion__panel" hidden>
+                <p>This accordion component includes proper ARIA attributes, keyboard navigation, and screen reader support. Multiple items can be expanded simultaneously.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Modal</h2>
+      <div class="card card--glass-outline">
+        <div class="card__body">
+          <div class="demo-flex gap-3">
+            <button class="btn btn--primary" data-modal-target="#demo-modal">Open Basic Modal</button>
+            <button class="btn btn--outline" data-modal-target="#demo-modal-large">Open Large Modal</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basic Modal -->
       <div class="modal" id="demo-modal" hidden aria-hidden="true">
         <div class="modal__overlay" data-modal-close></div>
         <div class="modal__dialog">
-          <button class="modal__close" data-modal-close aria-label="Close">×</button>
-          <div class="modal__content">
-            <h3>Modal Title</h3>
-            <p>Modal body</p>
+          <div class="modal__header">
+            <h3>Basic Modal</h3>
+            <button class="modal__close" data-modal-close aria-label="Close modal">&times;</button>
+          </div>
+          <div class="modal__body">
+            <p>This is a basic modal dialog. It includes proper focus management, keyboard navigation, and accessibility features.</p>
+            <p>You can close this modal by clicking the overlay, pressing the close button, or pressing the Escape key.</p>
+          </div>
+          <div class="modal__footer">
+            <button class="btn btn--outline" data-modal-close>Cancel</button>
+            <button class="btn btn--primary" data-modal-close>OK</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Large Modal -->
+      <div class="modal" id="demo-modal-large" hidden aria-hidden="true">
+        <div class="modal__overlay" data-modal-close></div>
+        <div class="modal__dialog modal__dialog--large">
+          <div class="modal__header">
+            <h3>Large Modal Example</h3>
+            <button class="modal__close" data-modal-close aria-label="Close modal">&times;</button>
+          </div>
+          <div class="modal__body">
+            <p>This modal demonstrates a larger dialog size, useful for forms or detailed content.</p>
+            <div class="grid gap-4 mt-4">
+              <div class="col-12 col-md-6">
+                <label for="modal-input-1" class="form__label">Input Field 1</label>
+                <input type="text" id="modal-input-1" class="form__input" placeholder="Enter something">
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="modal-input-2" class="form__label">Input Field 2</label>
+                <input type="text" id="modal-input-2" class="form__input" placeholder="Enter something else">
+              </div>
+            </div>
+          </div>
+          <div class="modal__footer">
+            <button class="btn btn--outline" data-modal-close>Cancel</button>
+            <button class="btn btn--primary" data-modal-close>Save Changes</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="about">
-      <h2>Tooltip</h2>
-      <button class="btn btn--outline" data-tooltip="Tooltip text">Hover me</button>
+    <!-- Tooltip Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Tooltips</h2>
+      <div class="card card--glass-outline">
+        <div class="card__body">
+          <div class="demo-tooltip-group">
+            <button class="btn btn--outline" data-tooltip="This is a simple tooltip">Hover me</button>
+            <button class="btn btn--primary" data-tooltip="Tooltips work on any element">Another tooltip</button>
+            <button class="btn btn--secondary" data-tooltip="Position automatically adjusts to viewport">Auto-positioning</button>
+          </div>
+          <p class="mt-4 text-sm text-muted">Hover over the buttons above to see tooltips in action.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="about">
-      <h2>Forms</h2>
-      <input type="text" class="footer__email-input" placeholder="Input">
-      <button type="button" class="footer__subscribe-btn">Submit</button>
+    <!-- Code Copy Button Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Code Copy Button</h2>
+      <div class="demo-code-stack">
+        <div class="card card--glass-outline">
+          <div class="card__body">
+            <h4>Pre/Code Block Example</h4>
+            <pre class="code-block"><code>const greeting = 'Hello, World!';
+console.log(greeting);
+
+// This code can be copied with one click
+function sayHello(name) {
+  return `Hello, ${name}!`;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="card card--glass-outline">
+          <div class="card__body">
+            <h4>Code Example Block</h4>
+            <div class="code-example">npm install design-system-framework</div>
+            <div class="code-example">import { Button } from 'design-system';</div>
+            <p class="demo-code-note">Click the copy button to copy the code above.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Cover Section -->
+    <section class="mb-12">
+      <h2 class="h2 mb-6">Video Cover</h2>
+      <div class="card card--glass-outline">
+        <div class="card__body">
+          <p class="mb-4">Click the video cover to reveal and play the video. This component provides a performance-optimized way to display videos with static covers.</p>
+          <div class="video-cover" data-video-cover style="max-width: 400px; margin: 0 auto;">
+            <video class="video-cover__video" loop muted playsinline poster="assets/images/hero.jpg">
+              <source src="" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <img src="assets/images/hero.jpg" alt="Video cover image" class="video-cover__cover">
+            <div class="video-cover__play-icon" aria-hidden="true">▶</div>
+          </div>
+          <p class="demo-code-note mt-4">Note: This demo uses a static image since no video file is available. In production, the video element would contain actual video sources.</p>
+        </div>
+      </div>
     </section>
   </main>
 

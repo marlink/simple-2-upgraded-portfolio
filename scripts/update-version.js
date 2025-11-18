@@ -51,7 +51,7 @@ htmlFiles.forEach(file => {
   let content = fs.readFileSync(filePath, 'utf8');
   
   // Pattern to match the copyright line and add/update version
-  // Matches: <p>@ <span id="year">2025</span> Design System LTD | Designed with love MC designss.</p>
+  // Matches: <p>&copy; <span id="year">2025</span> Design System LTD | Designed with love MC designs.</p>
   // Or similar patterns
 const patterns = [
   // Standard pattern with copyright symbol
@@ -70,7 +70,7 @@ const patterns = [
         // Check if version already exists
         if (match.includes('ver.')) {
           // Update existing version
-          return match.replace(/ver\. [\d\.\w\(\)\-\s]+/, `ver. ${versionWithGit}`);
+          return match.replace(/ver\. [\d\.]+\s*\([^)]*\)/, `ver. ${versionWithGit}`);
         } else {
           // Add version
           return match.replace('</p>', ` | ver. ${versionWithGit}</p>`);
@@ -82,7 +82,7 @@ const patterns = [
   
   if (updated) {
     fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`✓ Updated ${file} with version ${version}`);
+    console.log(`✓ Updated ${file} with version ${versionWithGit}`);
   } else {
     console.warn(`⚠ Could not find copyright pattern in ${file}`);
   }

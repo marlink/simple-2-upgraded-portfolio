@@ -71,7 +71,7 @@ const $qa = window.safeQueryAll
             const panels = $qa('.tab__panel', container)
 
             if (!tabs || tabs.length === 0 || !panels || panels.length === 0) {
-                console.warn('Tabs component missing required elements', container)
+                // Silently skip containers without required elements (common for partial implementations)
                 return
             }
 
@@ -81,9 +81,7 @@ const $qa = window.safeQueryAll
                 const panelId = tab.getAttribute('aria-controls')
                 if (panelId) {
                     const panel = $q('#' + panelId, container)
-                    if (panel) {
-                        tabPanelMap.set(tab, panel)
-                    }
+                    panel && tabPanelMap.set(tab, panel)
                 }
             })
 
@@ -210,7 +208,7 @@ const $qa = window.safeQueryAll
             return;
         }
 
-        accordions.forEach((accordion, accordionIndex) => {
+        accordions.forEach((accordion) => {
             if (!accordion) return;
 
             const items = $qa('.accordion__item', accordion)
@@ -224,7 +222,7 @@ const $qa = window.safeQueryAll
                 const panel = $q('.accordion__panel', item)
 
                 if (!button || !panel) {
-                    console.warn('Accordion item missing button or panel', item)
+                    // Skip items without required elements
                     return
                 }
 
@@ -319,7 +317,7 @@ const $qa = window.safeQueryAll
             const closeButtons = $qa('[data-modal-close]', modal)
 
             if (!overlay || !dialog) {
-                console.warn('Modal missing required elements (overlay or dialog)', modal)
+                // Skip modals without required elements
                 return
             }
 
@@ -790,7 +788,7 @@ const $qa = window.safeQueryAll
                 const playIcon = $q('.video-cover__play-icon', container)
 
                 if (!video) {
-                    console.warn('Video cover component missing video element', container)
+                    // Skip containers without video elements
                     return
                 }
 
